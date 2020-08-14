@@ -1,0 +1,257 @@
+\documentclass[12pt,oneside,onecolumn,openany]{report} 
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathabx}
+\usepackage{appendix}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage[]{geometry}
+\usepackage{afterpage}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[customcolors,shade]{hf-tikz}
+\usepackage{pgf}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{comment}
+\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+\usepackage{multirow}
+\usepackage{tabularx} % in the preamble
+\usepackage{longtable}
+\usepackage{ltablex}
+\usepackage[printwatermark]{xwatermark}
+\graphicspath{ {figures/} }
+\usepackage{gensymb}
+\usepackage{MnSymbol}
+%\usepackage[acronym,nomain,toc]{glossaries}
+%\usepackage[toc,section=section,nomain,acronym]{glossaries}
+%\glstoctrue
+\usepackage{acro}
+
+\usepackage[nottoc]{tocbibind}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+%\newwatermark[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{Versión preliminar}
+
+\PrerenderUnicode{ü}
+\PrerenderUnicode{ó}
+
+\usetikzlibrary{positioning,shapes,automata,tikzmark}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!20]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\hyphenation{ par-ti-cu-la }
+
+\includeonly{titulo,
+abstract_spa,
+abstract_eng,
+dim,
+ionmol,
+conclusiones,
+publicaciones,
+appendix,
+biblio}
+
+\renewcommand{\tablename}{Tabla}
+\setcounter{tocdepth}{5} %shows all levels incl. paragraph
+
+\acsetup{ 
+  list-style = lof ,
+  pages = first
+} 
+
+\DeclareAcronym{dft}{
+  short = DFT,
+  long = Density Functional Theory,
+  class = A
+}
+
+\DeclareAcronym{ks}{
+  short = KS,
+  long = Kohn--Sham,
+  class = A
+}
+
+\DeclareAcronym{hf}{
+  short = HF,
+  long = Hartree--Fock,
+  class = A
+}
+
+\DeclareAcronym{fba}{
+  short = FBA,
+  long = First Born Aproximation,
+  class = A
+}
+
+\DeclareAcronym{oep}{
+  short = OEP,
+  long = Optimized Effective Potential,
+  class = A
+}
+
+\DeclareAcronym{dim}{
+  short = DIM,
+  long = Depurated Inversion Method,
+  class = A
+}
+
+\DeclareAcronym{boa}{
+  short = BOA,
+  long = Born--Oppenheimer Approximation,
+  class = A
+}
+
+
+\DeclareAcronym{sce}{
+  short = SCE,
+  long = Single--Center Expansion,
+  class = A
+}
+
+\DeclareAcronym{bs}{
+  short = BS,
+  long = Basis Sets,
+  class = A
+}
+
+\DeclareAcronym{mo}{
+  short = MO,
+  long = Molecular Orbital,
+  class = A
+}
+
+\DeclareAcronym{lcao}{
+  short = LCAO,
+  long = Linear Combination of Atomic Orbitals,
+  class = A
+}
+
+\DeclareAcronym{gto}{
+  short = GTO,
+  long = Gaussian--type orbital,
+  class = A
+} 
+
+\DeclareAcronym{ugbs}{
+  short = UGBS,
+  long = Universal Gaussian Basis Set,
+  class = A
+}
+
+\DeclareAcronym{fd}{
+  short = FD,
+  long = Finite Differences,
+  class = A
+}
+
+\DeclareAcronym{cdw}{
+  short = CDW,
+  long = Continuum Distorted Wave--Eikonal Initial State,
+  class = A
+}
+
+\DeclareAcronym{ssm}{
+  short = SSM,
+  long = Simplest Stoichiometric Model,
+  class = A
+}
+
+\DeclareAcronym{thf}{
+  short = THF,
+  long = Tetrahydrofuran,
+  class = A
+}
+
+\begin{comment}
+\DeclareAcronym{}{
+  short = ,
+  long = ,
+  class = A
+}
+
+\DeclareAcronym{}{
+  short = ,
+  long = ,
+  class = A
+}
+
+\DeclareAcronym{}{
+  short = ,
+  long = ,
+  class = A
+}
+
+\DeclareAcronym{}{
+  short = ,
+  long = ,
+  class = A
+}
+
+\DeclareAcronym{}{
+  short = ,
+  long = ,
+  class = A
+}
+\end{comment}
+\usepackage{setspace}
+
+\doublespacing
+\onehalfspace
+\singlespace
+
+\begin{document}
+% gives the width of the current document in pts
+%\showthe\textwidth
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{titulo} 
+\cleardoublepage
+
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\cleardoublepage
+
+\chapter*{Índice de acrónimos}
+\addcontentsline{toc}{chapter}{Índice de acrónimos}
+\printacronyms[include-classes=A,name= ]
+
+\include{abstract_spa}
+\include{abstract_eng}
+
+%\spacing{1.5}
+\pagenumbering{arabic}
+\include{dim}
+\include{ionmol}
+\include{conclusiones}
+\include{publicaciones}
+\include{appendix} 
+\include{biblio}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

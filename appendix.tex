@@ -1,0 +1,59 @@
+\appendix
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{La ecuación normal}
+\label{app:ecnormal}
+
+El procedimiento de ajuste dado por la ecuación normal consiste en 
+minimizar la función
+\begin{equation}
+ \beta(x_i) = y(x_i) - f(x_i,\lambda_1,\lambda_2,\cdots,\lambda_m)\,,
+\end{equation}
+que es la diferencia entre la curva a ser ajustada, $y(r)$, y la función
+analítica implementada para tal fin, $f(r)$. En el esquema de la inversión
+depurada, $y(r) = Z_{nl}^{\mathrm{HF}}(r)$ corresponde a la carga invertida,
+y $f(r) = Z_{nl}^{\mathrm{DIM}}(r)$ corresponde a la forma analítica que 
+se ha fijado para la carga (la ecuación \ref{eq:atomzDIM} para átomos y 
+la ecuación \ref{eq:molzDIM} para moléculas). Con el fin de minimizar
+$\beta(x_i)$ respecto a los $m$ parámetros $\lambda_j$ que determinan 
+$f$, definimos los elementos de matriz $A_{ij}$,
+\begin{equation}
+  A_{ij} \equiv \frac{d\beta(x_i)}{d\lambda_j} =
+ \frac{df(x_i,\lambda_1,\lambda_2,\cdots, \lambda_m)}{d\lambda_j}
+\end{equation}
+Así, obtenemos el sistema de ecuaciones
+\begin{equation}
+ \left[
+ \begin{array}{c}
+  d\beta(x_1) \\
+  d\beta(x_2) \\
+  \vdots \\
+  d\beta(x_n) \\
+ \end{array}
+ \right] =
+ \left[
+ \begin{array}{cccc}
+  A_{11} & A_{12} & \cdots & A_{1m} \\
+  A_{21} & A_{22} & \cdots & A_{2m} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  A_{n1} & A_{n2} & \cdots & A_{nm} \\
+ \end{array}
+ \right]
+ \left[
+ \begin{array}{c}
+ d\lambda_1 \\
+ d\lambda_2 \\
+ \vdots \\
+ d\lambda_m \\
+ \end{array}
+ \right] \,.
+\end{equation}
+Multiplicando ambos lados de la ecuación por la matrix traspuesta $[A]^{T}$,
+\begin{equation}
+  \left[ A \right]^T \left[ A \right]\left[ d\lambda \right] =
+  \left[ A \right]^T \left[ d\beta \right]\,,
+\end{equation}
+somos capaces de obtener un sistema de ecuaciones que se puede resolver
+con rutinas numéricas estándar. Así, la solución $[d\lambda]$ nos permite 
+obtener los mejores parámetros que minimizan $[\beta]$.
+
