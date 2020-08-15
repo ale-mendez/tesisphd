@@ -65,6 +65,7 @@ abstract_spa,
 abstract_eng,
 dim,
 ionmol,
+stopping,
 conclusiones,
 publicaciones,
 appendix,
@@ -181,31 +182,47 @@ biblio}
   class = A
 }
 
+\DeclareAcronym{slpa}{
+  short = SLPA,
+  long = Shellwise Local Plasma Approximation,
+  class = A
+}
+
+\DeclareAcronym{feg}{
+  short = FEG,
+  long = Free Electron Gas,
+  class = A
+}
+
+\DeclareAcronym{spcc}{
+  short = SPCC,
+  long = Screened Potential with Cusp Condition,
+  class = A
+}
+
+\DeclareAcronym{dielectric-ml}{
+  short = ML,
+  long = Mermin-Lindhard,
+  class = A
+}
+
+\DeclareAcronym{qed}{
+  short = QED,
+  long = Quantum Electrodynamic,
+  class = A
+}
+
+\DeclareAcronym{ca}{
+  short = CA,
+  long = Configuration Average,
+  class = A
+}
+\DeclareAcronym{ci}{
+  short = CI,
+  long = Configuration Interaction,
+  class = A
+}
 \begin{comment}
-\DeclareAcronym{}{
-  short = ,
-  long = ,
-  class = A
-}
-
-\DeclareAcronym{}{
-  short = ,
-  long = ,
-  class = A
-}
-
-\DeclareAcronym{}{
-  short = ,
-  long = ,
-  class = A
-}
-
-\DeclareAcronym{}{
-  short = ,
-  long = ,
-  class = A
-}
-
 \DeclareAcronym{}{
   short = ,
   long = ,
@@ -243,6 +260,7 @@ biblio}
 \pagenumbering{arabic}
 \include{dim}
 \include{ionmol}
+\include{stopping}
 \include{conclusiones}
 \include{publicaciones}
 \include{appendix} 
