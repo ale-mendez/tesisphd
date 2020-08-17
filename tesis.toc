@@ -1,9 +1,9 @@
 \babel@toc {spanish}{}
 \contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {iii}}{chapter*.2}
-\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {v}}{chapter*.3}
-\contentsline {chapter}{\IeC {\'I}ndice de acr\IeC {\'o}nimos}{\es@scroman {vi}}{chapter*.4}
-\contentsline {chapter}{Resumen}{\es@scroman {vii}}{chapter*.6}
-\contentsline {chapter}{Abstract}{\es@scroman {viii}}{chapter*.7}
+\contentsline {chapter}{\'{I}ndice de tablas}{\es@scroman {iv}}{chapter*.3}
+\contentsline {chapter}{\IeC {\'I}ndice de acr\IeC {\'o}nimos}{\es@scroman {v}}{chapter*.4}
+\contentsline {chapter}{Resumen}{\es@scroman {vi}}{chapter*.6}
+\contentsline {chapter}{Abstract}{\es@scroman {vii}}{chapter*.7}
 \contentsline {chapter}{\numberline {1}Ionizaci\IeC {\'o}n de \IeC {\'a}tomos y mol\IeC {\'e}culas simples}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Introducci\IeC {\'o}n}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}El m\IeC {\'e}todo de la inversi\IeC {\'o}n depurada}{3}{section.1.2}
@@ -38,11 +38,8 @@
 \contentsline {chapter}{\numberline {3}P\IeC {\'e}rdida de energ\IeC {\'\i }a de iones en elementos pesados}{40}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introducci\IeC {\'o}n}{40}{section.3.1}
 \contentsline {section}{\numberline {3.2}Descripci\IeC {\'o}n de blancos relativistas}{42}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Energ\IeC {\'\i }a de ligadura y valores medios}{43}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Discusi\IeC {\'o}n sobre valores para s\IeC {\'o}lidos}{44}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}P\IeC {\'e}rdida de energ\IeC {\'\i }a}{46}{section.3.3}
-\contentsline {section}{\numberline {3.4}Resultados}{49}{section.3.4}
-\contentsline {section}{\numberline {3.5}Conclusiones}{50}{section.3.5}
-\contentsline {chapter}{\numberline {4}Conclusiones generales}{58}{chapter.4}
-\contentsline {chapter}{\numberline {A}La ecuaci\IeC {\'o}n normal}{61}{appendix.Alph1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{63}{appendix*.9}
+\contentsline {subsection}{\numberline {3.2.1}Energ\IeC {\'\i }a de ligadura y valores medios}{44}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Discusi\IeC {\'o}n sobre valores para s\IeC {\'o}lidos}{46}{subsection.3.2.2}
+\contentsline {chapter}{\numberline {4}Conclusiones generales}{48}{chapter.4}
+\contentsline {chapter}{\numberline {A}La ecuaci\IeC {\'o}n normal}{51}{appendix.Alph1}
+\contentsline {chapter}{Bibliograf\'{\i }a}{53}{appendix*.9}

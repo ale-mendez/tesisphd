@@ -429,12 +429,11 @@ tener las condiciones de borde correctas, forzando el comportamiento de
 la carga efectiva invertida según
 \begin{equation}
 Z_{nl}^{\mathrm{DIM}}(r) \, \rightarrow 
-\left\{ 
+\bigg\{ 
 \begin{array}{ll}
 Z_{N}  \ \  & \ \ \text{as\ \ }r  \rightarrow 0\  \\ 
 1           & \ \ \text{as\ \ }r  \rightarrow \infty \ 
-\end{array}
-\right,
+\end{array}\,,
 \label{eq:Zasympt}
 \end{equation}
 donde $Z_N$ es la carga nuclear del blanco atómico. Una vez que se 
@@ -451,10 +450,10 @@ donde $\Sigma _{j}\alpha _{j}=Z_{N}-1$. Luego, los parámetros $\alpha_j$ y
 $\beta_j$ son optimizados de manera tal que reproduzcan las soluciones 
 de HF de manera precisa.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Optimización de la carga DIM}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:optDIM}
 
 \begin{figure}[t]
 \centering
@@ -488,16 +487,16 @@ de HF de manera precisa.
   \draw [arrow, dashed] (converge) |- (rem.east) node [near start,left] {No};
   \draw [arrow, dashed] (converge) -- (dim.north)  node [midway,right] {Sí};
 \end{tikzpicture}
-\label{fig:procedimientoDIM}
 \caption{Procedimiento de optimización del potencial DIM.}
+\label{fig:procedimientoDIM}
 \end{figure}
 
 Un asunto muy importante en la optimización del potencial está dado 
 por la autoconsistencia dentro de los códigos numéricos implementados
 para el cálculo de las soluciones, y en particular los códigos usados
 para la generación de las funciones de onda a ser invertidas. Para 
-tal fin hemos estudiado los códigos de Hartree--Fock 
-\cite{FroeseFischer1997,Johnson2007} y hemos implementado las grillas
+tal fin, hemos estudiado los códigos de Hartree--Fock 
+\cite{FroeseFischer:97,Johnson:07} y hemos implementado las grillas
 numéricas específicas de cada código, incluyendo los mismos métodos 
 para el cálculo de derivadas. 
 

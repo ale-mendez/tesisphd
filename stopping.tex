@@ -5,55 +5,89 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:intro}
 
-El estudio de los procesos de pérdida de energía por impacto de iones 
+El estudio de procesos de pérdida de energía por impacto de iones 
 en sólidos es una poderosa herramienta en diversas áreas de la ciencia
-básica y tecnología de materiales. Las tablas y códigos resultantes de 
-cálculos semiempíricos están disponibles para una gran combinación de 
-iones y objetivos~\cite{iaea_codes,Paul03}. Sin embargo, los cálculos 
-de dispersión inelástica de blancos pesados siguen siendo una tarea 
-difícil, ya que se hace necesario tener en cuenta los efectos 
-relativistas, que son importantes no solo para los electrones internos 
-sino también para definir las energías de ligadura de la capa externa.
-
-En este capítulo, examinaremos la estructura atómica de átomos pesados 
-utilizando un desarrollo completamente relativista. Resolveremos la 
-ecuación de Dirac correspondiente para cada sistema con el objetivo 
-de describir de forma precisa las funciones de onda y energías de 
-enlace, las cuales luego serán implementadas en los cálculos pérdida de 
-energía. Existen varios métodos que consideran tales cantidades como 
-datos de entrada para calcular procesos inelásticos. Por ejemplo, la 
-aproximación de plasma local por capa (\acs{slpa}) permite calcular los
-diferentes momentos de pérdida de 
-energía~\cite{Montanari:13,Montanari:09,Montanari:11,Oswald:18} 
-conociendo solo las densidades orbitales y las energías de enlace de 
-los electrones objetivo en el estado fundamental.
-
-La descripción de blancos que cuentan con electrones en la capa $4f$ es
-particularmente importante ya que estos electrones tiene un rol 
-fundamental en la predicción de pérdida de energía a energías 
-bajas~\cite{Ro17}. En nuestro trabajo estudiaremos tres grupos de 
-átomos de la tabla periódica: metales de transición con electrones de la
-capa $4d$ como valencia (Zr, Nb, y Pd), lantánidos con la capa $4f$ 
-abierta (Gd y Er), y metales de transición pesados con la capa $4f$ 
-completa (Hf, Ta y Pt). 
-
-Para energías de impacto superiores a unos pocos keV/amu, las 
-partículas cargadas monoenergéticas que penetran una lámina de 
-algún material pierden su energía a través de una serie de colisiones 
-inelásticas consecutivas, principalmente con blancos 
-electrónicos~\cite{Chu01,Sigmund}. La información proporcionada por el 
-proceso de pérdida de energía es esencial no solo para tener una mejor 
-comprensión de la física detrás de las interacciones fundamentales, 
+básica y tecnología de materiales. Para energías de impacto superiores 
+a unos pocos keV/amu, las partículas cargadas monoenergéticas que 
+penetran algún material pierden su energía a través de una serie de 
+colisiones inelásticas consecutivas, principalmente con blancos
+electrónicos~\cite{Chu:01,Sigmund:06}. La información proporcionada por 
+el proceso de pérdida de energía es esencial no solo para tener una 
+mejor comprensión de la física detrás de las interacciones fundamentales, 
 sino también porque juega un papel fundamental en muchos campos 
 aplicados como la ciencia de materiales, la física nuclear, la 
-implantación iónica y la radioterapia~\cite{Sigmund,Schardt}. Los datos 
-experimentales sobre la pérdida de energía media de iones por trayecto 
-unitario $S(E)$ son de importancia crucial para comprobar la fiabilidad 
-de los modelos semiempíricos y determinar algunos parámetros 
-clave~\cite{Diwan,Damache04,Damache02}. Los datos experimentales 
-disponibles son a menudo bastante escasos, lo que resulta problemático 
-cuando el material en estudio corresponde a un elemento de baja 
-presencia en la corteza superior de la Tierra. % tierras raras
+implantación iónica y la radioterapia~\cite{Sigmund:06,Schardt:10}. 
+Tablas y códigos resultantes de cálculos semiempíricos están disponibles 
+para una gran combinación de iones y objetivos~\cite{iaea_codes,Paul:03}. 
+Sin embargo, datos experimentales y predicciones teóricas 
+\textit{ab initio} son de crucial importancia para comprobar la 
+fiabilidad de los modelos semiempíricos y determinación ciertos 
+parámetros clave~\cite{Diwan:15,Damache:04,Damache:02} para la pérdida 
+de energía media de iones por trayecto unitario $S(E)$. Los datos 
+experimentales disponibles son a menudo bastante escasos para materiales 
+correspondientes a elementos de baja presencia en la corteza superior de 
+la Tierra. Por otro lado, los cálculos de dispersión inelástica de 
+blancos pesados usando métodos de primeros principios constituyen una 
+tarea difícil ya que se hace necesario tener en cuenta efectos 
+relativistas. Éstos efectos son importantes no solo para definir el 
+estado de los electrones internos sino también para determinar las 
+energías de ligadura de las capas externas.
+
+En este capítulo, examinaremos la estructura atómica de átomos pesados
+y el proceso de pérdida de energía de iones cuando inciden sobre ellos.
+Los métodos de Hartree--Fock, y su versión relativista Dirac--Fock, 
+son las aproximaciones más conocidas para el cálculo de funciones 
+radiales y energías orbitales. Éstos se basan en el principio 
+variacional y pueden producir resultados muy precisos. Sin embargo, el 
+principio variacional presenta varios inconvenientes: el precio de la 
+precisión del método se paga con funciones de onda radiales dependientes 
+de los términos, las cuales no son ortogonales entre configuraciones. 
+Estas características hacen que el uso de las funciones de onda sea 
+engorroso en el cálculo las transiciones radiativas y de colisión. Más 
+aún, dado que el principio variacional implica la minimización de la 
+energía total, las energías de transición entre niveles cercanos se 
+obtienen como diferencias muy pequeñas entre números grandes, y los 
+resultados son muy susceptibles a errores numéricos. Esto es 
+especialmente importante para los átomos de carga nuclear $Z$ grandes 
+porque la energía total es muy grande. 
+
+El aproximación teórica implementada aquí para describir los blancos 
+pesados fue desarrollada por Klapisch y colaboradores 
+\cite{Klapisch:77,Koenig:72,Klapisch:71,Klapisch:67}. Este método
+está basado en la combinación de la teoría de perturbaciones de primer 
+orden y la aproximación de campo central. La ecuación de Dirac 
+correspondiente para cada sistema se resuelve y se obtienen las 
+funciones de onda de orden cero. El Hamiltoniano resultante es luego
+diagonalizado en las bases de estas funciones implementando el método de
+interacción de configuraciones~(\acs{ci}). El término de Breit y las 
+correcciones debido a los efectos electrodinámicos cuánticos (\acs{qed}) 
+se incluyen a las energías a segundo orden. Las funciones de onda y 
+energías relativistas son implementadas para el cálculo de pérdida de 
+energía. 
+%Diversos métodos consideran la descripción del estado inicial del blanco como datos de entrada para el cálculo de procesos inelásticos. Por ejemplo, la aproximación de plasma local por capa (\acs{slpa}) permite calcular los diferentes momentos de pérdida de energía~\cite{Montanari:13,Montanari:09,Montanari:11,Oswald:18} conociendo solo las densidades orbitales y las energías de enlace de los electrones objetivo en el estado fundamental.
+La descripción de blancos pesados que cuentan con electrones en la capa 
+$4f$ es particularmente importante ya que estos electrones tiene un rol 
+fundamental en la predicción de pérdida de energía a energías 
+bajas~\cite{Roth:17}. 
+
+El enfoque teórico implementado en el cálculo de pérdida de energía 
+utiliza la aproximación de plasma local por capa (\acs{slpa}) 
+\cite{Montanari:13} para describir la energía transferida a los 
+electrones ligados $1s$-$4f$ y dos modelos diferentes para el gas de 
+electrones libre (\acs{feg}); en la región de baja energía, el modelo 
+de potencial apantallado con condición de cúspide (\acs{spcc}) 
+\cite{Montanari:17}, que está basado en un formalismo binario no lineal, 
+y el formalismo dieléctrico de Mermin-Lindhard (\acs{dielectric-ml}) 
+\cite{Mermin:70} para energías alrededor del frenado máximo y 
+superiores. Este modelo requiere conocer las funciones de onda 
+relativistas y energías de ligadura del blanco, considerando un cierto 
+número de electrones de las capas externas en el FEG~\cite{Mendez:19}. 
+% El hafnio es particularmente interesante ya que la subcapa 4f (con 14 electrones) es el principal contribuyente por debajo del FEG, lo que hace que las secciones eficaces de frenado sean muy sensibles a una buena descripción de esta capa. Se ha considerado el apantallamiento entre los electrones 4f y 5p y se ha descubierto que juega un papel importante en los cálculos de SLPA.
+
+En este capítulo estudiaremos tres grupos de átomos de la tabla 
+periódica: metales de transición con electrones de la capa $4d$ como 
+valencia (Zr, Nb, y Pd), lantánidos con la capa $4f$ abierta (Gd y Er), 
+y metales de transición pesados con la capa $4f$ completa (Hf, Ta y Pt). 
 
 {\color{red} Escribir sobre las aplicaciones de los blancos que voy a 
 tratar: Zr, Nb, Pd, Hf, Pt, Ta, Gd y Er  (ver paper de Moro).}
@@ -62,26 +96,13 @@ tratar: Zr, Nb, Pd, Hf, Pt, Ta, Gd y Er  (ver paper de Moro).}
 
 %In this study, we report experimental stopping power cross sections over the incident energy range (0.6-2.5) MeV for protons crossing self-supported Hf thin-film by using the transmission method. We aim not only to upgrade stopping power data compilations~\cite{HPaul03,mondim17} but also to provide useful information about the processes governing the slowing down of protons in multi-electronic targets. In the rare earth metals, the $4f$ electrons play an essential role in the stopping power since they belong to the first shell of bound electrons below the conduction band. As already noted \cite{Roth17}, the free electron gas (FEG) shows unexpected behavior in these elements, which casts doubts on its proper description. In the case of Hf, we found the contribution of the $4f$-shell to be decisive even at impact energies around the stopping maximum, as will be shown later.
 
-El enfoque teórico implementado en el cálculo de pérdida de energía 
-utiliza la aproximación de plasma local por capa~\cite{mon13} 
-para describir la energía transferida a los electrones ligados $1s$-$4f$ 
-y dos modelos diferentes para el gas de electrones libre (\acs{feg}); 
-en la región de baja energía, el modelo de potencial apantallado con 
-condición de cúspide (\acs{spcc})~\cite{mon17}, que está basado en un 
-formalismo binario no lineal, y el formalismo dieléctrico de 
-Mermin-Lindhard (\acs{dielectric-ml})~\cite{Mermin} para energías 
-alrededor del frenado máximo y superiores. Este modelo requiere conocer
-las funciones de onda relativistas y energías de ligadura del blanco, 
-considerando un cierto número de electrones de las capas externas en el 
-FEG~\cite{mendez2019}. % El hafnio es particularmente interesante ya que la subcapa 4f (con 14 electrones) es el principal contribuyente por debajo del FEG, lo que hace que las secciones eficaces de frenado sean muy sensibles a una buena descripción de esta capa. Se ha considerado el apantallamiento entre los electrones 4f y 5p y se ha descubierto que juega un papel importante en los cálculos de SLPA.
-
 Los detalles teóricos del cálculo de los blancos relativistas a estudiar 
 se dan en la sección~\ref{sec:blancos-relat}. Los modelos teóricos 
 implementados para la predicción de la pérdida de energia se detallan 
 en la sección~\ref{sec:slpa+feg}. Los resultados obtenidos teóricamente 
 para los blancos Hf, Pt, Ta, y Gd, los cuales son comparados con valores 
 experimentales. Además, comparamos nuestras predicciones con los 
-modelos teóricos de Grande y Schiwietz~\cite{Grande,casp52}, y de 
+modelos teóricos de Grande y Schiwietz~\cite{Grande:01,casp52}, y de 
 Sigmund y Schinner~\cite{DPASS20}. Debido a su gran implementación en 
 diversas aplicaciones, también consideramos los valores semi-empiricos 
 dados por el paquete SRIM-2013~\cite{Ziegler01} y las tablas 
@@ -109,11 +130,12 @@ electrodinámicos cuánticos (\acs{qed}), y
 \label{eq:hprim}
 \end{equation}
 siendo $h_i^{\mbox{\scriptsize D}}$ el término cinético del 
-Hamiltoniano de Dirac de una partícula. Los términos restantes en
-(\ref{eq:hprim}) corresponden a las interacciones núcleo--electrón y 
-electrón--electrón. Usando la aproximación de campo central y mediante 
-la introducción de potencial paramétrico, el Hamiltoniano $H'$ puede 
-escribirse como la combinación de un término de orden cero, 
+Hamiltoniano de Dirac de una partícula. Los términos restantes en la
+ecuación~(\ref{eq:hprim}) corresponden a las interacciones 
+núcleo--electrón y electrón--electrón, respectivamente. Usando la 
+aproximación de campo central y mediante la introducción de un potencial 
+paramétrico $U(r)$, el Hamiltoniano $H'$ se puede escribir como la 
+combinación de un término de orden cero, 
 \begin{equation}
  H_0 = \sum_i h_i^{\mbox{\scriptsize D}} + U(r_i)\,,
 \end{equation}
@@ -127,9 +149,10 @@ ecuación de Dirac
 \begin{equation}
 \left[ h_i^{\mbox{\scriptsize D}} +U(r) \right] \psi_{nljm}(\mathbf{r}) 
 = \varepsilon_{nljm} \psi_{nljm}(\mathbf{r})\,,
+\label{eq:ecuacionDirac}
 \end{equation}
 llamadas orbitales relativistas, pueden ser caracterizadas por un 
-conjunto de números cuánticos $nljm$ donde $l$ es el número cuántico 
+conjunto de números cuánticos $nljm$, donde $l$ es el número cuántico 
 del momento angular orbital de las componentes superiores. 
 % componentes superiores = upper components ???
 
@@ -137,26 +160,73 @@ La solución de orden cero de un sistema $N$--electrónico se construye a
 partir de productos antisimetrizados de orbitales en cualquier esquema 
 de acoplamiento elegido $\Gamma JM$ como
 \begin{equation}
-\Psi_{\Gamma}\left(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N\right)=A \sum_{all\,\,m}\left\langle\Gamma J M \mid m_1 m_2, \ldots, m_{N}\right\rangle \prod_{a} \varphi_{n_a l_a j_a m_a}\left(\mathbf{r}_a\right)
+\Psi_{\Gamma}\left(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N\right)=A \sum_{all\,\,m}\left\langle\Gamma J M \mid m_1 m_2, \ldots, m_{N}\right\rangle \prod_{a} \varphi_{n_a l_a j_a m_a}\left(\mathbf{r}_a\right)\,,
 \end{equation}
-donde $A$ es el operador de antisimetría que incluye coeficientes de 
-parentezco fraccionales en el caso de electrones equivalentes.
+donde $A$ es el operador de antisimetría. Los estados y niveles 
+específicos se denotan $\Gamma_iJ_iM_i$ y $\Gamma_iJ_i$, respectivamente,
+donde $\Gamma_i$ representa el conjunto de números cuánticos necesario 
+para identificar el estado de manera únivoca. 
 
-%El paquete de códigos {\sc hullac}~\cite{BarShalom:01} fue implementado para resolver numéricamente la ecuación de Dirac. En este conjunto de programas computacionales, el código {\sc relac} es permite calcular las energías y funciones de onda orbitales en primer orden usando el método potencial paramétrico. Este método combina el primer orden de la teoría de perturbaciones independiente del tiempo con la aproximación de campo central, lo que permite escribir el Hamiltoniano $H'$ como un término sin perturbar
-%\begin{equation}
-% H_0 = \sum_i h_i^{\mbox{\scriptsize D}} + U(r_i)\,,
-%\end{equation}
-%más una perturbación de primer orden
-%\begin{equation}
-% H_1 = \sum_{i<j}\frac{1}{r_{ij}}
-% - \sum_i \left[ \frac{Z}{r_i} + U(r_i) \right]\,,
-%\end{equation}
-%mientras que los términos de Breit y los efectos QED se incluyen a las energías como perturbaciones de segundo orden. El potencial paramétrico $U(r_i)$ describe de manera simple el apantallamiento de la distribución de carga de los electrones y es determinado minimizando las energías de configuración promedio (\acs{ac}) de primer orden. El método de potencial paramétrico se implementa dentro del esquema de interacción de configuraciones (\acs{ci}), es decir, el potencial se minimiza para diferentes grupos de configuraciones, agrupados por energías similares y de igual paridad. A continuación, el hamiltoniano $H'$ se construye a partir de configuraciones mixtas incluidas en el cálculo de $U(r_i)$, lo que permite tener en cuenta los efectos de correlación. 
+Una configuración 
+$C\equiv\prod_{a=1}^N\mathbf{j}_a=\prod_{i=1}\mathbf{j}_i^{q_i}$ es un 
+conjunto de estados degenerados, con valores fijos $\mathbf{j}_i=n_il_ij_i$
+y números de ocupación $q_i$, todos con energías de orden cero 
+$E_C^0=\prod_{i=1}\,q_i\varepsilon_i$. 
+El Hamiltoniano $H'$ se construye sobre la base de las configuraciones 
+elegidas obtenidas con el potencial paramétrico. Luego, la matriz es 
+diagonalizada, produciendo estados de configuración mixtos y energías 
+de primer orden con algunas correcciones de correlación. Las funciones 
+de onda resultantes se utilizan para agregar las correcciones QED y el 
+término de Breit a las energías como perturbaciones de segundo orden.
 
+La idea detrás del potencial paramétrico $U(r)$ es describir de manera 
+simple el apantallamiento de la distribución de carga de los electrones. 
+Aplicando la ecuación de Poisson a la densidad de carga radial de los $q$
+electrones descritos por los orbitales de tipo Slater
+\begin{equation}
+\rho(r) = -4\pi r^2 qN\left|r^{l+1}e^{-\alpha r/2}\right|^2\,,
+\end{equation} 
+con las condiciones de borde $$U(\alpha,r\rightarrow\infty)=Z-\frac{q}{r}\,.$$ Aquí,
+$N$ es un factor de normalización, y $\alpha$ está relacionado con el 
+radio medio tal que $\alpha=(2l+3)/\langle r\rangle$. Es necesario 
+mostrar que el potencial para diversas capas y un punto nuclear se puede
+escribir como
+\begin{equation}
+U(\boldsymbol{\alpha},r)=-\frac{1}{r} \left[I+\sum_s q_s\, g(L_s,\alpha_s,r) 
++ \sum_t q_t\,f(l_t,\alpha_t,r)\right]\,,
+\label{eq:potparam}
+\end{equation}
+donde los índices $s$ y $t$ recorren las capas cerradas y abiertas, 
+respectivamente. El valor $I$ es el grado de ionización más uno. Esto 
+elimina la auto-interacción superflua de los electrones ligados. Aquí, 
+$\boldsymbol{\alpha}$ representa un conjunto de parámetros 
+$\left\{\alpha_s,\alpha_t\right\}$ que describen el radio medio de las 
+capas. Las funciones $f$ y $g$ resultan
+\begin{eqnarray}
+f(l,\alpha,r)&=&\mathrm{e}^{-\alpha r} \sum_{j=1}^{2 l+1}\left(1-\frac{j}{2 l+2}\right) \frac{(\alpha r)^{j}}{j !}\,, \\
+g(L, \alpha, r)&=&\frac{1}{2 n^{2}} \sum_{l=0}^{L=n-1}(4 l+2) f\left(l, \alpha^{(l)}, r\right)\,,
+\end{eqnarray}
+donde $n$ es el número cuántico principal y $\alpha^{(l)}$ incluye una
+corrección para la ligera diferencia $l$ en el radio de las $l$-subcapas. 
+Los parámetros libres $q$ son el número efectivo de electrones en la 
+capa y satisfacen $I+\sum_{s} q_{s}+\sum_{t} q_{t}=Z$. 
 
-La función 
+El resultado de esta parametrización es tal que cualquier cantidad 
+atómica calculada con las funciones de onda dadas por la 
+ecuación~(\ref{eq:ecuacionDirac}) junto con el potencial~(\ref{eq:potparam})
+se convierte en una función numérica de los parámetros. Hay muchas 
+formas posibles de elegir los parámetros $\boldsymbol{\alpha}$, de acuerdo 
+a diversos criterios teóricamente válidos. Uno de ellos es la 
+minimización del primer orden de las energías de configuración promedio
+(\acs{ca}), o de las energías de cualquier conjunto de niveles elegido. 
+Otra posibilidad es minimizar la desviación \acs{rms} entre los niveles 
+de energía teóricos y experimentales. Dado que las energías de primer 
+orden sobre las que actúa la optimización incluyen la contribución de 
+intercambio exacta, los parámetros resultantes absorben el efecto del 
+intercambio y, por lo tanto, no hay necesidad de un potencial de 
+intercambio adicional explícito.
 
-
+\begin{comment}
 El valor esperado de cualquier operador $\hat{A}$ viene dado por
 \begin{equation}
  \langle \hat{A}\rangle =
@@ -168,16 +238,25 @@ donde $P(r)$ y $Q(r)$ son los componentes fuerte y débil de los
 espinores de Dirac, respectivamente. Para los orbitales relativistas,
 usamos la notación $nl\pm$, que significa $nl_j$, donde el índice 
 $j=l\pm1/2$ se representa como $\pm$.
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energía de ligadura y valores medios}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Los efectos de la interacción de configuraciones son muy importantes 
-para los átomos relativistas. Así, la correcta descripción del blanco 
-depende de las configuraciones consideradas en el CI. A continuación
-se dan detalles teóricos sobre las configuraciones consideradas en el 
-cálculo de las estructuras atómicas relativistas realizadas.
+La ecuación de Dirac~(\ref{eq:ecuacionDirac}) fue resuelta numéricamente 
+usando el paquete de códigos {\sc hullac}~\cite{BarShalom:01}. En este 
+conjunto de programas computacionales, el código {\sc relac} permite 
+calcular las energías relativistas y funciones de onda orbitales en 
+primer orden usando el método potencial paramétrico descrito en la 
+sección anterior. 
+
+Los efectos de la interacción de configuraciones (\acs{ci}) son muy 
+importantes para los átomos relativistas. Así, la correcta descripción 
+del blanco depende de las configuraciones consideradas en el CI. A 
+continuación se dan detalles teóricos sobre las configuraciones 
+consideradas en el cálculo de las estructuras atómicas relativistas 
+realizadas.
 
 Los elementos de transición que examinaremos son divididos en dos grupos
 según el periodo de la tabla periodica al que pertenecen. Los blancos 
@@ -321,6 +400,7 @@ Our results allow to propose theoretical Wigner--Seitz radii for all
 the targets. We found a particular feature for the lanthanides, which
 indicates that the $4f$ electrons belong to the free electron gas.
 
+\begin{comment}
 
 \onecolumn
 \begin{figure}[h]
@@ -356,9 +436,7 @@ with red dashed line. The orbitals correspond to the given in
 Figs.~\ref{fig:fig1} and \ref{fig:fig2}.}
 \label{fig:ratios}
 \end{figure}
- 
 
-\begin{comment}
 \begin{tabularx}{\textwidth}{@{}Y|YYY|YYY|YYY@{}}
 \caption{Present theoretical and experimental \cite{expdata} 
 electron binding energies and $\langle r \rangle$ values in a.u. 
@@ -457,7 +535,6 @@ $5d^+$ &        & 0.112  & 2.97   &        & 0.159  & 3.46   &        & 0.200  &
 \end{tabularx}
 % \end{table*}
 % \vspace{-0.4cm}
-\end{comment}
 
 % \pagebreak
 % \small
@@ -485,7 +562,6 @@ the FEG; $r_S$, the Wigner--Seitz radio; and $E_F$, the Fermi energy.}
 % \end{table*}
 
 
-\begin{comment}
 %=======================================================================
 \section{Experimental arrangements}
 \label{experiment}
@@ -571,7 +647,6 @@ loss $\Delta E$ of protons in the hafnium sample is mainly related to the
 statistical uncertainty found in the gaussian fits mentioned above. If this value 
 is combined with the $\sim$ 4.9\% uncertainty in target thickness, then a 
 $\sim$ 5.0\% uncertainty in the measured cross section is obtained.
-\end{comment}
 
 %=======================================================================
 \section{Pérdida de energía} 
@@ -878,6 +953,7 @@ impact energies around the stopping maximum and in the low energy region
 would be essential to have a better understanding of the stopping of 
 protons in hafnium.
 
+\end{comment}
 
 
 

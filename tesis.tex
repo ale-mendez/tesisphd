@@ -1,11 +1,12 @@
 \documentclass[12pt,oneside,onecolumn,openany]{report} 
 \usepackage[spanish,es-tabla]{babel}
 \usepackage[utf8x]{inputenc}
-\usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{mathabx}
 \usepackage{appendix}
 \usepackage{graphicx}
+\graphicspath{{figures/}}
 \usepackage{subfigure}
 \usepackage{float}
 \usepackage{mathrsfs}
@@ -14,22 +15,19 @@
 \usepackage{colortbl}
 \usepackage[]{geometry}
 \usepackage{afterpage}
-\usepackage{tikz}
-\usetikzlibrary{shapes.geometric, arrows}
-\usepackage[customcolors,shade]{hf-tikz}
-\usepackage{pgf}
-\usepackage{array}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{hyperref}
+\usepackage{cleveref}
 \usepackage{comment}
 \usepackage[mathlines]{lineno}% Enable numbering of text and display math
-\usepackage{multirow}
-\usepackage{tabularx} % in the preamble
+\usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{ltablex}
-\usepackage[printwatermark]{xwatermark}
-\graphicspath{ {figures/} }
-\usepackage{gensymb}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\usepackage{multirow}
+%\usepackage{gensymb}
 \usepackage{MnSymbol}
+
 %\usepackage[acronym,nomain,toc]{glossaries}
 %\usepackage[toc,section=section,nomain,acronym]{glossaries}
 %\glstoctrue
@@ -39,13 +37,17 @@
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
-
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+%\usepackage[printwatermark]{xwatermark}
 %\newwatermark[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{Versión preliminar}
 
 \PrerenderUnicode{ü}
 \PrerenderUnicode{ó}
 
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[customcolors,shade]{hf-tikz}
+\usepackage{pgf}
+\usepackage{array}
 \usetikzlibrary{positioning,shapes,automata,tikzmark}
 \usetikzlibrary{decorations.pathmorphing}
 \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!20]
@@ -74,154 +76,108 @@ biblio}
 \renewcommand{\tablename}{Tabla}
 \setcounter{tocdepth}{5} %shows all levels incl. paragraph
 
-\acsetup{ 
-  list-style = lof ,
-  pages = first
-} 
-
+\acsetup{  list-style = lof ,
+           pages = first} 
 \DeclareAcronym{dft}{
   short = DFT,
   long = Density Functional Theory,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{ks}{
   short = KS,
   long = Kohn--Sham,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{hf}{
   short = HF,
   long = Hartree--Fock,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{fba}{
   short = FBA,
   long = First Born Aproximation,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{oep}{
   short = OEP,
   long = Optimized Effective Potential,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{dim}{
   short = DIM,
   long = Depurated Inversion Method,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{boa}{
   short = BOA,
   long = Born--Oppenheimer Approximation,
-  class = A
-}
-
-
+  class = A}
 \DeclareAcronym{sce}{
   short = SCE,
   long = Single--Center Expansion,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{bs}{
   short = BS,
   long = Basis Sets,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{mo}{
   short = MO,
   long = Molecular Orbital,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{lcao}{
   short = LCAO,
   long = Linear Combination of Atomic Orbitals,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{gto}{
   short = GTO,
   long = Gaussian--type orbital,
-  class = A
-} 
-
+  class = A} 
 \DeclareAcronym{ugbs}{
   short = UGBS,
   long = Universal Gaussian Basis Set,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{fd}{
   short = FD,
   long = Finite Differences,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{cdw}{
   short = CDW,
   long = Continuum Distorted Wave--Eikonal Initial State,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{ssm}{
   short = SSM,
   long = Simplest Stoichiometric Model,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{thf}{
   short = THF,
   long = Tetrahydrofuran,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{slpa}{
   short = SLPA,
   long = Shellwise Local Plasma Approximation,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{feg}{
   short = FEG,
   long = Free Electron Gas,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{spcc}{
   short = SPCC,
   long = Screened Potential with Cusp Condition,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{dielectric-ml}{
   short = ML,
   long = Mermin-Lindhard,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{qed}{
   short = QED,
   long = Quantum Electrodynamic,
-  class = A
-}
-
+  class = A}
 \DeclareAcronym{ca}{
   short = CA,
   long = Configuration Average,
-  class = A
-}
+  class = A}
 \DeclareAcronym{ci}{
   short = CI,
   long = Configuration Interaction,
-  class = A
-}
+  class = A}
+\DeclareAcronym{rms}{
+  short = RMS,
+  long = Root Mean Square,
+  class = A}
 \begin{comment}
 \DeclareAcronym{}{
   short = ,
