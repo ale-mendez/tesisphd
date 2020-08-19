@@ -86,11 +86,11 @@ número de electrones de las capas externas en el FEG~\cite{Mendez:19}.
 
 En este capítulo estudiaremos tres grupos de átomos de la tabla 
 periódica: metales de transición con electrones de la capa $4d$ como 
-valencia (Zr, Nb, y Pd), lantánidos con la capa $4f$ abierta (Gd y Er), 
-y metales de transición pesados con la capa $4f$ completa (Hf, Ta y Pt). 
+valencia (Zr y Pd), lantánidos con la capa $4f$ abierta (Gd y Er), 
+y metales de transición pesados con la capa $4f$ completa (Hf y Pt). 
 
 {\color{red} Escribir sobre las aplicaciones de los blancos que voy a 
-tratar: Zr, Nb, Pd, Hf, Pt, Ta, Gd y Er  (ver paper de Moro).}
+tratar: Zr, Pd, Hf, Pt, Gd y Er  (ver paper de Moro).}
 
 %So far, only one experimental work has been published regarding the stopping power cross section of pure hafnium for protons~\cite{Sirotinin}, while more attention has been recently given to studies involving hafnium oxide due to its practical use~\cite{Abril,Behar,Primetzhofer,Roth}. It is well known that significant attention has been paid in recent years to transition metal-oxides such as HfO$_2$ because of their potential as alternative gate dielectrics to replace SiO$_2$ for the future generation of nano-electronics with less than 45 nm gate length~\cite{Choi,Robertson}. Some important physical properties of the above mentioned metal-oxide films depend on their thickness, which is often measured by using Rutherford Backscattering Spectrometry~\cite{Alfassi01,Tesmer01}. This method relies on the determination of both the scattering cross section and also the stopping power of ion beams in the material of interest.
 
@@ -134,21 +134,21 @@ Hamiltoniano de Dirac de una partícula. Los términos restantes en la
 ecuación~(\ref{eq:hprim}) corresponden a las interacciones 
 núcleo--electrón y electrón--electrón, respectivamente. Usando la 
 aproximación de campo central y mediante la introducción de un potencial 
-paramétrico $U(r)$, el Hamiltoniano $H'$ se puede escribir como la 
+paramétrico $U(\boldsymbol{\alpha},r)$, el Hamiltoniano $H'$ se puede escribir como la 
 combinación de un término de orden cero, 
 \begin{equation}
- H_0 = \sum_i h_i^{\mbox{\scriptsize D}} + U(r_i)\,,
+ H_0 = \sum_i h_i^{\mbox{\scriptsize D}} + U(\boldsymbol{\alpha},r_i)\,,
 \end{equation}
 más una pequeña perturbación
 \begin{equation}
  H_1 = \sum_{i<j}\frac{1}{r_{ij}}
- - \sum_i \left[ \frac{Z}{r_i} + U(r_i) \right]\,.
+ - \sum_i \left[ \frac{Z}{r_i} + U(\boldsymbol{\alpha},r_i) \right]\,.
 \end{equation}
 Las soluciones de espinor de cuatro componentes de un electrón de la 
 ecuación de Dirac
 \begin{equation}
-\left[ h_i^{\mbox{\scriptsize D}} +U(r) \right] \psi_{nljm}(\mathbf{r}) 
-= \varepsilon_{nljm} \psi_{nljm}(\mathbf{r})\,,
+\left[ h_i^{\mbox{\scriptsize D}} +U(\boldsymbol{\alpha},r) \right] \varphi_{nljm}(\mathbf{r}) 
+= \varepsilon_{nljm} \varphi_{nljm}(\mathbf{r})\,,
 \label{eq:ecuacionDirac}
 \end{equation}
 llamadas orbitales relativistas, pueden ser caracterizadas por un 
@@ -158,7 +158,7 @@ del momento angular orbital de las componentes superiores.
 
 La solución de orden cero de un sistema $N$--electrónico se construye a 
 partir de productos antisimetrizados de orbitales en cualquier esquema 
-de acoplamiento elegido $\Gamma JM$ como
+de acoplamiento elegido $\Gamma JM$ como 
 \begin{equation}
 \Psi_{\Gamma}\left(\mathbf{r}_1, \mathbf{r}_2, \ldots, \mathbf{r}_N\right)=A \sum_{all\,\,m}\left\langle\Gamma J M \mid m_1 m_2, \ldots, m_{N}\right\rangle \prod_{a} \varphi_{n_a l_a j_a m_a}\left(\mathbf{r}_a\right)\,,
 \end{equation}
@@ -179,49 +179,63 @@ de primer orden con algunas correcciones de correlación. Las funciones
 de onda resultantes se utilizan para agregar las correcciones QED y el 
 término de Breit a las energías como perturbaciones de segundo orden.
 
-La idea detrás del potencial paramétrico $U(r)$ es describir de manera 
-simple el apantallamiento de la distribución de carga de los electrones. 
-Aplicando la ecuación de Poisson a la densidad de carga radial de los $q$
-electrones descritos por los orbitales de tipo Slater
+La idea detrás del potencial paramétrico $U(\boldsymbol{\alpha},r)$ es 
+describir de manera simple el apantallamiento de la distribución de carga 
+de los electrones usando una expresión paramétrica analítica, donde 
+$\boldsymbol{\alpha}=\left\{\alpha_1,\alpha_2,\ldots,\alpha_k\right\}$ 
+es un conjunto de parámetros que se definen mediante la optimización 
+del sistema y $k$ es el número de capas ocupadas. Aplicando la ecuación de 
+Poisson a la densidad de carga radial de los $q$ electrones descritos 
+por los orbitales de tipo Slater
 \begin{equation}
 \rho(r) = -4\pi r^2 qN\left|r^{l+1}e^{-\alpha r/2}\right|^2\,,
 \end{equation} 
-con las condiciones de borde $$U(\alpha,r\rightarrow\infty)=Z-\frac{q}{r}\,.$$ Aquí,
-$N$ es un factor de normalización, y $\alpha$ está relacionado con el 
-radio medio tal que $\alpha=(2l+3)/\langle r\rangle$. Es necesario 
-mostrar que el potencial para diversas capas y un punto nuclear se puede
-escribir como
+con las condiciones de borde 
+\begin{equation}
+U(\boldsymbol{\alpha},r\rightarrow\infty)=Z-\frac{q}{r}\,.
+\end{equation} 
+Aquí, $N$ es un factor de normalización, y $\alpha_i$ está relacionado 
+con el radio medio de la capa tal que $\alpha_i=(2l+3)/\langle r\rangle_i$. 
+Es necesario mostrar que el potencial para diversas capas y el nucleo 
+se puede escribir como
 \begin{equation}
 U(\boldsymbol{\alpha},r)=-\frac{1}{r} \left[I+\sum_s q_s\, g(L_s,\alpha_s,r) 
 + \sum_t q_t\,f(l_t,\alpha_t,r)\right]\,,
 \label{eq:potparam}
 \end{equation}
 donde los índices $s$ y $t$ recorren las capas cerradas y abiertas, 
-respectivamente. El valor $I$ es el grado de ionización más uno. Esto 
-elimina la auto-interacción superflua de los electrones ligados. Aquí, 
-$\boldsymbol{\alpha}$ representa un conjunto de parámetros 
-$\left\{\alpha_s,\alpha_t\right\}$ que describen el radio medio de las 
-capas. Las funciones $f$ y $g$ resultan
+respectivamente. El valor $I$ es el grado de ionización más uno. 
+%Esto elimina la auto-interacción adicional de los electrones ligados. Aquí, $\boldsymbol{\alpha}$ representa un conjunto de parámetros $\left\{\alpha_s,\alpha_t\right\}$ que describen el radio medio de las capas. 
+Las funciones $f$ y $g$ son tales que
 \begin{eqnarray}
 f(l,\alpha,r)&=&\mathrm{e}^{-\alpha r} \sum_{j=1}^{2 l+1}\left(1-\frac{j}{2 l+2}\right) \frac{(\alpha r)^{j}}{j !}\,, \\
 g(L, \alpha, r)&=&\frac{1}{2 n^{2}} \sum_{l=0}^{L=n-1}(4 l+2) f\left(l, \alpha^{(l)}, r\right)\,,
 \end{eqnarray}
 donde $n$ es el número cuántico principal y $\alpha^{(l)}$ incluye una
-corrección para la ligera diferencia $l$ en el radio de las $l$-subcapas. 
+corrección para la ligera diferencia en el radio debido al número del
+momento angular cuántico de las subcapas. 
 Los parámetros libres $q$ son el número efectivo de electrones en la 
 capa y satisfacen $I+\sum_{s} q_{s}+\sum_{t} q_{t}=Z$. 
 
-El resultado de esta parametrización es tal que cualquier cantidad 
-atómica calculada con las funciones de onda dadas por la 
-ecuación~(\ref{eq:ecuacionDirac}) junto con el potencial~(\ref{eq:potparam})
-se convierte en una función numérica de los parámetros. Hay muchas 
-formas posibles de elegir los parámetros $\boldsymbol{\alpha}$, de acuerdo 
-a diversos criterios teóricamente válidos. Uno de ellos es la 
-minimización del primer orden de las energías de configuración promedio
-(\acs{ca}), o de las energías de cualquier conjunto de niveles elegido. 
-Otra posibilidad es minimizar la desviación \acs{rms} entre los niveles 
-de energía teóricos y experimentales. Dado que las energías de primer 
-orden sobre las que actúa la optimización incluyen la contribución de 
+Esta parametrización resulta en que cualquier cantidad atómica calculada 
+con las funciones de onda dadas por la ecuación~(\ref{eq:ecuacionDirac}) 
+junto con el potencial~(\ref{eq:potparam}) se convierte en una función 
+numérica de los parámetros. Hay múltiples formas posibles de elegir los 
+parámetros $\boldsymbol{\alpha}$, de acuerdo a diversos criterios 
+teóricamente válidos. Entre ellos, podemos nombrar tres;
+\begin{itemize}
+\item criterio espectroscópico: minimización de la desviación \acs{rms} 
+entre los niveles de energía teóricos y experimentales,
+\item criterio variacional: minimización de la energía total, y
+\item criterio perturbacional: minimización del Hamiltoniano perturbativo
+$H_1$. % primer orden de las energías de configuración promedio (\acs{ca}), 
+\end{itemize}
+%Uno de ellos es la minimización de primer orden de las energías de configuración promedio (\acs{ca}), o de las energías de cualquier conjunto de niveles elegido. Otra posibilidad es minimizar la desviación \acs{rms} entre los niveles de energía teóricos y experimentales. 
+En nuestro trabajo implementamos la optimización perturbativa de primer 
+orden, donde se implementa la minimización de las energías de 
+configuración promedio (\acs{ca}), o de las energías de cualquier 
+conjunto de niveles elegido. Dado que las energías de primer orden 
+sobre las que actúa la optimización incluyen la contribución de 
 intercambio exacta, los parámetros resultantes absorben el efecto del 
 intercambio y, por lo tanto, no hay necesidad de un potencial de 
 intercambio adicional explícito.
@@ -244,65 +258,208 @@ $j=l\pm1/2$ se representa como $\pm$.
 \subsection{Energía de ligadura y valores medios}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-La ecuación de Dirac~(\ref{eq:ecuacionDirac}) fue resuelta numéricamente 
-usando el paquete de códigos {\sc hullac}~\cite{BarShalom:01}. En este 
-conjunto de programas computacionales, el código {\sc relac} permite 
-calcular las energías relativistas y funciones de onda orbitales en 
-primer orden usando el método potencial paramétrico descrito en la 
-sección anterior. 
-
 Los efectos de la interacción de configuraciones (\acs{ci}) son muy 
 importantes para los átomos relativistas. Así, la correcta descripción 
-del blanco depende de las configuraciones consideradas en el CI. A 
-continuación se dan detalles teóricos sobre las configuraciones 
-consideradas en el cálculo de las estructuras atómicas relativistas 
-realizadas.
+del blanco depende de las configuraciones consideradas en el CI. En 
+esta sección se dan detalles sobre las configuraciones consideradas en 
+la optimización de las estructuras atómicas relativistas realizadas.
+La ecuación de Dirac dada por la ecuación~(\ref{eq:ecuacionDirac}) fue 
+resuelta numéricamente usando el paquete de códigos 
+{\sc hullac}~\cite{BarShalom:01}. En este conjunto de programas 
+computacionales, el código {\sc relac} permite calcular las energías 
+relativistas y funciones de onda orbitales en primer orden usando el 
+método potencial paramétrico descrito en la sección anterior. 
 
-Los elementos de transición que examinaremos son divididos en dos grupos
-según el periodo de la tabla periodica al que pertenecen. Los blancos 
-Zr~(40), Nb~(41) y Pd~(46), en el grupo I, mientras que Hf~(72), 
-Ta~(73) y Pt (78) en el grupo II. En ambos grupos, la subcapa $nd$ está
-incompleta, siendo $n=4$ para el grupo I y $n=5$ para el grupo II.
-La configuración fundamental de estos elementos es del tipo 
-$nd^a \,(n+1)s^b$, donde para el grupo de átomos I $a=2,4,10$ y
-$b=2,1,0$, mientras que para el grupo II, $a=2,3,9$ and $b=2,2,1$.
-Los electrones $nd$ y $(n+1)s$ tienen energías de ligadura similares.
-Por lo tanto, las configuraciones $nd^a(n+1)s^2$, $nd^{a+1}(n+1)s^1$ y 
-$nd^{a+2}$ tienen energías comparables. Dado que estas configuraciones
-tienen la misma paridad, éstas cumplen los dos requerimientos mencionados
-anteriormente que son fundamentales en 
+\begin{table*}[t]
+\centering
+\begin{tabular}{|c|c|c|c|l|}
+\hline
+Grupo & Nombre   & Símbolo & $Z$ & Config. fundamental \\
+\hline
+\hline
+\multirow{2}{*}{A} & Circonio & Zr & 40 & [Kr]~$4d^2\,5s^2$ \\
+%                   & Niobio   & Nb & 41 & [Kr]~$4d^4\,5s$ \\
+                   & Paladio  & Pd & 46 & [Kr]~$4d^{10}$ \\
+\hline
+\multirow{2}{*}{B} & Gadolinio & Gd & 64 & [Xe]~$4f^7\,5d\,6s^2$ \\
+                   & Erbio     & Er & 68 & [Xe]~$4f^{12}\,6s^2$ \\
+\hline
+\multirow{2}{*}{C} & Hafnio  & Hf & 72 & [Xe]~$4f^{14}\,5d^2\,6s^2$ \\
+%                   & Talio   & Ta & 73 & [Xe]~$4f^{14}\,5d^3\,6s^2$ \\
+                   & Platino & Pt & 78 & [Xe]~$4f^{14}\,5d^9\,6s$ \\
+\hline
+\end{tabular}
+\caption[Blancos relativistas y sus configuraciones fundamentales]
+{Blancos relativistas y sus configuraciones fundamentales.}
+\label{tab:gruposrelat} 
+\end{table*}
 
-comparable energies. Since these configurations have the
-same parity, they must be included in the mixing configuration
-calculations.
-For example, for Zr, in which the ground state is [Kr]$4d^2 5s^2$,
-we included mixing between $4d^2 5s^2$, $4d^3 5s$, and
-$4d^4$.
-Similarly, for Pt, the ground state is [Xe]~$5d^9 6s$, and
-we included mixing interaction with the $5d^{10}$ configuration.
+Los elementos que examinamos en esta sección son divididos en tres 
+grupos según el período de la tabla periódica al que pertenecen. La 
+clasificación de estos blancos y sus configuraciones fundamentales se
+muestran en la tabla~\ref{tab:gruposrelat}. El grupo A está compuesto 
+por los metales de transición Zr y Pd, mientras que Hf y Pt pertenecen 
+al grupo C. Los lantánidos Gd y Er conforman el grupo B. 
+Podemos escribir una fórmula general para la configuración fundamental 
+de los metales de transición, 
+\begin{equation}
+nd^w\,(n+1)s^x\,,
+\end{equation}
+donde $n=4$, $w=2,10$, $x=2,0$ para el grupo A, y $n=5$, $w=2,9$, 
+$x=2,1$ para el grupo B. Los electrones $nd$ y $(n+1)s$ tienen energías 
+de ligadura similares. Por lo tanto, las configuraciones 
+\begin{gather}
+nd^w(n+1)s^2, \\
+nd^{w+1}(n+1)s, \\
+nd^{w+2}
+\end{gather}
+tienen energías comparables. Dado que estas configuraciones tienen la 
+misma paridad, éstas cumplen los dos requerimientos mencionados 
+anteriormente, y son fundamentales en los cálculos de mezcla de 
+configuraciones. Entonces, por ejemplo, en el cálculo de la estructura 
+de Zr, además del estado fundamental del átomo [Kr]~$4d^2\,5s^2$ 
+incluimos en la mezcla las configuraciones $4d^2\,5s^2$, $4d^3\,5s$, y 
+$4d^4$. De manera similar, para el átomo de Pt, las configuraciones
+[Xe]~$5d^9\,6s$ y $5d^{10}$ son consideradas en el cálculo relativista.
 
-The lanthanides atoms considered for examination -- Gd (64) and 
-Er (68) --, have
-ground configurations [Xe]~$4f^7 5d 6s^2$ and [Xe]~$4f^{12} 6s^2$,
-respectively. In the case of Gd, we also need to include interactions
-between the unfilled $4f$ and the $5d$ orbitals.
-Then, the most important contributions to the configuration interaction
-are given by the mixing of the
-$4f^7 5d 6s^2$ and the $4f^8 6s^2$ configurations.
-In the case of Er, the main mixing is produced by the
-$4f^{12} 6s^2$ and the $4f^{12} 5d 6s$ configurations.
+La configuración fundamental de los lantánidos del grupo C tiene la 
+forma 
+\begin{equation}
+nf^w\,(n+1)d^x\,(n+2)s^y\,,
+\end{equation}
+donde $n=4$, $w=7,12$, $x=1,0$ y $y=2,2$. En el caso de Gd, también 
+tenemos que incluir las interacciones entre los electrones de las capas
+$4f$ y $5d$, que están abiertas. Así, las contribuciones más 
+importantes a la interacción de configuraciones están dadas por la 
+mezcla de las configuraciones $4f^7\,5d\,6s^2$ y $4f^8\,6s^2$.
+Para Er, la mayor mezcla es producida por las configuraciones 
+$4f^{12}\,6s^2$ y $4f^{12}\,5d\,6s$.
 
-The relativistic binding energies obtained from the present 
-calculations are displayed in Table~\ref{tab:tab1}.
-The mean values $\langle r \rangle$, defined by Eq.~(\ref{eq:meanvalr}),
-are also given in the table.
-The binding energies for the nine atoms studied here are displayed
-in Figs.~\ref{fig:fig1} and \ref{fig:fig2} using filled symbols.
-The experimental binding energies for solids, compiled by
-Williams~\cite{expdata}, are included in these figures with hollowed
-circles, and the theoretical binding energies yielded by
-Desclaux~\cite{Desclaux:73} implementing the Dirac--Fock method are
-shown with $\times$ symbols.
+Los valores de energías de ligadura relativistas para los blancos de la 
+tabla~\ref{tab:gruposrelat} obtenidos se dan en la 
+tabla~\ref{tab:relatresults}. Los valores medios orbitales 
+$\langle r \rangle$, dados por la ecuación~(\ref{eq:meanvalr}), también 
+se dan en la tabla. Los presentes cálculos teóricos de energías de 
+ligadura se muestran en la figura~\ref{fig:bindener} con círculos
+rellenos. En la figura se incluyen datos experimentales de energías de 
+ligadura de los blancos en estado sólido usando símbolos de diamantes 
+vacíos. También se muestran los resultados teóricos obtenidos por 
+Desclaux~\cite{Desclaux:73} con el método Dirac--Fock con símbolos 
+$\times$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.70\textwidth]{heavy/bindenerA.eps}
+\caption[Energías de ligadura de blancos relativistas]
+{Energías de ligadura teóricas obtenidas en el presente trabajo 
+(círculos rellenos), valores según el método de Dirac--Fock 
+\cite{Desclaux:73} (símbolos $\times$) y valores experimentales
+\cite{expdata} (diamantes vacíos) de Zr, Pd, Gd, Er, Hf y Pt.}
+\label{fig:bindener}
+\end{figure}
+
+\newpage
+\begin{tabularx}{\textwidth}{|c|YYY|YYY|YYY@{}|}
+\caption[Energías de ligadura y valores $\langle r \rangle$ de blancos
+relativistas]
+{Energías de ligadura teóricas y experimentales~\cite{expdata} 
+y valores $\langle r \rangle$ en a.u. de Zr, Pd, Gd, Er, Hf y Pt.}
+\label{tab:relatresults}\\
+\hline
+\multirow{2}{*}{$nljm$} & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
+   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
+\endfirsthead
+\caption*{Tabla xxx (Cont.): 
+Energías de ligadura teóricas y experimentales~\cite{expdata} 
+y valores $\langle r \rangle$ en a.u. de Zr, Pd, Gd, Er, Hf y Pt.} \\
+\hline
+$nljm$ & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
+   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
+\hline
+\endhead
+
+\hline
+\endfoot
+\hline
+\endfoot
+
+\cline{2-7}
+       & \multicolumn{3}{c}{Zr} & \multicolumn{3}{c}{Pd} \\
+\hline
+$1s$   & 661.40 & 651.34 & 0.0372 & 894.83 & 880.77 & 0.032 \\
+$2s$   & 93.05  & 90.40  & 0.163  & 132.4  & 128.7  & 0.138 \\
+$2p^-$ & 84.78  & 82.78  & 0.139  & 122.4  & 119.7  & 0.117 \\
+$2p^+$ & 81.69  & 79.66  & 0.144  & 116.6  & 113.9  & 0.122 \\
+$3s$   & 15.81  & 14.76  & 0.460  & 24.68  & 23.16  & 0.382 \\
+$3p^-$ & 12.62  & 11.95  & 0.456  & 20.58  & 19.52  & 0.374 \\
+$3p^+$ & 12.12  & 11.45  & 0.467  & 19.56  & 18.53  & 0.385 \\
+$3d^-$ & 6.656  & 6.505  & 0.450  & 12.51  & 11.98  & 0.359 \\
+$3d^+$ & 6.571  & 6.413  & 0.454  & 12.32  & 11.78  & 0.363 \\
+$4s$   & 1.86   & 1.99   & 1.20   & 3.20   & 3.23   & 0.937 \\
+$4p^-$ & 1.05   & 1.21   & 1.32   & 2.05   & 2.09   & 1.01  \\
+$4p^+$ & 0.996  & 1.14   & 1.36   & 1.87   & 1.91   & 1.04  \\
+$4d^-$ &        & 0.103  & 3.15   &        & 0.216  & 1.61  \\
+$4d^+$ &        & 0.100  & 3.29   &        & 0.198  & 1.67  \\
+$5s$   &        & 0.182  & 4.34   &        &        &       \\
+\hline
+       &  \multicolumn{3}{c}{Gd} & \multicolumn{3}{c}{Er} \\
+\hline
+$1s$   & 1846.2 & 1834.6 & 0.0220 & 2112.5 & 2114.2 & 0.0203 \\
+$2s$   & 307.8  & 303.1  & 0.0927 & 358.3  & 353.7  & 0.0859 \\
+$2p^-$ & 291.4  & 288.9  & 0.0773 & 340.4  & 337.5  & 0.0714 \\
+$2p^+$ & 266.2  & 263.2  & 0.0841 & 307.1  & 303.3  & 0.0788 \\
+$3s$   & 69.12  & 67.00  & 0.245  & 81.07  & 79.34  & 0.225  \\
+$3p^-$ & 62.03  & 60.48  & 0.234  & 73.72  & 72.00  & 0.215  \\
+$3p^+$ & 56.74  & 55.29  & 0.247  & 66.59  & 64.92  & 0.229  \\
+$3d^-$ & 44.903 & 43.633 & 0.219  & 53.40  & 51.91  & 0.202  \\
+$3d^+$ & 43.716 & 42.492 & 0.224  & 51.78  & 50.38  & 0.206  \\
+$4s$   & 13.91  & 13.36  & 0.554  & 16.53  & 15.62  & 0.507  \\
+$4p^-$ & 10.5   & 10.8   & 0.565  & 13.46  & 12.69  & 0.516  \\ 
+$4p^+$ & 9.96   & 9.65   & 0.596  & 11.77  & 11.06  & 0.549 \\
+$4d^-$ & -      & 5.405  & 0.635  & 6.159  & 6.186  & 0.580 \\ 
+$4d^+$ & 5.240  & 5.193  & 0.646  & 6.159  & 5.892  & 0.592 \\ 
+$5s$   & 1.3    & 2.0    & 1.37   & 1.86   & 1.95   & 1.26   \\
+$5p^-$ & 0.74   & 1.3    & 1.54   & 1.13   & 1.16   & 1.41  \\ 
+$5p^+$ & 0.74   & 1.1    & 1.65   & 0.908  & 0.954  & 1.51  \\ 
+$4f^-$ & 0.32   & 0.32   & 1.01   & -      & 0.18   & 0.851 \\ 
+$4f^+$ & 0.32   & 0.30   & 1.05   & 0.17   & 0.14   & 0.876 \\ 
+$6s$   &        & 0.40   & 3.79   &        & 0.19   & 3.43   \\
+$5d^-$ &        & 0.35   & 2.77   &        &        &       \\ 
+$5d^+$ &        & 0.34   & 2.84   &        &        &       \\ 
+\hline
+       & \multicolumn{3}{c}{Hf} & \multicolumn{3}{c}{Pt} \\
+\hline
+$1s$   & 2401.6 & 2400.4 & 0.0190 & 2880.9 & 2881.6 & 0.0171 \\
+$2s$   & 414.19 & 408.98 & 0.0798 & 510.07 & 504.78 & 0.0718 \\
+$2p^-$ & 394.64 & 390.26 & 0.0662 & 487.76 & 483.25 & 0.0591 \\
+$2p^+$ & 351.4  & 346.4  & 0.0740 & 424.96 & 419.70 & 0.0676 \\
+$3s$   & 95.58  & 93.55  & 0.208  & 121.1  & 118.8  & 0.187	\\
+$3p^-$ & 86.91  & 85.40  & 0.198  & 111.2  & 109.4  & 0.177	\\
+$3p^+$ & 77.43  & 75.97  & 0.213  & 97.20  & 95.37  & 0.192	\\
+$3d^-$ & 63.06  & 62.14  & 0.187  & 80.92  & 79.83  & 0.168	\\
+$3d^+$ & 61.08  & 60.12  & 0.191  & 77.98  & 76.83  & 0.172	\\
+$4s$   & 19.8   & 18.8   & 0.468  & 26.66  & 25.53  & 0.416	\\
+$4p^-$ & 16.10  & 15.46  & 0.474  & 22.38  & 21.55  & 0.419	\\
+$4p^+$ & 13.99  & 13.28  & 0.508  & 19.09  & 18.22  & 0.453	\\
+$4d^-$ & 8.08   & 7.81   & 0.530  & 12.19  & 11.70  & 0.463	\\
+$4d^+$ & 7.772  & 7.418  & 0.542  & 11.56  & 11.09  & 0.474	\\
+$5s$   & 2.36   & 2.55   & 1.12   & 3.737  & 3.829  & 0.942	\\
+$5p^-$ & 1.4    & 1.6    & 1.24   & 2.40   & 2.53   & 1.02	\\
+$5p^+$ & 1.10   & 1.28   & 1.35   & 1.90   & 1.94   & 1.12	\\
+$4f^-$ & 0.584  & 0.725  & 0.666  & 2.74   & 2.75   & 0.513	\\
+$4f^+$ & 0.522  & 0.660  & 0.679  & 2.62   & 2.62   & 0.520	\\
+$6s$   &        & 0.214  & 3.83   &        & 0.250  & 3.30	\\
+$5d^-$ &        & 0.125  & 2.27   &        & 0.250  & 1.71	\\
+$5d^+$ &        & 0.109  & 3.13   &        & 0.200  & 1.88	\\
+\end{tabularx}
+% \end{table*}
+% \vspace{-0.4cm}
+
+
+\begin{comment}
+
+
+
 
 The agreement between the present theoretical results and the
 experimental binding energies is very good overall.
@@ -400,20 +557,8 @@ Our results allow to propose theoretical Wigner--Seitz radii for all
 the targets. We found a particular feature for the lanthanides, which
 indicates that the $4f$ electrons belong to the free electron gas.
 
-\begin{comment}
 
 \onecolumn
-\begin{figure}[h]
-\centering
- \includegraphics[width=0.70\textwidth]{heavy/bindenerA.eps} \\
- \vspace{0.075\textheight}
- \includegraphics[width=0.70\textwidth]{heavy/bindenerB.eps}
-\caption{Present theoretical relativistic binding energies
-(filled symbols), Dirac--Fock relativistic results \cite{Desclaux:73}
-($\times$ symbols) and experimental values \cite{expdata} (hollowed 
-circles) of Zr, Nb, Hf and Ta.}
-\label{fig:fig1}
-\end{figure}
 \begin{figure}[h]
 \centering
  \includegraphics[width=0.70\textwidth]{heavy/bindenerC.eps} \\
@@ -436,105 +581,6 @@ with red dashed line. The orbitals correspond to the given in
 Figs.~\ref{fig:fig1} and \ref{fig:fig2}.}
 \label{fig:ratios}
 \end{figure}
-
-\begin{tabularx}{\textwidth}{@{}Y|YYY|YYY|YYY@{}}
-\caption{Present theoretical and experimental \cite{expdata} 
-electron binding energies and $\langle r \rangle$ values in a.u. 
-of Zr, Nb, Pd, Gd, Er, Hf, Ta, Os and Pt.}
-\label{tab:tab1}\\
-\hline
-$nljm$ & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
-\endfirsthead
-\caption*{Table 1 (Cont.): Present theoretical and experimental 
-\cite{expdata} electron binding energies and $\langle r \rangle$ 
-values in a.u. of Zr, Nb, Pd, Gd, Er, Hf, Ta, Os and Pt.} \\
-\hline
-$nljm$ & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
-\hline
-\endhead
-
-\hline
-\endfoot
-\hline
-\endfoot
-
-\hline
-\hline
-       & \multicolumn{3}{c}{Zr} & \multicolumn{3}{c}{Nb} & \multicolumn{3}{c}{Pd} \\
-\cline{2-10}
-$1s$  & 661.40 & 651.34 & 0.0372 & 697.71 & 685.57 & 0.0362 & 894.83 & 880.77 & 0.032 \\
-$2s$  & 93.05  & 90.40  & 0.163  & 99.15  & 95.94  & 0.159  & 132.4  & 128.7  & 0.138 \\
-$2p^-$ & 84.78  & 82.78  & 0.139  & 90.59  & 87.85  & 0.136  & 122.4  & 119.7  & 0.117 \\
-$2p^+$ & 81.69  & 79.66  & 0.144  & 87.13  & 84.40  & 0.140  & 116.6  & 113.9  & 0.122 \\
-$3s$  & 15.81  & 14.76  & 0.460  & 17.15  & 16.08  & 0.445  & 24.68  & 23.16  & 0.382 \\
-$3p^-$ & 12.62  & 11.95  & 0.456  & 13.82  & 13.12  & 0.441  & 20.58  & 19.52  & 0.374 \\
-$3p^+$ & 12.12  & 11.45  & 0.467  & 13.25  & 12.55  & 0.452  & 19.56  & 18.53  & 0.385 \\
-$3d^-$ & 6.656  & 6.505  & 0.450  & 7.53   & 7.41   & 0.431  & 12.51  & 11.98  & 0.359 \\
-$3d^+$ & 6.571  & 6.413  & 0.454  & 7.434  & 7.300  & 0.435  & 12.32  & 11.78  & 0.363 \\
-$4s$  & 1.86   & 1.99   & 1.20   & 2.07   & 2.19   & 1.14   & 3.20   & 3.23   & 0.937 \\
-$4p^-$ & 1.05   & 1.21   & 1.32   & 1.20   & 1.35   & 1.26   & 2.05   & 2.09   & 1.01  \\
-$4p^+$ & 0.996  & 1.14   & 1.36   & 1.13   & 1.26   & 1.29   & 1.87   & 1.91   & 1.04  \\
-$4d^-$ &        & 0.103  & 3.15   &        & 0.121  & 2.62   &        & 0.216  & 1.61  \\
-$4d^+$ &        & 0.100 & 3.29   &        & 0.116  & 2.73   &        & 0.198  & 1.67  \\
-$5s$  &        & 0.182  & 4.34   &        & 0.189  & 4.20   &        &        &       \\
-\hline
-\hline
-       &  \multicolumn{3}{c}{Gd} & \multicolumn{3}{c}{Er} & \multicolumn{3}{c}{Hf} \\
-\cline{2-10}$1s$  & 1846.2 & 1834.6 & 0.0220 & 2112.5 & 2114.2 & 0.0203 & 2401.6 & 2400.4 & 0.0190 \\
-$2s$  & 307.8  & 303.1  & 0.0927 & 358.3  & 353.7  & 0.0859 & 414.19 & 408.98 & 0.0798 \\
-$2p^-$ & 291.4  & 288.9  & 0.0773 & 340.4  & 337.5  & 0.0714 & 394.64 & 390.26 & 0.0662 \\
-$2p^+$ & 266.2  & 263.2  & 0.0841 & 307.1  & 303.3  & 0.0788 & 351.4  & 346.4  & 0.0740 \\
-$3s$  & 69.12  & 67.00  & 0.245  & 81.07  & 79.34  & 0.225  & 95.58  & 93.55  & 0.208	\\
-$3p^-$ & 62.03  & 60.48  & 0.234  & 73.72  & 72.00  & 0.215  & 86.91  & 85.40  & 0.198	\\
-$3p^+$ & 56.74  & 55.29  & 0.247  & 66.59  & 64.92  & 0.229  & 77.43  & 75.97  & 0.213	\\
-$3d^-$ & 44.903 & 43.633 & 0.219  & 53.40  & 51.91  & 0.202  & 63.06  & 62.14  & 0.187	\\
-$3d^+$ & 43.716 & 42.492 & 0.224  & 51.78  & 50.38  & 0.206  & 61.08  & 60.12  & 0.191	\\
-$4s$  & 13.91  & 13.36  & 0.554  & 16.53  & 15.62  & 0.507  & 19.8   & 18.8   & 0.468	\\
-$4p^-$ & 10.5   & 10.8   & 0.565  & 13.46  & 12.69  & 0.516  & 16.10  & 15.46  & 0.474	\\
-$4p^+$ & 9.96   & 9.65   & 0.596  & 11.77  & 11.06  & 0.549  & 13.99  & 13.28  & 0.508	\\
-$4d^-$ & -      & 5.405  & 0.635  & 6.159  & 6.186  & 0.580  & 8.08   & 7.81   & 0.530	\\
-$4d^+$ & 5.240  & 5.193  & 0.646  & 6.159  & 5.892  & 0.592  & 7.772  & 7.418  & 0.542	\\
-$5s$  & 1.3    & 2.0    & 1.37   & 1.86   & 1.95   & 1.26   & 2.36   & 2.55   & 1.12	\\
-$5p^-$ & 0.74   & 1.3    & 1.54   & 1.13   & 1.16   & 1.41   & 1.4    & 1.6    & 1.24	\\
-$5p^+$ & 0.74   & 1.1    & 1.65   & 0.908  & 0.954  & 1.51   & 1.10   & 1.28   & 1.35	\\
-$4f^-$ & 0.32   & 0.32   & 1.01   & -      & 0.18   & 0.851  & 0.584  & 0.725  & 0.666	\\
-$4f^+$ & 0.32   & 0.30   & 1.05   & 0.17   & 0.14   & 0.876  & 0.522  & 0.660  & 0.679	\\
-$6s$  &        & 0.40   & 3.79   &        & 0.19   & 3.43   &        & 0.214  & 3.83	\\
-$5d^-$ &        & 0.35   & 2.77   &        &        &        &        & 0.125  & 2.27	\\
-$5d^+$ &        & 0.34   & 2.84   &        &        &        &        & 0.109  & 3.13	\\
-\hline
-\hline
-       &  \multicolumn{3}{c}{Ta} & \multicolumn{3}{c}{Os} & \multicolumn{3}{c}{Pt} \\
-\cline{2-10}
-$1s$  & 2477.4 & 2479.9 & 0.0186 & 2714.6 & 2718.1 & 0.0177 & 2880.9 & 2881.6 & 0.0171 \\
-$2s$  & 429.30 & 423.71 & 0.0784 & 476.55 & 471.11 & 0.0743 & 510.07 & 504.78 & 0.0718 \\
-$2p^-$ & 409.23 & 404.55 & 0.0649 & 455.13 & 450.34 & 0.0614 & 487.76 & 483.25 & 0.0591 \\
-$2p^+$ & 363.1  & 357.6  & 0.0728 & 399.49 & 393.93 & 0.0696 & 424.96 & 419.70 & 0.0676 \\
-$3s$  & 99.51  & 97.33  & 0.205  & 112.0  & 109.9  & 0.193  & 121.1  & 118.8  & 0.187	\\
-$3p^-$ & 90.73  & 88.97  & 0.194  & 102.6  & 100.9  & 0.183  & 111.2  & 109.4  & 0.177	\\
-$3p^+$ & 80.63  & 78.86  & 0.209  & 90.29  & 88.54  & 0.199  & 97.20  & 95.37  & 0.192	\\
-$3d^-$ & 65.89  & 64.63  & 0.184  & 74.64  & 73.56  & 0.174  & 80.92  & 79.83  & 0.168	\\
-$3d^+$ & 63.76  & 62.47  & 0.188  & 72.03  & 70.92  & 0.178  & 77.98  & 76.83  & 0.172	\\
-$4s$  & 20.70  & 19.78  & 0.459  & 24.19  & 23.12  & 0.432  & 26.66  & 25.53  & 0.416	\\
-$4p^-$ & 17.03  & 16.35  & 0.465  & 20.18  & 19.36  & 0.436  & 22.38  & 21.55  & 0.419	\\
-$4p^+$ & 14.73  & 14.01  & 0.499  & 17.30  & 16.46  & 0.471  & 19.09  & 18.22  & 0.453	\\
-$4d^-$ & 8.742  & 8.353  & 0.519  & 10.77  & 10.29  & 0.484  & 12.19  & 11.70  & 0.463	\\
-$4d^+$ & 8.320  & 7.931  & 0.530  & 10.23  & 9.763  & 0.496  & 11.56  & 11.09  & 0.474	\\
-$5s$  & 2.56   & 2.72   & 1.09   & 3.1    & 3.4    & 0.995  & 3.737  & 3.829  & 0.942	\\
-$5p^-$ & 1.55   & 1.71   & 1.20   & 2.1    & 2.2    & 1.09   & 2.40   & 2.53   & 1.02	\\
-$5p^+$ & 1.20   & 1.37   & 1.31   & 1.64   & 1.70   & 1.19   & 1.90   & 1.94   & 1.12	\\
-$4f^-$ & 0.864  & 0.990  & 0.631  & 1.96   & 1.99   & 0.551  & 2.74   & 2.75   & 0.513	\\
-$4f^+$ & 0.794  & 0.916  & 0.642  & 1.86   & 1.89   & 0.560  & 2.62   & 2.62   & 0.520	\\
-$6s$  &        & 0.218  & 3.75   &        & 0.237  & 1.96   &        & 0.250  & 3.30	\\
-$5d^-$ &        & 0.130  & 2.61   &        & 0.194  & 2.18   &        & 0.250  & 1.71	\\
-$5d^+$ &        & 0.112  & 2.97   &        & 0.159  & 3.46   &        & 0.200  & 1.88	\\
-\end{tabularx}
-% \end{table*}
-% \vspace{-0.4cm}
 
 % \pagebreak
 % \small
