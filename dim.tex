@@ -443,12 +443,12 @@ el mayor rango posible, exceptuando las zonas de comportamiento errático.
 Estas condiciones se pueden cumplir imponiendole a la carga efectiva 
 DIM que siga la expresión analítica dada por
 \begin{equation}
-Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n}\alpha _{j}e^{-\beta _{j}r}+1 \, ,  
+Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n} z_j e^{-\alpha_j r}+1 \,,
 \label{eq:atomzDIM}
 \end{equation}
-donde $\Sigma _{j}\alpha _{j}=Z_{N}-1$. Luego, los parámetros $\alpha_j$ y 
-$\beta_j$ son optimizados de manera tal que reproduzcan las soluciones 
-de HF de manera precisa.
+donde $\Sigma_j z_j=Z_N-1$. Luego, los parámetros $z_j$ y $\alpha_j$ 
+son optimizados de manera tal que reproduzcan las soluciones de HF de 
+manera precisa.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Optimización de la carga DIM}
@@ -500,25 +500,25 @@ tal fin, hemos estudiado los códigos de Hartree--Fock
 numéricas específicas de cada código, incluyendo los mismos métodos 
 para el cálculo de derivadas. 
 
-El ajuste de los parámetros $\alpha_{j}$ y $\beta_{j}$ requiere un gran 
-nivel de experiencia y detalle. El procedimiento general de la 
-obtención de los potenciales DIM se esquematiza en la 
-figura~\ref{fig:procedimientoDIM}. La clave de una optimización exitosa está 
-dada por la definición de la región de ajuste: tiene que ser lo más 
+El ajuste del conjunto de parámetros $\left\{z_j,\alpha_j\right\}$ 
+requiere un gran nivel de experiencia y detalle. El procedimiento 
+general de la obtención de los potenciales DIM se esquematiza en la 
+figura~\ref{fig:procedimientoDIM}. La clave de una optimización exitosa 
+está dada por la definición de la región de ajuste: tiene que ser lo más 
 extensa posible pero descartando los puntos cercanos a los polos y 
-divergencias. De esta manera, la carga DIM $Z_{nl}^{\mathrm{DIM}}$ 
-se superpone con la carga invertida $Z_{nl}^{\mathrm{HF}}$ a lo largo 
-de la región interna bien comportada, permitiendo un ajuste preciso. 
-La segunda parte de la optimización consiste en la obtención de una
-semilla para los parámetros $\left[\alpha_{j},\beta_{j}\right]$.
-Estos valores son obtenidos mediante la resolución de la ecuación 
-normal definida por el problema (ver detalles en anexo~\ref{app:ecnormal}).
-Los valores de las semillas obtenidas definen un potencial efectivo. 
-A partir de esta potencial de prueba, se resuelve la ecuación dada por
-(\ref{eq:Schrodinger}), obteniendo las soluciones correspondientes. 
-Las soluciones obtenidas nos permiten definir una función de costo 
-definida previamente, la cual es minimizada repitiendo el procedimiento
-de forma iterativa. 
+divergencias. De esta manera, la carga DIM $Z_{nl}^{\mathrm{DIM}}$ se 
+superpone con la carga invertida $Z_{nl}^{\mathrm{HF}}$ a lo largo de 
+la región interna bien comportada, permitiendo un ajuste preciso. La 
+segunda parte de la optimización consiste en la obtención de una semilla 
+para los parámetros $\left\{z_j,\alpha_j\right\}$. Estos valores son 
+obtenidos mediante la resolución de la ecuación normal definida por el 
+problema (ver detalles en anexo~\ref{app:ecnormal}). Los valores de las 
+semillas obtenidas definen un potencial efectivo. A partir de esta 
+potencial de prueba, se resuelve la ecuación dada por 
+(\ref{eq:Schrodinger}), obteniendo las soluciones correspondientes. Las 
+soluciones obtenidas nos permiten definir una función de costo definida 
+previamente, la cual es minimizada repitiendo el procedimiento de forma 
+iterativa. 
 
 Es importante remarcar que la mayoría de los métodos de funcional de 
 la densidad están basados en un principio variacional que minimiza el
@@ -577,16 +577,17 @@ está dado por
 \begin{equation}
  V_H(r_i)=-\sum_{j=1}^{n} \frac{1}{\left|\mathbf{r}_i-\mathbf{R}_{H_j}\right|}\,,
 \end{equation}
-donde $Z_N$ es la carga nuclear del átomo más pesado $X$, y $\mathbf{R}_{H_j}$ 
-son las coordenadas de los hidrógenos respecto al átomo $X$. La ecuación
-de Schr\"odinger correspondiente $\mathcal{H}\Psi=E\Psi$ se resuelve 
-y, considerando la expansión de un centro (\acs{sce}), los orbitales se 
-expresan según la ecuación~(\ref{eq:centralfield-wave}). Los orbitales
-y energías se encuentran resolviendo las ecuaciones de Hartree--Fock. El
-cálculo de estas ecuaciones generalmente recaen en el uso de conjuntos de 
-bases (\acs{bs}) finitas para la representación de los orbitales 
-moleculares (\acsp{mo}). Usualmente, los MOs son expresados como una
-combinación lineal de orbitales atómicos (\acs{lcao}),
+donde $Z_N$ es la carga nuclear del átomo más pesado $X$, y 
+$\mathbf{R}_{H_j}$ son las coordenadas de los hidrógenos respecto al 
+átomo $X$. La ecuación de Schr\"odinger correspondiente 
+$\mathcal{H}\Psi=E\Psi$ se resuelve y, considerando la expansión de un 
+centro (\acs{sce}), los orbitales se expresan según la 
+ecuación~(\ref{eq:centralfield-wave}). Los orbitales y energías se 
+encuentran resolviendo las ecuaciones de Hartree--Fock. El cálculo de 
+estas ecuaciones generalmente recaen en el uso de conjuntos de bases 
+(\acs{bs}) finitas para la representación de los orbitales moleculares 
+(\acsp{mo}). Usualmente, los MOs son expresados como una combinación 
+lineal de orbitales atómicos (\acs{lcao}), 
 \begin{equation}
  \Psi_i=\sum_j c_{ji} \phi_j\,.
 \end{equation}
@@ -670,8 +671,8 @@ sección~\ref{subsec:depuracion}. Debido a la
 estructura de las moléculas consideras, definimos una nueva ecuación 
 parámetrica para las cargas moleculares DIM,
 \begin{eqnarray}
- Z(r) = \sum_j Z_j e^{-\alpha_j r} 
- + Z_{\mbox{\scriptsize H}} e^{-(\ln r - \ln \beta)^2/(2\gamma)} 
+ Z(r) = \sum_j z_j e^{-\alpha_j r} 
+ + z_{\mbox{\scriptsize H}} e^{-(\ln r - \ln \beta)^2/(2\gamma)} 
  + 1\,.
  \label{eq:molzDIM}
 \end{eqnarray}
@@ -721,7 +722,7 @@ con sólo tres parámetros, los cuales se dan en la tabla~\ref{tab:parametrosHe}
 \begin{center}
 \begin{tabular}{|c|c|c|}
 \hline
-  $nl$ & $\alpha$ & $\beta$ \\
+  $nl$ & $z$ & $\alpha$ \\
 \hline
 \hline
 \multirow{2}{*}{$1s$} &  $1.31745$ & $2.50032$ \\
@@ -780,7 +781,7 @@ la calidad de la región asintótica.
  & \multirow{2}{*}{$\langle r\rangle$} 
  & \multirow{2}{*}{$\langle 1/r\rangle$}
  & \multicolumn{2}{c}{Parámetros}  \\
- &  &  & & & $\alpha$ & $\beta$ \\
+ &  &  & & & $z$ & $\alpha$ \\
 \hline
 \arrayrulecolor{gray!30!white}
 \hline
@@ -831,16 +832,18 @@ e inversión depurada (líneas sólidas).}
 
 \begin{table}
 \centering
-\begin{tabular}{ccccccc}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
 \multirow{2}{*}{$nl$} 
   & \multicolumn{2}{c}{$2\,^4$S} 
-  & \multicolumn{2}{c}{$2\,^2$D } 
+  & \multicolumn{2}{c}{$2\,^2$D} 
   & \multicolumn{2}{c}{$2\,^2$P} \\
-\arrayrulecolor{gray!30!white}
-       & $\alpha$ & $\beta$ 
-       & $\alpha$ & $\beta$ 
-       & $\alpha$ & $\beta$ \\
+\cline{2-7}
+%\arrayrulecolor{gray!30!white}
+       & $z$ & $\alpha$ 
+       & $z$ & $\alpha$ 
+       & $z$ & $\alpha$ \\
+\hline
 \hline
 \multirow{2}{*}{$1s$} & 5.25634  & 1.26207 
        & 5.18635  & 1.22410
@@ -872,7 +875,8 @@ e inversión depurada (líneas sólidas).}
        & 0.301540 & 0.286609 
        & 0.134310  & 0.267987
        & 2.32801  & 1.40925  \\
-\arrayrulecolor{black}\hline
+%\arrayrulecolor{black}
+\hline
 \end{tabular}
 \caption[Parámetros de ajuste de cargas efectivas de nitrógeno.]
 {Parámetros de ajuste de las cargas efectivas 
@@ -883,35 +887,54 @@ $2\,^2$P del nitrógeno.}
 
 \begin{table}
 \centering
-\begin{tabular}{cccccc}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
    & $nl$ &  $\epsilon$  
    & $\langle r \rangle$
    & $\langle 1/r \rangle$ 
    & $\langle r^2 \rangle$ \\ 
 \hline
-$2\,^4$S & $1s$ & -15.629060 & 0.228296 & 6.648629 & 0.070199 \\
-      &      & -15.629060 & 0.22830  & 6.65324  & 0.07027  \\
-      & $2s$ & -0.945324  & 1.334474 & 1.080369 & 2.145339 \\
-      &      & -0.945324  & 1.33228  & 1.07818  & 2.14944  \\
-      & $2p$ & -0.567589  & 1.412683 & 0.954982 & 2.555457 \\
-\vspace*{1ex}
-      &      & -0.567589  & 1.40963  & 0.95769  & 2.54766  \\
+\hline
+\multirow{6}{*}{$2\,^4$S}
+   & \multirow{2}{*}{$1s$} 
+          & -15.629060 & 0.228296 & 6.648629 & 0.070199 \\
+   &      & -15.629060 & 0.22830  & 6.65324  & 0.07027  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2s$}
+          & -0.945324  & 1.334474 & 1.080369 & 2.145339 \\
+   &      & -0.945324  & 1.33228  & 1.07818  & 2.14944  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2p$}
+          & -0.567589  & 1.412683 & 0.954982 & 2.555457 \\
+   &      & -0.567589  & 1.40963  & 0.95769  & 2.54766  \\
+\hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-$2\,^2$D & $1s$ & -15.666392 & 0.228290 & 6.649289 & 0.070200 \\
-      &      & -15.666392 & 0.22826  & 6.65388  & 0.07024  \\
-      & $2s$ & -0.963670  & 1.329174 & 1.086439 & 2.134548 \\
-      &      & -0.963670  & 1.32632  & 1.08318  & 2.12941  \\
-      & $2p$ & -0.508655  & 1.448778 & 0.938821 & 2.709128 \\
-\vspace*{1ex}
-      &      & -0.508655  & 1.44662  & 0.94208  & 2.70716  \\
+\multirow{6}{*}{$2\,^2$D}
+   & \multirow{2}{*}{$1s$}
+          & -15.666392 & 0.228290 & 6.649289 & 0.070200 \\
+   &      & -15.666392 & 0.22826  & 6.65388  & 0.07024  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2s$}
+          & -0.963670  & 1.329174 & 1.086439 & 2.134548 \\
+   &      & -0.963670  & 1.32632  & 1.08318  & 2.12941  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2p$}
+          & -0.508655  & 1.448778 & 0.938821 & 2.709128 \\
+   &      & -0.508655  & 1.44662  & 0.94208  & 2.70716  \\
+\hline
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-$2\,^2$P & $1s$ & -15.691599 & 0.228242 & 6.650362 & 0.070167 \\
-      &      & -15.691599 & 0.22824  & 6.65430  & 0.07022  \\
-      & $2s$ & -0.976339  & 1.325618 & 1.087123 & 2.115849 \\
-      &      & -0.976339  & 1.32232  & 1.08656  & 2.11600  \\
-      & $2p$ & -0.471297  & 1.471755 & 0.929822 & 2.811999 \\
-      &      & -0.471297  & 1.47301  & 0.93155  & 2.82518  \\
+\multirow{6}{*}{$2\,^2$P}
+   & \multirow{2}{*}{$1s$}
+          & -15.691599 & 0.228242 & 6.650362 & 0.070167 \\
+   &      & -15.691599 & 0.22824  & 6.65430  & 0.07022  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2s$}
+          & -0.976339  & 1.325618 & 1.087123 & 2.115849 \\
+   &      & -0.976339  & 1.32232  & 1.08656  & 2.11600  \\
+\cline{2-6}
+   & \multirow{2}{*}{$2p$}
+          & -0.471297  & 1.471755 & 0.929822 & 2.811999 \\
+   &      & -0.471297  & 1.47301  & 0.93155  & 2.82518  \\
 \hline
 \end{tabular}
 \caption[Energías y valores medios orbitales de nitrógeno.]
@@ -977,20 +1000,27 @@ e inversión depurada (líneas sólidas).}
 
 \begin{table}
 \centering
-\begin{tabular}{cc|ccccc}
+\begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
-   $nl$ & $E$ &$Z$ & $\alpha$ & $\beta$ & $\gamma$ \\
+   $nl$ & $E$ &$z$ & $\alpha$ & $z_{\mbox{\scriptsize H}}$ & $\beta$ & $\gamma$ \\
 \hline
-   $1a_1$ & -11.1949  & 1.925280 & 0.641982 & & \\
-          & & 0.953120 & 5.571510 & & \\
-          & & 2.121600 & 1.500440 & & \\
-   $2a_2$ & -0.9204 & 2.912200 & 3.149990 & & \\
-          & & 2.087800 & 0.771371 & & \\
-          & & 1.23640  &          & 2.329570 & 0.053420 \\
-   $2t_1$ & -0.5042 & 0.901953 & 2.895140 & & \\
-          & & 1.112030 & 0.388649 & & \\
-          & & 2.986017 & 2.931210 & & \\
-          & & 1.30182  &          & 2.169850 & 0.012616 \\
+\hline
+\multirow{3}{*}{$1a_1$} 
+  & \multirow{3}{*}{-11.1949}
+      & 1.925280 & 0.641982 & & & \\
+    & & 0.953120 & 5.571510 & & & \\
+    & & 2.121600 & 1.500440 & & & \\
+\hline
+\multirow{2}{*}{$2a_2$}
+ & \multirow{2}{*}{-0.9204}
+      & 2.912200 & 3.149990 & \multirow{2}{*}{1.23640} & \multirow{2}{*}{2.329570} & \multirow{2}{*}{0.053420} \\
+    & & 2.087800 & 0.771371 & & & \\
+\hline
+\multirow{3}{*}{$2t_1$}
+ & \multirow{3}{*}{-0.5042}
+      & 0.901953 & 2.895140 & \multirow{3}{*}{1.30182} & \multirow{3}{*}{2.169850} & \multirow{3}{*}{0.012616} \\
+    & & 1.112030 & 0.388649 & & & \\
+    & & 2.986017 & 2.931210 & & & \\
 \hline
 \end{tabular}
 \caption[Energías y parámetros de ajuste de cargas efectivas de metano.]
