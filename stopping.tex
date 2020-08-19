@@ -240,29 +240,47 @@ intercambio exacta, los parámetros resultantes absorben el efecto del
 intercambio y, por lo tanto, no hay necesidad de un potencial de 
 intercambio adicional explícito.
 
-\begin{comment}
-El valor esperado de cualquier operador $\hat{A}$ viene dado por
+Por otro lado, siendo $U(\boldsymbol{\alpha},r)$ un potencial central,
+es posible plantear la separación de variables esféricas de las 
+soluciones de la ecuación de Dirac~(\ref{eq:ecuacionDirac}), tal que
 \begin{equation}
- \langle \hat{A}\rangle =
-\int_0^{\infty} \left[ P^*(r) \,\hat{A}\, P(r) + Q^*(r)\, \hat{A}\, Q(r)
-\right]\,dr
- \label{eq:meanvalr}
+\varphi_{nljm}(\mathbf{r}) = \frac{1}{r} \left( 
+\begin{array}{c}
+i P_{nlj}(r) \,\Omega_{jlm}(\hat{\mathbf{r}}) \\ 
+  Q_{nlj}(r) \,(\boldsymbol{\sigma}\cdot\hat{\mathbf{r}})\,\Omega_{jlm}(\hat{\mathbf{r}})
+\end{array}
+\right)\,,
+\label{eq:sepespinor}
 \end{equation}
-donde $P(r)$ y $Q(r)$ son los componentes fuerte y débil de los 
-espinores de Dirac, respectivamente. Para los orbitales relativistas,
-usamos la notación $nl\pm$, que significa $nl_j$, donde el índice 
-$j=l\pm1/2$ se representa como $\pm$.
-\end{comment}
+donde $P_{nlj}(r)$ y $Q_{nlj}(r)$ son los componentes fuerte y débil de los 
+espinores de Dirac, respectivamente. Los espinores esféricos 
+$\Omega_{jlm}(\hat{\mathbf{r}})$ son autoestados de $J^2$ y $J_z$ a 
+través de la relación
+\begin{equation}
+\Omega_{j, l, m}(\theta, \phi)=\sum_{\mu} C(l, 1 / 2, j ; m-\mu, \mu, m) Y_{l, m-\mu}(\theta, \phi) \chi_{\mu}\,,
+\end{equation}
+donde $C\left(j_{1}, j_{2}, j ; m_{1}, m_{2}, m\right)$ son los
+coeficientes de Clebsch--Gordan. Así, el valor esperado de cualquier 
+operador $\hat{A}$ estará dado por
+\begin{equation}
+\langle\hat{A}\rangle=\int_0^{\infty}\left[P^*(r)\,\hat{A}\,P(r) 
+ +Q^*(r)\,\hat{A}\,Q(r)
+\right]\,dr\,.
+\label{eq:meanvalr}
+\end{equation}
+Para los orbitales relativistas, usamos la notación $nl\pm$, que 
+significa $nlj$, donde el índice $j=l\pm1/2$ se representa como $\pm$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energía de ligadura y valores medios}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Los efectos de la interacción de configuraciones (\acs{ci}) son muy 
-importantes para los átomos relativistas. Así, la correcta descripción 
-del blanco depende de las configuraciones consideradas en el CI. En 
-esta sección se dan detalles sobre las configuraciones consideradas en 
-la optimización de las estructuras atómicas relativistas realizadas.
+importantes en el caso de los átomos relativistas. Así, la correcta 
+descripción del blanco depende de las configuraciones consideradas en 
+el CI. En esta sección, la optimización de los blancos consiste en la 
+determinación de las configuraciones que contribuyen de manera 
+significativa a la mezcla en la interacción de configuraciones. 
 La ecuación de Dirac dada por la ecuación~(\ref{eq:ecuacionDirac}) fue 
 resuelta numéricamente usando el paquete de códigos 
 {\sc hullac}~\cite{BarShalom:01}. En este conjunto de programas 
@@ -336,11 +354,11 @@ Para Er, la mayor mezcla es producida por las configuraciones
 $4f^{12}\,6s^2$ y $4f^{12}\,5d\,6s$.
 
 Los valores de energías de ligadura relativistas para los blancos de la 
-tabla~\ref{tab:gruposrelat} obtenidos se dan en la 
-tabla~\ref{tab:relatresults}. Los valores medios orbitales 
-$\langle r \rangle$, dados por la ecuación~(\ref{eq:meanvalr}), también 
-se dan en la tabla. Los presentes cálculos teóricos de energías de 
-ligadura se muestran en la figura~\ref{fig:bindener} con círculos
+tabla~\ref{tab:gruposrelat} obtenidos a partir de la optimización de los
+blancos se dan en la tabla~\ref{tab:relatresults}. Los valores medios 
+orbitales $\langle r \rangle$, dados por la ecuación~(\ref{eq:meanvalr}), 
+también se dan en la tabla. Los presentes cálculos teóricos de energías 
+de ligadura se muestran en la figura~\ref{fig:bindener} con círculos
 rellenos. En la figura se incluyen datos experimentales de energías de 
 ligadura de los blancos en estado sólido usando símbolos de diamantes 
 vacíos. También se muestran los resultados teóricos obtenidos por 
@@ -349,11 +367,13 @@ $\times$.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.70\textwidth]{heavy/bindenerA.eps}
+%\includegraphics[width=0.9\textwidth]{heavy/bindenerA.eps} \\
+%\includegraphics[width=0.9\textwidth]{heavy/bindenerB.eps}
+\includegraphics[width=0.9\textwidth]{heavy/bindener.eps}
 \caption[Energías de ligadura de blancos relativistas]
 {Energías de ligadura teóricas obtenidas en el presente trabajo 
 (círculos rellenos), valores según el método de Dirac--Fock 
-\cite{Desclaux:73} (símbolos $\times$) y valores experimentales
+\cite{Desclaux:73} (símbolos $\times$) y data experimental
 \cite{expdata} (diamantes vacíos) de Zr, Pd, Gd, Er, Hf y Pt.}
 \label{fig:bindener}
 \end{figure}
