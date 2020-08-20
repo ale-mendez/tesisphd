@@ -296,14 +296,12 @@ Grupo & Nombre   & Símbolo & $Z$ & Config. fundamental \\
 \hline
 \hline
 \multirow{2}{*}{A} & Circonio & Zr & 40 & [Kr]~$4d^2\,5s^2$ \\
-%                   & Niobio   & Nb & 41 & [Kr]~$4d^4\,5s$ \\
                    & Paladio  & Pd & 46 & [Kr]~$4d^{10}$ \\
 \hline
 \multirow{2}{*}{B} & Gadolinio & Gd & 64 & [Xe]~$4f^7\,5d\,6s^2$ \\
                    & Erbio     & Er & 68 & [Xe]~$4f^{12}\,6s^2$ \\
 \hline
 \multirow{2}{*}{C} & Hafnio  & Hf & 72 & [Xe]~$4f^{14}\,5d^2\,6s^2$ \\
-%                   & Talio   & Ta & 73 & [Xe]~$4f^{14}\,5d^3\,6s^2$ \\
                    & Platino & Pt & 78 & [Xe]~$4f^{14}\,5d^9\,6s$ \\
 \hline
 \end{tabular}
@@ -353,56 +351,184 @@ mezcla de las configuraciones $4f^7\,5d\,6s^2$ y $4f^8\,6s^2$.
 Para Er, la mayor mezcla es producida por las configuraciones 
 $4f^{12}\,6s^2$ y $4f^{12}\,5d\,6s$.
 
-Los valores de energías de ligadura relativistas para los blancos de la 
-tabla~\ref{tab:gruposrelat} obtenidos a partir de la optimización de los
-blancos se dan en la tabla~\ref{tab:relatresults}. Los valores medios 
-orbitales $\langle r \rangle$, dados por la ecuación~(\ref{eq:meanvalr}), 
-también se dan en la tabla. Los presentes cálculos teóricos de energías 
-de ligadura se muestran en la figura~\ref{fig:bindener} con círculos
-rellenos. En la figura se incluyen datos experimentales de energías de 
-ligadura de los blancos en estado sólido usando símbolos de diamantes 
-vacíos. También se muestran los resultados teóricos obtenidos por 
-Desclaux~\cite{Desclaux:73} con el método Dirac--Fock con símbolos 
-$\times$.
+Los valores teóricos optimizados de energías de ligadura para los 
+blancos relativistas de la tabla~\ref{tab:gruposrelat} se dan en la 
+tabla~\ref{tab:relatresults} y se muestran en la 
+figura~\ref{fig:bindener} con diamantes rellenos. 
+En la tabla se incluyen los valores medios $\langle r\rangle$ de cada 
+capa, los cuales se obtienen a partir de la ecuación~(\ref{eq:meanvalr}). 
+Datos experimentales de los blancos en estado sólido~\cite{Williams:95}
+se presentan usando círculos vacíos. Los resultados obtenidos por 
+Desclaux~\cite{Desclaux:73} mediante la implementación del método 
+de Dirac--Fock se muestran en la figura con símbolos $\times$.
 
 \begin{figure}[t]
 \centering
-%\includegraphics[width=0.9\textwidth]{heavy/bindenerA.eps} \\
-%\includegraphics[width=0.9\textwidth]{heavy/bindenerB.eps}
 \includegraphics[width=0.9\textwidth]{heavy/bindener.eps}
 \caption[Energías de ligadura de blancos relativistas]
-{Energías de ligadura teóricas obtenidas en el presente trabajo 
-(círculos rellenos), valores según el método de Dirac--Fock 
-\cite{Desclaux:73} (símbolos $\times$) y data experimental
-\cite{expdata} (diamantes vacíos) de Zr, Pd, Gd, Er, Hf y Pt.}
+{Energías de ligadura de Zr, Pd, Gd, Er, Hf y Pt. Símbolos: 
+$\blacklozenge$ resultados teóricos del presente trabajo, 
+$\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}, y 
+$\medcircle$ datos experimentales en sólidos~\cite{Williams:95}.}
 \label{fig:bindener}
 \end{figure}
 
-\newpage
+
+\begin{tabularx}{\textwidth}{|c|YYY|YYY|YYY|}
+\caption[Energías de ligadura y valores $\langle r \rangle$ de blancos
+relativistas]
+{Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
+Zr, Pd, Gd, Er, Hf y Pt. Valores medios $\langle r \rangle$ en a.u. 
+obtenidos a partir de la ecuación~(\ref{eq:meanvalr}).}
+\label{tab:relatresults} \\
+\hline
+%% primer encabezado
+\multirow{2}{*}{$nlj$} 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$  \\
+\endfirsthead % fin de primer encabezado
+%% segundo encabezado (tabla continuada)
+\caption*{Tabla x.2 (Cont.): 
+Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
+Zr, Pd, Gd, Er, Hf y Pt. Valores medios $\langle r \rangle$ en a.u. 
+obtenidos a partir de la ecuación~(\ref{eq:meanvalr}).} \\
+\hline
+$nlj$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$  \\
+\hline
+\endhead % fin de segundo encabezado
+\hline
+\endfoot % lineas que cierran la tabla 
+  \cline{2-10}
+  & \multicolumn{3}{c}{Zr} &  \multicolumn{3}{c}{Gd} & \multicolumn{3}{c}{Hf} \\
+\hline
+$1s$   & 661.45 & 651.34 & 0.0372 & 1846.2 & 1843.6 & 0.0219 & 2401.6 & 2400.4 & 0.0190 \\
+$2s$   & 93.05  & 90.40  & 0.163  & 307.8  & 303.0  & 0.0929 & 414.20 & 408.98 & 0.0798 \\
+$2p_-$ & 84.79  & 82.78  & 0.139  & 291.4  & 287.2  & 0.0776 & 394.65 & 390.26 & 0.0662 \\
+$2p_+$ & 81.70  & 79.66  & 0.144  & 266.2  & 261.6  & 0.0845 & 351.4  & 346.4  & 0.0740 \\
+$3s$   & 15.82  & 14.76  & 0.460  & 69.13  & 67.43  & 0.244  & 95.58  & 93.55  & 0.208 \\
+$3p_-$ & 12.62  & 11.95  & 0.456  & 62.03  & 60.79  & 0.234  & 86.91  & 85.40  & 0.198 \\
+$3p_+$ & 12.12  & 11.45  & 0.467  & 56.74  & 55.50  & 0.247  & 77.43  & 75.97  & 0.213 \\
+$3d_-$ & 6.656  & 6.505  & 0.450  & 44.904 & 44.084 & 0.219  & 63.06  & 62.14  & 0.187 \\
+$3d_+$ & 6.571  & 6.413  & 0.454  & 43.717 & 42.953 & 0.223  & 61.08  & 60.12  & 0.191 \\
+$4s$   & 1.86   & 1.99   & 1.20   & 13.91  & 13.50  & 0.553  & 19.8   & 18.8   & 0.468 \\
+$4p_-$ & 1.05   & 1.21   & 1.32   & 10.5   & 10.9   & 0.565  & 16.10  & 15.45  & 0.474 \\
+$4p_+$ & 0.996  & 1.14   & 1.36   & 9.96   & 9.74   & 0.596  & 13.99  & 13.28  & 0.508 \\
+$4d_-$ &        & 0.103  & 3.15   & -      & 5.515  & 0.634  & 8.08   & 7.81   & 0.530 \\
+$4d_+$ &        & 0.100  & 3.29   & 5.240  & 5.306  & 0.645  & 7.772  & 7.418  & 0.542 \\
+$5s$   &        & 0.182  & 4.34   & 1.3    & 2.0    & 1.34   & 2.36   & 2.55   & 1.12 \\
+$5p_-$ &        &        &        & 0.74   & 1.3    & 1.51   & 1.4    & 1.6    & 1.24 \\
+$5p_+$ &        &        &        & 0.74   & 1.2    & 1.60   & 1.10   & 1.28   & 1.35 \\
+$4f_-$ &        &        &        & 0.32   & 0.41   & 0.916  & 0.584  & 0.725  & 0.666 \\
+$4f_+$ &        &        &        & 0.32   & 0.38   & 0.934  & 0.522  & 0.660  & 0.679 \\
+$6s$   &        &        &        &        & 0.31   & 3.70   &        & 0.214 & 3.83 \\
+$5d_-$ &        &        &        &        & 0.29   & 2.50   &        & 0.125 & 2.77 \\
+$5d_+$ &        &        &        &        & 0.28   & 2.56   &        & 0.109 & 3.13 \\
+\hline
+  & \multicolumn{3}{c}{Pd} &  \multicolumn{3}{c}{Er} & \multicolumn{3}{c}{Pt} \\
+\hline
+$1s$   & 894.84 & 880.77 & 0.0320 & 2112.7 & 2114.2 & 0.0203 & 2880.9 & 2881.6 & 0.0171 \\
+$2s$   & 132.44 & 128.73 & 0.138  & 358.4  & 353.7  & 0.0858 & 510.08 & 504.78 & 0.0718 \\
+$2p_-$ & 122.37 & 119.68 & 0.117  & 340.5  & 337.5  & 0.0712 & 487.77 & 483.25 & 0.0591 \\
+$2p_+$ & 116.60 & 113.89 & 0.122  & 307.2  & 303.3  & 0.0785 & 424.97 & 419.70 & 0.0676 \\
+$3s$   & 24.68  & 23.16  & 0.382  & 81.07  & 79.34  & 0.225  & 121.1  & 118.8  & 0.187 \\
+$3p_-$ & 20.58  & 19.52  & 0.374  & 73.72  & 72.00  & 0.215  & 111.2  & 109.4  & 0.177 \\
+$3p_+$ & 19.56  & 18.53  & 0.385  & 66.59  & 64.92  & 0.229  & 97.20  & 95.37  & 0.192 \\
+$3d_-$ & 12.51  & 11.98  & 0.359  & 53.40  & 51.91  & 0.202  & 80.92  & 79.83  & 0.168 \\
+$3d_+$ & 12.32  & 11.78  & 0.363  & 51.78  & 50.38  & 0.207  & 77.98  & 76.83  & 0.172 \\
+$4s$   & 3.20   & 3.23   & 0.937  & 16.53  & 15.62  & 0.507  & 26.66  & 25.53  & 0.416 \\
+$4p_-$ & 2.05   & 2.09   & 1.01   & 13.46  & 12.69  & 0.515  & 22.38  & 21.55  & 0.419 \\
+$4p_+$ & 1.87   & 1.92   & 1.04   & 11.77  & 11.06  & 0.548  & 19.09  & 18.22  & 0.453 \\
+$4d_-$ &        & 0.216  & 1.61   & 6.160  & 6.186  & 0.578  & 12.19  & 11.70  & 0.463 \\
+$4d_+$ &        & 0.198  & 1.67   & 6.160  & 5.892  & 0.589  & 11.56  & 11.09  & 0.474 \\
+$5s$   &        &        &        & 1.86   & 1.95   & 1.25   & 3.737  & 3.829  & 0.942 \\
+$5p_-$ &        &        &        & 1.15   & 1.16   & 1.41   & 2.40   & 2.53   & 1.02 \\
+$5p_+$ &        &        &        & 0.908  & 0.954  & 1.52   & 1.90   & 1.94   & 1.12 \\
+$4f_-$ &        &        &        & -      & 0.18   & 0.813  & 2.74   & 2.75   & 0.513 \\
+$4f_+$ &        &        &        & 0.17   & 0.14   & 0.838  & 2.62   & 2.62   & 0.520 \\
+$6s$   &        &        &        &        & 0.19   & 4.33   &        & 0.250  & 3.30 \\
+$5d_-$ &        &        &        &        & 0.080  & 4.91   &        & 0.250  & 1.71 \\
+$5d_+$ &        &        &        &        & 0.076  & 5.45   &        & 0.200  & 1.88 \\
+\end{tabularx}
+
+The agreement between the present theoretical results and the
+experimental binding energies is very good overall.
+Since Figs.~\ref{fig:fig1} and \ref{fig:fig2} display the binding
+energies in a five--order magnitude range, it is not possible to
+discern the discrepancies between the data listed in Table~\ref{tab:tab1}
+and the corresponding results of Ref.~\cite{Desclaux:73}.
+In order to assess the differences, the ratios $E^{\mbox{\scriptsize expt}}/E^{\mbox{\scriptsize th}}$
+and $E^{\mbox{\scriptsize expt}}/E^{\mbox{\scriptsize \cite{Desclaux:73}}}$
+between the experimental and both of the theoretical binding energies
+are presented in Fig.~\ref{fig:ratios}, with black solid and red dashed
+lines, respectively.
+The binding energies we obtained for Zr and Nb show an
+overall agreement of about $4\%$ for all the shells, except for the
+subvalence $4p$. Similarly, the results obtained for Hf and Ta agree
+with the experimental values in $\sim3\%$, except the $5p$ and $4f$
+subshells. The lanthanides Gd and Er also present agreement of about
+$3\%$, with exception of the outermost subshells $5s$, $5p$ and $4f$.
+Surprisingly, for the transition metals Pd, Os and Pt, whose $nd$
+subshells are more filled, the agreement is better than $3\%$ for all
+the subshells, even the subvalence $4p$ of Pd and the $5p$, $4f$ of
+Os and Pt. In all the cases, the present results describe the experimental data 
+more accurately than \cite{Desclaux:73}.
+
+
+
+\begin{comment}
+
 \begin{tabularx}{\textwidth}{|c|YYY|YYY|YYY@{}|}
 \caption[Energías de ligadura y valores $\langle r \rangle$ de blancos
 relativistas]
-{Energías de ligadura teóricas y experimentales~\cite{expdata} 
-y valores $\langle r \rangle$ en a.u. de Zr, Pd, Gd, Er, Hf y Pt.}
-\label{tab:relatresults}\\
+{Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
+Zr, Pd, Gd, Er, Hf y Pt. Valores medios $\langle r \rangle$ en a.u. 
+obtenidos a partir de la ecuación~(\ref{eq:meanvalr}).}
+\label{tab:relatresults} \\
 \hline
-\multirow{2}{*}{$nljm$} & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
-\endfirsthead
-\caption*{Tabla xxx (Cont.): 
-Energías de ligadura teóricas y experimentales~\cite{expdata} 
-y valores $\langle r \rangle$ en a.u. de Zr, Pd, Gd, Er, Hf y Pt.} \\
+%% primer encabezado
+\multirow{2}{*}{$nljm$} 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ \\
+\endfirsthead % fin de primer encabezado
+%% segundo encabezado (tabla continuada)
+\caption*{Tabla x.2 (Cont.): 
+Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
+Zr, Pd, Gd, Er, Hf y Pt. Valores medios $\langle r \rangle$ en a.u. 
+obtenidos a partir de la ecuación~(\ref{eq:meanvalr}).} \\
 \hline
-$nljm$ & $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ &
-   $E^{\mbox{\tiny expt}}$ & $E^{\mbox{\tiny th}}$ & $\langle r \rangle^{\mbox{\tiny th}}$ \\
+$nljm$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ 
+ & $E^{\mbox{\tiny exp}}$
+ & $E^{\mbox{\tiny teo}}$
+ & $\langle r\rangle^{\mbox{\tiny teo}}$ \\
 \hline
-\endhead
-
+\endhead % fin de segundo encabezado
 \hline
 \endfoot
 \hline
-\endfoot
-
+\endfoot % lineas que cierran la tabla 
 \cline{2-7}
        & \multicolumn{3}{c}{Zr} & \multicolumn{3}{c}{Pd} \\
 \hline
@@ -472,37 +598,7 @@ $6s$   &        & 0.214  & 3.83   &        & 0.250  & 3.30	\\
 $5d^-$ &        & 0.125  & 2.27   &        & 0.250  & 1.71	\\
 $5d^+$ &        & 0.109  & 3.13   &        & 0.200  & 1.88	\\
 \end{tabularx}
-% \end{table*}
-% \vspace{-0.4cm}
 
-
-\begin{comment}
-
-
-
-
-The agreement between the present theoretical results and the
-experimental binding energies is very good overall.
-Since Figs.~\ref{fig:fig1} and \ref{fig:fig2} display the binding
-energies in a five--order magnitude range, it is not possible to
-discern the discrepancies between the data listed in Table~\ref{tab:tab1}
-and the corresponding results of Ref.~\cite{Desclaux:73}.
-In order to assess the differences, the ratios $E^{\mbox{\scriptsize expt}}/E^{\mbox{\scriptsize th}}$
-and $E^{\mbox{\scriptsize expt}}/E^{\mbox{\scriptsize \cite{Desclaux:73}}}$
-between the experimental and both of the theoretical binding energies
-are presented in Fig.~\ref{fig:ratios}, with black solid and red dashed
-lines, respectively.
-The binding energies we obtained for Zr and Nb show an
-overall agreement of about $4\%$ for all the shells, except for the
-subvalence $4p$. Similarly, the results obtained for Hf and Ta agree
-with the experimental values in $\sim3\%$, except the $5p$ and $4f$
-subshells. The lanthanides Gd and Er also present agreement of about
-$3\%$, with exception of the outermost subshells $5s$, $5p$ and $4f$.
-Surprisingly, for the transition metals Pd, Os and Pt, whose $nd$
-subshells are more filled, the agreement is better than $3\%$ for all
-the subshells, even the subvalence $4p$ of Pd and the $5p$, $4f$ of
-Os and Pt. In all the cases, the present results describe the experimental data 
-more accurately than \cite{Desclaux:73}.
 
 \subsection{Discusión sobre valores para sólidos}
 
