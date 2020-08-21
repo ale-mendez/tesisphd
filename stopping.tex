@@ -21,57 +21,61 @@ Tablas y códigos resultantes de cálculos semiempíricos están disponibles
 para una gran combinación de iones y objetivos~\cite{iaea_codes,Paul:03}. 
 Sin embargo, datos experimentales y predicciones teóricas 
 \textit{ab initio} son de crucial importancia para comprobar la 
-fiabilidad de los modelos semiempíricos y determinación ciertos 
+fiabilidad de los modelos semiempíricos y determinar ciertos 
 parámetros clave~\cite{Diwan:15,Damache:04,Damache:02} para la pérdida 
 de energía media de iones por trayecto unitario $S(E)$. Los datos 
 experimentales disponibles son a menudo bastante escasos para materiales 
 correspondientes a elementos de baja presencia en la corteza superior de 
 la Tierra. Por otro lado, los cálculos de dispersión inelástica de 
-blancos pesados usando métodos de primeros principios constituyen una 
-tarea difícil ya que se hace necesario tener en cuenta efectos 
-relativistas. Éstos efectos son importantes no solo para definir el 
-estado de los electrones internos sino también para determinar las 
+blancos pesados a partir de métodos basados en primeros principios 
+constituyen una difícil tarea ya que resulta necesario tener en cuenta 
+efectos relativistas. Estos efectos son importantes no sólo para definir 
+el estado de los electrones internos sino también para determinar las 
 energías de ligadura de las capas externas.
 
-En este capítulo, examinaremos la estructura atómica de átomos pesados
+En este capítulo, examinaremos la estructura atómica de blancos pesados
 y el proceso de pérdida de energía de iones cuando inciden sobre ellos.
-Los métodos de Hartree--Fock, y su versión relativista Dirac--Fock, 
-son las aproximaciones más conocidas para el cálculo de funciones 
-radiales y energías orbitales. Éstos se basan en el principio 
-variacional y pueden producir resultados muy precisos. Sin embargo, el 
-principio variacional presenta varios inconvenientes: el precio de la 
-precisión del método se paga con funciones de onda radiales dependientes 
-de los términos, las cuales no son ortogonales entre configuraciones. 
-Estas características hacen que el uso de las funciones de onda sea 
-engorroso en el cálculo las transiciones radiativas y de colisión. Más 
-aún, dado que el principio variacional implica la minimización de la 
-energía total, las energías de transición entre niveles cercanos se 
-obtienen como diferencias muy pequeñas entre números grandes, y los 
-resultados son muy susceptibles a errores numéricos. Esto es 
-especialmente importante para los átomos de carga nuclear $Z$ grandes 
-porque la energía total es muy grande. 
+El método de Dirac--Fock es quizás la aproximación más conocida para el 
+cálculo de funciones radiales y energías orbitales de átomos 
+relativistas. Esta aproximación se basa en el principio variacional y 
+puede producir resultados muy precisos. Sin embargo, el principio 
+variacional presenta varios inconvenientes: el precio de la precisión 
+del método se paga con funciones de onda radiales dependientes de los 
+términos, las cuales no son ortogonales entre configuraciones. Estas 
+características hacen que el uso de las funciones de onda sea engorroso 
+en el cálculo las transiciones radiativas y de colisión. Más aún, dado 
+que el principio variacional implica la minimización de la energía 
+total, las energías de transición entre niveles cercanos se obtienen 
+como diferencias muy pequeñas entre números grandes, y los resultados 
+son muy susceptibles a errores numéricos. Esto es especialmente 
+importante para los átomos pesados porque la energía total es muy 
+grande. 
 
-El aproximación teórica implementada aquí para describir los blancos 
-pesados fue desarrollada por Klapisch y colaboradores 
-\cite{Klapisch:77,Koenig:72,Klapisch:71,Klapisch:67}. Este método
-está basado en la combinación de la teoría de perturbaciones de primer 
-orden y la aproximación de campo central. La ecuación de Dirac 
-correspondiente para cada sistema se resuelve y se obtienen las 
-funciones de onda de orden cero. El Hamiltoniano resultante es luego
-diagonalizado en las bases de estas funciones implementando el método de
-interacción de configuraciones~(\acs{ci}). El término de Breit y las 
-correcciones debido a los efectos electrodinámicos cuánticos (\acs{qed}) 
-se incluyen a las energías a segundo orden. Las funciones de onda y 
-energías relativistas son implementadas para el cálculo de pérdida de 
-energía. 
-%Diversos métodos consideran la descripción del estado inicial del blanco como datos de entrada para el cálculo de procesos inelásticos. Por ejemplo, la aproximación de plasma local por capa (\acs{slpa}) permite calcular los diferentes momentos de pérdida de energía~\cite{Montanari:13,Montanari:09,Montanari:11,Oswald:18} conociendo solo las densidades orbitales y las energías de enlace de los electrones objetivo en el estado fundamental.
-La descripción de blancos pesados que cuentan con electrones en la capa 
-$4f$ es particularmente importante ya que estos electrones tiene un rol 
-fundamental en la predicción de pérdida de energía a energías 
+La aproximación teórica que se implementa aquí para describir los 
+blancos relativistas fue desarrollada por Klapisch y colaboradores 
+\cite{Klapisch:77,Koenig:72,Klapisch:71,Klapisch:67}. En este método, 
+el Hamiltoniano multielectrónico de Dirac se resuelve a partir de la 
+combinación de la teoría de perturbaciones y la aproximación de campo 
+central. La ecuación de Dirac se resuelve y se obtienen las funciones 
+de onda de orden cero. El Hamiltoniano resultante es luego diagonalizado 
+en las bases de estas funciones implementando el método de interacción 
+de configuraciones~(\acs{ci}). El término de Breit y los efectos 
+electrodinámicos cuánticos (\acs{qed}) se incluyen a las energías como
+correcciones de segundo orden. La descripción 
+precisa de los blancos relativistas requiere la optimización de las 
+configuraciones definidas; es necesario considerar solo aquellas que 
+influyen de manera significativa en el CI. 
+{\color{red} Poner algo sobre que el número de configuraciones es 
+limitado porque sino todo se desmadra.} 
+Las funciones de onda y energías relativistas obtenidas se implementan
+luego para describir el blanco en el cálculo de pérdida de energía. La 
+correcta descripción de blancos pesados que cuentan con electrones en la 
+capa $4f$ es particularmente importante ya que estos electrones tiene un 
+rol fundamental en la predicción de pérdida de energía a energías 
 bajas~\cite{Roth:17}. 
 
-El enfoque teórico implementado en el cálculo de pérdida de energía 
-utiliza la aproximación de plasma local por capa (\acs{slpa}) 
+El enfoque teórico considerado para el cálculo de pérdida de energía 
+implementa la aproximación de plasma local por capa (\acs{slpa}) 
 \cite{Montanari:13} para describir la energía transferida a los 
 electrones ligados $1s$-$4f$ y dos modelos diferentes para el gas de 
 electrones libre (\acs{feg}); en la región de baja energía, el modelo 
@@ -88,7 +92,6 @@ En este capítulo estudiaremos tres grupos de átomos de la tabla
 periódica: metales de transición con electrones de la capa $4d$ como 
 valencia (Zr y Pd), lantánidos con la capa $4f$ abierta (Gd y Er), 
 y metales de transición pesados con la capa $4f$ completa (Hf y Pt). 
-
 {\color{red} Escribir sobre las aplicaciones de los blancos que voy a 
 tratar: Zr, Pd, Hf, Pt, Gd y Er  (ver paper de Moro).}
 
@@ -97,25 +100,33 @@ tratar: Zr, Pd, Hf, Pt, Gd y Er  (ver paper de Moro).}
 %In this study, we report experimental stopping power cross sections over the incident energy range (0.6-2.5) MeV for protons crossing self-supported Hf thin-film by using the transmission method. We aim not only to upgrade stopping power data compilations~\cite{HPaul03,mondim17} but also to provide useful information about the processes governing the slowing down of protons in multi-electronic targets. In the rare earth metals, the $4f$ electrons play an essential role in the stopping power since they belong to the first shell of bound electrons below the conduction band. As already noted \cite{Roth17}, the free electron gas (FEG) shows unexpected behavior in these elements, which casts doubts on its proper description. In the case of Hf, we found the contribution of the $4f$-shell to be decisive even at impact energies around the stopping maximum, as will be shown later.
 
 Los detalles teóricos del cálculo de los blancos relativistas a estudiar 
-se dan en la sección~\ref{sec:blancos-relat}. Los modelos teóricos 
-implementados para la predicción de la pérdida de energia se detallan 
-en la sección~\ref{sec:slpa+feg}. Los resultados obtenidos teóricamente 
-para los blancos Hf, Pt, Ta, y Gd, los cuales son comparados con valores 
-experimentales. Además, comparamos nuestras predicciones con los 
+se dan en la sección~\ref{sec:method-target}. Los modelos teóricos 
+implementados para la predicción de la pérdida de energia se detallan en 
+la sección~\ref{sec:method-stopping}. Los resultados de este trabajo se 
+presentan en la sección~\ref{sec:results-heavy}. Las descripciones 
+obtenidas para los blancos Zr, Pd, Gd, Er, Hf y Pt a partir de la 
+resolución de la ecuación de Dirac en forma perturbativa se muestran y 
+discuten en la sección~\ref{subsec:results-target}. 
+Las energías de enlace resultantes se comparan con valores 
+experimentales~\cite{Williams:95} y con la descripción dada por 
+Desclaux mediante el método de Dirac--Fock~\cite{Desclaux:73}. 
+Las predicciones de pérdida de energía obtenidas por nuestro modelo en 
+los blancos pesados seleccionados se muestran y discuten la
+sección~\ref{subsec:results-stopping}. Se realizan comparaciones con los 
 modelos teóricos de Grande y Schiwietz~\cite{Grande:01,casp52}, y de 
 Sigmund y Schinner~\cite{DPASS20}. Debido a su gran implementación en 
-diversas aplicaciones, también consideramos los valores semi-empiricos 
+diversas aplicaciones, también se consideran los valores semi-empiricos 
 dados por el paquete SRIM-2013~\cite{Ziegler01} y las tablas 
-ICRU-49~\cite{ICRU49}. Las conclusiones se encuentran al final del capítulo,
-en la sección~\ref{sec:stopping-conclusiones}.
+ICRU-49~\cite{ICRU49}. Las conclusiones de nuestro trabajo se encuentran 
+al final del capítulo, en la sección~\ref{sec:conclu-heavy}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Descripción de blancos relativistas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:blancos-relat}
+\label{sec:method-target}
 
 La descripción de los estados de átomos pesados relativistas se 
-obtiene resolviendo el Hamiltoniano de Dirac multielectrónico
+obtiene resolviendo el Hamiltoniano multielectrónico de Dirac 
 \begin{equation}
  H = H' + H_{\mathrm{\mbox{\scriptsize Breit}}}(i,j) +
  H_{\mbox{\scriptsize QED}}\,,
@@ -228,17 +239,17 @@ teóricamente válidos. Entre ellos, podemos nombrar tres;
 entre los niveles de energía teóricos y experimentales,
 \item criterio variacional: minimización de la energía total, y
 \item criterio perturbacional: minimización del Hamiltoniano perturbativo
-$H_1$. % primer orden de las energías de configuración promedio (\acs{ca}), 
+$H_1$. 
 \end{itemize}
-%Uno de ellos es la minimización de primer orden de las energías de configuración promedio (\acs{ca}), o de las energías de cualquier conjunto de niveles elegido. Otra posibilidad es minimizar la desviación \acs{rms} entre los niveles de energía teóricos y experimentales. 
-En nuestro trabajo implementamos la optimización perturbativa de primer 
-orden, donde se implementa la minimización de las energías de 
+En nuestro trabajo, implementamos la minimización de las energías de 
 configuración promedio (\acs{ca}), o de las energías de cualquier 
-conjunto de niveles elegido. Dado que las energías de primer orden 
-sobre las que actúa la optimización incluyen la contribución de 
-intercambio exacta, los parámetros resultantes absorben el efecto del 
-intercambio y, por lo tanto, no hay necesidad de un potencial de 
-intercambio adicional explícito.
+conjunto de niveles elegido. Dado que las energías de primer orden sobre 
+las que actúa la optimización incluyen la contribución de intercambio 
+exacta, los parámetros resultantes absorben el efecto del intercambio y, 
+por lo tanto, no hay necesidad de un potencial de intercambio adicional 
+explícito.
+
+%la optimización de los blancos se realiza resoviendo la ecuación de Dirac a primer orden,
 
 Por otro lado, siendo $U(\boldsymbol{\alpha},r)$ un potencial central,
 es posible plantear la separación de variables esféricas de las 
@@ -272,8 +283,23 @@ Para los orbitales relativistas, usamos la notación $nl\pm$, que
 significa $nlj$, donde el índice $j=l\pm1/2$ se representa como $\pm$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Energía de ligadura y valores medios}
+\section{Modelo teórico de pérdida de energía}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:method-stopping}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Resultados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:results-heavy}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Energías de ligadura y valores medios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:results-target}
 
 Los efectos de la interacción de configuraciones (\acs{ci}) son muy 
 importantes en el caso de los átomos relativistas. Así, la correcta 
@@ -281,12 +307,15 @@ descripción del blanco depende de las configuraciones consideradas en
 el CI. En esta sección, la optimización de los blancos consiste en la 
 determinación de las configuraciones que contribuyen de manera 
 significativa a la mezcla en la interacción de configuraciones. 
-La ecuación de Dirac dada por la ecuación~(\ref{eq:ecuacionDirac}) fue 
-resuelta numéricamente usando el paquete de códigos 
-{\sc hullac}~\cite{BarShalom:01}. En este conjunto de programas 
-computacionales, el código {\sc relac} permite calcular las energías 
-relativistas y funciones de onda orbitales en primer orden usando el 
-método potencial paramétrico descrito en la sección anterior. 
+
+El Hamiltoniano multielectrónico de Dirac, dado por la 
+ecuación~(\ref{eq:ecuacionDirac}), de los blancos relativistas a 
+describir se resuelve aplicando el método perturbativo descrito 
+anteriormente. Por simplicidad, llamamos a este método Dirac 
+perturbativo (PD). Las soluciones numéricas se obtienen usando el 
+paquete de códigos {\sc hullac}~\cite{BarShalom:01}. En este conjunto 
+de programas computacionales, el código {\sc relac} permite calcular 
+las energías relativistas y funciones de onda orbitales en primer orden. 
 
 \begin{table*}[t]
 \centering
@@ -310,8 +339,8 @@ Grupo & Nombre   & Símbolo & $Z$ & Config. fundamental \\
 \label{tab:gruposrelat} 
 \end{table*}
 
-Los elementos que examinamos en esta sección son divididos en tres 
-grupos según el período de la tabla periódica al que pertenecen. La 
+Los elementos que examinamos en esta sección se dividen en tres grupos 
+según el período de la tabla periódica al que pertenecen. La 
 clasificación de estos blancos y sus configuraciones fundamentales se
 muestran en la tabla~\ref{tab:gruposrelat}. El grupo A está compuesto 
 por los metales de transición Zr y Pd, mientras que Hf y Pt pertenecen 
@@ -351,14 +380,14 @@ mezcla de las configuraciones $4f^7\,5d\,6s^2$ y $4f^8\,6s^2$.
 Para Er, la mayor mezcla es producida por las configuraciones 
 $4f^{12}\,6s^2$ y $4f^{12}\,5d\,6s$.
 
-Los valores teóricos optimizados de energías de ligadura para los 
-blancos relativistas de la tabla~\ref{tab:gruposrelat} se dan en la 
-tabla~\ref{tab:relatresults} y se muestran en la 
-figura~\ref{fig:bindener} con diamantes rellenos. 
-En la tabla se incluyen los valores medios $\langle r\rangle$ de cada 
-capa, los cuales se obtienen a partir de la ecuación~(\ref{eq:meanvalr}). 
-Datos experimentales de los blancos en estado sólido~\cite{Williams:95}
-se presentan usando círculos vacíos. Los resultados obtenidos por 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Las energías de ligadura de los blancos relativistas de la tabla~\ref{tab:gruposrelat} que se obtienen a partir del método PD se 
+dan en la tabla~\ref{tab:relatresults} y se muestran en la 
+figura~\ref{fig:bindener} con diamantes rellenos. En la tabla se 
+incluyen los valores medios $\langle r\rangle$ de cada capa, los cuales 
+se obtienen a partir de la ecuación~(\ref{eq:meanvalr}). Datos 
+experimentales de los blancos en estado sólido~\cite{Williams:95} se 
+presentan usando círculos vacíos. Los resultados obtenidos por 
 Desclaux~\cite{Desclaux:73} mediante la implementación del método 
 de Dirac--Fock se muestran en la figura con símbolos $\times$.
 
@@ -372,7 +401,6 @@ $\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}, y
 $\medcircle$ datos experimentales en sólidos~\cite{Williams:95}.}
 \label{fig:bindener}
 \end{figure}
-
 
 \begin{tabularx}{\textwidth}{|c|YYY|YYY|YYY|}
 \caption[Energías de ligadura y valores $\langle r \rangle$ de blancos
@@ -402,14 +430,14 @@ obtenidos a partir de la ecuación~(\ref{eq:meanvalr}).} \\
 \hline
 $nlj$ 
  & $E^{\mbox{\tiny exp}}$
- & $E^{\mbox{\tiny teo}}$
- & $\langle r\rangle^{\mbox{\tiny teo}}$ 
+ & $E^{\mbox{\tiny PD}}$
+ & $\langle r\rangle^{\mbox{\tiny PD}}$ 
  & $E^{\mbox{\tiny exp}}$
- & $E^{\mbox{\tiny teo}}$
- & $\langle r\rangle^{\mbox{\tiny teo}}$
+ & $E^{\mbox{\tiny PD}}$
+ & $\langle r\rangle^{\mbox{\tiny PD}}$
  & $E^{\mbox{\tiny exp}}$
- & $E^{\mbox{\tiny teo}}$
- & $\langle r\rangle^{\mbox{\tiny teo}}$  \\
+ & $E^{\mbox{\tiny PD}}$
+ & $\langle r\rangle^{\mbox{\tiny PD}}$  \\
 \hline
 \endhead % fin de segundo encabezado
 \hline
@@ -466,20 +494,19 @@ $5d_-$ &        &        &        &        & 0.080  & 4.91   &        & 0.250  &
 $5d_+$ &        &        &        &        & 0.076  & 5.45   &        & 0.200  & 1.88 \\
 \end{tabularx}
 
-En general, el acuerdo entre los presentes resultados teóricos y la
+En general, el acuerdo entre los resultados teóricos PD y la
 data experimental es muy bueno. Dado que la figura~\ref{fig:bindener} 
 muestra las energías de enlace en un rango de magnitud de cinco órdenes, 
 no es posible discernir las discrepancias entre los datos enumerados 
 en la tabla~\ref{tab:relatresults} y los resultados del método de 
 Dirac--Fock~\cite{Desclaux:73}. Para evaluar estas diferencias, las 
-relaciones $E^{\mbox{\scriptsize exp}}/E^{\mbox{\scriptsize teo}}$ y 
-$E^{\mbox{\scriptsize exp}}/E^{\mbox{\scriptsize \cite{Desclaux:73}}}$
-entre las energías de ligadura experimentales y los dos métodos 
-teóricos considerados se muestran en la figura~\ref{fig:ratios} con los 
-mismos símbolos y líneas que en la figura~\ref{fig:bindener}. Las 
-energías de enlace que obtuvimos para Zr muestran un acuerdo general de 
-aproximadamente 4\% para todas las capas, excepto para la subvalencia 
-$4p$. Asimismo, los resultados obtenidos para Hf coinciden con los 
+relaciones entre las energías de ligadura experimentales 
+$E^{\mbox{\scriptsize exp}}$ y los métodos teóricos: Dirac perturbativo 
+$E^{\mbox{\scriptsize PD}}$ y Dirac--Fock $E^{\mbox{\scriptsize DF}}$ 
+se muestran en la figura~\ref{fig:ratios} con los mismos símbolos y 
+líneas que en la figura~\ref{fig:bindener}. Las energías de enlace que 
+obtuvimos para Zr muestran un acuerdo general de aproximadamente 4\% 
+para todas las capas, excepto para la subvalencia $4p$. Asimismo, los resultados obtenidos para Hf coinciden con los 
 valores experimentales en $\sim$~3\%, excepto en las subcapas $5p$ y 
 $4f$. Los lantánidos Gd y Er también presentan concordancia de alrededor 
 del 3\%, con excepción de las subcapas más externas $5s$, $5p$ y $4f$. 
@@ -489,15 +516,33 @@ para todas las subcapas, incluso la subvalencia $4p$ de Pd y la $5p$,
 $4f$ de Pt. En todos los casos, los presentes resultados describen los 
 datos experimentales con mayor precisión que~\cite{Desclaux:73}.
 
-
 \begin{figure}[t]
 \centering
- \includegraphics[width=\textwidth]{heavy/erp_heavy.eps} 
-% \includegraphics[width=\textwidth]{heavy/ratios_heavy.eps} 
-\caption{Razón entre energías de ligadura experimentales and teóricas.}
+\includegraphics[width=\textwidth]{heavy/ratios_heavy.eps} 
+\caption{Razón $E^{\mbox{\scriptsize exp}}/E^{\mbox{\scriptsize teo}}$ 
+entre energías de ligadura experimentales y teóricas. Símbolos: 
+$\blacklozenge$ resultados teóricos del presente trabajo, 
+$\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}}
 \label{fig:ratios}
 \end{figure}
 
+\begin{figure}[t]
+\centering
+\includegraphics[trim={0 0.2cm 0 0.2cm},clip,width=\textwidth]{heavy/erp_heavy.eps} 
+\caption{Errores relativos porcentuales correspondientes a los 
+resultados teóricos.}
+\label{fig:ratios}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Potencial de frenado}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:results-stopping}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusiones}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:conclu-heavy}
 
 \begin{comment}
 
