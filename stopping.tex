@@ -287,35 +287,37 @@ significa $nlj$, donde el índice $j=l\pm1/2$ se representa como $\pm$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:method-stopping}
 
+La pérdida de energía de iones en blancos metálicos responde a diferentes
+mecanismos físicos, dependiendo de la velocidad del proyectil incidente.
+A bajas velocidades, las colisiones binarias son responsables de la 
+pérdida de energía. La contribución principal es la ionización de los 
+electrones de la banda de conducción del metal, que está aproximada por 
+un gas de electrones libres (FEG) de velocidad de Fermi $v_F$. Por arriba
+de un valor particular de velocidad (i.e., $v\geq 1.5\,v_F$), no solo 
+ocurren excitaciones binarias sino también colectivas (plasmones) 
+\cite{Montanari:17}. Más aún, a altas energías, los electrones ligados
+también contribuyen al potencial de frenado. El método teórico de 
+pérdida de energía combina una descripción de FEG para la interacción del
+proyectil con los electrones de valencia (o conducción) y una 
+aproximación diferente para la interacción con los electrones ligados.
 
-The energy loss of ions in metal targets responds to different physical 
-mechanisms, depending on the impact ion velocity. At low velocities, the 
-binary collisions are responsible for the loss of energy by the ion. 
-The main contribution is the ionization of electrons of the metal 
-conduction band, which is well approximated by a free electron gas (FEG) 
-of Fermi velocity $v_F$. Above a particular velocity value (i.e., 
-$v\geq 1.5\,v_F$), not only binary but also collective excitations 
-(plasmons) occur~\cite{mon17}. Moreover, at high energies, also the 
-bound electrons contribute to the stopping power. The method used in 
-this work combines a FEG description for the interaction with the 
-valence (or conduction) electrons and a different one for the 
-interaction with the bound electrons.
-
-We used the SPCC model~\cite{mon17} to describe the stopping power of 
-low velocity charged particles in the FEG. It is a non-perturbative 
-binary collisional approximation, thus valid at energies below that of 
-plasmon excitations.  The SPCC~\cite{mon17} is based on a screened 
-central potential with cusp condition of the electronic density close 
-to the projectile. This model proved to give a good description of the 
-induced electron density even for negative projectiles~\cite{mon17} 
-and reproduces the low velocity proton-antiproton differences in the 
-stopping power (Barkas effect). The SPCC formalism only depends on the 
-Wigner-Seitz radio, $r_S$, which is a measure of the electronic density 
-of the FEG. For metals of well-known $r_S$, the SPCC describes the low 
-energy experimental stopping data correctly~\cite{mon17}, agreeing with 
-the DFT results by Echenique and coworkers~\cite{eche81,nagy89} at $v=0$. 
-
-
+Usamos el modelo de potencial apantallado con condición de cúspide 
+(\acs{spcc})~\cite{Montanari:17} para describir el potencial de frenado 
+de partículas cargadas con bajas velocidades de impacto en el FEG. Este 
+método está basado en la aproximación de colisión binaria no 
+perturbativa, de manera que es válida para valores de energías menores a 
+las excitaciones de plasmones. La SPCC está basada en un potencial 
+centrado apantallado con una condición de cúspide para la densidad 
+electrónica cerca del proyectil. Este modelo ha probado dar buenas 
+descripciones para la densidad de electrones inducida, aún para 
+proyectiles con carga negativa. Además, este modelo predice correctamente 
+las diferencias entre protón-antiprotón en el potencial de frenado, más 
+conocido como el efecto Barkas. El formalismo SPCC depende sólo del radio 
+de Wigner-Seitz $r_S$, que es una medida de la densidad electrónica del 
+FEG. Para metales de $r_S$ conocidos, el SPCC describe correctamente los 
+valores experimentales del potencial de frenado a bajas energías, en 
+concordancia con resultados DFT de Echenique y 
+colaboradores~\cite{Echenique:81,Nagy:89} a $v=0$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
@@ -516,7 +518,7 @@ $5d_+$ &        &        &        &        & 0.076  & 5.45   &        & 0.200  &
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{heavy/bindener.eps}
+\includegraphics[width=0.9\textwidth]{heavy/bindener.eps}
 \caption[Energías de ligadura de blancos relativistas]
 {Energías de ligadura de Zr, Pd, Gd, Er, Hf y Pt. Símbolos: 
 $\blacklozenge$ resultados teóricos del presente trabajo, 
@@ -551,7 +553,7 @@ Dirac--Fock~\cite{Desclaux:73}.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{heavy/ratios_heavy.eps} 
+\includegraphics[width=0.9\textwidth]{heavy/ratios_heavy.eps} 
 \caption[Razón $E^{\mbox{\scriptsize exp}}/E$ 
 entre energías de ligadura experimentales y teóricas.]
 {Razón $E^{\mbox{\scriptsize exp}}/E$ 
@@ -564,7 +566,7 @@ $\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}}
 \begin{comment}
 \begin{figure}[t]
 \centering
-\includegraphics[trim={0 0.2cm 0 0.2cm},clip,width=\textwidth]{heavy/erp_heavy.eps} 
+\includegraphics[trim={0 0.2cm 0 0.2cm},clip,width=0.9\textwidth]{heavy/erp_heavy.eps} 
 \caption{Errores relativos porcentuales correspondientes a los 
 resultados teóricos.}
 \label{fig:erpheavy}
@@ -577,7 +579,7 @@ resultados teóricos.}
 
 Las energías de ligadura fueron calculadas considerando los blancos como 
 átomos aislados (gases). Sin embargo, las energías 
-experimentales~\cite{expdata} consideradas para las comparaciones 
+experimentales~\cite{Williams:95} consideradas para las comparaciones 
 corresponden a mediciones en sólidos (ionización de los electrones 
 ligados). Como es de esperar, las principales discrepancias gas-sólido 
 se encuentran en las capas externas. Los electrones en las órbitas 
@@ -590,8 +592,8 @@ buena idea sobre el número de electrones en el gas de electrones libres
 de potencia de frenado.
 
 El FEG está caracterizado por la densidad de electrones o, 
-equivalentemente, por los radios de Wigner-Seitz $r_S$. A su vez, éstos 
-se encuentran directamente relacionados con la energía de Fermi $E_F$. 
+equivalentemente, por el radio de Wigner-Seitz, $r_S$. A su vez, éstos 
+se encuentran directamente relacionados con la energía de Fermi, $E_F$. 
 Para obtener estos valores y determinar el número real de electrones que 
 pertenecen al FEG, es necesario realizar un análisis exhaustivo de las 
 energías de ligadura. Nuestros resultados teóricos para cada blanco se 
@@ -626,7 +628,7 @@ electrones $4f$ en el FEG permite explicar las principales características
 de las mediciones recientes~\cite{Montanari:17,Montanari:19} de baja 
 energía de la potencia de frenado de protones en Gd~\cite{Roth:17}.
 
-\begin{table}[!ht]
+\begin{table}[t]
 \centering
 \begin{tabular}{|c|l|l|l|l|l|l|}
 \hline

@@ -258,7 +258,7 @@ apantallamiento electrónico.
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=0.8\textwidth]{dim/pot-charge.eps}
+\includegraphics[width=0.9\textwidth]{dim/pot-charge.eps}
 \caption[Características físicas del potencial y carga efectiva.]
 {Ilustración de las características físicas esperadas del (a) potencial 
 y (b) carga efectiva del blanco.}
@@ -281,7 +281,7 @@ de nodos espúreos.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{dim/dim_2sK.eps} 
+\includegraphics[width=0.9\textwidth]{dim/dim_2sK.eps} 
 \caption[Función de onda radial y carga efectiva correspondiente.]
 {(a) Función de onda radial $u_{2s}^{\mathrm{HF}}$ 
 correspondiente al estado fundamental del átomo de potasio.
@@ -309,7 +309,7 @@ derivada numérica escaleada por un factor.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{dim/wave_2sK.eps} 
+\includegraphics[width=0.9\textwidth]{dim/wave_2sK.eps} 
 \caption[Función de onda radial y su derivada segunda de K.]
 {Función de onda radial $u_{2s}^{\mathrm{HF}}$ y su derivada segunda 
 del orbital $2s$ del átomo de potasio.}
@@ -319,10 +319,18 @@ del orbital $2s$ del átomo de potasio.}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{dim/dr_2sK.eps} 
+\includegraphics[width=0.9\textwidth]{dim/dr_2sK.eps} 
 \caption[Dependecia de $\Delta r$ del orden de aproximación numérica.]
 {Dependecia de $\Delta r$ del orden de aproximación numérica en el 
 orbital $2s$ del átomo de potasio.}
+\label{fig:dr2sK}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{dim/Lns_K.eps} 
+\caption[$L_{nl}$.]
+{$L_{nl}$ de los orbitales $s$ del átomo de K.}
 \label{fig:dr2sK}
 \end{figure}
 
@@ -350,7 +358,7 @@ L_{nl}(r) \equiv r\frac{d\log u_{nl}}{dr}
 
 Este comportamiento ha llevado al consenso general de que el método 
 de inversión sólo puede implementarse en orbitales sin 
-nodos~\cite{Kananenka2013}. Por otro lado, una dificultad numérica menos 
+nodos~\cite{Kananenka:13}. Por otro lado, una dificultad numérica menos 
 obvia está dada por la razón entre la 
 derivada de la función de onda y la función de onda en sí. 
 {\color{red} Escribir sobre el primer paper de Adv. Quant. Chem y sobre 
@@ -397,7 +405,7 @@ of the Hartree Fock method: the exact solutions may have oscillations
 (and therefore, spurious nodes) in the large--r or ``tail'' region of 
 the functions. 
 The existence of these spurious nodes in Hartree Fock was already 
-suggested by Fischer \cite{FroeseFischer1997}. 
+suggested by Fischer \cite{FroeseFischer:97}. 
 This failure is not rooted in the numerical scheme but it is 
 inherent to the method. Probably, these nodes are surviving 
 long--range exchange effects due to the non--local character of the 
@@ -604,7 +612,7 @@ ecuación~(\ref{eq:VHF}), que se obtiene a partir de soluciones expresadas
 en conjuntos de base GTO, presenta mayores dificultades que las encontradas
 en el caso atómico. Además de las divergencias asintóticas y los polos, 
 los potenciales invertidos moleculares presentan grandes 
-oscilaciones~\cite{Schipper1997,Mura1997,Jacob2011,Gaiduk2013}. 
+oscilaciones~\cite{Schipper:97,Mura:97,Jacob:11,Gaiduk:13}. 
 Estas oscilaciones prominentes surgen debido a la presencia de 
 ondulaciones en los orbitales moleculares, las cuales a su vez se deben 
 al número finito de elementos en el conjunto de la base. La segunda
@@ -615,7 +623,7 @@ aparición de estas oscilaciones en los potenciales invertidos nos obliga
 a incorporar medidas adicionales en el procedimiento de depuración.
 Para ilustrar el procedimiento, consideramos el orbital $1s$ del
 átomo de carbono. Primero, resolvemos las ecuaciones de Hartree--Fock 
-usando el conjunto de bases \mbox{6-311G} con el código {\sc gamess} code~\cite{Schmidt1993,Gordon2005}. Luego, aplicando la ecuación~(\ref{eq:VHF}),
+usando el conjunto de bases \mbox{6-311G} con el código {\sc gamess} code~\cite{Schmidt:93,Gordon:05}. Luego, aplicando la ecuación~(\ref{eq:VHF}),
 obtenemos la carga invertida correspondiente. La carga resultante
 $Z_{1s}^{\mbox{\scriptsize 6-311G}}$ se muestra en la 
 figura~\ref{fig:1sCarbon}(a) con una línea raya-punto. La carga presenta
@@ -638,7 +646,7 @@ del método de Hartree--Fock.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{dim/carbon_prof.eps}
+\includegraphics[width=0.9\textwidth]{dim/carbon_prof.eps}
 \caption[Inversión de funciones de onda descritas con conjuntos de base.]
 {(a) Cargas efectivas invertidas del orbital $1s$ del átomo de carbón.
 (b) Perfiles de oscilación de los conjuntos de base.}
@@ -822,7 +830,7 @@ cada término reproducen las originales hasta $10^{-4}\%$.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/dim/nitro_dim.eps}
+\includegraphics[width=0.9\textwidth]{figures/dim/N_dim.eps}
 \caption[Cargas efectivas DIM de nitrógeno.]
 {Cargas efectivas del término $2\,^4$S de N; 
 inversión directa (lineas discontinuas) 
@@ -839,7 +847,6 @@ e inversión depurada (líneas sólidas).}
   & \multicolumn{2}{c}{$2\,^2$D} 
   & \multicolumn{2}{c}{$2\,^2$P} \\
 \cline{2-7}
-%\arrayrulecolor{gray!30!white}
        & $z$ & $\alpha$ 
        & $z$ & $\alpha$ 
        & $z$ & $\alpha$ \\
@@ -875,7 +882,6 @@ e inversión depurada (líneas sólidas).}
        & 0.301540 & 0.286609 
        & 0.134310  & 0.267987
        & 2.32801  & 1.40925  \\
-%\arrayrulecolor{black}
 \hline
 \end{tabular}
 \caption[Parámetros de ajuste de cargas efectivas de nitrógeno.]
@@ -956,13 +962,13 @@ inferiores).}
 
 Implementamos el método de Inversión Depurada en la molécula de metano,
 ya que es ésta es altamente simétrica y, por lo tanto, puede ser descrita
-por un potencial angular promediado~\cite{Granados2016}. Calculamos los 
+por un potencial angular promediado~\cite{Granados:16}. Calculamos los 
 orbitales moleculares de HF de CH$_4$ usando los conjuntos de bases 
 UGBS del carbono y el hidrógeno, los cuales consideran momentos angulares
 hasta $L=1$. Los cálculos de metano con estos conjuntos de base deberían
 incluir funciones de polarización (por lo menos hasta las funciones $d$)
 para incrementar la precisión de las energías
- moleculares~\cite{Rothenberg1971,Hariharan1972}. Sin embargo, para
+ moleculares~\cite{Rothenberg:71,Hariharan:72}. Sin embargo, para
 aislar los efectos de los conjuntos de base, realizamos los cálculos de 
 perfiles de oscilación descritos en la sección~\ref{subsec:invdepGTO} y 
 los orbitales moleculares en el mismo esquema. Las cargas obtenidas 
@@ -991,7 +997,7 @@ en la figura~\ref{fig:ch4zeff} con líneas sólidas.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/dim/ch4_dim.eps}
+\includegraphics[width=0.9\textwidth]{figures/dim/ch4_dim.eps}
 \caption[Cargas efectivas DIM de metano.]
 {Cargas efectivas de CH$_4$; inversión directa (lineas discontinuas)
 e inversión depurada (líneas sólidas).}
@@ -1044,7 +1050,7 @@ Empleando la primera aproximación de Born (FBA), las secciones eficaces
 total de fotoionización de los átomos de helio, nitrógeno y neón descritos 
 mediante los potenciales DIM se muestran con líneas sólidas en las 
 figuras~\ref{fig:HephotoDIM}, \ref{fig:NphotoDIM} y \ref{fig:NephotoDIM}.
-Los datos experimentales~\cite{Henke1993,Samson1990,Samson2002,Stolte2016} 
+Los datos experimentales~\cite{Henke:93,Samson:90,Samson:02,Stolte:16} 
 se muestran con símbolos. Denominamos la combinación de la 
 descripción del blanco mediante el potencial efectivo DIM y la descripción 
 de la fotoionización a primer orden como fotoionización DIM. 
@@ -1057,18 +1063,18 @@ incluir en la descripción de la fotoionización correcciones de mayor
 orden que incluyan efectos de múltiples cuerpos que puedan ser 
 relevantes tales como la relajación de los orbitales debido a la 
 creación de un hueco electrónico, respuestas colectivas de electrones 
-de capas internas~\cite{Ederer1964} y efectos de correlación.
+de capas internas~\cite{Ederer:64} y efectos de correlación.
 
 \begin{figure}[H]
 \centering
- \includegraphics[width=0.8\textwidth]{dim/He_fotoDIM.eps}
+ \includegraphics[width=0.9\textwidth]{dim/He_fotoDIM.eps}
 \caption[Fotoionización de helio.]
 {Sección eficaz total de fotoionización de un electrón del helio}
 \label{fig:HephotoDIM}
 \end{figure}
 \begin{figure}[H]
 \centering
- \includegraphics[width=0.8\textwidth]{dim/N_fotoDIM.eps}
+ \includegraphics[width=0.9\textwidth]{dim/N_fotoDIM.eps}
 \caption[Fotoionización de nitrógeno.]
 {Sección eficaz total de fotoionización de un electrón del 
 nitrógeno.}
@@ -1076,7 +1082,7 @@ nitrógeno.}
 \end{figure}
 \begin{figure}[H]
 \centering
- \includegraphics[width=0.8\textwidth]{dim/Ne_fotoDIM.eps}
+ \includegraphics[width=0.9\textwidth]{dim/Ne_fotoDIM.eps}
 \caption[Fotoionización de neón.]
 {Sección eficaz total de fotoionización de un electrón del neón.}
 \label{fig:NephotoDIM}
@@ -1092,7 +1098,7 @@ $\sim$300 eV muestra la fotoionización de la capa eterna $n=2$, mientras
 que la discontinuidad en 300 eV corresponde al umbral del orbital 
 molecular $1a_1$. Para fotoenergías bajas e intermedias, el acuerdo entre 
 nuestras predicciones y los datos 
-experimentales~\cite{Lukirskii1964,Henke1982,Samson1989} no es muy bueno.
+experimentales~\cite{Lukirskii:64,Henke:82,Samson:89} no es muy bueno.
 Fenónemos tales como la relajación de los orbitales moleculares, posibles
 contribuciones colectivas y efectos de correlación deben ser considerados 
 en futuros cálculos. Por otro lado, para la fotoionización de un electrón
@@ -1102,19 +1108,29 @@ disponibles.
 
 \begin{figure}[t]
 \centering
- \includegraphics[width=0.8\textwidth]{figures/dim/ch4_fotoDIM.eps}
+ \includegraphics[width=0.9\textwidth]{figures/dim/ch4_fotoDIM.eps}
 \caption[Fotoionización de metano.]
 {Sección eficaz total de fotoionización de un electrón de la
 molécula de metano. Línea sólida: cálculos teóricos a primer orden de 
 aproximación con potencial molecular DIM. Símbolos: experimentos de 
-Refs.~\cite{Lukirskii1964,Henke1982,Samson1989}.}
+Refs.~\cite{Lukirskii:64,Henke:82,Samson:89}.}
 \label{fig:photoch4}
 \end{figure}
 
-%\subsection{Excitación por impacto de protón}
-
 \subsection{Ionización por impacto de protón}
 
+\begin{figure}[t]
+\centering
+ \includegraphics[width=0.9\textwidth]{figures/dim/ch4_ionDIM.eps}
+\caption[Ionización de metano por impacto de protón.]
+{Sección eficaz total de ionización de un electrón de la
+molécula de metano por impacto de protón. Línea sólida: cálculos 
+teóricos a primer orden de aproximación con potencial molecular DIM. 
+Símbolos: experimentos de Refs.~\cite{Rudd:83,Rudd:85}.}
+\label{fig:ionch4}
+\end{figure}
+
+\newpage
 %=======================================================================
 \section{Conclusiones}
 \label{conclusion}
