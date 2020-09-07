@@ -35,21 +35,21 @@ energías de ligadura de las capas externas.
 
 En este capítulo, examinaremos la estructura atómica de blancos pesados
 y el proceso de pérdida de energía de iones cuando inciden sobre ellos.
-El método de Dirac--Fock es quizás la aproximación más conocida para el 
-cálculo de funciones radiales y energías orbitales de átomos 
-relativistas. Esta aproximación se basa en el principio variacional y 
-puede producir resultados muy precisos. Sin embargo, el principio 
-variacional presenta varios inconvenientes: el precio de la precisión 
-del método se paga con funciones de onda radiales dependientes de los 
-términos, las cuales no son ortogonales entre configuraciones. Estas 
-características hacen que el uso de las funciones de onda sea engorroso 
-en el cálculo las transiciones radiativas y de colisión. Más aún, dado 
-que el principio variacional implica la minimización de la energía 
-total, las energías de transición entre niveles cercanos se obtienen 
-como diferencias muy pequeñas entre números grandes, y los resultados 
-son muy susceptibles a errores numéricos. Esto es especialmente 
-importante para los átomos pesados porque la energía total es muy 
-grande. 
+El método de Dirac--Fock (\acs{df}) es quizás la aproximación más 
+conocida para el cálculo de funciones radiales y energías orbitales de 
+átomos relativistas. Esta aproximación se basa en el principio 
+variacional y puede producir resultados muy precisos. Sin embargo, el 
+principio variacional presenta varios inconvenientes: el precio de la 
+precisión del método se paga con funciones de onda radiales dependientes 
+de los términos, las cuales no son ortogonales entre configuraciones. 
+Estas características hacen que el uso de las funciones de onda sea 
+engorroso en el cálculo las transiciones radiativas y de colisión. Más 
+aún, dado que el principio variacional implica la minimización de la 
+energía total, las energías de transición entre niveles cercanos se 
+obtienen como diferencias muy pequeñas entre números grandes, y los 
+resultados son muy susceptibles a errores numéricos. Esto es 
+especialmente importante para los átomos pesados porque la energía total 
+es muy grande. 
 
 La aproximación teórica que se implementa aquí para describir los 
 blancos relativistas fue desarrollada por Klapisch y colaboradores 
@@ -89,11 +89,10 @@ número de electrones de las capas externas en el FEG~\cite{Mendez:19}.
 % El hafnio es particularmente interesante ya que la subcapa 4f (con 14 electrones) es el principal contribuyente por debajo del FEG, lo que hace que las secciones eficaces de frenado sean muy sensibles a una buena descripción de esta capa. Se ha considerado el apantallamiento entre los electrones 4f y 5p y se ha descubierto que juega un papel importante en los cálculos de SLPA.
 
 En este capítulo estudiaremos tres grupos de átomos de la tabla 
-periódica: metales de transición con electrones de la capa $4d$ como 
-valencia (Zr y Pd), lantánidos con la capa $4f$ abierta (Gd y Er), 
-y metales de transición pesados con la capa $4f$ completa (Hf y Pt). 
+periódica: lantánidos con la capa $4f$ abierta (Gd y Er) y metales de 
+transición pesados con la capa $4f$ completa (Hf y Pt). 
 {\color{red} Escribir sobre las aplicaciones de los blancos que voy a 
-tratar: Zr, Pd, Hf, Pt, Gd y Er  (ver paper de Moro).}
+tratar: Gd, Er, Hf y Pt  (ver paper de Moro).}
 
 %So far, only one experimental work has been published regarding the stopping power cross section of pure hafnium for protons~\cite{Sirotinin}, while more attention has been recently given to studies involving hafnium oxide due to its practical use~\cite{Abril,Behar,Primetzhofer,Roth}. It is well known that significant attention has been paid in recent years to transition metal-oxides such as HfO$_2$ because of their potential as alternative gate dielectrics to replace SiO$_2$ for the future generation of nano-electronics with less than 45 nm gate length~\cite{Choi,Robertson}. Some important physical properties of the above mentioned metal-oxide films depend on their thickness, which is often measured by using Rutherford Backscattering Spectrometry~\cite{Alfassi01,Tesmer01}. This method relies on the determination of both the scattering cross section and also the stopping power of ion beams in the material of interest.
 
@@ -104,7 +103,7 @@ se dan en la sección~\ref{sec:method-target}. Los modelos teóricos
 implementados para la predicción de la pérdida de energia se detallan en 
 la sección~\ref{sec:method-stopping}. Los resultados de este trabajo se 
 presentan en la sección~\ref{sec:results-heavy}. Las descripciones 
-obtenidas para los blancos Zr, Pd, Gd, Er, Hf y Pt a partir de la 
+obtenidas para los blancos Gd, Er, Hf y Pt a partir de la 
 resolución de la ecuación de Dirac en forma perturbativa se muestran y 
 discuten en la sección~\ref{subsec:results-target}. 
 Las energías de enlace resultantes se comparan con valores 
@@ -126,7 +125,8 @@ al final del capítulo, en la sección~\ref{sec:conclu-heavy}.
 \label{sec:method-target}
 
 La descripción de los estados de átomos pesados relativistas se 
-obtiene resolviendo el Hamiltoniano multielectrónico de Dirac 
+obtiene resolviendo el Hamiltoniano multielectrónico de 
+Dirac~\cite{Klapisch:77,Koenig:72,Klapisch:71,Klapisch:67}
 \begin{equation}
  H = H' + H_{\mathrm{\mbox{\scriptsize Breit}}}(i,j) +
  H_{\mbox{\scriptsize QED}}\,,
@@ -319,11 +319,58 @@ valores experimentales del potencial de frenado a bajas energías, en
 concordancia con resultados DFT de Echenique y 
 colaboradores~\cite{Echenique:81,Nagy:89} a $v=0$.
 
+Por encima de cierta velocidad de impacto, la contribución del plasmón 
+es esencial (alrededor del máximo de la sección eficaz de frenado). Un 
+valor de interés para nuestro análisis es la velocidad de impacto mínima 
+para excitar plasmones, $v_P$. En el formalismo dieléctrico, este valor 
+se puede obtener como $v_P\,\approx\,v_F[1+(3\pi\,v_F)^{-1/2}]$
+\cite{suppression}. Para describir la pérdida de energía considerando la 
+excitación colectiva y binaria, se recurre al formalismo dieléctrico de 
+Mermin-Lindhard (ML)~\cite{Mermin}, que es una aproximación perturbativa
+de respuesta lineal, por lo que depende del cuadrado de la carga del 
+proyectil. En este formalismo, la respuesta de los electrones del blanco 
+al paso de iones se describe a través de la función dieléctrica cuántica, 
+que depende de los parámetros característicos $r_S$ y $\delta$ del FEG.
+
+La potencia de frenado debido a los electrones ligados se obtiene 
+empleando la aproximación de plasma local por capa 
+(SLPA)~\cite{Montanari:17,Montanari:13}. Vale la pena destacar que las 
+únicas cantidades de las cuales depende este modelo son las densidades 
+radiales orbitales del estado fundamental y sus energías de enlace. El 
+modelo incluye los procesos colectivos y el apantallamiento entre 
+electrones. 
+
+
+For the contribution of bound electrons to the total stopping cross 
+sections, the SLPA considers independent contributions of each subshell. 
+Our relativistic binding energies present spin-orbit split. However, 
+in total stopping power, where the initial state of the excited electron 
+is not measured, the quantum uncertainty in energy $\Delta E$ melts this 
+split. The criterion $\Delta E\Delta t\geq\hbar/2$ merges the energies 
+$E_{nl+}-E_{nl-}$ for sufficiently small values of $\Delta t$ (the 
+collisional mean-time). In fact, at sufficiently high impact velocity, 
+we can expect all target electrons to respond together to the ion 
+passage~\cite{lindhard53,chu72}. Following previous works~\cite{mon09},
+the collisional time is estimated as $\Delta t\approx\langle r_i\rangle/v$, 
+with $\langle r_i\rangle$ and $v$ being the orbital mean radio and 
+impact velocity, respectively. In the case of hafnium, we found that for 
+every sub-shell of electrons, the spin-orbit split is unresolved in the 
+energy region this sub-shell contributes. Therefore, the $nl$-electrons 
+should be considered together, responding to the ion passage as a single 
+gas of electrons with density $\delta_{nl}(r)$ and mean binding energy 
+$E_{nl}$. This feature is vital within the SLPA calculations because 
+it accounts for the screening among electrons of the \textit{same} 
+binding energy. 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:results-heavy}
 
+En esta sección presentamos los resultados obtenidos de la optimización
+de ciertos blancos relativistas y su implementación en el estudio de 
+procesos de pérdida de energía tales como la potencia de frenado y la 
+ionización de electrones de la capa $L$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energías de ligadura y valores medios}
@@ -350,54 +397,31 @@ relativistas y funciones de onda orbitales en primer orden.
 \centering
 \begin{tabular}{|c|c|c|c|l|}
 \hline
-Grupo & Nombre   & Símbolo & $Z$ & Config. fundamental \\
+Nombre   & Símbolo & $Z$ & Config. fundamental & Serie \\
 \hline
 \hline
-\multirow{2}{*}{A} & Circonio & Zr & 40 & [Kr]~$4d^2\,5s^2$ \\
-                   & Paladio  & Pd & 46 & [Kr]~$4d^{10}$ \\
+Gadolinio & Gd & 64 & [Xe]~$4f^7\,5d\,6s^2$ & \multirow{2}{*}{Lantánidos} \\
+Erbio     & Er & 68 & [Xe]~$4f^{12}\,6s^2$ & \\
 \hline
-\multirow{2}{*}{B} & Gadolinio & Gd & 64 & [Xe]~$4f^7\,5d\,6s^2$ \\
-                   & Erbio     & Er & 68 & [Xe]~$4f^{12}\,6s^2$ \\
-\hline
-\multirow{2}{*}{C} & Hafnio  & Hf & 72 & [Xe]~$4f^{14}\,5d^2\,6s^2$ \\
-                   & Platino & Pt & 78 & [Xe]~$4f^{14}\,5d^9\,6s$ \\
+Hafnio  & Hf & 72 & [Xe]~$4f^{14}\,5d^2\,6s^2$ & \multirow{2}{*}{Metales de transición}\\
+Platino & Pt & 78 & [Xe]~$4f^{14}\,5d^9\,6s$ & \\
 \hline
 \end{tabular}
 \caption[Blancos relativistas y sus configuraciones fundamentales]
-{Blancos relativistas y sus configuraciones fundamentales.}
+{Blancos relativistas: símbolos, cargas nucleares $Z$, configuraciones 
+fundamentales y serie.}
 \label{tab:gruposrelat} 
 \end{table*}
 
-Los elementos que examinamos en esta sección se dividen en tres grupos 
-según el período de la tabla periódica al que pertenecen. La 
-clasificación de estos blancos y sus configuraciones fundamentales se
-muestran en la tabla~\ref{tab:gruposrelat}. El grupo A está compuesto 
-por los metales de transición Zr y Pd, mientras que Hf y Pt pertenecen 
-al grupo C. Los lantánidos Gd y Er conforman el grupo B. 
-Podemos escribir una fórmula general para la configuración fundamental 
-de los metales de transición, 
-\begin{equation}
-nd^w\,(n+1)s^x\,,
-\end{equation}
-donde $n=4$, $w=2,10$, $x=2,0$ para el grupo A, y $n=5$, $w=2,9$, 
-$x=2,1$ para el grupo B. Los electrones $nd$ y $(n+1)s$ tienen energías 
-de ligadura similares. Por lo tanto, las configuraciones 
-\begin{gather}
-nd^w(n+1)s^2, \\
-nd^{w+1}(n+1)s, \\
-nd^{w+2}
-\end{gather}
-tienen energías comparables. Dado que estas configuraciones tienen la 
-misma paridad, éstas cumplen los dos requerimientos mencionados 
-anteriormente, y son fundamentales en los cálculos de mezcla de 
-configuraciones. Entonces, por ejemplo, en el cálculo de la estructura 
-de Zr, además del estado fundamental del átomo [Kr]~$4d^2\,5s^2$ 
-incluimos en la mezcla las configuraciones $4d^2\,5s^2$, $4d^3\,5s$, y 
-$4d^4$. De manera similar, para el átomo de Pt, las configuraciones
-[Xe]~$5d^9\,6s$ y $5d^{10}$ son consideradas en el cálculo relativista.
+Los elementos que examinamos en esta sección se dividen en dos grupos 
+según la serie de la tabla periódica a la que pertenecen. Los blancos a 
+estudiar, sus símbolos, carga nuclear $Z$ y configuraciones fundamentales 
+se muestran en la tabla~\ref{tab:gruposrelat}. El grupo de lantánidos a
+analizar está compuesto por Gd y Er. Los metales de transición Hf y Pt 
+conforman el grupo de metales de transición bajo estudio. 
 
-La configuración fundamental de los lantánidos del grupo C tiene la 
-forma 
+Podemos escribir una fórmula general para la configuración fundamental 
+de los lantánidos,
 \begin{equation}
 nf^w\,(n+1)d^x\,(n+2)s^y\,,
 \end{equation}
@@ -409,6 +433,26 @@ mezcla de las configuraciones $4f^7\,5d\,6s^2$ y $4f^8\,6s^2$.
 Para Er, la mayor mezcla es producida por las configuraciones 
 $4f^{12}\,6s^2$ y $4f^{12}\,5d\,6s$.
 
+Por otro lado, podemos escribir la configuración fundamental de los 
+metales de transición en forma general como
+\begin{equation}
+nd^w\,(n+1)s^x\,,
+\end{equation}
+donde $n=5$, $w=2,9$, $x=2,1$ para el grupo A. Los electrones $nd$ y 
+$(n+1)s$ tienen energías de ligadura similares. Por lo tanto, las 
+configuraciones 
+\begin{gather}
+nd^w(n+1)s^2, \\
+nd^{w+1}(n+1)s, \\
+nd^{w+2}
+\end{gather}
+tienen energías comparables. Dado que estas configuraciones tienen la 
+misma paridad, éstas cumplen los dos requerimientos mencionados 
+anteriormente, y son fundamentales en los cálculos de mezcla de 
+configuraciones. Entonces, por ejemplo, para el átomo de Pt, las 
+configuraciones [Xe]~$5d^9\,6s$ y $5d^{10}$ son consideradas en el 
+cálculo relativista.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Las energías de ligadura de los blancos relativistas de la 
 tabla~\ref{tab:gruposrelat} que se obtienen a partir del método PD se 
@@ -419,22 +463,22 @@ se obtienen a partir de la ecuación~(\ref{eq:meanvalr}). Datos
 experimentales de los blancos en estado sólido~\cite{Williams:95} se 
 presentan usando círculos vacíos. Los resultados obtenidos por 
 Desclaux~\cite{Desclaux:73} mediante la implementación del método 
-de Dirac--Fock se muestran en la figura con símbolos $\times$.
+de Dirac--Fock se muestran en la figura con símbolos $\times$. También 
+se incluyen resultados no relativistas mediante la implementación del 
+método de Hartree--Fock~\cite{FroeseFischer:97} con símbolos 
+$\triangleleft$.
 
-\begin{longtable}{|c|ccc|ccc|ccc|}
+\begin{longtable}{|c|ccc|ccc|}
 \caption[Energías de ligadura y valores $\langle r \rangle$ de blancos
 relativistas]
 {Energías de ligadura teóricas perturbativas y 
-experimentales~\cite{Williams:95} de Zr, Pd, Gd, Er, Hf y Pt. 
+experimentales~\cite{Williams:95} de Gd, Er, Hf y Pt. 
 Valores medios $\langle r \rangle$ en a.u. obtenidos a partir de la 
 ecuación~(\ref{eq:meanvalr}).}
 \label{tab:relatresults}\\
 \hline
 %% primer encabezado
 \multirow{2}{*}{$nlj$} 
- & $E^{\mbox{\tiny exp}}$
- & $E^{\mbox{\tiny PD}}$
- & $\langle r\rangle^{\mbox{\tiny PD}}$ 
  & $E^{\mbox{\tiny exp}}$
  & $E^{\mbox{\tiny PD}}$
  & $\langle r\rangle^{\mbox{\tiny PD}}$
@@ -444,14 +488,11 @@ ecuación~(\ref{eq:meanvalr}).}
 \endfirsthead % fin de primer encabezado
 %% segundo encabezado (tabla continuada)
 \caption* {(Cont.): Energías de ligadura teóricas perturbativas y 
-experimentales~\cite{Williams:95} de Zr, Pd, Gd, Er, Hf y Pt. 
+experimentales~\cite{Williams:95} de Gd, Er, Hf y Pt. 
 Valores medios $\langle r \rangle$ en a.u. obtenidos a partir de la 
 ecuación~(\ref{eq:meanvalr}).} \\
  \hline
 $nlj$ 
- & $E^{\mbox{\tiny exp}}$
- & $E^{\mbox{\tiny PD}}$
- & $\langle r\rangle^{\mbox{\tiny PD}}$ 
  & $E^{\mbox{\tiny exp}}$
  & $E^{\mbox{\tiny PD}}$
  & $\langle r\rangle^{\mbox{\tiny PD}}$
@@ -463,115 +504,118 @@ $nlj$
 \hline
 \endfoot
 \endlastfoot
-  \cline{2-10}
-  & \multicolumn{3}{c}{Zr} &  \multicolumn{3}{c}{Gd} & \multicolumn{3}{c}{Hf} \\
+  \cline{2-7}
+  &  \multicolumn{3}{c}{Gd}  &  \multicolumn{3}{c}{Er} \\
 \hline
-$1s$   & 661.45 & 651.34 & 0.0372 & 1846.2 & 1843.6 & 0.0219 & 2401.6 & 2400.4 & 0.0190 \\
-$2s$   & 93.05  & 90.40  & 0.163  & 307.8  & 303.0  & 0.0929 & 414.20 & 408.98 & 0.0798 \\
-$2p_-$ & 84.79  & 82.78  & 0.139  & 291.4  & 287.2  & 0.0776 & 394.65 & 390.26 & 0.0662 \\
-$2p_+$ & 81.70  & 79.66  & 0.144  & 266.2  & 261.6  & 0.0845 & 351.4  & 346.4  & 0.0740 \\
-$3s$   & 15.82  & 14.76  & 0.460  & 69.13  & 67.43  & 0.244  & 95.58  & 93.55  & 0.208 \\
-$3p_-$ & 12.62  & 11.95  & 0.456  & 62.03  & 60.79  & 0.234  & 86.91  & 85.40  & 0.198 \\
-$3p_+$ & 12.12  & 11.45  & 0.467  & 56.74  & 55.50  & 0.247  & 77.43  & 75.97  & 0.213 \\
-$3d_-$ & 6.656  & 6.505  & 0.450  & 44.904 & 44.084 & 0.219  & 63.06  & 62.14  & 0.187 \\
-$3d_+$ & 6.571  & 6.413  & 0.454  & 43.717 & 42.953 & 0.223  & 61.08  & 60.12  & 0.191 \\
-$4s$   & 1.86   & 1.99   & 1.20   & 13.91  & 13.50  & 0.553  & 19.8   & 18.8   & 0.468 \\
-$4p_-$ & 1.05   & 1.21   & 1.32   & 10.5   & 10.9   & 0.565  & 16.10  & 15.45  & 0.474 \\
-$4p_+$ & 0.996  & 1.14   & 1.36   & 9.96   & 9.74   & 0.596  & 13.99  & 13.28  & 0.508 \\
-$4d_-$ &        & 0.103  & 3.15   & -      & 5.515  & 0.634  & 8.08   & 7.81   & 0.530 \\
-$4d_+$ &        & 0.100  & 3.29   & 5.240  & 5.306  & 0.645  & 7.772  & 7.418  & 0.542 \\
-$5s$   &        & 0.182  & 4.34   & 1.3    & 2.0    & 1.34   & 2.36   & 2.55   & 1.12 \\
-$5p_-$ &        &        &        & 0.74   & 1.3    & 1.51   & 1.4    & 1.6    & 1.24 \\
-$5p_+$ &        &        &        & 0.74   & 1.2    & 1.60   & 1.10   & 1.28   & 1.35 \\
-$4f_-$ &        &        &        & 0.32   & 0.41   & 0.916  & 0.584  & 0.725  & 0.666 \\
-$4f_+$ &        &        &        & 0.32   & 0.38   & 0.934  & 0.522  & 0.660  & 0.679 \\
-$6s$   &        &        &        &        & 0.31   & 3.70   &        & 0.214 & 3.83 \\
-$5d_-$ &        &        &        &        & 0.29   & 2.50   &        & 0.125 & 2.77 \\
-$5d_+$ &        &        &        &        & 0.28   & 2.56   &        & 0.109 & 3.13 \\
+$1s$   & 1846.2 & 1843.6 & 0.0219 & 2112.7 & 2114.2 & 0.0203 \\
+$2s$   & 307.8  & 303.0  & 0.0929 & 358.4  & 353.7  & 0.0858 \\
+$2p_-$ & 291.4  & 287.2  & 0.0776 & 340.5  & 337.5  & 0.0712 \\
+$2p_+$ & 266.2  & 261.6  & 0.0845 & 307.2  & 303.3  & 0.0785 \\
+$3s$   & 69.13  & 67.43  & 0.244  & 81.07  & 79.34  & 0.225  \\
+$3p_-$ & 62.03  & 60.79  & 0.234  & 73.72  & 72.00  & 0.215  \\
+$3p_+$ & 56.74  & 55.50  & 0.247  & 66.59  & 64.92  & 0.229  \\
+$3d_-$ & 44.904 & 44.084 & 0.219  & 53.40  & 51.91  & 0.202  \\
+$3d_+$ & 43.717 & 42.953 & 0.223  & 51.78  & 50.38  & 0.207  \\
+$4s$   & 13.91  & 13.50  & 0.553  & 16.53  & 15.62  & 0.507  \\
+$4p_-$ & 10.5   & 10.9   & 0.565  & 13.46  & 12.69  & 0.515  \\
+$4p_+$ & 9.96   & 9.74   & 0.596  & 11.77  & 11.06  & 0.548  \\
+$4d_-$ & -      & 5.515  & 0.634  & 6.160  & 6.186  & 0.578  \\
+$4d_+$ & 5.240  & 5.306  & 0.645  & 6.160  & 5.892  & 0.589  \\
+$5s$   & 1.3    & 2.0    & 1.34   & 1.86   & 1.95   & 1.25   \\
+$5p_-$ & 0.74   & 1.3    & 1.51   & 1.15   & 1.16   & 1.41   \\
+$5p_+$ & 0.74   & 1.2    & 1.60   & 0.908  & 0.954  & 1.52   \\
+$4f_-$ & 0.32   & 0.41   & 0.916  & -      & 0.18   & 0.813  \\
+$4f_+$ & 0.32   & 0.38   & 0.934  & 0.17   & 0.14   & 0.838  \\
+$6s$   &        & 0.31   & 3.70   &        & 0.19   & 4.33  \\
+$5d_-$ &        & 0.29   & 2.50   &        &        &      \\
+$5d_+$ &        & 0.28   & 2.56   &        &        &     \\
 \hline
-  & \multicolumn{3}{c}{Pd} &  \multicolumn{3}{c}{Er} & \multicolumn{3}{c}{Pt} \\
+& \multicolumn{3}{c}{Hf} & \multicolumn{3}{c}{Pt} \\
 \hline
-$1s$   & 894.84 & 880.77 & 0.0320 & 2112.7 & 2114.2 & 0.0203 & 2880.9 & 2881.6 & 0.0171 \\
-$2s$   & 132.44 & 128.73 & 0.138  & 358.4  & 353.7  & 0.0858 & 510.08 & 504.78 & 0.0718 \\
-$2p_-$ & 122.37 & 119.68 & 0.117  & 340.5  & 337.5  & 0.0712 & 487.77 & 483.25 & 0.0591 \\
-$2p_+$ & 116.60 & 113.89 & 0.122  & 307.2  & 303.3  & 0.0785 & 424.97 & 419.70 & 0.0676 \\
-$3s$   & 24.68  & 23.16  & 0.382  & 81.07  & 79.34  & 0.225  & 121.1  & 118.8  & 0.187 \\
-$3p_-$ & 20.58  & 19.52  & 0.374  & 73.72  & 72.00  & 0.215  & 111.2  & 109.4  & 0.177 \\
-$3p_+$ & 19.56  & 18.53  & 0.385  & 66.59  & 64.92  & 0.229  & 97.20  & 95.37  & 0.192 \\
-$3d_-$ & 12.51  & 11.98  & 0.359  & 53.40  & 51.91  & 0.202  & 80.92  & 79.83  & 0.168 \\
-$3d_+$ & 12.32  & 11.78  & 0.363  & 51.78  & 50.38  & 0.207  & 77.98  & 76.83  & 0.172 \\
-$4s$   & 3.20   & 3.23   & 0.937  & 16.53  & 15.62  & 0.507  & 26.66  & 25.53  & 0.416 \\
-$4p_-$ & 2.05   & 2.09   & 1.01   & 13.46  & 12.69  & 0.515  & 22.38  & 21.55  & 0.419 \\
-$4p_+$ & 1.87   & 1.92   & 1.04   & 11.77  & 11.06  & 0.548  & 19.09  & 18.22  & 0.453 \\
-$4d_-$ &        & 0.216  & 1.61   & 6.160  & 6.186  & 0.578  & 12.19  & 11.70  & 0.463 \\
-$4d_+$ &        & 0.198  & 1.67   & 6.160  & 5.892  & 0.589  & 11.56  & 11.09  & 0.474 \\
-$5s$   &        &        &        & 1.86   & 1.95   & 1.25   & 3.737  & 3.829  & 0.942 \\
-$5p_-$ &        &        &        & 1.15   & 1.16   & 1.41   & 2.40   & 2.53   & 1.02 \\
-$5p_+$ &        &        &        & 0.908  & 0.954  & 1.52   & 1.90   & 1.94   & 1.12 \\
-$4f_-$ &        &        &        & -      & 0.18   & 0.813  & 2.74   & 2.75   & 0.513 \\
-$4f_+$ &        &        &        & 0.17   & 0.14   & 0.838  & 2.62   & 2.62   & 0.520 \\
-$6s$   &        &        &        &        & 0.19   & 4.33   &        & 0.250  & 3.30 \\
-$5d_-$ &        &        &        &        & 0.080  & 4.91   &        & 0.250  & 1.71 \\
-$5d_+$ &        &        &        &        & 0.076  & 5.45   &        & 0.200  & 1.88 \\
- \hline
+$1s$   & 2401.6 & 2400.4 & 0.0190 & 2880.9 & 2881.6 & 0.0171 \\
+$2s$   & 414.20 & 408.98 & 0.0798 & 510.08 & 504.78 & 0.0718 \\
+$2p_-$ & 394.65 & 390.26 & 0.0662 & 487.77 & 483.25 & 0.0591 \\
+$2p_+$ & 351.4  & 346.4  & 0.0740 & 424.97 & 419.70 & 0.0676 \\
+$3s$   & 95.58  & 93.55  & 0.208 & 121.1  & 118.8  & 0.187 \\
+$3p_-$ & 86.91  & 85.40  & 0.198 & 111.2  & 109.4  & 0.177 \\
+$3p_+$ & 77.43  & 75.97  & 0.213 & 97.20  & 95.37  & 0.192 \\
+$3d_-$ & 63.06  & 62.14  & 0.187 & 80.92  & 79.83  & 0.168 \\
+$3d_+$ & 61.08  & 60.12  & 0.191 & 77.98  & 76.83  & 0.172 \\
+$4s$   & 19.8   & 18.8   & 0.468 & 26.66  & 25.53  & 0.416 \\
+$4p_-$ & 16.10  & 15.45  & 0.474 & 22.38  & 21.55  & 0.419 \\
+$4p_+$ & 13.99  & 13.28  & 0.508 & 19.09  & 18.22  & 0.453 \\
+$4d_-$ & 8.08   & 7.81   & 0.530 & 12.19  & 11.70  & 0.463 \\
+$4d_+$ & 7.772  & 7.418  & 0.542 & 11.56  & 11.09  & 0.474 \\
+$5s$   & 2.36   & 2.55   & 1.12  & 3.737  & 3.829  & 0.942 \\
+$5p_-$ & 1.4    & 1.6    & 1.24  & 2.40   & 2.53   & 1.02 \\
+$5p_+$ & 1.10   & 1.28   & 1.35  & 1.90   & 1.94   & 1.12 \\
+$4f_-$ & 0.584  & 0.725  & 0.666 & 2.74   & 2.75   & 0.513 \\
+$4f_+$ & 0.522  & 0.660  & 0.679 & 2.62   & 2.62   & 0.520 \\ 
+$6s$   &        & 0.214  & 3.83  &        & 0.250  & 3.30 \\  
+$5d_-$ &        & 0.125  & 2.77  &        & 0.250  & 1.71 \\  
+$5d_+$ &        & 0.109  & 3.13  &        & 0.200  & 1.88 \\
+\hline
 \end{longtable}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{heavy/bindener.eps}
+\includegraphics[width=\textwidth]{heavy/bindener.eps}
 \caption[Energías de ligadura de blancos relativistas]
-{Energías de ligadura de Zr, Pd, Gd, Er, Hf y Pt. Símbolos: 
+{Energías de ligadura de Gd, Er, Hf y Pt. Símbolos: 
 $\blacklozenge$ resultados teóricos del presente trabajo, 
-$\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}, y 
+$\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}, 
+$\triangleleft$ valores teóricos según Hartree--Fock, y 
 $\medcircle$ datos experimentales en sólidos~\cite{Williams:95}.}
 \label{fig:bindener}
 \end{figure}
 
-En general, el acuerdo entre nuestros resultados teóricos perturbativos 
-y la data experimental es muy bueno. Dado que la 
-figura~\ref{fig:bindener} muestra las energías de enlace en un rango de 
-magnitud de cinco órdenes, no es posible discernir las discrepancias 
-entre los datos enumerados en la tabla~\ref{tab:relatresults} y los 
-resultados del método de Dirac--Fock~\cite{Desclaux:73}. Para evaluar 
-estas diferencias, las relaciones entre las energías de ligadura 
-experimentales $E^{\mbox{\scriptsize exp}}$ y los métodos teóricos 
-Dirac perturbativo $E^{\mbox{\scriptsize PD}}$ y Dirac--Fock
-$E^{\mbox{\scriptsize DF}}$ se muestran en la figura~\ref{fig:ratios} 
-con los mismos símbolos y líneas que en la figura~\ref{fig:bindener}. 
-Las energías de enlace que obtuvimos para Zr muestran un acuerdo 
-general de aproximadamente 4\% para todas las capas, excepto para la 
-subvalencia $4p$. En el caso de Pd, nuestros resultados teóricos 
-reproducen los valores experimentales alrededor del 3\%. Más aún, los 
-lantánidos del grupo B también presentan concordancia de alrededor del 
-3\%, con excepción de las subcapas más externas $5s$, $5p$ y $4f$ del 
-Gd. Asimismo, los resultados obtenidos para Hf y Pt coinciden con los 
-valores experimentales en $\sim$3\%, excepto en las subcapas $5p$ y 
-$4f$ de Hf. En todos los casos, los resultados obtenidos a partir del 
-método perturbativo describen los datos experimentales con mayor 
-precisión que los valores dados por el método variacional de 
-Dirac--Fock~\cite{Desclaux:73}.
-
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.9\textwidth]{heavy/ratios_heavy.eps} 
-\caption[Razón $E^{\mbox{\scriptsize exp}}/E$ 
-entre energías de ligadura experimentales y teóricas.]
-{Razón $E^{\mbox{\scriptsize exp}}/E$ 
-entre energías de ligadura experimentales y teóricas. Símbolos: 
-$\blacklozenge$ resultados teóricos del presente trabajo, 
-$\times$ valores teóricos del método Dirac--Fock~\cite{Desclaux:73}}
+\includegraphics[width=\textwidth]{heavy/ratios_heavy_barh.eps} 
+\caption[Razón $E^{\mbox{\scriptsize exp}}/E$ entre energías de ligadura 
+experimentales y teóricas.]
+{Razón $E^{\mbox{\scriptsize exp}}/E$ entre energías de ligadura 
+experimentales y teóricas de Gd, Er, Hf y Pt: métodos de Hartree--Fock 
+(barras gris oscuro), Dirac--Fock (barras gris claro), y Dirac 
+perturbativo (barras de colores).}
 \label{fig:ratios}
 \end{figure}
 
-\begin{comment}
-\begin{figure}[t]
-\centering
-\includegraphics[trim={0 0.2cm 0 0.2cm},clip,width=0.9\textwidth]{heavy/erp_heavy.eps} 
-\caption{Errores relativos porcentuales correspondientes a los 
-resultados teóricos.}
-\label{fig:erpheavy}
-\end{figure}
-\end{comment}
+Dado que la figura~\ref{fig:bindener} muestra las energías de enlace en 
+un rango de magnitud de cinco órdenes, no es posible discernir las 
+discrepancias entre los datos experimentales y los resultados teóricos
+obtenidos mediante los métodos de Hatree--Fock, Dirac--Fock y Dirac 
+perturbativo. Para poder inspeccionar estas diferencias con más detalle, 
+las relaciones entre las energías de ligadura experimentales 
+$E^{\mbox{\scriptsize exp}}$ y teóricas (HF, DF y PD) se muestran en la 
+figura~\ref{fig:ratios}. La figura muestra claramente que las 
+correcciones relativistas son críticas para describir la estructura 
+atómica de los blancos considerados, incluso para las capas externas. 
+Por ejemplo, la energía de enlace no relativista de la subcapa $4f$ de 
+Hf es cuatro veces la experimental. Un valor tan incorrecto conduce a la 
+subestimación de la ionización de los electrones $4f$ y desplaza el 
+umbral a energías más altas. Por otro lado, los valores teóricos 
+relativistas de Dirac--Fock mejoran la descripción de las capas internas 
+de los blancos de forma sistemática. Sin embargo, las discrepancias con 
+los valores experimentales en las capas cercanas a la banda de valencia 
+son significativas. En definitiva, la incorrecta descripción de los 
+orbitales de las capas internas se propaga a las capas externas en los 
+cálculos no relativistas (HF) y relativistas (DF) que implementan el 
+método variacional. 
+
+En general, el acuerdo entre nuestros resultados teóricos perturbativos 
+relativistas y las mediciones experimentales es muy bueno. 
+Las energías de enlace que obtuvimos para los lantánidos muestran un 
+acuerdo de aproximadamente 3\%, con excepción de las subcapas más 
+externas $5s$, $5p$ y $4f$ del Gd. Asimismo, los resultados 
+obtenidos para Hf y Pt coinciden con los valores experimentales en 
+$\sim$3\%, excepto en las subcapas $5p$ y $4f$ de Hf. En todos los 
+casos, los resultados obtenidos a partir del método perturbativo 
+describen los datos experimentales con mayor precisión que los valores 
+dados por el método variacional de Hartree--Fock y su versión 
+relativista~\cite{Desclaux:73}. En general, el método perturbativo 
+permite describir en forma más precisa tanto las capas más internas 
+--donde se esperan los efectos relativistas-- como las capas externas.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Electrones en el FEG}
@@ -585,11 +629,11 @@ ligados). Como es de esperar, las principales discrepancias gas-sólido
 se encuentran en las capas externas. Los electrones en las órbitas 
 adyacentes a la banda de conducción en un sólido están débilmente 
 ligados, en comparación con los electrones en un átomo aislado. Las 
-líneas verticales discontinuas de la figura~\ref{fig:bindener} separa los 
-electrones ligados y de valencia. Los presentes resultados dan una 
-buena idea sobre el número de electrones en el gas de electrones libres 
-(FEG) de los sólidos, que son particularmente relevantes en los cálculos 
-de potencia de frenado.
+líneas verticales discontinuas de la figura~\ref{fig:bindener} separan 
+los electrones ligados de los de valencia. Los presentes resultados dan 
+una buena idea sobre el número de electrones en el gas de electrones 
+libres (FEG) de los sólidos, que son particularmente relevantes en los 
+cálculos de potencia de frenado.
 
 El FEG está caracterizado por la densidad de electrones o, 
 equivalentemente, por el radio de Wigner-Seitz, $r_S$. A su vez, éstos 
@@ -597,22 +641,39 @@ se encuentran directamente relacionados con la energía de Fermi, $E_F$.
 Para obtener estos valores y determinar el número real de electrones que 
 pertenecen al FEG, es necesario realizar un análisis exhaustivo de las 
 energías de ligadura. Nuestros resultados teóricos para cada blanco se 
-presentan en la tabla~\ref{tab:electronFEG}. Para Zr y Hf, los $r_S$ 
-experimentales se derivan de la función de pérdida de energía 
-óptica~\cite{werner,lynch,isaacson,romaniello}, lo que resulta en los 
-valores $r_S^{\mbox{\scriptsize exp}}=2.18$, y $2.12$, respectivamente. 
-Nuestros resultados teóricos acuerdan con estos valores en menos del 4\%. 
-No se encontraron datos experimentales para Gd y Er, mientras que para 
-Pd y Pt, el número de electrones en el FEG está sujeto a discusión. Por 
-ejemplo, para Pd, suponiendo que solo 6 electrones pertenecen a la banda 
-de valencia (parte de los electrones $4d$), la energía de Fermi es 
-$E_F=0.74$~a.u.. Por otro lado, si se considera toda la subcapa de 
+presentan en la tabla~\ref{tab:electronFEG}. Para Hf, el valor 
+experimental de $r_S$ se deriva de la función de pérdida de energía 
+óptica~\cite{Lynch:75,Isaacson:75}, lo que resulta en 
+$r_S^{\mbox{\scriptsize exp}}=2.12$. Nuestros resultados teóricos 
+acuerdan con estos valores en menos del 4\%. A nuestro saber, no hay 
+valores experimentales para los átomos de Gd y Er. Mientras que para Pt, 
+el número de electrones en el FEG está sujeto a discusión. 
+Por ejemplo, si se suponen 6 electrones en la banda de valencia (parte 
+de los electrones $5d$), la energía de Fermi que se obtiene es 
+$E_F=0.72$~a.u.. Por otro lado, si se considera toda la subcapa de 
 valencia $d$ en la banda de conducción, el valor correspondiente es 
-$E_F=1.02$~a.u. (valor que se muestra en la Tabla~\ref{tab:electronFEG}). 
-De forma análoga, en el caso de Pt, si se suponen 6 electrones de 
-valencia (parte de los electrones $5d$) el valor de Fermi que se obtiene 
-es $E_F=0.72$~a.u., en lugar de $E_F=1.02$~a.u., que es el resultado de 
-suponer 10 electrones en la capa de valencia.
+$E_F=1.02$~a.u..
+
+\begin{table}[t]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Símbolo & $Z$ & $N_e$ & $r_S$ & $E_F$ \\
+\hline
+\hline
+Gd & 64 & 10 & 1.75 & 0.602 \\
+Er & 68 & 14 & 1.52 & 0.792 \\
+\hline
+Hf & 72 & 4  & 2.14 & 0.40 \\
+Pt & 78 & 10 & 1.34 & 1.02 \\
+\hline
+\end{tabular}
+\caption[Parámetros teóricos de FEG para blancos relativistas.]
+{Parámetros teóricos de FEG propuestos para Gd, Er, Hf y Pt: 
+carga nuclear $Z$, número de electrones en el FEG $N_e$, radio de 
+Wigner--Seitz $r_S$ y energía de Fermi $E_F$.}
+\label{tab:electronFEG} 
+\end{table}
 
 Para los átomos estudiados aquí, notamos que las energías de enlace de 
 los electrones más externos se encuentran debajo de las energías de 
@@ -628,34 +689,65 @@ electrones $4f$ en el FEG permite explicar las principales características
 de las mediciones recientes~\cite{Montanari:17,Montanari:19} de baja 
 energía de la potencia de frenado de protones en Gd~\cite{Roth:17}.
 
-\begin{table}[t]
-\centering
-\begin{tabular}{|c|l|l|l|l|l|l|}
-\hline
-& \mbox{Zr} & \mbox{Pd} & \mbox{Gd} & \mbox{Er} & \mbox{Hf} & \mbox{Pt} \\
-\hline
-\hline
- $Z$       & 40   & 46   & 64   &  68   &  72   &  78   \\
-\hline
- $N_e$     & 4    & 10   & 10   &  14   &  4    &  10   \\
-\hline
- $r_S$     & 2.11 & 1.34 & 1.75 & 1.52  &  2.14 & 1.34  \\
-\hline
- $E_F$     & 0.41 & 1.02 & 0.602& 0.792 &  0.40 & 1.02  \\
-\hline
-\end{tabular}
-\caption[Parámetros teóricos de FEG para blancos relativistas.]
-{Parámetros teóricos de FEG propuestos para Zr, Pd,  Gd, Er, Hf y Pt: 
-carga nuclear $Z$, número de electrones en el FEG $N_e$, radio de 
-Wigner--Seitz $r_S$ y energía de Fermi $E_F$.}
-\label{tab:electronFEG} 
-\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Potencial de frenado}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{subsec:results-stopping}
 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Hf_methods.eps}
+\caption[Secciones eficaces teóricas de frenado de protones en Hf.]
+{Secciones eficaces teóricas de frenado de protones en hafnio.
+Frenado debido al FEG: método no perturbativo SPCC (línea discontinua 
+celeste) y formalismo dieléctrico de ML (línea sólida celeste). 
+Frenado debido a los electrones ligados $1s$-$4f$: método SLPA con (línea 
+sólida verde) y sin (línea punteada verde) apantallamiento de las 
+subcapas $5p$-$4f$. 
+Las curvas totales (líneas rojas) resultan de sumar las contribuciones 
+del FEG y los electrones ligados. 
+%Línea discontinua: método SPCC (FEG) y SLPA (electrones ligados). 
+%Líneas sólida: ML (FEG) y SLPA (electrones ligados) con apantallamiento. 
+%Línea punteada: ML (FEG) y SLPA (electrones ligados) sin apantallamiento.
+La línea vertical punteada indica el valor de energía (37 keV) en el cual 
+las excitaciones de plasmones pueden ocurrir.} 
+\label{fig:Hf_methods}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Hf_interp.eps}
+\caption[Interpolación de sección eficaz de frenado total.]
+{Interpolación de sección eficaz de frenado total de Hf: contribución 
+debido al FEG (círculos) y frenado debido a electrones ligados 
+(cuadrados).} 
+\label{fig:Hf_interp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Hf_RNR.eps}
+\caption[Secciones eficaces relativistas y no relativistas de Hf.]
+{Secciones eficaces teóricas con descripción relativista y no relativista
+del blanco. Símbolos: valores experimentales.}
+\label{fig:Hf_SP}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Hf_SPall.eps}
+\caption[Secciones eficaces teóricas, semiempíricas y experimentales de Hf.]{Secciones eficaces de frenado total teóricas, semiempíricas y
+experimentales de Hf.}
+\label{fig:Hf_SP}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Ionización de capa L}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:results-ionLshell}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
@@ -677,6 +769,7 @@ accounts for the differences encountered.
 Our results allow to propose theoretical Wigner--Seitz radii for all 
 the targets. We found a particular feature for the lanthanides, which
 indicates that the $4f$ electrons belong to the free electron gas.
+
 
 \begin{comment}
 
@@ -780,19 +873,6 @@ $r_S\approx 2.07$ a.u.~\cite{lynch75}. The difference of less than
 $5\%$ between theoretical and experimental $r_S$ assess Hf as a 
 canonical target~\cite{mon17}.
 
-Above certain impact velocity, the plasmon contribution is essential
-(i.e., around and above the stopping maximum). A value of interest for 
-our analysis is the minimum impact velocity to excite plasmons, $v_P$. 
-In the dielectric formalism, this value can be obtained as 
-$v_P\,\approx\,v_F[1+(3\pi\,v_F)^{-1/2}]$~\cite{suppression}. To 
-describe the energy loss considering collective and binary excitation, 
-we resort to the ML dielectric formalism \cite{Mermin}, which is a 
-linear response, perturbative approximation, so it depends on the 
-square of the ion charge. In this formalism, the response of target 
-electrons to the ion passage is described through the quantum dielectric 
-function, which depends on the characteristic $r_S$ and $\delta$ parameters 
-of the FEG. 
-
 %----------------------------------------------------------------------
 \begin{figure*}[!t]
 \centering
@@ -805,16 +885,6 @@ experimental data.}
 \label{Binding_E}
 \end{figure*}
 %------------------------------------------------------------------------
-
-For the stopping power due to bound electrons, the SLPA~\cite{mon17,mon13} 
-is employed. It is worth mentioning that the only inputs for the SLPA 
-are the space-dependent densities of each shell in the ground state, 
-and their binding energies. Collective processes and screening among 
-electrons are included. Since hafnium is a relativistic target, the wave 
-functions and binding energies must be obtained by solving the many-electron 
-Dirac Hamiltonian. Details of these calculations and a table of binding 
-energies have been published in Ref.~\cite{mendez2019}, while Slater-type 
-orbital expansions are given in Ref.~\cite{Hf_arxiv}.
 
 To assess the importance of a fully relativistic description of bound 
 electrons, Fig.~\ref{Binding_E}~(a) shows our binding energies, 
@@ -846,26 +916,7 @@ The non-relativistic $4f$ binding energy is four times the experimental one. Suc
 The importance of fully relativistic calculations for the outer 
 shells has already been noted for Au, Pb, Bi, and W~\cite{mon09}.
 
-For the contribution of bound electrons to the total stopping cross 
-sections, the SLPA considers independent contributions of each subshell. 
-Our relativistic binding energies present spin-orbit split. However, 
-in total stopping power, where the initial state of the excited electron 
-is not measured, the quantum uncertainty in energy $\Delta E$ melts this 
-split. The criterion $\Delta E\Delta t\geq\hbar/2$ merges the energies 
-$E_{nl+}-E_{nl-}$ for sufficiently small values of $\Delta t$ (the 
-collisional mean-time). In fact, at sufficiently high impact velocity, 
-we can expect all target electrons to respond together to the ion 
-passage~\cite{lindhard53,chu72}. Following previous works~\cite{mon09},
-the collisional time is estimated as $\Delta t\approx\langle r_i\rangle/v$, 
-with $\langle r_i\rangle$ and $v$ being the orbital mean radio and 
-impact velocity, respectively. In the case of hafnium, we found that for 
-every sub-shell of electrons, the spin-orbit split is unresolved in the 
-energy region this sub-shell contributes. Therefore, the $nl$-electrons 
-should be considered together, responding to the ion passage as a single 
-gas of electrons with density $\delta_{nl}(r)$ and mean binding energy 
-$E_{nl}$. This feature is vital within the SLPA calculations because 
-it accounts for the screening among electrons of the \textit{same} 
-binding energy. For example, the $4f_{-}$ and $4f_{+}$ of Hf can only 
+For example, the $4f_{-}$ and $4f_{+}$ of Hf can only 
 be resolved for impact energies $E<0.05$ keV, but the contribution of 
 $4f$ to the total stopping is negligible for $E<40$ keV. Moreover, the 
 $5p$ and $4f$ electrons of Hf are very close in energy 
@@ -874,27 +925,6 @@ together at impact energies $E>40$ keV (inter-shell screening). As
 already mentioned, at higher energies, inter-shell screening is also possible 
 for deeper subshells %(i.e., $4p$-$4d$ for impact energies above 0.9 MeV), 
 but their weight in the total stopping is minor.
-
-%-----------------------------------------------------------------------
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=13.cm]{stopping/Fig02_new3.eps}
-\caption{(color online) Theoretical stopping cross sections of protons 
-in hafnium. 
-Blue dash-dotted-line, the non-perturbative SPCC for the FEG; 
-blue solid-line, ML results for the FEG (includes plasmon excitation); 
-red solid and dotted-lines, the SLPA results for bound electrons with 
-and without $5p$-$4f$ screening, respectively. 
-Black curves, total stopping adding the FEG and bound $1s$-$4f$ 
-contributions: 
-dash-dotted-line, SPCC (FEG) + SLPA (bound); 
-solid-line, ML (FEG) + SLPA (bound) with 4f-5p screening; 
-dotted-line, ML (FEG) + SLPA (bound) without 4f-5p screening.
-The vertical grey dashed-line indicates the energy of 37 keV
-above which plasmon excitation is possible.} 
-\label{slpa4f}
-\end{figure*}
-%-----------------------------------------------------------------------
 
 Finally, in all our calculations~\cite{mon17}, we assumed the projectile 
 to be proton and not neutral hydrogen. When an ion moves inside a metal, 
