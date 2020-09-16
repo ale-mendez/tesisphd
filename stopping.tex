@@ -326,11 +326,12 @@ para excitar plasmones, $v_P$. En el formalismo dieléctrico, este valor
 se puede obtener como $v_P\,\approx\,v_F[1+(3\pi\,v_F)^{-1/2}]$
 \cite{suppression}. Para describir la pérdida de energía considerando la 
 excitación colectiva y binaria, se recurre al formalismo dieléctrico de 
-Mermin-Lindhard (ML)~\cite{Mermin}, que es una aproximación perturbativa
-de respuesta lineal, por lo que depende del cuadrado de la carga del 
-proyectil. En este formalismo, la respuesta de los electrones del blanco 
-al paso de iones se describe a través de la función dieléctrica cuántica, 
-que depende de los parámetros característicos $r_S$ y $\delta$ del FEG.
+Mermin-Lindhard (ML)~\cite{Mermin:70}, que es una aproximación 
+perturbativa de respuesta lineal, por lo que depende del cuadrado de la 
+carga del proyectil. En este formalismo, la respuesta de los electrones 
+del blanco al paso de iones se describe a través de la función 
+dieléctrica cuántica, que depende de los parámetros característicos 
+$r_S$ y $\delta$ del FEG.
 
 La potencia de frenado debido a los electrones ligados se obtiene 
 empleando la aproximación de plasma local por capa 
@@ -340,27 +341,22 @@ radiales orbitales del estado fundamental y sus energías de enlace. El
 modelo incluye los procesos colectivos y el apantallamiento entre 
 electrones. 
 
-
-For the contribution of bound electrons to the total stopping cross 
-sections, the SLPA considers independent contributions of each subshell. 
-Our relativistic binding energies present spin-orbit split. However, 
-in total stopping power, where the initial state of the excited electron 
-is not measured, the quantum uncertainty in energy $\Delta E$ melts this 
-split. The criterion $\Delta E\Delta t\geq\hbar/2$ merges the energies 
-$E_{nl+}-E_{nl-}$ for sufficiently small values of $\Delta t$ (the 
-collisional mean-time). In fact, at sufficiently high impact velocity, 
-we can expect all target electrons to respond together to the ion 
-passage~\cite{lindhard53,chu72}. Following previous works~\cite{mon09},
-the collisional time is estimated as $\Delta t\approx\langle r_i\rangle/v$, 
-with $\langle r_i\rangle$ and $v$ being the orbital mean radio and 
-impact velocity, respectively. In the case of hafnium, we found that for 
-every sub-shell of electrons, the spin-orbit split is unresolved in the 
-energy region this sub-shell contributes. Therefore, the $nl$-electrons 
-should be considered together, responding to the ion passage as a single 
-gas of electrons with density $\delta_{nl}(r)$ and mean binding energy 
-$E_{nl}$. This feature is vital within the SLPA calculations because 
-it accounts for the screening among electrons of the \textit{same} 
-binding energy. 
+Para la contribución de los electrones ligados a la sección eficaz de 
+frenado total, el método de SLPA considera las contribuciones 
+independientes de cada subcapa. Nuestras energías de ligadura 
+relativistas presentan un desdoblamiento de espín-órbita. Sin embargo, 
+en la potencia de frenado total, donde el estado inicial del electrón 
+excitado no es medido, la incertidumbre cuántica en energía $\Delta E$ 
+fusiona el desdoblamiento. El criterio $\Delta E\Delta t\geq\hbar/2$ une 
+las energías $E_{nl+}-E_{nl-}$ para valores de tiempos medios de colisión
+$\Delta t$ lo suficientemente pequeños. De hecho, a una velocidad de 
+impacto suficientemente alta, podemos esperar que todos los electrones 
+del blanco respondan juntos al paso de los 
+iones~\cite{Lindhard:53,Chu:72}. Siguiendo trabajos 
+previos~\cite{Montanari:09}, el tiempo de colisión se estima como 
+$\Delta t\approx\langle r_i\rangle/v$, siendo $\langle r_i\rangle$ y $v$ 
+el radio orbital medio y la velocidad de impacto, respectivamente. 
+%En el caso del hafnio, encontramos que para cada subcapa de electrones, la división espín-órbita no se resuelve en la región de energía a la que contribuye esta subcapa. Por lo tanto, los nl-electrones deben considerarse juntos, respondiendo al paso de iones como un solo gas de electrones con densidad $\delta_{nl}(r)$ y energía de enlace media $E_{nl}$. Esta característica es vital dentro de los cálculos de SLPA porque explica el filtrado entre electrones de la misma energía de enlace.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
@@ -572,6 +568,7 @@ $\medcircle$ datos experimentales en sólidos~\cite{Williams:95}.}
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{heavy/ratios_heavy_barh.eps} 
+%\includegraphics[width=\textwidth]{heavy/erp_heavy.eps} 
 \caption[Razón $E^{\mbox{\scriptsize exp}}/E$ entre energías de ligadura 
 experimentales y teóricas.]
 {Razón $E^{\mbox{\scriptsize exp}}/E$ entre energías de ligadura 
@@ -695,6 +692,7 @@ energía de la potencia de frenado de protones en Gd~\cite{Roth:17}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{subsec:results-stopping}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hafnio %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[H]
 \centering
@@ -718,16 +716,6 @@ las excitaciones de plasmones pueden ocurrir.}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{heavy/Hf_interp.eps}
-\caption[Interpolación de sección eficaz de frenado total.]
-{Interpolación de sección eficaz de frenado total de Hf: contribución 
-debido al FEG (círculos) y frenado debido a electrones ligados 
-(cuadrados).} 
-\label{fig:Hf_interp}
-\end{figure}
-
-\begin{figure}[H]
-\centering
 \includegraphics[width=\textwidth]{heavy/Hf_RNR.eps}
 \caption[Secciones eficaces relativistas y no relativistas de Hf.]
 {Secciones eficaces teóricas con descripción relativista y no relativista
@@ -737,10 +725,51 @@ del blanco. Símbolos: valores experimentales.}
 
 \begin{figure}[H]
 \centering
+\includegraphics[width=\textwidth]{heavy/Hf_interp.eps}
+\caption[Interpolación de sección eficaz de frenado total.]
+{Interpolación de sección eficaz de frenado total de Hf. Símbolos:
+método no perturbativo SPCC (FEG) + SLPA (electrones ligados) con 
+círculos; formalismo dieléctrico de ML (FEG) + SLPA (electrones ligados) 
+con cuadrados.} 
+\label{fig:Hf_interp}
+\end{figure}
+
+\begin{figure}[H]
+\centering
 \includegraphics[width=\textwidth]{heavy/Hf_SPall.eps}
-\caption[Secciones eficaces teóricas, semiempíricas y experimentales de Hf.]{Secciones eficaces de frenado total teóricas, semiempíricas y
+\caption[Secciones eficaces teóricas, semiempíricas y experimentales de 
+Hf.]{Secciones eficaces de frenado total teóricas, semiempíricas y
 experimentales de Hf.}
 \label{fig:Hf_SP}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Platino %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Hf_methods.eps}
+\caption[Secciones eficaces teóricas de frenado de protones en Pt.]
+{Secciones eficaces teóricas de frenado de protones en platino.
+Frenado debido al FEG: método no perturbativo SPCC (línea discontinua 
+celeste) y formalismo dieléctrico de ML (línea sólida celeste). 
+Frenado debido a los electrones ligados $1s$-$5s$ con apantallamiento de 
+las subcapas $5p$-$4f$ usando el método SLPA (línea sólida verde).
+Las curvas totales (líneas rojas) resultan de sumar las contribuciones 
+del FEG y los electrones ligados. 
+%Línea discontinua: método SPCC (FEG) y SLPA (electrones ligados). 
+%Líneas sólida: ML (FEG) y SLPA (electrones ligados) con apantallamiento. 
+La línea vertical punteada indica el valor de energía (39.4 keV) en el 
+cual las excitaciones de plasmones pueden ocurrir.} 
+\label{fig:Pt_methods}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{heavy/Pt_SPall.eps}
+\caption[Secciones eficaces teóricas, semiempíricas y experimentales de 
+Pt.]{Secciones eficaces de frenado total teóricas, semiempíricas y
+experimentales de Pt.}
+\label{fig:Pt_SP}
 \end{figure}
 
 
