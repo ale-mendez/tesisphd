@@ -486,10 +486,13 @@ manera precisa.
   \draw [arrow] (rem) -- (eqnorm);
   \draw [arrow] (eqnorm) -- (var);
   \draw [arrow, bend right=33] 
-            (var.west) to ([xshift=-0.5cm,yshift=0cm]{diag.north});
-  \draw [arrow, bend right=53] ([xshift=-0.25cm,yshift=0cm]{diag.south}) 
+            (var.west) 
+            to ([xshift=-0.5cm,yshift=0cm]{diag.north});
+  \draw [arrow, bend right=53] 
+            ([xshift=-0.25cm,yshift=0cm]{diag.south}) 
             to ([xshift=0.25cm,yshift=0cm]{costo.south});
-  \draw [arrow, bend right=33] ([xshift=0.5cm,yshift=0cm]{costo.north}) 
+  \draw [arrow, bend right=33] 
+            ([xshift=0.5cm,yshift=0cm]{costo.north}) 
             to (var.east);
   \draw [arrow, dashed] (costo) -- (converge);
   \draw [arrow, dashed] (converge) |- (rem.east) node [near start,left] {No};
