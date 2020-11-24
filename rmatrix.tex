@@ -4,49 +4,234 @@
 \section{Introducción}
 \label{sec:intro}
 
+El espectro de átomos complejos en diversos estados de ionización son 
+emitidos por objetos astronómicos, la corona solar, nebulosas, quasars, 
+etc, y también en descargas en laboratorios terrestres. La interpretación
+de dichas observaciones requiere de una extensa variedad de datos 
+atómicos. Los cálculos de niveles de energía son utilizados como una guía
+para identificar las líneas espectrales observadas , mientras que sus 
+intensidades requieren la determinación de secciones eficaces 
+colisionales y fuerzas de oscilador.
+
+La teoría de la estructura atómica se describe en el trabajo fundamental
+de Condon y Shortley (1935). La teoría de átomos complejos altamente 
+ionizados fue extendida por Layzer (1959), quien mostró que, como 
+consecuencia de la degeneración del momento angular $l$ en el límite 
+hidrogénico, es necesario introducir la interacción de todas las 
+configuraciones que cuenten con la misma paridad y el mismo conjunto de 
+números cuánticos principales.
+
+La descripción precisa de la excitación por impacto de electrones de los 
+iones atómicos sigue siendo una de las tareas más desafiantes para los 
+métodos avanzados, tales como el acoplamiento cercano convergente 
+(convergent close--coupling, CCC)~\cite{Bray:92}, el acoplamiento cercano 
+de matriz R (R-matrix close--coupling)~\cite{Burke:75} y el acoplamiento 
+cercano dependiente del tiempo (time--dependent close--coupling) 
+\cite{Pindzola:07}, aún en las máquinas con enorme poder computacional.
+%En el caso de los sistemas ``simples'', esta complejidad puede deberse al 
+%requisito de una descripción completa de todos los parámetros de 
+%dispersión o simplemente a las secciones transversales totales en el caso 
+%de estados muy excitados. Para los sistemas ``complejos'', la cantidad de 
+%canales de dispersión en sí mismos puede ser abrumadora. 
+El modelado de diagnóstico espectroscópico de plasmas astrofísicos y de 
+laboratorio tiene un gran apetito por los coeficientes de tasa de 
+excitación de impacto de electrones, ya que determinan en gran medida la 
+distribución de la población emisora dentro de un estado de carga. El 
+método de acoplamiento cercano puede, en principio, proporcionar datos 
+de excitación entre todos los estados objetivo incluidos en su expansión.
+
+
+
+
+La importancia de la correcta representación de la estructura atómica al 
+describir la excitación por impacto de electrones ha sido estudiada y 
+demostrada usando diversos métodos no perturbativos de acoplamiento 
+cercano (close--coupling, CC) \cite{Bartschat:04,Zatsarinny:16,
+Be_Ballance:03} para un gran número de blancos. Particularmente, en 
+blancos neutros y de bajo grado de ionización, existe un gran número de 
+trabajos de investigación~\cite{Ballance:03,Badnell:03,Mitnik:03} que han 
+demostrado la importancia del acoplamiento al continuo del blanco para 
+describir correctamente este proceso. Sin embargo, la determinación de 
+una adecuada representación del blanco no es condición suficiente. La 
+apropiada resolución del problema colisional requiere además un amplio 
+conocimiento sobre el método y, en general, grandes recursos 
+computacionales.
+
+
+\newpage
 %=======================================================================
 \section{Descripción del blanco}
 
-It is well established that highly accurate target descriptions are of
-great importance to solve collisional problems with the close-coupling
-expansion method~\cite{Bartschat:04,Zatsarinny:16,Ballance:03}. 
-However, not only the determination of an adequate atomic structure but 
-also the correct description of the collision requires expertise and 
-significant computational resources. 
-
-In general, the wavefunction of the target is expressed using the
-configuration interaction (CI) method, i.e.,
+En general, la función de onda de los blancos atómicos se expresa 
+implementando el método de interacción de configuraciones (configuration
+interaction, CI); esto es,
 \begin{equation*}
 \Psi_i(\mathbf{r}) =
 \sum_j^{N} c_{ji} \, \Phi_j(\mathbf{r})\,,
 \end{equation*}
-where $N$ is the number of relevant electronic configurations within
-the configuration interaction approach and $\Phi_j$ are the wave
-functions corresponding to each configuration.
-Often, the electronic wave functions are obtained by solving the 
-radial part of the one-electron Schrodinger equation with an analytic
-potential, 
+donde $N$ es el número de configuraciones electrónicas relevantes dentro
+de la aproximación de interacción de configuraciones, y $\Phi_j$ son las
+funciones de onda correspondientes a cada configuración. Dentro de la 
+aproximación de electrón activo, la parte radial de las funciones de 
+onda electrónicas se obtienen a partir de la resolución de la ecuación 
+de Schr\"odinger radial de un electrón,
 \begin{equation*}
 \left[ \frac{1}{2} \frac{d^2}{dr^2} - \frac{l(l+1)}{2r^2} 
- + V_{nl}^{\mbox{\scriptsize eff}}(\lambda_{nl},r)
- + E_{nl} \right] P_{nl}(r)=0\,,
+ + V_j^{\mbox{\scriptsize eff}}(\lambda_j,r)
+ + E_j \right] P_j(r)=0\,,
 \end{equation*}
-where $V_{nl}^{\mbox{\scriptsize eff}}$ is a radial model potential 
-containing the corresponding scaling parameter from the set 
-$\boldsymbol\lambda=\{\lambda_{1s},\cdots,\lambda_{nl}\}$. The accuracy 
-of the target structure calculations is improved by incrementing the 
-number of configurations in the CI, which in turn increases the number 
-of parameters to be varied. However, there is neither a systematic nor a 
-logical prescription for this procedure.
+donde $V_j^{\mbox{\scriptsize eff}}$ es un potencial modelo, que puede 
+ser ajustado a partir de un parámetro de escala 
+$\boldsymbol\lambda=\{\lambda_j\}$. 
 
+
+\subsection{Potenciales modelo}
+
+Existen diversos potenciales modelos que permiten el cálculo de la
+estructura del blanco. En esta sección, nos centraremos en dos de los más 
+usados: el potencial de Thomas-Fermi-Dirac Amaldi (TFDA) y el potencial 
+de orbitales tipo Slater (STO) de Burgess.
+
+\subsubsection*{Potencial TFDA}
+
+Alrededor de una carga positiva del núcleo, se cree que la carga negativa 
+de los electrones está distribuida de forma continua y simétricamente 
+esférica fuera de $r_0$, el límite del ion. El modelo orginal de 
+Thomas-Fermi sólo contemplaba interacciones electrostáticas, 
+núcleo-electrón y electrón-electrón. Dirac mejoró este modelo tomando en
+cuenta los efectos de intercambio electrónico. Sin embargo, en ese modelo,
+la acción sobre cada electrón está determinado por el campo resultante 
+de los $N$ electrones; esto conduce al famoso problema de la 
+auto-interacción de los electrones. Amaldi y Fermi corrigieron este 
+inconveniente, y Jensen combinó esta corrección con la de Dirac. Así, el 
+potencial para $r=r_0$ se calcula como
+\begin{equation}
+V(r) = \frac{Z}{r}\phi(x) + \frac{V_e}{N}+V_0'\,,
+\end{equation}
+donde $V_e$ es el potencial medio producido por los $N$ electrones y es
+igual a $-N/r_0$ en $r_0$; $V_0'$ es un multiplicador de Lagrange en el 
+tratamiento variacional de la energía del ion. Se reemplaza $V_e$ por 
+$N/r_0$, y 
+
+\begin{comment}
+
+Potencial de Thomas-Fermi-Dirac-Amaldi:
+\begin{equation*}
+ V^{\textrm{TFDA}}(r) = 
+\end{equation*}
+
+
+
+\begin{equation}
+\end{equation}
+
+
+\end{comment}
+
+\subsubsection*{Potencial STO}
+
+En el esquema del potencial de Burgess~\cite{Burgess:89}, se asume que 
+cada uno de los electrones ligados se mueve en un potencial apantallado 
+independiente, que es generado por una carga nuclear $Z$ y la 
+distribución de carga de los $N-1$ electrones restantes. Se implementan 
+orbitales de tipo Slater (Slater-type orbitals, STO) $p_j(r)$ para 
+calcular la contribución a esta distribución de carga por parte de los 
+$q_j$ electrones en la $j$-ésima subcapa $n_jl_j$. Estos orbitales están 
+dados por
+\begin{equation}
+p_j(r) = c\rho_j^n e^{-\rho_j/2}\,,
+\end{equation}
+donde $c$ es una constante de normalización, y 
+\begin{equation}
+\rho_j= \frac{2z_j\lambda_jr}{n_j}\,
+\end{equation}
+donde $\lambda_j$ es un parámetro de escala y 
+\begin{equation}
+z_j=Z-\frac{1}{2}\left(q_j-1\right)-\sum_{i<j} q_s\,.
+\end{equation}
+A una distancia $r$ del núcleo, cada uno de estos electrones genera un 
+apantallamiento 
+\begin{equation}
+\frac{\left[\int_0^r p_j(\xi)\,d\xi +r\int_r^{\infty}
+\frac{p_j(\xi)}{\xi}\,d\xi\right]}{\int_0^{\infty}p_j^2(\xi)\,d\xi}\,.
+\end{equation}
+Así, el potencial al que está sujeto un electrón fuera el la subcapa 
+$i$-ésima es
+\begin{equation}
+V_i^{\textrm{STO}}(r)=-\frac{1}{r}\left\{Z-\sum_j(q_j-\delta_{ij})\left[1-
+\frac{e^{-\rho_j}}{2n_j}\sum_{m=0}^{2n_j-1}\frac{(2n_j-m)}{m!}\rho_j^m
+\right]\right\}\,.
+\end{equation}
+
+
+
+
+\subsection{Potenciales de polarización}
+
+Potencial de Norcross (1976).
+\begin{equation*}
+ V_{\textrm{pol}}(r) = -\frac{\alpha_l}{r^4}\left[1-e^{-\left(\tfrac{r}{\rho_l}\right)^6}\right]
+\end{equation*}
+
+\subsection{Pseudo-orbitales}
+
+Los pseudo-orbitales se escriben en términos de funciones de onda 
+radiales de Laguerre no-ortogonales de la forma
+\begin{equation}
+P_{nl}(r) = N_{nl}(\lambda_{nl}Zr)^{l+1} e^{-\lambda_{nl}Zr/2} 
+L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,.
+\label{eq:pseudo}
+\end{equation}
+
+La precisión de los cálculos de estructura del blanco aumenta con el número de 
+configuraciones en el CI, lo que en efecto incrementa el número de 
+parámetros que definen el problema. Sin embargo, no existe aún un método 
+sistemático que permita encarar exitosamente la optimización.
+
+
+
+\newpage
+\subsection{Ejemplo: influencia de la descripción blanco}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/rmatrix/example_PS.eps}
-\caption{Dependencia de la sección eficaz de excitación por impacto de
+\caption[Dependencia de la sección eficaz de excitación con las 
+configuraciones electrónicas y los pseudoestados.]
+{Dependencia de la sección eficaz de excitación por impacto de
 electrón con las configuraciones electrónicas incluidas en el CI 
 (izquierda) y los pseudoestados (derecha) para la transición dipolar 
 prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
+\label{fig:dependencia-CI}
 \end{figure}
+
+La dependencia de las secciones eficaces de excitación por impacto de 
+electrón con las configuraciones incluídas en el CI se ilustra en el 
+panel izquierdo de la figura~\ref{fig:dependencia-CI} para la transición 
+$2s^2\,^1S\rightarrow 2s3s\,^1S$ del átomo de berilio. Las curvas 
+muestran los resultados de los cálculos colisionales con el método de 
+R-Matrix cuando se han definido 6 (línea de puntos), 13 (línea 
+punto-raya) y 27 (línea discontinua corta) configuraciones electrónicas 
+en la mezcla. En el primer caso, se han incluido las configuraciones 
+$2s^2$, $2snl$ con $n=1-3,l=0-2$ y $2p^2$. En el segundo, además se han 
+incorporado las configuraciones $2snl$ tal que $n=4,l=3$. Mientras que en 
+el último caso, también se han incluido las excitaciones de un electrón a 
+los términos con números cuánticos $n=5,l=4$. Por otro lado, el panel 
+derecho de la figura~\ref{fig:dependencia-CI} muestra las secciones 
+eficaces para la misma transición en Be, pero ahora se ha reemplazado un 
+conjunto de orbitales espectroscópicos por pseudo-orbitales. En la parte 
+superior de ambos paneles se ilustran las energías de todos los términos 
+incluidos en cada cálculo. En este caso, no hemos realizado 
+optimizaciones en el blanco (variación de parámetros). Así, sólo se 
+observan los efectos de la inclusión de nuevas configuraciones 
+electrónicas en el CI y de pseudo-orbitales. En el panel izquierdo, 
+notamos como para esta transición dipolar prohibida, el aumento del 
+número de configuraciones de 6 a 13 reduce la sección eficaz en más de la 
+mitad. Sin embargo, se alcanza cierta convergencia al incluir 27 
+configuraciones. Por otro lado, manteniendo el número de configuraciones,
+pero incluyendo pseudo-orbitales, notamos que el acoplamiento del 
+continuo brindado por los pseudo-estados efectivamente tiene un efecto 
+significativo en la sección eficaz.
 
 \begin{figure}
 \centering
@@ -54,7 +239,7 @@ prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
   \node[process] (defcfg) 
               {Definición de configuraciones};
   \node[process] (space) at (defcfg) [xshift=0cm,yshift=-2cm]
-              {Definición de espacio};
+              {Definición de espacio de hiper-parámetros};
   \node[process] (var) at (space) [xshift=0cm,yshift=-2cm]
               {Variación de parámetros};
   \node[process] (diag) at (var) [xshift=-2.4cm,yshift=-2.3cm]
@@ -79,7 +264,7 @@ prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
               ([xshift=-0.25cm,yshift=0cm]{diag.south}) 
               to ([xshift=0.25cm,yshift=0cm]{costo.south});
   \draw [arrow, bend right=33] 
-              ([xshift=0.5cm,yshift=0cm]{costo.north}) 
+              ([xshift=0.5cm,yshift=0cm]{costo.north})
               to (var.east);
   \draw [arrow, dashed] 
               (costo) -- (converge);
@@ -96,6 +281,11 @@ prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
 \end{tikzpicture}
 \caption{Diagrama del cálculo del problema colisional ion-electrón.}
 \end{figure}
+
+\newpage
+%======================================================================
+\section{Metódo de R--Matrix}
+\label{sec:rmatrix-method}
 
 \newpage
 %======================================================================
@@ -121,11 +311,30 @@ prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
 %=======================================================================
 \section{Resultados}
 
-
+\subsection{Energía de excitación}
+La función de costo implementada a lo largo de todo este trabajo fue 
+definida como
 \begin{equation}
-J = \sum_{nl} \left|\frac{\widetilde{E}_{nl}(\boldsymbol{\lambda}) 
-- E_{nl}}{E_{nl}} \right|
+J = \sum_{i=2}^N \left|\frac{E_{i}-E_{i}^{\textrm{comp.}}
+(\boldsymbol{\lambda})}{E_{i}} \right|
 \end{equation}
+donde $E_{i}$ es la energía observada del término $i$--ésimo respecto del 
+estado fundamental y $E_{i}^{\textrm{comp.}}$ es su contraparte teórica, 
+la cual depende de los parámetros $\boldsymbol{\lambda}$.
+
+
+Potencial de polarización: Norcross con un espacio de hiper--parámetros: 
+$\alpha_l=[0.0010,0.2000],\,\rho_l=[0.2000,1.5000]$ para $l=0,1,2$. El 
+diseño inicial incluyó un mapeo tipo latin hypercube y un kernel RBF 
+(square exponential) y una función de adquisión EI. El número inicial de 
+evaluaciones fue de \texttt{initer}, con un presupuesto de 
+\texttt{maxeval}. La función de costo implementada fue la suma de los 
+errores relativos de las energías correspondientes a los x primeros 
+términos,
+\begin{equation}
+\sum_i (E_i-E_i)/E_i^{\textrm{obs.}})
+\end{equation}
+
 
 \begin{table}
 \centering
@@ -149,10 +358,21 @@ No & Término      & NIST & Sin opt. & BO $3l$ & BO $4l$ & BO $\bar{5l}$ \\
 \multicolumn{2}{l}{Energía de ionización} & 0.6852 &  &  &  &  \\ 
 \hline
 \end{tabular}
-\caption{Energía en Rydbergs de los primeros 11 términos de Be relativos 
+\caption[Energías de excitación de Be.]
+{Energía en Rydbergs de los primeros 11 términos de Be relativos 
 al término fundamental $2s^2\,^1S$.}
 \label{tab:exener}
 \end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{figures/rmatrix/erp_ei.eps} 
+\caption[Error relativo de los primeros 10 términos de excitación.]
+{Error relativo de los primeros 10 términos de energía de excitación.}
+\label{fig:exener}
+\end{figure}
+
+\subsection{Fuerzas de oscilador de asborción}
 
 \begin{table}
 \begin{adjustwidth}{-.6in}{-.6in}  
@@ -162,8 +382,8 @@ al término fundamental $2s^2\,^1S$.}
 No & Transición               & Ballance   & Chen       & MCHF       & No opt.    & BO $3l$    & BO $4l$  & BO $5l$ \\
 \hline
 \hline
-1 & $2s2  \,^1S - 2s2p \,^1P$ & $1.37^\dagger$ & $1.38$ & $1.38    $ & $1.32    $ & $1.35    $ & $1.38    $ & $1.31$ \\
-2 & $2s2  \,^1S - 2s3p \,^1P$ & $1.12[-2]$ & $9.01[-3]$ & $8.99[-3]$ & $5.70[-2]$ & $6.47[-2]$ & $1.12[-2]$ & $2.14[-2]$ \\
+1 & $2s2  \,^1S - 2s2p \,^1P$ & $1.37$ & $1.38$ & $1.38    $ & $1.32    $ & $1.35    $ & $1.38    $ & $1.31$ \\
+2 & $2s2  \,^1S - 2s3p \,^1P$ & $1.12[-2]^\dagger$ & $9.01[-3]$ & $8.99[-3]$ & $5.70[-2]$ & $6.47[-2]$ & $1.12[-2]$ & $2.14[-2]$ \\
 3 & $2s2p \,^3P - 2s3s \,^3S$ & $7.56[-2]$ & $8.23[-2]$ & $8.41[-2]$ & $8.57[-2]$ & $1.28[-1]$ & $7.37[-2]$ & $7.27[-2]$ \\
 4 & $2s2p \,^3P - 2s3d \,^3D$ & $2.99[-1]$ & $2.95[-1]$ & $3.00[-1]$ & $2.96[-1]$ & $3.94[-1]$ & $2.70[-1]$ & $2.68[-1]$ \\
 5 & $2s2p \,^1P - 2s3s \,^1S$ & $1.20[-1]$ & $1.18[-1]$ & $1.15[-1]$ & $1.62[-1]$ & $1.80[-1]$ & $1.14[-1]$ & $1.27[-1]$ \\
@@ -175,31 +395,27 @@ No & Transición               & Ballance   & Chen       & MCHF       & No opt. 
 \hline
 \multicolumn{2}{c}{$\dagger\,a[b]$ denotes $a\times 10^b$} \\
 \end{tabular}
-\caption{Oscillator strength de absorción de Be.}
+\caption{Fuerza de oscilador de absorción de Be.}
 \label{tab:fabs}
 \end{adjustwidth}
 \end{table}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{figures/rmatrix/erp_ei.eps} 
-\caption{Relative error of the first 10 excited terms.}
-\label{fig:exener}
-\end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/rmatrix/fabs.eps} 
-\caption{Absorption oscillator strength for Be.}
+\caption{Fuerza de oscilador de absorción del Be.}
 \label{fig:fabs}
 \end{figure}
 
+\subsection{Excitación por impacto de electrón}
 
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/rmatrix/opt_nl.eps} 
-\caption{Secciones eficaces de excitación por impacto de electrón en Be.
+\caption[Secciones eficaces de excitación por impacto de electrón en Be.]
+{Secciones eficaces de excitación por impacto de electrón en Be.
 Curvas: Dipti \textit{et al.}~\cite{Dipti:19} (discontinua), RMPS sin 
 ajuste (punteada); cálculos con optimización bayesiana: 
 $3l$ (raya-punto), 
