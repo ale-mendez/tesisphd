@@ -42,7 +42,7 @@ de excitación entre todos los estados objetivo incluidos en su expansión.
 
 
 
-
+\begin{comment}
 La importancia de la correcta representación de la estructura atómica al 
 describir la excitación por impacto de electrones ha sido estudiada y 
 demostrada usando diversos métodos no perturbativos de acoplamiento 
@@ -57,6 +57,41 @@ apropiada resolución del problema colisional requiere además un amplio
 conocimiento sobre el método y, en general, grandes recursos 
 computacionales.
 
+De Bautista (2008)
+
+Various methods are known that allow one to model the structure of atoms 
+and ions, such as Hartree-Fock, multiconfiguration Hartree-Fock,
+superposition of configurations, semi-empirical methods, many-body 
+perturbation methods and central field approximation methods, etc. 
+Methods based on the Hartree-Fock formalism are self-consistent and can 
+yield very accurate results for simple atoms or for a few select levels 
+of more complex systems. Methods based on the central field approximation 
+that allow for configuration interaction have been successful in 
+describing large numbers of levels for more complex systems, such as 
+metals. However, computations of large scale models of 3d transition 
+metals remain quite challenging. In order to obtain accurate (∼10%) 
+radiative rates and cross sections for photon and electron interactions 
+one needs to guarantee eigenenergies that compare well (within ∼5%) with
+experimentally determined energies. However, this is difficult to achieve 
+with ab initio calculations for ions with more than just a few electrons. 
+Moreover, comparisons are regularly done with energies relative to the 
+ground level, which can be misleading if the absolute energy of the 
+ground level is overestimated. 
+
+An approach sometimes used in complex systems to include missing 
+core-valence correlations is the use of ad hoc polarization model 
+potentials~ \cite{Norcross:76}. These model potentials work well for 
+alkalies with a single electron outside the core. For systems with two 
+valence electrons polarization model potentials can also be constructed
+by including dipole and quadrupole polarizations. However, for systems 
+with more than two electrons outside the core, such as transition metals 
+with several 3d electrons, polarization model potentials are generally 
+inapplicable. This is because: (1) one cannot define a closed 3p6 core 
+due to the strong 3p-3d correlations, and (2) treatment of multiple 
+electrons outside the core requires several high-order correction terms 
+beyond the dipole one that make such models impractical.
+
+\end{comment}
 
 \newpage
 %=======================================================================
@@ -89,44 +124,62 @@ $\boldsymbol\lambda=\{\lambda_j\}$.
 
 Existen diversos potenciales modelos que permiten el cálculo de la
 estructura del blanco. En esta sección, nos centraremos en dos de los más 
-usados: el potencial de Thomas-Fermi-Dirac Amaldi (TFDA) y el potencial 
+usados: el potencial de Thomas-Fermi-Dirac-Amaldi (TFDA) y el potencial 
 de orbitales tipo Slater (STO) de Burgess.
 
 \subsubsection*{Potencial TFDA}
 
-Alrededor de una carga positiva del núcleo, se cree que la carga negativa 
-de los electrones está distribuida de forma continua y simétricamente 
-esférica fuera de $r_0$, el límite del ion. El modelo orginal de 
-Thomas-Fermi sólo contemplaba interacciones electrostáticas, 
-núcleo-electrón y electrón-electrón. Dirac mejoró este modelo tomando en
-cuenta los efectos de intercambio electrónico. Sin embargo, en ese modelo,
-la acción sobre cada electrón está determinado por el campo resultante 
-de los $N$ electrones; esto conduce al famoso problema de la 
+El potencial de Thomas-Fermi~\cite{Gombas:56,Eissner:69,Bautista:08} para 
+una carga electrónica a una distancia $r$ del núcleo está dada por
+\begin{equation}
+V(r)=-\frac{2Z}{r}+\int_0^{r_0}\frac{2}{r_>} \rho(r')4\pi r'^2\,dr'\,,
+\label{eq:Thomas-Fermi}
+\end{equation}
+donde $\rho(r)$ es la densidad de carga, $r_>$ es el mayor valor de entre
+$r$ y $r'$, y $r_0$ es el radio de la superficie del átomo. El último
+término del lado derecho surge de la aproximación clásica para una 
+densidad de carga esféricamente simétrica. 
+
+La energía total de este átomo está dada por la suma de sus valores 
+cinéticos y potenciales; esto es,
+\begin{equation}
+E=\int_0^{r_0}\left[\frac{3}{5}(3\pi^2)^{2/3}\rho^{2/3}(r)-\frac{2Z}{r}
++\frac{1}{2}\int_0^{r_0}\frac{2}{r_>}\rho(r')4\pi r'^2\,dr'\right] 
+\rho(r)4\pi r^2\,dr\,.
+\label{eq:tot-ener-TF}
+\end{equation}
+Para valores de radio tal que $r\leq r_0$, la expresión de $E$ es 
+minimizada para un valor de $\rho$ que satisface la relación
+\begin{equation}
+\left[3\pi^2\rho(r)\right]^{2/3}+V(r)-V_0=0\,, 
+\end{equation}
+donde, para un átomo aislado, la densidad electrónica debe ser cero en
+$r=r_0$, y 
+\begin{equation}
+V_0=V(r_0)=-\frac{2(Z-N)}{r_0}
+\end{equation}
+
+Sin embargo, el modelo de Thomas-Fermi sólo contempla interacciones 
+electrostáticas núcleo-electrón y electrón-electrón. Los efectos de 
+intercambio electrónico fueron introducidos por Dirac. Sin embargo, la 
+acción sobre cada electrón en este modelo está determinada por el campo 
+resultante de los $N$ electrones; esto conduce al famoso problema de la 
 auto-interacción de los electrones. Amaldi y Fermi corrigieron este 
-inconveniente, y Jensen combinó esta corrección con la de Dirac. Así, el 
-potencial para $r=r_0$ se calcula como
+inconveniente, y, ahora la ecuación (\ref{eq:tot-ener-TF}) es minimizada
+para una de densidad de carga que está dada por
 \begin{equation}
-V(r) = \frac{Z}{r}\phi(x) + \frac{V_e}{N}+V_0'\,,
+\rho(r)=\frac{1}{2\pi^2}\left\{\frac{1}{\pi}+\left[\frac{1}{\pi^2}+V_0-
+V(r)\right]^{1/2}\right\}^3\,,
 \end{equation}
-donde $V_e$ es el potencial medio producido por los $N$ electrones y es
-igual a $-N/r_0$ en $r_0$; $V_0'$ es un multiplicador de Lagrange en el 
-tratamiento variacional de la energía del ion. Se reemplaza $V_e$ por 
-$N/r_0$, y 
-
-\begin{comment}
-
-Potencial de Thomas-Fermi-Dirac-Amaldi:
+y
+\begin{equation}
+V_0=-\frac{15}{16\pi^2}-\frac{2(Z-N)}{r_0}\,.
+\end{equation}
+Finalmente, se introduce un factor de escala en el potencial, tal que
 \begin{equation*}
- V^{\textrm{TFDA}}(r) = 
+ V^{\textrm{TFDA}}(\lambda_i,r) = V(r/\lambda_i)\,.
+\label{eq:TFDA-pot}
 \end{equation*}
-
-
-
-\begin{equation}
-\end{equation}
-
-
-\end{comment}
 
 \subsubsection*{Potencial STO}
 
@@ -161,16 +214,41 @@ $i$-ésima es
 V_i^{\textrm{STO}}(r)=-\frac{1}{r}\left\{Z-\sum_j(q_j-\delta_{ij})\left[1-
 \frac{e^{-\rho_j}}{2n_j}\sum_{m=0}^{2n_j-1}\frac{(2n_j-m)}{m!}\rho_j^m
 \right]\right\}\,.
+\label{eq:STO-pot}
 \end{equation}
-
-
-
 
 \subsection{Potenciales de polarización}
 
-Potencial de Norcross (1976).
+En sistemas con ``núcleos electrónicos'' o \textit{cores} polarizables y 
+pocos electrones de valencia, los efectos de correlación suelen ser 
+significativos y deben ser considerados. En general, estos efectos son 
+pronunciados en átomos alcalinos y alcalinotérreos, incrementando sus 
+energías de ionización, contrayendo su capa de valencia, reduciendo 
+polarizabilidades y fuerzas de oscilador~\cite{Muller:83}. 
+Así, para obtener una representación precisa de las funciones de onda de 
+átomos alcalinos y alcalinotérreos, es importante considerar no sólo las 
+correlaciones de valencia, sino también las core-valencia 
+\cite{Bartschat:04}. Una posible forma de incluir los efectos de 
+correlación core-valencia está dado por la inclusión de potenciales de 
+polarización de core semi-empíricos~\cite{Loughlin:88}.
+
+\begin{comment} (sigue de Bartschat)
+Although such a potential simplifies the calculations significantly and 
+may yield accurate excitation energies and oscillator strengths, the 
+question always remains how well the model potential can really simulate 
+all core–valence correlation effects, including non-dipole contributions.
+\end{comment}
+Existen diversas aproximaciones de los efectos de correlación de los 
+electrones pertenecientes a las capas más internas y los electrones de 
+valencia~\cite{Seaton:72,Loughlin:73,Migdalek:78}. En este trabajo, 
+incluimos estos efectos a partir del potencial de polarización de 
+Norcross~\cite{Norcross:76}. Este potencial modelo está basado en un 
+Hamiltoniano de dos electrones y un modelo de \textit{frozen-core} en 
+Be I.
 \begin{equation*}
- V_{\textrm{pol}}(r) = -\frac{\alpha_l}{r^4}\left[1-e^{-\left(\tfrac{r}{\rho_l}\right)^6}\right]
+ V_{\textrm{pol}}(r) = -\frac{\alpha_l}{r^4}\left[1-
+e^{-\left(\tfrac{r}{\rho_l}\right)^6}\right]
+\label{eq:Norcross-pot}
 \end{equation*}
 
 \subsection{Pseudo-orbitales}
@@ -183,7 +261,8 @@ L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,.
 \label{eq:pseudo}
 \end{equation}
 
-La precisión de los cálculos de estructura del blanco aumenta con el número de 
+La precisión de los cálculos de estructura del blanco aumenta con el 
+número de 
 configuraciones en el CI, lo que en efecto incrementa el número de 
 parámetros que definen el problema. Sin embargo, no existe aún un método 
 sistemático que permita encarar exitosamente la optimización.
@@ -306,34 +385,104 @@ significativo en la sección eficaz.
   \includegraphics[width=0.31\textwidth]{figures/gp/eval7.eps} 
 \end{figure}
 
+\begin{itemize}
+\item kernel, 
+\item tipo de mapeo, 
+\item función de adquisión, 
+\item evaluaciones iniciales,
+\item costo, 
+\item número de evaluaciones.
+\end{itemize}
 
 \newpage
 %=======================================================================
 \section{Resultados}
 
-\subsection{Energía de excitación}
-La función de costo implementada a lo largo de todo este trabajo fue 
-definida como
+En esta sección presentamos los resultados obtenidos de la optimización
+del átomo de berilio con estado de carga neutral. Los resultados son 
+presentados y analizados en las siguientes subsecciones: energía de 
+ionización, energías de excitación, fuerzas de oscilar y secciones 
+eficaces de excitación por impacto de electrón. En el ajuste del blanco 
+aplicamos el método de optimización bayesiana con procesos gaussianos, 
+descrito en la Sección~\ref{sec:gaussianprocess}, mediante la 
+implementación del código GPyOpt~\cite{GPyOpt}.
+
+Como hemos establecido en este capítulo, la descripción de los blancos 
+atómicos está determinado por tres variables:
+\begin{itemize}
+\item las configuraciones electrónicas incluidas en el CI,
+\item los potenciales modelos definidos en la ecuación radial de 
+Schr\"odinger, y
+\item los parámetros de escala que definen dichos potenciales.
+\end{itemize}
+En el presente trabajo, estudiamos la optimización de la estructura 
+atómica del Be en el proceso de excitación por impacto de electrón 
+considerando solo la última de estas variables. Para ello, definimos a 
+priori las configuraciones electrónicas y los modelos potenciales que
+modelan dicha estructura. Las configuraciones electrónicas incluidas en
+en el modelado de Be a lo largo de esta sección fueron $2s^2$, $2snl$ 
+tal que $n=1-5$ y $l=0-4$, $2p^2$, y $2pnl$ siendo $n=3-5$ y $l=0-4$, 
+donde los orbitales $5l$ se han supuesto pseudo-orbitales. Esto resulta 
+en un total de 90 términos, donde sólo 19 de ellos son términos 
+espectroscópicos. %el resto se ubica por arriba de la energía de ionización
+Por otro lado, los potenciales modelos elegidos fueron aquellos que mejor 
+describen, sin ningún tipo de ajuste paramétrico, las energías y fuerzas 
+de oscilador. Con este criterio, se determinó implementar el potencial 
+STO, más un término de intercambio local, y el potencial de correlación 
+core-valencia de Norcross.
+
+La optimización del blanco fue ejecutada en etapas, con el fin de 
+comprender en profundidad este proceso. En primera instancia, se 
+ajustaron los parámetros que definen el potencial de polarización de 
+Norcross. Luego, fijando los parámetros de Norcross resultantes, se 
+procedió a ajustar el potencial STO. Para estudiar el efecto de la 
+optimización del potencial de Hartree, este procedimiento también fue 
+encarado por partes. Cada una de estas partes se corresponde a una capa
+definida por el número cuántico principal $n$. Así, al ajuste del 
+potencial STO consistió en optimizar los términos de excitación 
+correspondientes a los orbitales $3l$, $4l$ y $5l$, de forma sucesiva.
+
+\subsection{Energía de ionización}
+
+La introducción del potencial de polarización de Norcross nos permite
+ajustar la energía de ionización del berilio a su valor experimental,
+$E_I=0.6852$ Ry~\cite{NIST}. La ecuación \ref{eq:Norcross-pot} está 
+compuesta por el conjunto de parámetros $\{\alpha_l,\rho_l\}$, donde 
+$l=0,1,2$. Así, se define un espacio de seis hiper-parámetros. El 
+parámetro $\alpha$ es la polarizabilidad de core. Así, el espacio de 
+búsqueda fue definido alrededor de su valor experimental 
+(0.05123~\cite{Dalgarno:62} y 0.05224~\cite{Sitz:71}), y dentro de un 
+rango de exploración significativo, dado por
 \begin{equation}
-J = \sum_{i=2}^N \left|\frac{E_{i}-E_{i}^{\textrm{comp.}}
+\boldsymbol\alpha=[0.0010-0.2000]\,.
+\end{equation}
+Por otro lado, el parámetro $\rho$ nos da más libertad para ajustar la 
+energía de ionización con su valor experimental. Así, el rango de 
+exploración para este parámetro fue definido como
+\begin{equation}
+\boldsymbol\rho=[0.2000-1.5000]\,.
+\end{equation}
+
+La función de costo implementada para ajustar el potencial de 
+polarización del core fue definida como
+\begin{equation}
+J_{\mathrm{pol}} = \sum_{i=2}^N \left|\frac{E_{i}-E_{i}^{\textrm{comp.}}
 (\boldsymbol{\lambda})}{E_{i}} \right|
 \end{equation}
-donde $E_{i}$ es la energía observada del término $i$--ésimo respecto del 
-estado fundamental y $E_{i}^{\textrm{comp.}}$ es su contraparte teórica, 
-la cual depende de los parámetros $\boldsymbol{\lambda}$.
+donde $E_{i}$ es la energía absoluta observada (energía de ionización más
+energía de excitación) del término $i$--ésimo y $\tilde{E}_{i}}$ es su 
+contraparte teórica, la cual depende de los parámetros 
+$\boldsymbol{\lambda}$ y de los potenciales modelos elegidos.
+
+El diseño inicial de la optimización incluyó un mapeo tipo latin 
+hypercube, un kernel RBF (square exponential) y una función de adquisión 
+de EI. El número inicial de evaluaciones fue de \texttt{initer}, con un 
+presupuesto de \texttt{maxeval}. 
+
+\newpage
+\subsection{Energías de excitación}
 
 
-Potencial de polarización: Norcross con un espacio de hiper--parámetros: 
-$\alpha_l=[0.0010,0.2000],\,\rho_l=[0.2000,1.5000]$ para $l=0,1,2$. El 
-diseño inicial incluyó un mapeo tipo latin hypercube y un kernel RBF 
-(square exponential) y una función de adquisión EI. El número inicial de 
-evaluaciones fue de \texttt{initer}, con un presupuesto de 
-\texttt{maxeval}. La función de costo implementada fue la suma de los 
-errores relativos de las energías correspondientes a los x primeros 
-términos,
-\begin{equation}
-\sum_i (E_i-E_i)/E_i^{\textrm{obs.}})
-\end{equation}
 
 
 \begin{table}
@@ -355,7 +504,7 @@ No & Término      & NIST & Sin opt. & BO $3l$ & BO $4l$ & BO $\bar{5l}$ \\
 10 & $2s3d\,^3D$  & 0.5655 & 0.5665 & 0.5582 & 0.5653 & 0.5642 \\
 11 & $2s3d\,^1D$  & 0.5871 & 0.5322 & 0.5874 & 0.5892 & 0.5881 \\
 \hline
-\multicolumn{2}{l}{Energía de ionización} & 0.6852 &  &  &  &  \\ 
+\multicolumn{2}{l}{Energía de ionización} & 0.6852 & 0.6874 & 0.6774 & 0.6847 & 0.6846  \\ 
 \hline
 \end{tabular}
 \caption[Energías de excitación de Be.]
@@ -372,6 +521,7 @@ al término fundamental $2s^2\,^1S$.}
 \label{fig:exener}
 \end{figure}
 
+\newpage
 \subsection{Fuerzas de oscilador de asborción}
 
 \begin{table}
@@ -408,6 +558,7 @@ No & Transición               & Ballance   & Chen       & MCHF       & No opt. 
 \label{fig:fabs}
 \end{figure}
 
+\newpage
 \subsection{Excitación por impacto de electrón}
 
 
