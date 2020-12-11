@@ -398,10 +398,10 @@ significativo en la sección eficaz.
 %=======================================================================
 \section{Resultados}
 
-En esta sección presentamos los resultados obtenidos de la optimización
+En esta Sección presentamos los resultados obtenidos de la optimización
 del átomo de berilio con estado de carga neutral. Los resultados son 
-presentados y analizados en las siguientes subsecciones: energía de 
-ionización, energías de excitación, fuerzas de oscilar y secciones 
+presentados y analizados en las siguientes subsecciones: energía 
+absoluta, energías de excitación, fuerzas de oscilador y secciones 
 eficaces de excitación por impacto de electrón. En el ajuste del blanco 
 aplicamos el método de optimización bayesiana con procesos gaussianos, 
 descrito en la Sección~\ref{sec:gaussianprocess}, mediante la 
@@ -420,70 +420,160 @@ atómica del Be en el proceso de excitación por impacto de electrón
 considerando solo la última de estas variables. Para ello, definimos a 
 priori las configuraciones electrónicas y los modelos potenciales que
 modelan dicha estructura. Las configuraciones electrónicas incluidas en
-en el modelado de Be a lo largo de esta sección fueron $2s^2$, $2snl$ 
-tal que $n=1-5$ y $l=0-4$, $2p^2$, y $2pnl$ siendo $n=3-5$ y $l=0-4$, 
+en el modelado de Be a lo largo de esta Sección fueron $2s^2$, $2snl$ 
+tal que $n=1$-5 y $l=0$-4, $2p^2$, y $2pnl$ siendo $n=3$-5 y $l=0$-4, 
 donde los orbitales $5l$ se han supuesto pseudo-orbitales. Esto resulta 
 en un total de 90 términos, donde sólo 19 de ellos son términos 
-espectroscópicos. %el resto se ubica por arriba de la energía de ionización
-Por otro lado, los potenciales modelos elegidos fueron aquellos que mejor 
-describen, sin ningún tipo de ajuste paramétrico, las energías y fuerzas 
-de oscilador. Con este criterio, se determinó implementar el potencial 
-STO, más un término de intercambio local, y el potencial de correlación 
-core-valencia de Norcross.
+espectroscópicos. Por otro lado, los potenciales modelos elegidos fueron 
+aquellos que mejor describen, sin ningún tipo de ajuste paramétrico, las 
+energías y fuerzas de oscilador. Con este criterio, se determinó 
+implementar el potencial STO, más un término de intercambio local, y el 
+potencial de correlación core-valencia de Norcross.
 
-La optimización del blanco fue ejecutada en etapas, con el fin de 
-comprender en profundidad este proceso. En primera instancia, se 
-ajustaron los parámetros que definen el potencial de polarización de 
-Norcross. Luego, fijando los parámetros de Norcross resultantes, se 
-procedió a ajustar el potencial STO. Para estudiar el efecto de la 
-optimización del potencial de Hartree, este procedimiento también fue 
-encarado por partes. Cada una de estas partes se corresponde a una capa
-definida por el número cuántico principal $n$. Así, al ajuste del 
-potencial STO consistió en optimizar los términos de excitación 
-correspondientes a los orbitales $3l$, $4l$ y $5l$, de forma sucesiva.
+La optimización de los potenciales y orbitales fue ejecutada en etapas, 
+con el fin de comprender en profundidad este proceso. En primera 
+instancia, se ajustaron los parámetros que definen el potencial de 
+polarización de Norcross. Luego, fijando los parámetros de Norcross 
+resultantes, se procedió a ajustar el potencial STO. Para estudiar el 
+efecto de la optimización del potencial de Hartree, este procedimiento 
+también fue encarado por partes. Cada una de estas partes se corresponde 
+a una capa definida por el número cuántico principal $n$. Así, al ajuste 
+del potencial STO consistió en optimizar los términos de excitación 
+correspondientes a los orbitales $3l$, $4l$ y $5l$, de forma sucesiva y 
+manteniendo fijos los parámetros anteriormente optimizados.
 
-\subsection{Energía de ionización}
+Las características del modelo bayesiano fueron consistentes a lo largo 
+de todas las optimizaciones de esta Sección; se implementó un mapeo 
+inicial tipo latin hypercube, un kernel RBF (square exponential) y una 
+función de adquisión de EI. 
+
+\subsection{Energía absoluta}
 
 La introducción del potencial de polarización de Norcross nos permite
-ajustar la energía de ionización del berilio a su valor experimental,
-$E_I=0.6852$ Ry~\cite{NIST}. La ecuación \ref{eq:Norcross-pot} está 
-compuesta por el conjunto de parámetros $\{\alpha_l,\rho_l\}$, donde 
-$l=0,1,2$. Así, se define un espacio de seis hiper-parámetros. El 
-parámetro $\alpha$ es la polarizabilidad de core. Así, el espacio de 
-búsqueda fue definido alrededor de su valor experimental 
-(0.05123~\cite{Dalgarno:62} y 0.05224~\cite{Sitz:71}), y dentro de un 
-rango de exploración significativo, dado por
+ajustar la energía absoluta del estado fundamental del berilio a su valor 
+\textit{experimental}, $E_I=29.336884$ Ry~\cite{NIST}. La ecuación 
+(\ref{eq:Norcross-pot}) está compuesta por el conjunto de parámetros 
+$\{\alpha_l,\rho_l\}$, donde $l=0,1,2$. Así, se define un espacio 
+hiper-paramétrico de seis dimensiones. El parámetro $\alpha$ es la 
+polarizabilidad de core. El espacio de búsqueda de esta variable fue 
+definido alrededor de su valor experimental \cite{Dalgarno:62,Sitz:71},
+%(0.05123~\cite{Dalgarno:62} y 0.05224~\cite{Sitz:71}), 
+y dentro de un rango de exploración del 20\%, dado por
 \begin{equation}
-\boldsymbol\alpha=[0.0010-0.2000]\,.
+\boldsymbol\alpha=[0.040-0.060]\,.
 \end{equation}
-Por otro lado, el parámetro $\rho$ nos da más libertad para ajustar la 
-energía de ionización con su valor experimental. Así, el rango de 
-exploración para este parámetro fue definido como
+Por otro lado, el parámetro $\rho$ se supone un parámetro de ajuste, por 
+lo que nos da más libertad para ajustar la energía de ionización con su 
+valor experimental. Así, su rango de exploración fue definido como
 \begin{equation}
-\boldsymbol\rho=[0.2000-1.5000]\,.
+\boldsymbol\rho=[0.50-1.50]\,.
 \end{equation}
 
 La función de costo implementada para ajustar el potencial de 
 polarización del core fue definida como
 \begin{equation}
-J_{\mathrm{pol}} = \sum_{i=2}^N \left|\frac{E_{i}-E_{i}^{\textrm{comp.}}
+J_{\mathrm{pol}} = \sum_{i} \left|\frac{E_{i}-\tilde{E}_{i}
 (\boldsymbol{\lambda})}{E_{i}} \right|
+\label{eq:Jpol}
 \end{equation}
-donde $E_{i}$ es la energía absoluta observada (energía de ionización más
-energía de excitación) del término $i$--ésimo y $\tilde{E}_{i}}$ es su 
-contraparte teórica, la cual depende de los parámetros 
-$\boldsymbol{\lambda}$ y de los potenciales modelos elegidos.
+donde $i$ es el índice de los términos incluidos en la optimización, 
+$E_{i}$ es la energía absoluta inferida experimentalmente del 
+término $i$--ésimo y $\tilde{E}_{i}$ es el valor teórico correspondiente, 
+el cual depende de los parámetros $\{\boldsymbol\alpha,\boldsymbol\rho\}$.
 
-El diseño inicial de la optimización incluyó un mapeo tipo latin 
-hypercube, un kernel RBF (square exponential) y una función de adquisión 
-de EI. El número inicial de evaluaciones fue de \texttt{initer}, con un 
-presupuesto de \texttt{maxeval}. 
+El número inicial de evaluaciones fue 6, con un número máximo de 120. Una 
+de las grandes dificultades de la minimización u optimización de 
+parámetros es la inevitable posibilidad de encontrar un mínimo local. 
+Para descartar esta situación, se lanzaron 100 optimizaciones con 
+semillas diferentes. Estos cálculos fueron reveladores, ya nos 
+permitieron encontrar relaciones subyacentes entre los parámetros y la
+naturaleza no-convexa de la superficie hiperdimensional definido por $J$.
 
-\newpage
+% OptI: pol_optI/kernel_test/testE4/
+En la primera optimización (Opt. I), consideramos únicamente la energía
+absoluta del estado fundamental $2s^2\,^1S$. El mínimo de la función 
+de costo encontrado por cada uno de los 100 cálculos realizados se 
+muestran en la figura~\ref{fig:OptI-100min-Jpol}. La distribución de los 
+parámetros correspondientes a estos mínimos se presentan en la 
+figura~\ref{fig:OptI-100min-params}. El 100\% de las semillas encontraron 
+un error relativo porcentual menor o igual a 0.002\%; mientras que la 
+optimización de 30 semillas conducieron a un costo menor o igual a 
+$1\times 10^{-4}$. La tabla~\ref{tab:optpol} muestra los mejores 
+resultados hallados. Por otro lado, la distribución de los parámetros 
+correspondiente a los mínimos hallados muestran una fuerte correlación 
+positiva ($r=0.999$) entre $\alpha $ y $\rho$ para $l=0$, mientras que 
+los parámetros para $l=1$ y $l=2$ no muestran correlación alguna. Este 
+fenómeno se puede entender teniendo en cuenta que sólo el término 
+$2s^2\,^1S$ es incluido en la optimización. A pesar de esto, el error 
+relativo de las energías de excitación (respecto al estado fundamental) 
+de los 10 términos espectroscópicos restantes fue menor al 5\%, con 
+excepción de los términos $2s2p\,^1P$, $2p^2\,^1D$ y $2s3d\,^1D$.
+
+% OptI: pol_optII/testE4/
+En la segunda optimización (Opt. II) incluimos los términos $2s2p\,^3P^*$ 
+y $2s2p\,^1P^*$ en la función de costo dada por la ecuación~(\ref{eq:Jpol}) 
+para subsanar la falta de correlación en los parámetros con momento 
+angular $l=1$ del potencial de Norcross. Nuevamente, realizamos cálculos 
+independientes con 100 semillas diferentes. Los mínimos hallados por cada 
+uno de estos cálculos tuvieron una dispersión menor al 0.01\%. El mejor 
+resultado hallado se muestra en la tabla~\ref{tab:optpol}. Los errores 
+relativos de las energías de excitación de los 10 términos 
+espectroscópicos fueron menores al 3\% y en promedio del 1\%, con 
+excepción del término $2p^2\,^1P$. Además de la fuerte correlación entre 
+$\alpha_0$ y $\rho_0$, la inclusión de los términos correspondientes a la 
+configuración $2s2p$ introdujo en la función de costo una fuerte 
+correlación entre $\alpha_1$ y $\rho_1$.
+
+Por último (Opt. III), incluimos los términos $2s3s\,^3S$, $2s3s\,^1S$, y 
+$2p^2\,^1D$ en la función de costo. Los mínimos hallados por 100 cálculos 
+independientes tuvieron una dispersión menor al 0.01\% alrededor del 
+mínimo $\bar{J}=0.17$. El mejor resultado de nuestros cálculos se muestra 
+en la tabla~\ref{tab:optpol}. Los errores relativos de las energías de 
+excitación de los 10 términos espectroscópicos en esta optimización 
+fueron menores al 2\% y en promedio del 1\%, nuevamente, a excepción del 
+término $2p^2\,^1P$.
+
+\begin{table}
+\centering
+\begin{tabular}{|lll|ccccc|}
+\hline 
+$i$&Término & Exp.~\cite{NIST} & Sin opt.   & Opt. I       & Opt. II      & Opt. III \\
+\hline 
+\hline 
+1&$2s^2\,^1S$   & $-29.336884$ & $-29.234172$ & $-29.336881$ & $-29.336914$ & $-29.343251$ \\
+ &              &              & $3.5[-1]^\dagger$ & $1.0[-5]$ & $1.0[-4]$    & $2.2[-2]$ \\
+2&$2s2p\,^3P^*$ & $-29.136586$ & $-29.030188$ & $-29.131036$ & $-29.136792$ & $-29.146385$ \\
+ &              &              & $3.7[-1]$    & $1.9[-2]$    & $7.1[-4]$    & $3.4[-2]$ \\
+3&$2s2p\,^1P^*$ & $-28.949000$ & $-28.811650$ & $-28.911954$ & $-28.915034$ & $-28.922851$ \\
+ &              &              & $4.7[-1]$    & $1.3[-1]$    & $1.2[-1]$    & $9.0[-2]$ \\
+4&$2s3s\,^3S$   & $-28.862288$ & $-28.760961$ & $-28.861033$ & $-28.859928$ & $-28.864917$ \\
+ &              &              & $3.5[-1]$    & $4.3[-3]$    & $8.2[-3]$    & $9.1[-3]$ \\
+5&$2s3s\,^1S$   & $-28.838628$ & $-28.732583$ & $-28.832722$ & $-28.831886$ & $-28.837046$ \\
+ &              &              & $3.7[-1]$    & $2.0[-2]$    & $2.3[-2]$    & $5.5[-3]$ \\
+6&$2p^2\,^1D$   & $-28.818533$ & $-28.574427$ & $-28.673694$ & $-28.805833$ & $-28.814801$ \\
+ &              &              & $8.5[-1]$    & $5.0[-1]$    & $4.4[-2]$    & $1.3[-2]$ \\
+\hline
+\multicolumn{3}{c}{$\dagger\,a[b]$ denota $a\times 10^b$} \\
+\end{tabular}
+\caption[Energías absolutas de Be.]
+{Energías absolutas en Rydbergs de los primeros 6 términos espectroscópicos 
+de Be.}
+\label{tab:optpol}
+\end{table}
+
+%\begin{figure}
+%\includegraphics[width=\textwidth]{figures/rmatrix/OptI_Jpol.eps}
+%\caption{...}
+%\label{fig:100min-Jpol}
+%\end{figure}
+
 \subsection{Energías de excitación}
 
-
-
+En esta sección estudiamos la optimización de las energías de excitación 
+respecto al estado fundamental. En esta etapa de la optimización se 
+ajustan los parámetros que definen al potencial modelo STO, manteniendo
+constante los parámetros encontrados en Opt. III para el potencial de 
+Norcross. 
 
 \begin{table}
 \centering
@@ -504,7 +594,8 @@ No & Término      & NIST & Sin opt. & BO $3l$ & BO $4l$ & BO $\bar{5l}$ \\
 10 & $2s3d\,^3D$  & 0.5655 & 0.5665 & 0.5582 & 0.5653 & 0.5642 \\
 11 & $2s3d\,^1D$  & 0.5871 & 0.5322 & 0.5874 & 0.5892 & 0.5881 \\
 \hline
-\multicolumn{2}{l}{Energía de ionización} & 0.6852 & 0.6874 & 0.6774 & 0.6847 & 0.6846  \\ 
+\multicolumn{2}{l}{Energía de ionización} 
+                  & 0.6852 & 0.6857 & 0.6774 & 0.6847 & 0.6846  \\ 
 \hline
 \end{tabular}
 \caption[Energías de excitación de Be.]
@@ -543,7 +634,7 @@ No & Transición               & Ballance   & Chen       & MCHF       & No opt. 
 9 & $2s3p \,^3P - 2s3d \,^3D$ & $4.83[-1]$ & $5.01[-1]$ & $5.14[-1]$ & $4.92[-1]$ & $3.27[-1]$ & $5.06[-1]$ & $4.88[-1]$ \\
 10 & $2s3p \,^1P - 2s3d \,^1D$ & $6.91[-1]$ & $6.87[-1]$ & $6.81[-1]$ & $9.26[-2]$ & $7.93[-1]$ & $6.96[-1]$ & $6.67[-1]$ \\
 \hline
-\multicolumn{2}{c}{$\dagger\,a[b]$ denotes $a\times 10^b$} \\
+\multicolumn{2}{c}{$\dagger\,a[b]$ denota $a\times 10^b$} \\
 \end{tabular}
 \caption{Fuerza de oscilador de absorción de Be.}
 \label{tab:fabs}
