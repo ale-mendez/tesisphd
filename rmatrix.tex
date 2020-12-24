@@ -419,12 +419,12 @@ En el presente trabajo, estudiamos la optimización de la estructura
 atómica del Be en el proceso de excitación por impacto de electrón 
 considerando solo la última de estas variables. Para ello, definimos a 
 priori las configuraciones electrónicas y los modelos potenciales que
-modelan dicha estructura. Las configuraciones electrónicas incluidas en
-en el modelado de Be a lo largo de esta Sección fueron $2s^2$, $2snl$ 
-tal que $n=1$-5 y $l=0$-4, $2p^2$, y $2pnl$ siendo $n=3$-5 y $l=0$-4, 
+modelan dicha estructura. El modelado de Be, a lo largo de esta Sección,
+incluyo 27 configuraciones electrónicas: $2s^2$, $2snl$ --tal que 
+$n=1$-5 y $l=0$-4--, $2p^2$, y $2pnl$ --siendo $n=3$-5 y $l=0$-4--, 
 donde los orbitales $5l$ se han supuesto pseudo-orbitales. Esto resulta 
 en un total de 90 términos, donde sólo 19 de ellos son términos 
-espectroscópicos. Por otro lado, los potenciales modelos elegidos fueron 
+espectroscópicos. Por otro lado, los potenciales modelos elegidos son 
 aquellos que mejor describen, sin ningún tipo de ajuste paramétrico, las 
 energías y fuerzas de oscilador. Con este criterio, se determinó 
 implementar el potencial STO, más un término de intercambio local, y el 
@@ -436,16 +436,20 @@ instancia, se ajustaron los parámetros que definen el potencial de
 polarización de Norcross. Luego, fijando los parámetros de Norcross 
 resultantes, se procedió a ajustar el potencial STO. Para estudiar el 
 efecto de la optimización del potencial de Hartree, este procedimiento 
-también fue encarado por partes. Cada una de estas partes se corresponde 
-a una capa definida por el número cuántico principal $n$. Así, al ajuste 
-del potencial STO consistió en optimizar los términos de excitación 
-correspondientes a los orbitales $3l$, $4l$ y $5l$, de forma sucesiva y 
-manteniendo fijos los parámetros anteriormente optimizados.
+también fue encarado por partes. Cada una de estas partes considera 
+ciertas capas definidas por el número cuántico principal $n$. Así, al 
+ajuste del potencial STO consistió en optimizar los orbitales $1s$-$3l$, 
+$1s$-$4l$ y $\overline{5l}$.
 
-Las características del modelo bayesiano fueron consistentes a lo largo 
-de todas las optimizaciones de esta Sección; se implementó un mapeo 
-inicial tipo latin hypercube, un kernel RBF (square exponential) y una 
-función de adquisión de EI. 
+Los parámetros del modelo bayesiano son consistentes a lo largo de todas 
+las optimizaciones de esta Sección; se implementó un mapeo inicial de 
+tipo latin hypercube, un kernel RBF y una función de adquisión EI. El 
+número de evaluaciones iniciales (o conocimiento previo) sobre el cual el 
+modelo basa sus primeras predicciones es, en todos los casos, igual al 
+número de parámetros a ajustar. Mientras que el número máximo de 
+evaluaciones es 20 veces este número.  Así, si el modelo cuenta con 6 
+parámetros a ajustar, el número de evaluaciones iniciales es 6 y el valor
+máximo es 120.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energía absoluta}
@@ -487,181 +491,251 @@ El número inicial de evaluaciones fue 6, con un número máximo de 120. Una
 de las grandes dificultades de la minimización u optimización de 
 parámetros es la inevitable posibilidad de encontrar un mínimo local. 
 Para descartar esta situación, se lanzaron 100 optimizaciones con 
-semillas diferentes. Estos cálculos fueron reveladores, ya nos 
-permitieron encontrar relaciones subyacentes entre los parámetros y la
-naturaleza no-convexa de la superficie hiperdimensional definido por $J$.
+semillas diferentes. Estos cálculos son reveladores, ya que nos permiten 
+encontrar relaciones subyacentes entre los parámetros y la naturaleza 
+no-convexa de la superficie hiperdimensional definido por $J$.
 
-% OptI: pol_optI/kernel_test/testE4/
 En la primera optimización (Opt. I), consideramos únicamente la energía
 absoluta del estado fundamental $2s^2\,^1S$. El 100\% de los cálculos con
-semillas aleatorias encontraron un error relativo porcentual menor o 
-igual a 0.002\%; mientras que la optimización de 30 semillas conducieron 
-a un costo menor o igual a $1\times 10^{-4}$. La tabla~\ref{tab:optpol} 
-muestra los mejores resultados hallados. Por otro lado, la distribución 
-de los parámetros correspondiente a los mínimos hallados muestran una 
-fuerte correlación positiva ($r=0.999$) entre $\alpha $ y $\rho$ para 
-$l=0$, mientras que los parámetros para $l=1$ y $l=2$ no muestran 
-correlación alguna. Este fenómeno se puede entender teniendo en cuenta 
-que sólo el término $2s^2\,^1S$ es incluido en la optimización. A pesar 
-de esto, el error relativo de las energías de excitación (respecto al 
-estado fundamental) de los 10 términos espectroscópicos restantes fue 
-menor al 5\%, con excepción de los términos $2s2p\,^1P$, $2p^2\,^1D$ y 
-$2s3d\,^1D$.
+semillas aleatorias encontraron un mínimo para la función de costo menor 
+o igual a 0.002\%; mientras que la optimización de 30 semillas 
+conducieron a un costo menor o igual a $1\times 10^{-4}$. La 
+tabla~\ref{tab:optpol} muestra los mejores resultados de energías 
+absolutas hallados para los 11 términos espectroscópicos considerados. 
+Si bien la optimización incluye sólo la energía del estado fundamental, 
+es de esperar que la representación del resto de los niveles 
+espectroscópicos mejore en consecuencia, y es efectivamente lo que se 
+observa. Por otro lado, la distribución de los parámetros correspondiente 
+a los mínimos muestran una fuerte correlación positiva ($r=0.999$) entre 
+$\alpha$ y $\rho$ para $l=0$, mientras que los parámetros para $l=1$ y 
+$l=2$ no muestran correlación alguna. Este fenómeno se puede entender 
+teniendo en cuenta que sólo el término $2s^2\,^1S$ es incluido en la 
+optimización. A pesar de esto, el error relativo de las energías de 
+excitación (respecto al estado fundamental) de los 10 términos 
+espectroscópicos restantes es menor al 5\%, con excepción de los 
+términos $2s2p\,^1P$, $2p^2\,^1D$ y $2s3d\,^1D$.
 
 \begin{table}
 \centering
-\begin{tabular}{|*{7}{c|}}
+\begin{tabular}{|*{8}{c|}}
 \hline 
-$i$ & Término   & NIST & Sin opt.   & Opt. I       & Opt. II      & Opt. III \\
-\hline 
-\hline 
-\rowcolor{mygray} 1 &$2s^2\,^1S$  & $-29.3369$ & $-29.2342$ & $-29.3369$ & $-29.3369$ & $-29.3433$ \\
- & & & $3.5[-1]^\dagger$ & $1.0[-5]$  & $1.0[-4]$  & $2.2[-2]$  \\
-\rowcolor{mygray} 2 &$2s2p\,^3P^*$& $-29.1366$ & $-29.0302$ & $-29.1310$ & $-29.1368$ & $-29.1464$ \\
-  &       & & $3.7[-1]$  & $1.9[-2]$  & $7.1[-4]$  & $3.4[-2]$  \\
-\rowcolor{mygray} 3 &$2s2p\,^1P^*$& $-28.9490$ & $-28.8117$ & $-28.9112$ & $-28.9150$ & $-28.9229$ \\
-  &       & & $4.7[-1]$  & $1.3[-1]$  & $1.2[-1]$  & $9.0[-2]$  \\
-\rowcolor{mygray} 4 &$2s3s\,^3S$  & $-28.8623$ & $-28.7610$ & $-28.8610$ & $-28.8599$ & $-28.8649$ \\
-  &       & & $3.5[-1]$  & $4.3[-3]$  & $8.2[-3]$  & $9.1[-3]$  \\
-\rowcolor{mygray} 5 &$2s3s\,^1S$  & $-28.8386$ & $-28.7326$ & $-28.8327$ & $-28.8319$ & $-28.8371$ \\
-  &       & & $3.7[-1]$  & $2.0[-2]$  & $2.3[-2]$  & $5.5[-3]$  \\
-\rowcolor{mygray} 6 &$2p^2\,^1D$  & $-28.8185$ & $-28.5744$ & $-28.6737$ & $-28.8058$ & $-28.8148$ \\
-  &       & & $8.5[-1]$  & $5.0[-1]$  & $4.4[-2]$  & $1.3[-2]$  \\
+$i$ & Término & NIST 
+  & Sin opt.    & Opt. I     & Opt. II    & Opt. III   & Opt. IV \\
+\hline \hline 
+\rowcolor{mygray} 
+1 & $2s^2\,^1S$ & $-29.3369$ 
+  & $-29.2342$  & $-29.3369$ & $-29.3369$ & $-29.3433$ & $29.3426$ \\ & & 
+  & $3.5[-1]^\dagger$ & $1.0[-5]$ & $1.0[-4]$ & $2.2[-2]$ & $1.9[-1]$ \\ 
+\rowcolor{mygray} 
+2 & $2s2p\,^3P$ & $-29.1366$ 
+  & $-29.0302$  & $-29.1310$ & $-29.1368$ & $-29.1464$ & $29.1430$ \\ & & 
+  & $3.7[-1]$   & $1.9[-2]$  & $7.1[-4]$  & $3.4[-2]$  & $2.2[-1]$ \\ 
+\rowcolor{mygray} 
+3 & $2s2p\,^1P$ & $-28.9490$ 
+  & $-28.8117$  & $-28.9112$ & $-28.9150$ & $-28.9229$ & $28.9210$ \\ & & 
+  & $4.7[-1]$   & $1.3[-1]$  & $1.2[-1]$  & $9.0[-2]$  & $9.7[-1]$ \\ 
+\rowcolor{mygray}
+4 & $2s3s\,^3S$ & $-28.8623$ 
+  & $-28.7610$  & $-28.8610$ & $-28.8599$ & $-28.8649$ & $28.8654$ \\ & & 
+  & $3.5[-1]$   & $4.3[-3]$  & $8.2[-3]$  & $9.1[-3]$  & $1.1[-1]$ \\ 
+\rowcolor{mygray} 
+5 & $2s3s\,^1S$ & $-28.8386$ 
+  & $-28.7326$  & $-28.8327$ & $-28.8319$ & $-28.8371$ & $28.8374$ \\ & & 
+  & $3.7[-1]$   & $2.0[-2]$  & $2.3[-2]$  & $5.5[-3]$  & $4.3[-2]$ \\ 
+\rowcolor{mygray} 
+6 & $2p^2\,^1D$ & $-28.8185$
+  & $-28.5744$  & $-28.6737$ & $-28.8058$ & $-28.8148$ & $28.8119$ \\ & & 
+  & $8.5[-1]$   & $5.0[-1]$  & $4.4[-2]$  & $1.3[-2]$  & $2.3[-2]$\\ 
+\rowcolor{mygray} 
+7 & $2s3p\,^3P$ & $-28.8001$ 
+  & $-28.6966$  & $-28.7964$ & $-28.7963$ & $-28.8018$ & $28.8019$ \\ & & 
+  & $3.6[-1]$   & $1.3[-2]$  & $1.3[-2]$  & $6.1[-3]$  & $6.2[-2]$ \\  
+\rowcolor{mygray} 
+8 & $2p\,^3P$   & $-28.7929$ 
+  & $-28.6746$  & $-28.7729$ & $-28.7862$ & $-28.8000$ & $28.7932$ \\ & & 
+  & $4.1[-1]$   & $6.9[-2]$  & $2.3[-2]$  & $2.5[-2]$  & $1.0[-2]$ \\  
+\rowcolor{mygray} 
+9 & $2s3p\,^1P$ & $-28.7884$ 
+  & $-28.6768$  & $-28.7765$ & $-28.7788$ & $-28.7858$ & $28.7846$ \\ & & 
+  & $3.9[-1]$   & $4.2[-2]$  & $3.4[-2]$  & $9.2[-3]$  & $1.3[-2]$ \\  
+\rowcolor{mygray} 
+10& $2s3d\,^3D$ & $-28.7714$ 
+  & $-28.6677$  & $-28.7673$ & $-28.7661$ & $-28.7708$ & $28.7715$ \\ & & 
+  & $3.6[-1]$   & $1.4[-2]$  & $1.9[-2]$  & $2.1[-3]$  & $2.8[-4]$ \\  
+\rowcolor{mygray} 
+11& $2s3p\,^1D$ & $-28.7498$ 
+  & $-28.7020$  & $-28.8010$ & $-28.7361$ & $-28.7422$ & $28.7418$ \\ & & 
+  & $1.7[-1]$   & $1.8[-1]$  & $4.7[-2]$  & $2.6[-2]$  & $2.8[-2]$ \\ 
 \hline\multicolumn{3}{c}{$\dagger\,a[b]$ denota $a\times 10^b$} \\
 \end{tabular}
 \caption[Energías absolutas de Be.]
-{Energías absolutas en Rydbergs de los primeros 6 términos espectroscópicos 
-de Be (filas superiores) y sus errores relativos porcentuales respecto a 
-los valores de NIST (filas inferiores).}
+{Energías absolutas en Rydbergs de los primeros 11 términos 
+espectroscópicos de Be (filas superiores) y sus errores relativos 
+porcentuales respecto a NIST (filas inferiores).}
 \label{tab:optpol}
 \end{table}
 
-% OptI: pol_optII/testE4/
-En la segunda optimización (Opt. II) incluimos los términos $2s2p\,^3P^*$ 
-y $2s2p\,^1P^*$ en la función de costo dada por la ecuación~(\ref{eq:Jpol}) 
-para subsanar la falta de correlación en los parámetros con momento 
-angular $l=1$ del potencial de Norcross. Nuevamente, realizamos cálculos 
-independientes con 100 semillas diferentes. Los mínimos hallados por cada 
-uno de estos cálculos tuvieron una dispersión menor al 0.01\%. El mejor 
-resultado hallado se muestra en la tabla~\ref{tab:optpol}. Los errores 
-relativos de las energías de excitación de los 10 términos 
-espectroscópicos fueron menores al 3\% y en promedio del 1\%, con 
-excepción del término $2p^2\,^1P$. Además de la fuerte correlación entre 
-$\alpha_0$ y $\rho_0$, la inclusión de los términos correspondientes a la 
-configuración $2s2p$ introdujo en la función de costo una fuerte 
-correlación entre $\alpha_1$ y $\rho_1$.
+En la segunda optimización, denominada Opt. II, incluimos los términos 
+$2s2p\,^3P^*$ y $2s2p\,^1P^*$ en la función de costo dada por la 
+ecuación~(\ref{eq:Jpol}). Así, introducimos además la correlación en los 
+parámetros con momento angular $l=1$ del potencial de Norcross. 
+Nuevamente, realizamos cálculos independientes con 100 semillas aleatorias. 
+Los mínimos hallados por cada uno de estos cálculos tuvieron una 
+dispersión menor al 0.01\%. El mejor resultado hallado se muestra en la 
+tabla~\ref{tab:optpol}. Esta optimización muestra una mejora tanto para 
+las energías absolutas de los términos optimizados como en el resto de 
+los niveles espectroscópicos. Los errores relativos de las energías de 
+excitación de los 10 términos espectroscópicos fueron menores al 3\% y en 
+promedio del 1\%, con excepción del término $2p^2\,^1P$. Además de la 
+fuerte correlación entre $\alpha_0$ y $\rho_0$, la inclusión de los 
+términos correspondientes a la configuración $2s2p$ introduce en la 
+función de costo una fuerte correlación entre $\alpha_1$ y $\rho_1$.
 
-Por último (Opt. III), incluimos los términos $2s3s\,^3S$, $2s3s\,^1S$, y 
-$2p^2\,^1D$ en la función de costo. El mínimo de la función de costo 
-encontrado por cada uno de los 100 cálculos realizados se muestran en la 
-figura~\ref{fig:OptIII-100min-Jpol}, mientras que la distribución de los 
-parámetros correspondientes a estos mínimos se presentan en la 
-figura~\ref{fig:OptIII-100min-params}. Los mínimos hallados tuvieron una 
-dispersión menor al 0.01\% alrededor del promedio $\bar{J}=0.17$. El 
-mejor resultado de nuestros cálculos se muestra en la 
-tabla~\ref{tab:optpol}. Los errores relativos de las energías de 
+Luego, incluimos los términos $2s3s\,^3S$, $2s3s\,^1S$, y $2p^2\,^1D$ en 
+la función de costo (Opt. III). Nuevamente, los mínimos hallados por cada 
+uno de los 100 cálculos aleatorios tuvieron una dispersión menor al 
+0.01\% alrededor del promedio ($\bar{J}=0.17$). El mejor resultado de 
+estos cálculos se muestra en la tabla~\ref{tab:optpol}. Las energías de 
 excitación de los 10 términos espectroscópicos en esta optimización 
 fueron menores al 2\% y en promedio del 1\%, nuevamente, a excepción del 
 término $2p^2\,^1P$. 
 
-La mejor optimización bayesiana con procesos gaussianos de los parámetros 
-$\alpha_l$ y $\rho_l$ se muestra en la figura~\ref{fig:OptIII-Jpol}. Por 
-otro lado, la exploración del hiperespacio de parámetros correspondiente
-a esta optimización se presenta en la figura~\ref{fig:OptIII-params}. 
+Finalmente, incluimos la energía absoluta de los 11 términos 
+espectroscópicos en la función de costo (Opt. IV). Los mínimos hallados 
+por 100 cálculos de semillas aleatorias, y su distribución en frecuencia, 
+se muestran en el panel superior de la figura~\ref{fig:optIV}. Los 
+parámetros del potencial de Norcross correspondientes a estos mínimos se 
+presentan en el panel inferior de la figura~\ref{fig:optIV}. La 
+distribución de los mínimos hallados es tal que la máxima frecuencia de 
+se ubica alrededor de su valor medio, $\overline{J}=2.3\times 10^{-1})$, 
+con una desviación estándar igual a $\sigma=2.9\times 10^{-3}$. El 50\% 
+de los mínimos, que se encuentran por debajo de la media (datos en color 
+rojo), tienen parámetros asociados ubicados en la misma region del 
+hiper-espacio. Este resultado sugiere que los cálculos independientes con
+semillas aleatorias hallaron el mismo mínimo global. Los resultados de la 
+mejor optimización bayesiana de $\alpha_l$ y $\rho_l$ se muestran en la 
+figura~\ref{fig:globmin}. En el panel superior se presenta la evaluación 
+de la función de costo a medida que los procesos gaussianos exploran la
+superficie hiper-dimensional de la función de costo. Cada uno de estos 
+puntos se corresponde a un punto del espacio de parámetros, que se 
+muestra en el panel inferior. El mínimo de la función de costo vecinos es 
+hallado en la iteración 81; este punto y sus vecinos más cercanos 
+($J\leq 0.245$) se muestran con símbolos de color negro. Los parámetros 
+que le corresponden a dichas evaluaciones también se muestran en la parte
+inferior con símbolos de color negro.
 
 %%%% Resultados de 100 optimizaciones 
-\begin{figure}[t]
+\begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/rmatrix/OptIII_Jpol.pdf}
-\caption[Mínimos de la función de costo según semillas aleatorias.]
-{Valores mínimos encontrados para la función de costo~(\ref{eq:Jpol}) 
-según 100 cálculos independientes con semillas aleatorias (izquierda) y
-su distribución en frecuencia (derecha).}
-\label{fig:OptIII-100min-Jpol}
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/Jpol_optIV.pdf} \\
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/histparams_optIV.pdf}
+\caption[Distribución de mínimos y parámetros según semillas aleatorias.]
+{(Panel superior) Valores mínimos encontrados para la función de 
+costo~(\ref{eq:Jpol}) según 100 cálculos independientes con semillas 
+aleatorias (izquierda) y su distribución en frecuencia (derecha).
+(Panel inferior) Distribución en frecuencia de los parámetros $\alpha_l$ 
+y $\rho_l$ para $l=0,1,2$ correspondientes a los valores mínimos 
+hallados.}
+%\label{fig:Jpol-optIV}
+\label{fig:optIV}
 \end{figure}
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.8\textwidth]{figures/rmatrix/OptIII_params.pdf}
-\includegraphics[width=0.8\textwidth]{figures/rmatrix/OptIII_histparams.pdf}
-\caption[Distribución de parámetros según semillas aleatorias.]
-{Distribución de los parámetros $\alpha_l$ y $\rho_l$ ($l=0,1,2$) 
-correspondientes a los valores mínimos que se muestran en la 
-figura~(\ref{fig:OptIII-100min-Jpol}).}
-\label{fig:OptIII-100min-params}
-\end{figure}
+%\begin{figure}
+%\centering
+%%\includegraphics[width=0.8\textwidth]{figures/rmatrix/params_optIV.pdf}
+%\caption[Distribución de parámetros según semillas aleatorias.]
+%{Distribución en frecuencia de los parámetros $\alpha_l$ y $\rho_l$ 
+%($l=0,1,2$) correspondientes a los valores mínimos que se muestran en la 
+%figura~(\ref{fig:Jpol-optIV}).}
+%\label{fig:params-optIV}
+%\end{figure}
 
 %%%% Resultados de la mejor optimización
-\begin{figure}[H]
+\begin{figure}
 \centering
-\includegraphics[width=0.8\textwidth]{figures/rmatrix/OptIII_Jpol_globmin.pdf}
-\caption[Minimización de la función de costo.]
-{Optimización bayesiana de la función de costo dada por la 
-ecuación~(\ref{eq:Jpol}).}
-\label{fig:OptIII-Jpol}
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/Jpol_globmin.pdf}
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/params_globmin.pdf}
+\caption[Minimización de la función de costo y exploración de parámetros.]
+{(Panel superior) Optimización bayesiana de la función de costo dada por 
+la ecuación~(\ref{eq:Jpol}). (Panel inferior) Exploración del 
+hiper-espacio de parámetros correspondiente.}
+%\label{fig:Jpol-globmin}
+\label{fig:globmin}
 \end{figure}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/rmatrix/OptIII_params_globmin.pdf}
-\caption[Exploración del espacio de parámetros.]
-{Exploración del espacio de parámetros correspondiente a la minimización
-dada en la figura~(\ref{fig:OptIII-Jpol}).}
-\label{fig:OptIII-params}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=0.8\textwidth]{figures/rmatrix/params_globmin.pdf}
+%\caption[Exploración del espacio de parámetros.]
+%{Exploración del espacio de parámetros correspondiente a la minimización
+%dada en la figura~(\ref{fig:Jpol-globmin}).}
+%\label{fig:params-globmin}
+%\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Energías de excitación}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En esta sección estudiamos la optimización de las energías de excitación 
-respecto al estado fundamental. En esta etapa de la optimización se 
-ajustan los parámetros $\lambda_{nl}$ que definen al potencial modelo STO, 
-manteniendo constante los parámetros del potencial de Norcross hallados
-en Opt. III. 
+respecto al estado fundamental. Esta optimización consiste en ajustar los 
+parámetros $\lambda_{nl}$ que definen al potencial modelo STO de manera
+tal que las energías de los términos espectroscópicos del Be se ajusten 
+a los datos experimentales~\cite{NIST}. En esta optimización se mantiene 
+constante los parámetros del potencial de Norcross hallados en la 
+optimización IV de la sección anterior.
 
-La optimización del potencial STO también se realizo por etapas. En 
-primer lugar (Opt. $3l$), se consideraron los orbitales $1s$, $2s$, $2p$, 
-$3s$, $3p$, $3d$. En segunda instancia (Opt. $4l$), se ajustaron 
-adicionalmente los parámetros de escala correspondientes a los orbitales 
-$4s$, $4p$, $4d$ y $4f$. Finalmente (Opt. $\bar{5l}$), manteniendo 
-constante los $\lambda_{nl}$ encontrados, se ajustaron los parámetros que 
-definen los pseudo-orbitales $5s$, $5p$, $5d$, $5f$ y $5g$. Los 
+La optimización del potencial STO también se presenta por partes. En 
+primera instancia, denominada Opt. A, se ajustaron los orbitales $1s$, 
+$2s$, $2p$, $3s$, $3p$ y $3d$. La segunda optimización, Opt.~B, incluyó
+la variación de 10 orbitales $nl$, desde $1s$ hasta $4f$. Por último, se 
+ajustaron los parámetros que definen los pseudo-orbitales 
+$\overline{5s}$, $\overline{5p}$, $\overline{5d}$, $\overline{5f}$ y 
+$\overline{5g}$. En esta optimización, denominada Opt.~C, se mantuvieron 
+constantes los parámetros $\lambda_{nl}$ encontrados en Opt.~B. Los 
 resultados de estas tres optimizaciones se presentan en la 
-tabla~\ref{tab:exener}. En todos los casos, la función de costo considera
-las energías absolutas de los primeros 11 términos espectroscópicos. 
-La energía absoluta del estado fundamental halladas en las optimizaciones 
-$3l$, $4l$ y $\bar{5l}$ fueron -29,335167 Ry, -29,33772 Ry, -29,337362 Ry, 
+tabla~\ref{tab:exener}. En todos los casos, la función de costo considera 
+las energías absolutas de los primeros 11 términos espectroscópicos. La 
+energía absoluta del estado fundamental halladas en las optimizaciones 
+A, B y C fueron $-29.335167$~Ry, $-29.33772$~Ry, $-29.337362$~Ry, 
 respectivamente, lo que representa una error relativo del 
-$6\times 10^{-3}\%$, $4\times 10^{-3}\%$ y $2\times 10^{-3}\%$ respecto
+$6\times 10^{-3}\%$, $4\times 10^{-3}\%$ y $2\times 10^{-3}\%$ respecto 
 al valor conocido. Una mejor visualización de los resultados de la 
 tabla~\ref{tab:exener} se presentan en la figura~\ref{fig:exener}, donde 
-se dan los errores relativos de las energías de excitación de los 10 
-términos espectroscópicos considerados según las optimizaciones realizadas.
-Los valores de las energías de excitación respecto al estado fundamental
-son mejorados sistematicamente con las optimizaciones, reduciendo hasta
-un orden de magnitud los errores relativos promedios. Los términos más
-afectados por la optimización fueron $2s2p\,^1P^*$, $2p^2\,^1D$ y 
-$2s3d\,^1D$, que tenian una desviación del 9\%, 27\% y 9\%, respectivamente.
-Las optimizaciones $4l$ y $\bar{5l}$ redujeron estos valores hasta menos 
-del 2\%, con un promedio del $0.6\%$. 
+se dan los errores relativos de las energías de excitación consideradas 
+y sus valores medios (líneas discontinuas). Los valores de las energías 
+de excitación respecto al estado fundamental son mejoradas 
+sistemáticamente con las optimizaciones a medida que se aumenta el número 
+de parámetros, i.e. orbitales a ajustar. Así, el error relativo promedio 
+se reduce hasta un orden de magnitud respecto al modelo atómico sin 
+optimizar. Los términos más afectados por la optimización fueron 
+$2s2p\,^1P^*$, $2p^2\,^1D$ y $2s3d\,^1D$, que presentan una desviación 
+(sin optimización) del 9\%, 27\% y 9\%, respectivamente. El ajuste de los 
+orbitales espectroscópicos (Opt. B) y los pseudo-orbitales (Opt. C) 
+reducen estos valores por debajo de 2\%, con un promedio del $0.6\%$. Si 
+bien ambas optimizaciones mejoran significativamente la representación de 
+los niveles espectroscópicos, vale remarcar que el orden resultante de 
+los términos $2p^2\,^3P$ y $2s3p\,^1P$ se encuentran invertidos. La 
+incorrecta representación de estos niveles podría ser mejorada, por 
+ejemplo, considerando un mayor número de configuraciones que intervengan 
+en el CI de estos términos.
 
+\afterpage{
 \begin{table}
 \centering
 \begin{tabular}{|*{7}{c|}}
 \hline 
-$i$ & Término    & NIST      & Sin opt.  & Opt. $3l$  & Opt. $4l$  & BO $\bar{5l}$ \\
+$i$ & Término & NIST & Sin opt. & Opt. A & Opt. B & Opt. C \\
 \hline 
 \hline 
-1 & $2s^2\,^1S$   & $0.0000$   & $0.0000$   & $0.0000$   & $0.0000$   & $0.0000$ \\
-2 & $2s2p\,^3P^*$ & $0.2003$   & $0.2040$   & $0.1987$   & $0.1998$   & $0.1976$ \\
-3 & $2s2p\,^1P^*$ & $0.3879$   & $0.4225$   & $0.4185$   & $0.3952$   & $0.3947$ \\
-4 & $2s3s\,^3S$   & $0.4746$   & $0.4732$   & $0.4729$   & $0.4714$   & $0.4724$ \\
-5 & $2s3s\,^1S$   & $0.4983$   & $0.5016$   & $0.4972$   & $0.4991$   & $0.4985$ \\
-6 & $2p^2\,^1D$   & $0.5184$   & $0.6598$   & $0.5296$   & $0.5181$   & $0.5161$ \\
-7 & $2s3p\,^3P^*$ & $0.5368$   & $0.5376$   & $0.5345$   & $0.5368$   & $0.5369$ \\
-8 & $2p^2\,^3P$   & $0.5440$   & $0.5595$   & $0.5476$   & $0.5537$   & $0.5503$ \\
-9 & $2s3p\,^1P^*$ & $0.5485$   & $0.5574$   & $0.5546$   & $0.5493$   & $0.5501$ \\
-10 & $2s3d\,^3D$  & $0.5655$   & $0.5665$   & $0.5642$   & $0.5639$   & $0.5647$ \\
-11 & $2s3d\,^1D$  & $0.5871$   & $0.5322$   & $0.5924$   & $0.5877$   & $0.5873$ \\
+1 & $2s^2\,^1S$   & $0.0000$ & $0.0000$ & $0.0000$ & $0.0000$ & $0.0000$ \\
+2 & $2s2p\,^3P^*$ & $0.2003$ & $0.2040$ & $0.1987$ & $0.1998$ & $0.1976$ \\
+3 & $2s2p\,^1P^*$ & $0.3879$ & $0.4225$ & $0.4185$ & $0.3952$ & $0.3947$ \\
+4 & $2s3s\,^3S$   & $0.4746$ & $0.4732$ & $0.4729$ & $0.4714$ & $0.4724$ \\
+5 & $2s3s\,^1S$   & $0.4983$ & $0.5016$ & $0.4972$ & $0.4991$ & $0.4985$ \\
+6 & $2p^2\,^1D$   & $0.5184$ & $0.6598$ & $0.5296$ & $0.5181$ & $0.5161$ \\
+7 & $2s3p\,^3P^*$ & $0.5368$ & $0.5376$ & $0.5345$ & $0.5368$ & $0.5369$ \\
+8 & $2p^2\,^3P$   & $0.5440$ & $0.5595$ & $0.5476$ & $0.5537$ & $0.5503$ \\
+9 & $2s3p\,^1P^*$ & $0.5485$ & $0.5574$ & $0.5546$ & $0.5493$ & $0.5501$ \\
+10 & $2s3d\,^3D$  & $0.5655$ & $0.5665$ & $0.5642$ & $0.5639$ & $0.5647$ \\
+11 & $2s3d\,^1D$  & $0.5871$ & $0.5322$ & $0.5924$ & $0.5877$ & $0.5873$ \\
 \hline
 \end{tabular}
 \caption[Energías de excitación de Be.]
@@ -669,51 +743,83 @@ $i$ & Término    & NIST      & Sin opt.  & Opt. $3l$  & Opt. $4l$  & BO $\bar{5
 espectroscópicos de Be relativos al estado fundamental $2s^2\,^1S$.}
 \label{tab:exener}
 \end{table}
-
-\begin{figure}[H]
+\begin{figure}
 \centering
-\includegraphics[width=0.9\textwidth]{figures/rmatrix/erp_ei.pdf} 
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/erp_ei.pdf} 
 \caption[Error relativo de 10 términos espectroscópicos de Be.]
 {Error relativo de los primeros 10 términos espectroscópicos respecto 
-a valores de NIST.}
+a valores de NIST. Las líneas discontinuas representan el error relativo
+porcentual promedio de cada cálculo.}
 \label{fig:exener}
 \end{figure}
-
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fuerzas de oscilador de asborción}
 
+\afterpage{
 \begin{table}
 \begin{adjustwidth}{-.6in}{-.6in}  
 \centering
 \begin{tabular}{|*{9}{c|}} 
 \hline 
-No & Transición                & Ballance   & Chen       & MCHF       & Sin opt.   & BO $3l$    & BO $4l$  & BO $5l$ \\
+No & Transición &
+Ballance   & Chen       & MCHF       & 
+Sin opt.   & Opt. A    & Opt. B  & Opt. C\\
 \hline
 \hline
-1  & $2s2  \,^1S - 2s2p \,^1P$ & $1.37$     & $1.38$     & $1.38    $ & $1.32    $ & $1.31    $ & $1.40    $ & $1.38$ \\
-2  & $2s2  \,^1S - 2s3p \,^1P$ & $1.12[-2]$ & $9.01[-3]$ & $8.99[-3]$ & $5.70[-2]$ & $5.84[-2]$ & $1.71[-2]$ & $1.55[-2]$ \\
-3  & $2s2p \,^3P - 2s3s \,^3S$ & $7.56[-2]$ & $8.23[-2]$ & $8.41[-2]$ & $8.57[-2]$ & $8.22[-2]$ & $8.49[-2]$ & $8.21[-2]$ \\
-4  & $2s2p \,^3P - 2s3d \,^3D$ & $2.99[-1]$ & $2.95[-1]$ & $3.00[-1]$ & $2.96[-1]$ & $2.67[-1]$ & $3.08[-1]$ & $2.96[-1]$ \\
-5  & $2s2p \,^1P - 2s3s \,^1S$ & $1.20[-1]$ & $1.18[-1]$ & $1.15[-1]$ & $1.62[-1]$ & $1.59[-1]$ & $1.23[-1]$ & $1.29[-1]$ \\
-6  & $2s2p \,^1P - 2s3d \,^1D$ & $3.86[-1]$ & $4.10[-1]$ & $3.96[-1]$ & $8.18[-2]$ & $2.20[-1]$ & $3.83[-1]$ & $3.74[-1]$ \\
-7  & $2s3s \,^3S - 2s3p \,^3P$ & $1.02$     & $1.13    $ & $1.14    $ & $1.15    $ & $1.10$     & $1.13    $ & $1.12$ \\
-8  & $2s3s \,^1S - 2s3p \,^1P$ & $9.08[-1]$ & $9.58[-1]$ & $9.47[-1]$ & $9.02[-1]$ & $8.99[-1]$ & $9.80[-1]$ & $9.87[-1]$ \\
-9  & $2s3p \,^3P - 2s3d \,^3D$ & $4.83[-1]$ & $5.01[-1]$ & $5.14[-1]$ & $4.92[-1]$ & $5.08[-1]$ & $4.91[-1]$ & $5.18[-1]$ \\
-10 & $2s3p \,^1P - 2s3d \,^1D$ & $6.91[-1]$ & $6.87[-1]$ & $6.81[-1]$ & $9.26[-2]$ & $7.74[-1]$ & $7.70[-1]$ & $7.99[-1]$ \\
+1  & $2s2  \,^1S - 2s2p \,^1P$ & 
+$1.37$     & $1.38$     & $1.38    $ & 
+$1.32    $ & $1.31    $ & $1.40    $ & $1.38$ \\
+%%%%
+2  & $2s2  \,^1S - 2s3p \,^1P$ & 
+$1.12[-2]$ & $9.01[-3]$ & $8.99[-3]$ &
+$5.70[-2]$ & $5.84[-2]$ & $1.71[-2]$ & $1.55[-2]$ \\
+%%%%
+3  & $2s2p \,^3P - 2s3s \,^3S$ & 
+$7.56[-2]$ & $8.23[-2]$ & $8.41[-2]$ & 
+$8.57[-2]$ & $8.22[-2]$ & $8.49[-2]$ & $8.21[-2]$ \\
+%%%%
+4  & $2s2p \,^3P - 2s3d \,^3D$ & 
+$2.99[-1]$ & $2.95[-1]$ & $3.00[-1]$ & 
+$2.96[-1]$ & $2.67[-1]$ & $3.08[-1]$ & $2.96[-1]$ \\
+%%%%
+5  & $2s2p \,^1P - 2s3s \,^1S$ & 
+$1.20[-1]$ & $1.18[-1]$ & $1.15[-1]$ & 
+$1.62[-1]$ & $1.59[-1]$ & $1.23[-1]$ & $1.29[-1]$ \\
+%%%%
+6  & $2s2p \,^1P - 2s3d \,^1D$ & 
+$3.86[-1]$ & $4.10[-1]$ & $3.96[-1]$ & 
+$8.18[-2]$ & $2.20[-1]$ & $3.83[-1]$ & $3.74[-1]$ \\
+%%%%
+7  & $2s3s \,^3S - 2s3p \,^3P$ & 
+$1.02$     & $1.13    $ & $1.14    $ & 
+$1.15    $ & $1.10$     & $1.13    $ & $1.12$ \\
+%%%%
+8  & $2s3s \,^1S - 2s3p \,^1P$ & 
+$9.08[-1]$ & $9.58[-1]$ & $9.47[-1]$ & 
+$9.02[-1]$ & $8.99[-1]$ & $9.80[-1]$ & $9.87[-1]$ \\
+%%%%
+9  & $2s3p \,^3P - 2s3d \,^3D$ & 
+$4.83[-1]$ & $5.01[-1]$ & $5.14[-1]$ & 
+$4.92[-1]$ & $5.08[-1]$ & $4.91[-1]$ & $5.18[-1]$ \\
+%%%%
+10 & $2s3p \,^1P - 2s3d \,^1D$ & 
+$6.91[-1]$ & $6.87[-1]$ & $6.81[-1]$ & 
+$9.26[-2]$ & $7.74[-1]$ & $7.70[-1]$ & $7.99[-1]$ \\
 \hline
 \end{tabular}
 \caption{Fuerza de oscilador de absorción de transiciones dipolares de Be.}
 \label{tab:fabs}
 \end{adjustwidth}
 \end{table}
-
-\begin{figure}[H]
+\begin{figure}
 \centering
 %\includegraphics[width=0.9\textwidth]{figures/rmatrix/erp_fabs.pdf} 
-\includegraphics[width=0.9\textwidth]{figures/rmatrix/fabs.pdf} 
+\includegraphics[width=0.85\textwidth]{figures/rmatrix/fabs.pdf} 
 \caption{Fuerzas de oscilador dipolares de absorción de Be.}
 \label{fig:fabs}
 \end{figure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Excitación por impacto de electrón}
@@ -721,11 +827,11 @@ No & Transición                & Ballance   & Chen       & MCHF       & Sin opt
 Los resultados obtenidos del cálculo de las secciones eficaces de 
 excitación por impacto de electrón en Be se muestran en las 
 figuras~\ref{fig:crossBe-partI} y \ref{fig:crossBe-partII}. Las figuras 
-muestran las secciones eficaces obtenidas cuando se consideran las 
-estructuras atómicas de Be sin optimizar y las optimizadas con procesos
-gaussianos (Opt. $3l$, $4l$ y $\hbar{5l}$). 
+muestran las secciones eficaces obtenidas cuando se ajustaron con 
+distintas aproximaciones la estructura atómica del Be: sin optimización, 
+y las optimizaciones A, B y C de los parámetros $\lambda_{nl}$.
 
-\begin{figure}[H]
+\begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/rmatrix/GP_RMPS_x6.eps} 
 \caption[Secciones eficaces de excitación de Be (Parte I).]
@@ -739,8 +845,7 @@ Símbolos: cálculos CCC de \cite{Fursa:97}.}
 \label{fig:crossBe-partI}
 \end{figure}
 
-
-\begin{figure}[H]
+\begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{figures/rmatrix/GP_RMPS_x4.eps} 
 \caption[Secciones eficaces de excitación de Be (Parte II).]
