@@ -58,7 +58,7 @@ ejectados. Contrariamente a lo esperado según la primera aproximación
 de Born, encontramos que una dependencia sustancial con la carga del 
 projectil. 
 
-En la sección~\ref{subsec:stoichiometric}, tratamos la complejidad de la
+En la sección~\ref{sec:SSM}, tratamos la complejidad de la
 estructura molecular de los blancos implementando el modelo estequiométrico 
 simple (\acs{ssm}), el cual consiste en asumir que las moleculas están 
 compuestas por átomos aislados e independientes, y que la sección 
@@ -71,7 +71,7 @@ interés biológico, incluyendo las moléculas que componen el ADN y ARN
 (\acs{thf}), pirimidina y grupos de fosfato del esqueleto del ADN, 
 debido al impacto de antiprotones, H$^{+}$, He$^{2+}$, Be$^{4+}$, 
 C$^{6+}$, y O$^{8+}$. 
-En la sección~\ref{subsec:scaling}, estudiamos la regla de escala de 
+En la sección~\ref{sec:scaling}, estudiamos la regla de escala de 
 Toburen~\cite{toburen1975,toburen1976}, que establece que la razón entre
 la sección eficaz de ionización y el número de electrones débilmente
 ligados se puede ubicar sobre una delgada banda universal en términos 
@@ -84,7 +84,7 @@ La regla de escala resultante es implementada teóricamente y comparada
 con datos experimentales disponibles.
 
 La aproximación SSM considera los átomos en una molécula como si fueran
-neutrales, lo cual no es correcto. En la sección~\ref{subsec:molcalculations}, 
+neutrales, lo cual no es correcto. En la sección~\ref{sec:molcalculations}, 
 usaremos cálculos de estructura molecular realizados con el código
 {\sc gamess}~\cite{gamess} para calcular el exceso o defecto de densidad 
 electrónica en los átomos que componen las moléculas. Así, modificamos
@@ -94,7 +94,7 @@ SSM para las moléculas de ADN no introduce cambios sustanciales en las
 secciones eficaces totales de ionización.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ionización de átomos}
+\section{Ionización de átomos constituyentes}
 \label{sec:atoms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -300,11 +300,8 @@ primera aproximación de Born; este fenómeno constituye un efecto Barkas
 angular.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Ionización de moléculas}
-\label{sec:molecules}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{El modelo estequiométrico}
-\label{subsec:stoichiometric}
+\section{El modelo estequiométrico}
+\label{sec:SSM}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Consideremos una molécula $M$ compuesta por $n_{\alpha}$ átomos del 
@@ -387,7 +384,7 @@ eficaces atómicas CDW muestran un buen acuerdo general con esta data.
 
 A energías de impacto intermedias, la regla $Z^2$ ya no se cumple y se 
 pueden considerar otras escalas en esta región. En la 
-sección~\ref{subsec:scaling} inspeccionaremos algunas de ellas.
+sección~\ref{sec:scaling} inspeccionaremos algunas de ellas.
 
 
 %At intermediate impact energies, the $Z^2$ rule no longer holds, and other scalings can be considered in this region. For example, the molecular cross section and ion impact energy can be reduced with the projectile charge $Z$, as suggested in in~\cite{janev1980,dubois2013}. 
@@ -422,10 +419,11 @@ equivelocidad.}
 \end{figure*} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Reglas de escala}
-\label{subsec:scaling}
+\section{Reglas de escala}
+\label{sec:scaling}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Regla de Toburen}
+\subsection{Regla de Toburen}
+\label{subsec:toburen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Toburen y colaboradores~\cite{toburen1975,toburen1976} propusieron el 
@@ -494,7 +492,8 @@ $\medstar$~\cite{wolf2019,fuss2009} THF.}
 \end{figure*}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Escaleo CDW}
+\subsection{Escaleo CDW}
+\label{subsec:CDW}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 La desviación de nuestros resultados teóricos de la regla de escala de 
@@ -607,8 +606,8 @@ experimentales se interpolaron entre vecinos cercanos.
 %While finishing the present work, we became aware of an accepted manuscript by L\"udde~\textit{et al.}~\cite{ludde2019} on total ionization of biological molecules by proton impact, using the independent--atom--model pixel counting method~\cite{ludde2016,ludde2018}. The authors also raised a scaling  with $\nu_{\alpha}=4$ for C, N, and O, but $\nu_{\alpha}=6$ for P. The agreement with this independent method for proton impact reinforces our multicharged--ion findings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Estructura molecular de los blancos}
-\label{subsec:molcalculations}
+\section{Estructura molecular de los blancos}
+\label{sec:molcalculations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Finalmente, para probar el rango de validez del SSM, realizamos un 
@@ -649,7 +648,7 @@ es tan directo; el número $\nu_{N=4}^{\text{CDW}}$ sugiere que uno de
 los dos electrones de la capa $2s$ contribuye al esquema molecular.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Un modelo estequiométrico modificado}
+\subsection{Un modelo estequiométrico modificado}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 El modelo estequiometrico simple considera a la molécula como un 

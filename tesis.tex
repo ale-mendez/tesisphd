@@ -16,7 +16,7 @@
 \usepackage[]{geometry}
 \usepackage{afterpage}
 \usepackage[numbers,sort&compress]{natbib}
-\usepackage{hyperref}
+\usepackage[linktocpage]{hyperref}
 \usepackage{cleveref}
 \usepackage{comment}
 \usepackage[mathlines]{lineno}% Enable numbering of text and display math
@@ -29,6 +29,7 @@
 \usepackage{chngpage}
 \usepackage{array,booktabs,makecell,multirow}
 \definecolor{mygray}{gray}{0.9}
+\usepackage{eucal}
 
 
 %\usepackage[acronym,nomain,toc]{glossaries}
@@ -63,11 +64,17 @@
     \addtocounter{page}{-1}%
     \newpage}
 
+\usepackage{setspace}
+\doublespacing
+\onehalfspace
+\singlespace
+
 \hyphenation{ par-ti-cu-la }
 
 \includeonly{titulo,
 abstract_spa,
 abstract_eng,
+intro,
 dim,
 ionmol,
 stopping,
@@ -80,8 +87,11 @@ biblio}
 \renewcommand{\tablename}{Tabla}
 \setcounter{tocdepth}{5} %shows all levels incl. paragraph
 
-\acsetup{  list-style = lof,
-           pages = first} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ACRONIMOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\acsetup{ list-style=lof, list-short-width=2cm, pages = first } 
+
 \DeclareAcronym{dft}{
   short = DFT,
   long = Density Functional Theory,
@@ -150,6 +160,22 @@ biblio}
   short = THF,
   long = Tetrahydrofuran,
   class = A}
+%\DeclareAcronym{ca}{
+%  short = CA,
+%  long = Configuration Average,
+%  class = A}
+\DeclareAcronym{df}{
+  short = DF,
+  long = Dirac--Fock,
+  class = A}
+\DeclareAcronym{pd}{
+  short = PD,
+  long = perturbative Dirac,
+  class = A}
+\DeclareAcronym{ci}{
+  short = CI,
+  long = Configuration Interaction,
+  class = A}
 \DeclareAcronym{slpa}{
   short = SLPA,
   long = Shellwise Local Plasma Approximation,
@@ -162,33 +188,65 @@ biblio}
   short = SPCC,
   long = Screened Potential with Cusp Condition,
   class = A}
-\DeclareAcronym{dielectric-ml}{
-  short = ML,
-  long = Mermin-Lindhard,
+\DeclareAcronym{mldf}{
+  short = MLDF,
+  long = Mermin--Lindhard Dielectric Function,
   class = A}
 \DeclareAcronym{qed}{
   short = QED,
   long = Quantum Electrodynamic,
   class = A}
-\DeclareAcronym{ca}{
-  short = CA,
-  long = Configuration Average,
+\DeclareAcronym{ccc}{
+  short = CCC,
+  long = Convergent Close--Coupling,
   class = A}
-\DeclareAcronym{ci}{
-  short = CI,
-  long = Configuration Interaction,
+\DeclareAcronym{rm}{
+  short = RM,
+  long = R--Matrix,
+  class = A}
+\DeclareAcronym{tdcc}{
+  short = TDCC,
+  long = Time-Dependent Close--Coupling,
+  class = A}
+\DeclareAcronym{cc}{
+  short = CC,
+  long = Close--Coupling,
+  class = A}
+\DeclareAcronym{tfda}{
+  short = TFDA,
+  long = Thomas--Fermi--Dirac--Amaldi,
+  class = A}
+\DeclareAcronym{sto}{
+  short = STO,
+  long = Slater--type Orbitals,
+  class = A}
+\DeclareAcronym{rmps}{
+  short = RMPS,
+  long = R--Matrix with Pseudo--States,
+  class = A}
+\DeclareAcronym{ml}{
+  short = ML,
+  long = Machine Learning,
+  class = A}
+\DeclareAcronym{dm}{
+  short = DM,
+  long = Decision Maker,
+  class = A}
+\DeclareAcronym{bo}{
+  short = BO,
+  long = Bayesian Optimization,
+  class = A}
+\DeclareAcronym{gp}{
+  short = GP,
+  long = Gaussian Process,
   class = A}
 \DeclareAcronym{rms}{
   short = RMS,
   long = Root Mean Square,
   class = A}
-\DeclareAcronym{df}{
-  short = DF,
-  long = Dirac--Fock,
-  class = A}
-\DeclareAcronym{pd}{
-  short = PD,
-  long = perturbative Dirac,
+\DeclareAcronym{as}{
+  short = AS,
+  long = Autostructure,
   class = A}
 \begin{comment}
 \DeclareAcronym{}{
@@ -196,11 +254,7 @@ biblio}
   long = ,
   class = A}
 \end{comment}
-\usepackage{setspace}
 
-\doublespacing
-\onehalfspace
-\singlespace
 
 \begin{document}
 % gives the width of the current document in pts
@@ -210,6 +264,7 @@ biblio}
 \include{titulo} 
 \cleardoublepage
 
+\spacing{1.2}
 \pagenumbering{roman}
 \tableofcontents
 \listoffigures
@@ -223,8 +278,8 @@ biblio}
 \include{abstract_spa}
 \include{abstract_eng}
 
-%\spacing{1.5}
 \pagenumbering{arabic}
+\include{intro}
 \include{dim}
 \include{ionmol}
 \include{stopping}
