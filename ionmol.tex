@@ -43,7 +43,8 @@ de blancos moleculare.
  
 Para superar las limitaciones de las aproximaciones perturbativas de 
 primer orden, y dado que los projectiles son iones de carga múltiple, 
-implementaremos el método CDW~\cite{galassi2000,fainstein1988,miraglia2008,miraglia2009}, el 
+implementaremos el método 
+CDW~\cite{galassi2000,fainstein1988,miraglia2008,miraglia2009}, el 
 cual incluye correciones perturbativas de mayor orden. Detalles sobre 
 el método y los cálculos se encuentran en la sección~\ref{sec:atoms}.
 Basamos nuestro trabajo en la premisa de que el proceso de ionización 
@@ -104,7 +105,7 @@ He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. La mayor parte de las
 moléculas organicas están compuestos por estos átomos. Algunas moléculas
 en particular están compuestas por halógenos tales como flúor o bromo.
 Las secciones eficaces de estos átomo han sido calculadas y publicadas
-recientemente por Miraglia~\cite{miraglia2008}.
+por Miraglia~\cite{miraglia2008}.
 
 La sección de ionización total de estos átomos $\sigma_{\alpha}$ se
 calculan usando la aproximación CDW. Los funciones de onda radiales
@@ -133,18 +134,22 @@ en las versiones posteriores y previas del método. Cada sección eficaz
 atómica total fue calculada usando entre 35 y 100 valores de 
 transferencia de momento, 28 ángulos electrónicos fijos, y alrededor
 de 45 valores de energía electrónica, dependiendo de la energía de 
-impacto del proyectil. 
-%Further details of the calculation are given in Ref.~\cite{montanari2017}. 
+impacto del proyectil. Para más detalle, se puede consultar el trabajo
+publicado por Montanari en la Ref.~\cite{montanari2017}. 
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/atomicscaling.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/atomicscaling.eps}
 \caption[Sección eficaz total de ionización reducida de átomos relevantes.]
 {Sección eficaz total de ionización CDW reducida $\sigma_{\alpha}/Z^2$ 
 de seis blancos atómicos relevantes. Las curvas se corresponden a los 
-estados de carga de los seis proyectiles.}
+estados de carga de los seis proyectiles. Experimentos: 
+\mbox{\Large$\circ$} ionización de H por impacto de H$^+$~\cite{Shah:81};
+ionización por impacto de electrones en $\rhd$ H~\cite{Shah:87}, 
+$\square$ C~\cite{Brook:78}, $\square$ N~\cite{Brook:78} y 
+$\triangle$ O~\cite{Thompson:95}.}
 \label{fig:atomscaling}
-\end{figure*} 
+\end{figure} 
 
 En la figura~\ref{fig:atomscaling} mostramos nuestras secciones eficaces
 de ionización implementando el método de CDW para seis elementos esenciales
@@ -153,14 +158,20 @@ sistemas blanco--proyectil resultantes en una única figura, consideramos
 el hecho que en la primera aproximación de Born, la sección eficaz de 
 ionización escala con el cuadrado de la carga del proyectil, es decir
 $Z^{2}$. Las energías de impacto consideradas van de 0.1 a 10 MeV/amu, 
-donde se supone que el método CDW tiene validez. De hecho, para los
-proyectiles de carga más altas, el valor de energía mínimo donde se 
-espera que la CDW tenga validez es mayor a 100 keV. También realizamos
-cálculos similares con la primera aproximación de Born, y corroboramos 
-que ésta provee resultados confiables para valores de energía mayores
-a unos cuantos MeV/amu. Usamos el mismo color de línea para indicar la
+donde se supone que el método CDW tiene validez. Nuestros resultados se
+comparan con secciones eficaces experimentales para el caso de ionización 
+de H por impacto de H$^+$~\cite{Shah:81}. En el rango de medias a altas
+energías, se compara la ionización por impacto de electrones, con la 
+correspondiente conversión de equivelocidad para energías incidentes de 
+electrones superiores a 300 eV, en H~\cite{Shah:87}, C~\cite{Brook:78}, 
+N~\cite{Brook:78} y O~\cite{Thompson:95}. De hecho, para los proyectiles 
+de carga más altas, el valor de energía mínimo donde se espera que la CDW 
+tenga validez es mayor a 100 keV. También realizamos cálculos similares 
+con la primera aproximación de Born (no se muestran aquí), y corroboramos 
+que ésta provee resultados confiables para valores de energía mayores a 
+unos cuantos MeV/amu. Usamos el mismo color de línea para indicar la 
 carga del proyectil en todas las figuras que se muestran en este 
-capítulo: discontinua--roja, sólida--roja, azul, magenta, oliva y naranja
+capítulo: discontinua--roja, sólida--roja, azul, magenta, oliva y naranja 
 para antiprotones, H$^{+}$, He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$, 
 respectivamente. Notablemente, no existen publicaciones en donde se
 tabulen la ionización de átomos por impacto de iones cargados.
@@ -178,7 +189,8 @@ Podemos considerar que la sección eficaz de ionización diferencial de la
 capa $nl$ del átomo $\alpha$, $d\sigma_{\alpha nl}/dE$, es una función 
 de la energía del electrón eyectado $E$ como una función de distribución
 simple~\cite{surdutovic2018}. Así, podemos definir una valor medio 
-$\overline{E}_{\alpha}$ como el dado por Abril y coloboradores~\cite{abril2015},
+$\overline{E}_{\alpha}$ como el dado por Abril y 
+coloboradores~\cite{abril2015},
 \begin{eqnarray}
 \overline{E}_{\alpha} &=&\frac{\langle E_{\alpha}\rangle}{\langle
 1\rangle}=\frac{1}{\sigma_{\alpha}}\sum\limits_{nl}\int dE\,E

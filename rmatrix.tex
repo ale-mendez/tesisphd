@@ -1,4 +1,4 @@
-\chapter{Excitación de iones por impacto de electrones}
+\chapter{Excitación de átomos por impacto de electrón}
 
 %=======================================================================
 \section{Introducción}
@@ -19,16 +19,6 @@ distribución de la población emisora dentro de un estado de carga. El
 método de acoplamiento cercano puede, en principio, proporcionar datos 
 de excitación entre todos los estados objetivo incluidos en su expansión.
 
-\begin{comment}
-La teoría de la estructura atómica se describe en el trabajo fundamental
-de Condon y Shortley (1935). La teoría de átomos complejos altamente 
-ionizados fue extendida por Layzer (1959), quien mostró que, como 
-consecuencia de la degeneración del momento angular $l$ en el límite 
-hidrogénico, es necesario introducir la interacción de todas las 
-configuraciones que cuenten con la misma paridad y el mismo conjunto de 
-números cuánticos principales.
-\end{comment}
-
 La descripción precisa de la excitación por impacto de electrones de los 
 iones atómicos sigue siendo una de las tareas más desafiantes para los 
 métodos no perturbativos más avanzados, tales como el acoplamiento 
@@ -48,50 +38,6 @@ correctamente este proceso. Sin embargo, la determinación de una adecuada
 representación del blanco no es condición suficiente. La apropiada 
 resolución del problema colisional requiere además un amplio conocimiento 
 sobre el método y, en general, grandes recursos computacionales.
-
-
-%En el caso de los sistemas ``simples'', esta complejidad puede deberse al 
-%requisito de una descripción completa de todos los parámetros de 
-%dispersión o simplemente a las secciones transversales totales en el caso 
-%de estados muy excitados. Para los sistemas ``complejos'', la cantidad de 
-%canales de dispersión en sí mismos puede ser abrumadora. 
-
-\begin{comment}
-
-De Bautista (2008)
-
-Various methods are known that allow one to model the structure of atoms 
-and ions, such as Hartree-Fock, multiconfiguration Hartree-Fock,
-superposition of configurations, semi-empirical methods, many-body 
-perturbation methods and central field approximation methods, etc. 
-Methods based on the Hartree-Fock formalism are self-consistent and can 
-yield very accurate results for simple atoms or for a few select levels 
-of more complex systems. Methods based on the central field approximation 
-that allow for configuration interaction have been successful in 
-describing large numbers of levels for more complex systems, such as 
-metals. However, computations of large scale models of 3d transition 
-metals remain quite challenging. In order to obtain accurate (∼10%) 
-radiative rates and cross sections for photon and electron interactions 
-one needs to guarantee eigenenergies that compare well (within ∼5%) with
-experimentally determined energies. However, this is difficult to achieve 
-with ab initio calculations for ions with more than just a few electrons. 
-Moreover, comparisons are regularly done with energies relative to the 
-ground level, which can be misleading if the absolute energy of the 
-ground level is overestimated. 
-
-An approach sometimes used in complex systems to include missing 
-core-valence correlations is the use of ad hoc polarization model 
-potentials~ \cite{Norcross:76}. These model potentials work well for 
-alkalies with a single electron outside the core. For systems with two 
-valence electrons polarization model potentials can also be constructed
-by including dipole and quadrupole polarizations. However, for systems 
-with more than two electrons outside the core, such as transition metals 
-with several 3d electrons, polarization model potentials are generally 
-inapplicable. This is because: (1) one cannot define a closed 3p6 core 
-due to the strong 3p-3d correlations, and (2) treatment of multiple 
-electrons outside the core requires several high-order correction terms 
-beyond the dipole one that make such models impractical.
-\end{comment}
 
 En general, la precisión de los cálculos de estructura del blanco aumenta 
 con el número de configuraciones incluidas en la configuración de 
@@ -124,7 +70,7 @@ El trabajo desarrollado en este capítulo busca encarar el problema de
 optimización de estructura de blancos atómicos de forma sistemática, con 
 mínima intervención de parte del DM. Para ello, recurrimos a herramientas
 ampliamente usadas en el campo del aprendizaje automatizado (\acs{ml}). 
-Particulamente, implementamos la optimización bayesiana (\acs{bo})) a 
+Particulamente, implementamos la optimización bayesiana (\acs{bo}) a 
 través de procesos gaussianos (\acs{gp}). 
 
 %=======================================================================
@@ -152,13 +98,12 @@ donde $V_j^{\mbox{\scriptsize eff}}$ es un potencial modelo, que puede
 ser ajustado a partir de un parámetro de escala 
 $\boldsymbol\lambda=\{\lambda_j\}$. 
 
-
 \subsection{Potenciales modelo}
 
 Existen diversos potenciales modelos que permiten el cálculo de la
 estructura del blanco. En esta sección, nos centraremos en dos de los más 
 usados: el potencial de Thomas-Fermi-Dirac-Amaldi (\acs{tfda}) y el 
-potencial de orbitales tipo Slater (\acs{sto}) de Burgess.
+potencial de orbitales tipo Slater (\acs{sto}) de Burgess. 
 
 \subsubsection*{Potencial TFDA}
 
@@ -269,7 +214,7 @@ polarización de core semi-empíricos~\cite{Loughlin:88}.
 Although such a potential simplifies the calculations significantly and 
 may yield accurate excitation energies and oscillator strengths, the 
 question always remains how well the model potential can really simulate 
-all core–valence correlation effects, including non-dipole contributions.
+all core-valence correlation effects, including non-dipole contributions.
 \end{comment}
 Existen diversas aproximaciones de los efectos de correlación de los 
 electrones pertenecientes a las capas más internas y los electrones de 
@@ -294,9 +239,38 @@ L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,.
 \label{eq:pseudo}
 \end{equation}
 
-\newpage
 %======================================================================
 \section{Optimización de la estructura atómica}
+
+El procedimiento de optimización de la estructura de un blanco atómico
+y cálculo del problema de excitación por impacto de electrón se muestra 
+en la figura~\ref{fig:proc-optatom}. En primer lugar, se definen las 
+configuraciones electrónicas apropiadas para describir de forma precisa 
+los estados de interés. En general, se ajustan las energías de los 
+términos/niveles cercanos al estado fundamental de acuerdo a valores 
+experimentales. Las configuraciones definidas a priori determinan los 
+parámetros a ajustar. El número de parámetros a optimizar (que, por lo 
+general, suelen ser al menos un par de decenas) tiene una dependencia 
+lineal con el número de configuraciones. Así, en segunda instancia se 
+definen qué parámetros variar. Usualmente, se inicializan estos 
+parámetros de manera tal que sean iguales a uno. Luego, se resuelve el
+Hamiltoniano definido por la inicialización de parámetros de escaleo. Las
+soluciones son comparadas con valores experimentales o de referencia, y 
+se calcula una función de costo. La función de costo suele ser la suma de
+los errores relativos de un cierto número de términos/niveles de interés. 
+La variación de estos parámetros suele ser arbitraria buscando la 
+minimización de la función de costo definida. Este procedimiento de 
+repite hasta encontrar una convergencia. En el caso de no converger, 
+puede ocurrir que el número de parámetros a variar no es suficiente y se 
+debe re-definir el espacio de hiper-parámetros. Por otro lado, si el 
+mínimo hallado es satisfactorio se procede a resolver el problema 
+colisional. Suele suceder que el comportamiento de las secciones eficaces 
+o coeficientes de tasa no es correcto. En estos casos, el proceso de 
+optimización vuelve a empezar; es necesario analizar los resultados 
+obtenidos y modificar el modelo definido para corregir los resultados 
+incorrectos. 
+
+{\color{red} Escribir sobre optimización con método de Powell.}
 
 \begin{figure}
 \centering
@@ -345,19 +319,21 @@ L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,.
               |- (defcfg.west) ;
 \end{tikzpicture}
 \caption{Diagrama del cálculo del problema colisional ion-electrón.}
+\label{fig:proc-optatom}
 \end{figure}
 
 \subsection{Ejemplo: influencia del número de configuraciones}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[t]
+
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{figures/rmatrix/example_PS.eps}
+\includegraphics[width=0.9\textwidth]{figures/rmatrix/example_PS.eps}
 \caption[Dependencia de la sección eficaz de excitación con las 
 configuraciones electrónicas y los pseudoestados.]
 {Dependencia de la sección eficaz de excitación por impacto de
 electrón con las configuraciones electrónicas incluidas en el CI 
-(izquierda) y los pseudoestados (derecha) para la transición dipolar 
-prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
+(izquierda) y la inclusión de pseudoestados (derecha) para la transición 
+dipolar prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
 \label{fig:dependencia-CI}
 \end{figure}
 
@@ -389,7 +365,7 @@ pero incluyendo pseudo-orbitales, notamos que el acoplamiento del
 continuo brindado por los pseudo-estados efectivamente tiene un efecto 
 significativo en la sección eficaz.
 
-\newpage
+
 %======================================================================
 \section{Optimización bayesiana: procesos gaussianos}
 \label{sec:gaussianprocess}
@@ -428,9 +404,9 @@ características de la función objeto restringe el tipo de métodos
 numéricos aplicables para esta tarea. Así, quedan descartados los métodos 
 de gradiente y de Newton. Otros métodos, como la busqueda de fuerza bruta 
 resultan impracticables debido a la alta dimensionalidad del espacio de 
-parámetros. La optimización bayesiana es una herramienta usada con 
-frecuencia ya que permite optimizar funciones de tipo ``caja negra'', de 
-la cual sólo se conocen los parámetros de entrada y la evaluación 
+parámetros. La optimización bayesiana (\acs{bo}) es una herramienta usada 
+con frecuencia ya que permite optimizar funciones de tipo ``caja negra'', 
+de la cual sólo se conocen los parámetros de entrada y la evaluación 
 correspondiente de la función. Por ejemplo, en el área de aprendizaje 
 automatizado (\acs{ml}), la optimización de una red neuronal profunda 
 consiste en definir ciertos hiper-parámetros, tales como el número óptimo 
@@ -439,67 +415,58 @@ mínima. La definición de estos parámetros no se corresponde a una función
 analítica y, por lo tanto, en la búsqueda de la representación más óptima 
 no se puede implementar la evaluación de las derivadas del objetivo. 
 
-La optimización bayesiana 
-
-Bayesian optimization is typically used on problems of the form 
-$\max _{x\in A}f(x)$, where $A$ is a set of points whose membership can 
-easily be evaluated. Bayesian optimization is particularly advantageous 
-for problems where $f(x)$ is difficult to evaluate, is a black box with 
-some unknown structure, relies upon less than 20 dimensions, and where 
-derivatives are not evaluated.[6]
-
-Since the objective function is unknown, the Bayesian strategy is to 
-treat it as a random function and place a prior over it. The prior 
-captures beliefs about the behavior of the function. After gathering the 
-function evaluations, which are treated as data, the prior is updated to 
-form the posterior distribution over the objective function. The 
-posterior distribution, in turn, is used to construct an acquisition 
-function (often also referred to as infill sampling criteria) that 
-determines the next query point.
-
 % Bayesian Optimization: Gaussian Process
-There are several methods used to define the prior/posterior distribution 
-over the objective function. The most common two methods use Gaussian 
-Processes in a method called Kriging. Another less expensive method uses 
-the Parzen-Tree Estimator to construct two distributions for 'high' and 
-'low' points, and then finds the location that maximizes the expected 
-improvement.[7]
+El método de optimización bayesiana por excelencia es la regresión 
+mediante procesos gaussianos (\acs{gp}). Existen otros métodos, tales 
+como la estimación de arbol de Parzen (\acs{tpe}), que hemos estudiado 
+inicialmente pero que no serán explorados en este trabajo. 
 
-Standard Bayesian optimization relies upon each $x\in A$ being easy to 
-evaluate, and problems that deviate from this assumption are known as 
-exotic Bayesian optimization problems. Optimization problems can become 
-exotic if it is known that there is noise, the evaluations are being done 
-in parallel, the quality of evaluations relies upon a tradeoff between 
-difficulty and accuracy, the presence of random environmental conditions, 
-or if the evaluation involves derivatives.[6]
+Dado que la función objetivo es desconocida, la estrategia bayesiana 
+consiste en suponer que la función es aleatoria y definir una 
+distribución previa o ``prior'' sobre la función. La distribución previa 
+definida debe contar con información mínima sobre el comportamiento de la 
+función. Luego de analizar las evaluaciones iniciales, el prior es 
+actualizado y define una distribución posterior sobre la función objetivo 
+o costo. A su vez, la distribución posterior permite construir una 
+función de adquisición, que determina el siguiente punto a evaluar. 
+
+La teoría de inferencia bayesiana mediante procesos guassianos es vasta
+y no será tratada aquí. Sin embargo, daremos a continuación una 
+introducción intuitiva al método. La figura~\ref{fig:visualizacion-gp} 
+muestra un visualización esquemática de la optimización de una función
+arbitraria desconocida $f(x)$, que se muestra con línea punteada. El 
+proceso de optimización de la función $f$ en la figura, correspondiente 
+a la búsqueda del máximo, avanza de izquierda a derecha, y de arriba 
+hacia abajo. En primera instancia, no se conoce nada sobre la función; 
+así, la media de la distribución priori se define igual a cero con una 
+incerteza homogenea. Si se dispone de un dato, el prior ahora es tal que 
+la función media pasa por el valor conocido (punto rojo) y la incerteza 
+allí es nula. Esta distribución nos permite definir una función de 
+adquisión, que se muestra con una línea continua roja. Esta función 
+predice el próximo punto a evaluar. 
 
 
+{\color{red} Falta detalle sobre kernels, tipos de mapeos y función de 
+adquisición.}
 
-
-{\color{red} Incluir optimización de powell. Comparación con GP.}
-
-
-\begin{figure}[H]
+\begin{figure}
 \centering
- \includegraphics[width=0.31\textwidth]{figures/gp/funcion.eps} 
- \includegraphics[width=0.31\textwidth]{figures/gp/func_acq.eps} 
- \includegraphics[width=0.31\textwidth]{figures/gp/eval1.eps} \\
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval2.eps}
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval3.eps}
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval4.eps} \\
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval5.eps}
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval6.eps}
-  \includegraphics[width=0.31\textwidth]{figures/gp/eval7.eps} 
+\includegraphics[trim={1.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/funcion.eps} 
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/func_acq.eps} 
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval1.eps} \\
+\vspace{-0.5cm}
+\includegraphics[trim={1.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval2.eps}
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval3.eps}
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval4.eps} \\
+\vspace{-0.5cm}
+\includegraphics[trim={1.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval5.eps}
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval6.eps}
+\includegraphics[trim={3.0cm 0 2cm 1cm},clip,height=0.2\textheight]{figures/gp/eval7.eps} 
+\caption{Visualización de la optimización de una función arbitraria $f$ 
+mediante inferencia por procesos gaussianos.}
+\label{fig:visualizacion-gp}
 \end{figure}
 
-\begin{itemize}
-\item kernel, 
-\item tipo de mapeo, 
-\item función de adquisión, 
-\item evaluaciones iniciales,
-\item costo, 
-\item número de evaluaciones.
-\end{itemize}
 
 
 \newpage
@@ -601,7 +568,7 @@ parámetros es la inevitable posibilidad de encontrar un mínimo local.
 Para descartar esta situación, se lanzaron 100 optimizaciones con 
 semillas diferentes. Estos cálculos son reveladores, ya que nos permiten 
 encontrar relaciones subyacentes entre los parámetros y la naturaleza 
-no-convexa de la superficie hiperdimensional definido por $J$.
+no-convexa de la superficie hiperdimensional definida por $J$.
 
 En la primera optimización (Opt. I), consideramos únicamente la energía
 absoluta del estado fundamental $2s^2\,^1S$. El 100\% de los cálculos con
@@ -674,7 +641,7 @@ $i$ & Término & NIST
 11& $2s3p\,^1D$ & $-28.7498$ 
   & $-28.7020$  & $-28.8010$ & $-28.7361$ & $-28.7422$ & $28.7418$ \\ & & 
   & $1.7[-1]$   & $1.8[-1]$  & $4.7[-2]$  & $2.6[-2]$  & $2.8[-2]$ \\ 
-\hline\multicolumn{3}{c}{$\dagger\,a[b]$ denota $a\times 10^b$} \\
+\hline\multicolumn{3}{c}{$\,^{\dagger}\,a[b]$ denota $a\times 10^b$} \\
 \end{tabular}
 \caption[Energías absolutas de Be.]
 {Energías absolutas en Rydbergs de los primeros 11 términos 
@@ -824,6 +791,8 @@ los términos $2p^2\,^3P$ y $2s3p\,^1P$ se encuentran invertidos. La
 incorrecta representación de estos niveles podría ser mejorada, por 
 ejemplo, considerando un mayor número de configuraciones que intervengan 
 en el CI de estos términos.
+
+{\color{red} Falta dar detalle respecto a la optimización C.}
 
 \begin{table}
 \centering
@@ -975,13 +944,14 @@ a partir de las sucesivas optimizaciones, a excepción de la transición
 $2s^2\,^1S\rightarrow 2p^2\,^1D$. Cuando el blanco no está optimizado, 
 la sección eficaz de excitación en esta transición está por debajo de 
 las predicciones de referencia en la región intermedia. La influencia de 
-la optimización del blanco parece ser significativa en los términos 
+la optimización del blanco es significativa en los términos 
 espectroscópicos más altos. Por ejemplo, en la transición 
 $2s^2\,^1S\rightarrow 2s3s\,^1P$, la sección eficaz predicha cuando el 
 blanco no está optimizado es el doble que los valores de referencia a lo 
 largo de todo el rango de energía. Se puede observar que las sucesivas 
 optimizaciones permiten converger a los valores de referencia y 
-reproducir las secciones eficaces de excitación con precisión. 
+reproducir las secciones eficaces de excitación con precisión en todas
+las transiciones inspeccionadas. 
 
 \begin{figure}
 \centering
