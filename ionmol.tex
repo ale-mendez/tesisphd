@@ -212,7 +212,7 @@ La línea punteada corresponde a la aproximación de Born con $Z=1$.
 La línea discontinua y las líneas sólidas hacen referencia a $\bar{p}$ e 
 iones de carga $+1$, $+2$, $+4$, $+6$ y $+8$, respectivamente.}
 \label{fig:emittedener}
-\end{figure*} 
+\end{figure} 
 
 Las energías medias de los electrones emitidos $\overline{E}_{\alpha}$ 
 para H, C, N y O se muestran en la figura~\ref{fig:emittedener}. 
@@ -284,8 +284,8 @@ la implementación de FBA (línea punteada).
 Para la emisión de electrones de baja energía, la dispersión angular 
 es casi isotrópica~\cite{Rudd1992}. Un valor típico para el ángulo de 
 eyección considerado en la literatura es 
-$\overline{\theta}_{\alpha}\sim$~70\textdegree~\cite{surdutovic2018}, el cual
-resulta bastante certero en el rango de validez de la primera 
+$\overline{\theta}_{\alpha}\sim$~70\textdegree~\cite{surdutovic2018}, el 
+cual resulta bastante certero en el rango de validez de la primera 
 aproximación de Born para cualquier objetivo. Sin embargo, cuando se 
 usa una aproximación de onda distorsionada, $\overline{\theta}_{\alpha}$
 disminuye sustancialmente con $Z$ en la región de energía intermedia, 
@@ -324,23 +324,23 @@ ponderada por $n_{\alpha}$,
  \sigma_{M}=\sum\limits_{\alpha}n_{\alpha}\sigma_{\alpha}\,.  
  \label{eq:sumion}
 \end{equation}
-Clasificamos los blancos moleculares de nuestro interés en tres 
-familias: CH, CHN y ADN, como se muestra en la tabla~\ref{tab:families}.
+Clasificamos los blancos moleculares de nuestro interés en tres
+familias: CH, CHNO, y ADN, como se muestra en la tabla~\ref{tab:families}.
 
 \begin{table}[t]
 \begin{center}
-\begin{tabular}{|p{0.05\textwidth}|p{0.8\textwidth}|}
+\begin{tabular}{|p{0.07\textwidth}|p{0.8\textwidth}|}
 \hline
 \multirow{2}{*}{CH} & CH$_4$ (metano), C$_2$H$_2$ (acetileno), 
-C$_2$H$_4$ (eteno), C$_2$H$_6$ (etano), \\ & C$_6$H$_6$ (benzene) \\
+C$_2$H$_4$ (eteno), C$_2$H$_6$ (etano), \\ & C$_6$H$_6$ (benceno) \\
 \hline
-\multirow{2}{*}{CHN} & C$_5$H$_5$N (piridina), C$_4$H$_4$N$_2$ (pirimidina), 
-C$_2$H$_7$N (dimetilamina), \\ & CH$_5$N (monometilamina) \\
+\multirow{2}{*}{CHNO} & C$_5$H$_5$N (piridina), C$_4$H$_4$N$_2$ (pirimidina), 
+C$_2$H$_7$N (dimetilamina), \\ & CH$_5$N (monometilamina), 
+C$_4$H$_8$O (THF) \\[0.2em]
 \hline
-\multirow{4}{*}{DNA} & C$_5$H$_5$N$_5$ (adenina), C$_4$H$_5$N$_3$O (citosina), 
+\multirow{2}{*}{DNA} & C$_5$H$_5$N$_5$ (adenina), C$_4$H$_5$N$_3$O (citosina), 
 C$_5$H$_5$N$_5$O (guanina), \\ & C$_5$H$_6$N$_2$O$_2$ (timina),
-C$_4$H$_4$N$_2$O$_2$ (uracilo), C$_4$H$_8$O (THF) \\
-% & C$_5$H$_{10}$O$_5$P (esqueleto de ADN), C$_{20}$H$_{27}$N$_7$O$_{13}$P$_2$ (ADN seco) \\
+C$_4$H$_4$N$_2$O$_2$ (uracilo) \\
 \hline
 \end{tabular}
 \caption[Blancos moleculares estudiados y clasificados en tres familias.]
@@ -438,8 +438,13 @@ equivelocidad.}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reglas de escala}
 \label{sec:scaling}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Regla de Toburen}
+\subsection{Escala con electrones activos del blanco}
+\label{subsec:ne_scaling}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Regla de Toburen}
 \label{subsec:toburen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -503,13 +508,13 @@ impacto de protón impact en
 $\triangle$ uracilo~\cite{itoh2013}, 
 $\bigtriangledown$ pirimidina~\cite{wolff2014} y $\meddiamond$ 
 THF~\cite{wang2016}; impacto de electrones en 
-$\rhd$ pyrimidine~\cite{bug2017}, y en $\lhd$, 
+$\rhd$ pirimidina~\cite{bug2017}, y en $\lhd$, 
 $\medstar$~\cite{wolf2019,fuss2009} THF.}
 \label{fig:newscaling}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Escaleo CDW}
+\subsubsection{Números CDW}
 \label{subsec:CDW}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -559,18 +564,28 @@ futuros, principalmente para estados de carga de proyectiles más altos.
 
 \begin{table}
 \begin{center}
-\begin{tabular}{|p{0.11\textwidth}p{0.03\textwidth}p{0.03\textwidth}|
-p{0.11\textwidth}p{0.03\textwidth}p{0.03\textwidth}|
-p{0.11\textwidth}p{0.045\textwidth}p{0.03\textwidth}|}
+\begin{tabular}{|p{0.12\textwidth}p{0.15\textwidth}p{0.03\textwidth}
+p{0.03\textwidth}|p{0.12\textwidth}p{0.15\textwidth}p{0.03\textwidth}
+p{0.03\textwidth}|}
 \hline
- Molecule & $n_e'$ & $n_e$ & Molecule          & $n_e'$ & $n_e$ & Molecule             & $n_e'$ & $n_e$ \\
+Molécula        & Nombre      & $n_e'$ & $n_e$ & 
+Molécula        & Nombre      & $n_e'$ & $n_e$ \\
 \hline
- H$_2$    & 2 & 2   & C$_2$H$_7$N         & 19 & 20 & C$_4$H$_5$N$_3$O     & 37 & 42 \\
- H$_2$O   & 6 & 8   & C$_4$H$_8$O         & 28 & 30 & C$_5$H$_6$N$_2$O$_2$ & 42 & 48 \\
- NH$_3$   & 7 & 8   & C$_4$H$_4$N$_2$     & 28 & 30 & C$_5$H$_5$N$_5$      & 45 & 50 \\
- CH$_4$   & 8 & 8   & C$_6$H$_6$          & 30 & 30 & C$_5$H$_5$N$_5$O     & 49 & 56 \\
- CH$_5$N  & 13 & 14 & C$_4$H$_4$N$_2$O$_2$& 36 & 40 & C$_5$H$_{10}$O$_5$P  & 54.5 & 65 \\
- \hline
+H$_2$           & Dihidrógeno & 2      & 2     & 
+C$_4$H$_4$N$_2$ & Pirimidina  & 28     & 30    \\
+H$_2$O          & Agua        & 6      & 8     & 
+C$_6$H$_6$      & Etano       & 30     & 30    \\
+NH$_3$          & Amoníaco    & 7      & 8     & 
+C$_4$H$_4$N$_2$O$_2$ & Uracilo & 36    & 40    \\
+CH$_4$          & Metano      & 8      & 8     & 
+C$_4$H$_5$N$_3$O & Citosina   & 37     & 42    \\
+CH$_5$N         & Metilamina  & 13     & 14    & 
+C$_5$H$_6$N$_2$O$_2$ & Timina & 42     & 48    \\
+C$_2$H$_7$N     & Etilamina   & 19     & 20    & 
+C$_5$H$_5$N$_5$ & Adenina     & 45     & 50    \\
+C$_4$H$_8$O     & THF         & 28     & 30    & 
+C$_5$H$_5$N$_5$O & Guanina    & 49     & 56    \\
+\hline
 \end{tabular}
 \caption[Números de escala CDW y números de escala de Toburen.]
 {Números de escala obtenidos a partir de los cálculos CDW $n_e'$, y 
@@ -629,6 +644,150 @@ experimentales se interpolaron entre vecinos cercanos.
 %for proton impact reinforces our multicharged--ion findings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Escala con la carga del ion}
+\label{sec:zscaling}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We found two types of $Z$-scaling laws in the literature applicable 
+to the intermediate impact energy range. The rule suggested by Janev 
+and Presnyakov~\cite{janev1980} considers $\sigma/Z$ versus $E/Z$ to be 
+the \textit{natural} reduced form of the ionization cross section 
+$\sigma$ and the incident ion energy $E$. More recently, Montenegro and 
+co-workers~\cite{dubois13,montenegro_pra13} suggested an alternative 
+scaling by taking into account that the cross section is a function of 
+$Z^2/E$ at high energies. Their scaling, given by 
+\begin{equation}
+ \sigma/Z^{\alpha}=f(E/Z^{2-\alpha}),
+\label{eq:Montenegro}
+\end{equation}
+keeps the $Z^2/E$ relationship for any value of the parameter 
+$\alpha$. The authors proposed $\alpha=4/3$ for the ionization of He and 
+H$_2$ by differently charged ions~\cite{dubois13}. 
+ 
+Following the work of Montenegro and collaborators, we found that the 
+parameter that best converges the CDW-SSM cross sections of the forty 
+collisional systems over the broadest energy range is $\alpha=1.2$. 
+The validity of this particular scaling is evident in 
+Fig.~\ref{fig:zreduced}, where --for each target-- the CDW-SSM curves
+corresponding to different ions lay one over the other. 
+It is worth noting that our theoretical results are valid for impact
+energies above the maximum of the cross sections, which corresponds to 
+an impact energy range from 50 keV for H$^+$ to 250 keV/amu for 
+O$^{+8}$.
+
+We also examined the experimental data available for the forty 
+ion-target systems~\cite{itoh2013,iriki2011,wolff2014,wang2016,
+tribedi2019,agnihotri2012,agnihotri2013,Luna2007,Rudd86,pRudd85,
+toburen80,Ohsawa05,Bhattacharjee17,Luna_Li_water,DalCappello2009,
+Tribedi_O_water} with the $Z^\alpha$-scaling rule. For targets with 
+none or little experimental data, we included electron impact 
+ionization results~\cite{rahman2016,bug2017,wolf2019,fuss2009} at high 
+velocity with the corresponding equivelocity conversion. As can be 
+noted, most of the data in Fig.~\ref{fig:zreduced} confirm the present 
+scaling, even for O$^{+8}$ in water~\cite{Tribedi_O_water}. Only two 
+data sets are off our predictions: the ionization cross section of 
+uracil by swift C, O, and F ions from Refs.~\cite{agnihotri2012,
+agnihotri2013}, and the values for Li$^{+3}$ in water from 
+Ref.~\cite{Luna_Li_water} for $E<600$~keV/amu. In the case of uracil, 
+recent CTMC calculations by Sarkadi~\cite{sarkadi2016} are also above 
+the experimental values by Tribedi and collaborators~\cite{agnihotri2012,
+agnihotri2013}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{ionmol/adn1_zscale.eps}
+\caption{(Color online) Scaled ionization cross section $\sigma/Z^{\alpha}$ 
+as a function of the ion impact energy $E/Z^{2-\alpha}$ with $\alpha=1.2$. 
+Colors are associated with the incident ion labeled on top of the figure. 
+Curves: present CDW-SSM theoretical results. 
+Symbols: experimental data~\cite{itoh2013,iriki2011,wolff2014,wang2016,
+tribedi2019,agnihotri2012,agnihotri2013,Luna2007,Rudd86,pRudd85,
+toburen80,Ohsawa05,Bhattacharjee17,Luna_Li_water,DalCappello2009,
+Tribedi_O_water}. Electron impact ionization values~\cite{rahman2016,
+bug2017,wolf2019,fuss2009} are included with the corresponding 
+equi-velocity conversion.}
+\label{fig:zreduced}
+\end{figure} 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{ionmol/adn2_zscale.eps}
+\caption{(Color online) Scaled ionization cross section $\sigma/Z^{\alpha}$ 
+as a function of the ion impact energy $E/Z^{2-\alpha}$ with $\alpha=1.2$. 
+Colors are associated with the incident ion labeled on top of the figure. 
+Curves: present CDW-SSM theoretical results. 
+Symbols: experimental data~\cite{itoh2013,iriki2011,wolff2014,wang2016,
+tribedi2019,agnihotri2012,agnihotri2013,Luna2007,Rudd86,pRudd85,
+toburen80,Ohsawa05,Bhattacharjee17,Luna_Li_water,DalCappello2009,
+Tribedi_O_water}. Electron impact ionization values~\cite{rahman2016,
+bug2017,wolf2019,fuss2009} are included with the corresponding 
+equi-velocity conversion.}
+\label{fig:zreduced}
+\end{figure} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Escala con electrones activos y carga del ion}
+\label{sec:nez_scaling}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+By incorporating the $Z^\alpha$ reduction and the scaling with the 
+number of active electrons, we introduce the scaled and reduced 
+ionization cross section of molecules $\tilde{\sigma}$, which is 
+expressed as a function of $E/Z^{2-\alpha}$, and it is given by
+\begin{equation}
+ \tilde{\sigma}=\frac{\sigma_e}{Z^{\alpha}}=\frac{\sigma_M/n_e}{Z^{\alpha}}\,,
+\label{eq:u-scaling}
+\end{equation}
+where $\sigma_M$ is the ionization cross section for the molecular 
+target, $n_e$ is the number of active electrons per molecule displayed 
+in Table~\ref{nn}, and the parameter is $\alpha=1.2$. 
+Fig.~\ref{fig:zalpha} shows the theoretical and experimental values of 
+$\tilde{\sigma}$ (given by Eq.~\ref{eq:u-scaling}) for all the systems 
+displayed in Fig.~\ref{fig:zreduced}. As can be noted, the scaling 
+works very well and is independent of the ion charge or the complexity 
+of the molecular target. Our theoretical curves lay in a narrow band 
+valid for any charged ion (reduced with $Z^\alpha$) in any molecule 
+(scaled with the number of active electrons) with a dispersion of about 
+$\pm 20\%$. If we consider the experimental data, the uncertainty of 
+our scaling grows to $\pm 30\%$, which is schematized in 
+Fig.~\ref{fig:zreduced} with a gray area. It is worth noting that we 
+did not include in this figure the data for uracil from 
+Refs.~\cite{agnihotri2012,agnihotri2013}, and Li$^{+3}$ on 
+water~\cite{Luna_Li_water}. The discussion about these experimental 
+values exceeds the present work. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{ionmol/Zne_scaling.eps}
+\caption{(Color online) Ionization cross section reduced with the ion
+charge $Z$ and scaled with number of active electrons per molecule $n_e$,
+given by Eq.~(\ref{eq:u-scaling}) with $\alpha=1.2$. 
+Curves: present CDW-SSM theoretical results. 
+Symbols: experimental data~\cite{itoh2013,iriki2011,wolff2014,wang2016,
+tribedi2019,Luna2007,Rudd86,pRudd85,toburen80,Ohsawa05,Bhattacharjee17,
+DalCappello2009,Tribedi_O_water,Rudd85,Luna2019,Rudd1983}. Electron 
+impact ionization values~\cite{rahman2016,bug2017,wolf2019,fuss2009} 
+are included with the corresponding equi-velocity conversion.}
+\label{fig:zalpha}
+\end{figure} 
+
+We consider the present scaling robust enough to be valid for different 
+ion-molecule combinations. We tested the generality of our model 
+by including in Fig.~\ref{fig:zreduced} several data sets of 
+molecular targets not considered previously, such as the measurements 
+by Rudd~\textit{et al.}~\cite{Rudd85,Rudd1983} for H$^{+}$ and He$^{+2}$ 
+in N$_2$, O$_2$, CH$_4$, CO and CO$_2$, and recent values by 
+Luna~\textit{et al.} \cite{Luna2019} for H$^{+}$ in CH$_4$ . 
+
+The good agreement shown in Fig.~\ref{fig:zalpha} summarizes the main 
+result of this work and holds the validity of the present scaling for 
+different ions and targets. Although the theoretical CDW-SSM results 
+are valid for energies above the maximum of the cross sections, the 
+scaling of the experimental data extends even to lower impact energies, 
+as can be noted in Fig.~\ref{fig:zalpha}. New measurements for other 
+ions and molecules are expected to reinforce the present proposal. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estructura molecular de los blancos}
 \label{sec:molcalculations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -639,15 +798,15 @@ empleando el código {\sc gamess}. La optimización de la geometría y los
 cálculos de energía de un centro se realizaron implementando el método
 restringido de Hartree-Fock y el conjunto de bases 3-21G. 
 
-\begin{figure*}[t]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/levelsDNA.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/levelsDNA.eps}
 \caption[Energías de ligadura moleculares teóricas de ADN y ARN.]
 {Energías de ligadura moleculares teóricas de adenina, citosina, guanina, 
 timina, y uracilo, comparado con los valores correspondientes de los 
 átomos que las constituyen.}
 \label{fig:bindener}
-\end{figure*}
+\end{figure}
 
 En la figura~\ref{fig:bindener} se muestran las energías de ligadura 
 molecular de los electrones de valencia para las nucleobases: adenina, 
@@ -683,26 +842,26 @@ carga efectiva $q_{\alpha}$ por átomo. La carga de Mulliken proporciona
 un valor posible para $q_{\alpha}$; sin embargo, existe una gran variedad
 de posibles distribuciones de carga~\cite{lee2003}.
 
-\begin{table*}[t]
+\begin{table}
 \begin{center}
 \begin{tabular}{|p{0.12\textwidth}|p{0.08\textwidth}|p{0.08\textwidth}|p{
-0.08\textwidth}|p{0.08\textwidth}|p{0.24\textwidth}|}
+0.08\textwidth}|p{0.08\textwidth}|p{0.28\textwidth}|}
 \hline
-Element & C & H & N & O & New stoichiometry \\
+Molécula & C & H & N & O & Estequiometría modif. \\
 \hline
-Adenine & +0.32 & +0.23 & --0.55 &       & 
+Adenina & +0.32 & +0.23 & --0.55 &       & 
 C$_{4.92}$H$_{4.77}$N$_{5.14}$ \\ 
 \hline
-Cytosine & +0.28 & +0.21 & --0.56 & --0.53 & 
+Citosina & +0.28 & +0.21 & --0.56 & --0.53 & 
 C$_{3.93}$H$_{4.79}$N$_{3.14}$O$_{1.13}$ \\ 
 \hline
-Guanine & +0.46 & +0.20 & --0.58 & --0.36 & 
+Guanina & +0.46 & +0.20 & --0.58 & --0.36 & 
 C$_{4.89}$H$_{4.80}$N$_{5.15}$O$_{1.09}$ \\ 
 \hline
-Thymine & +0.20 & +0.19 & --0.54 & --0.52 & 
+Timina & +0.20 & +0.19 & --0.54 & --0.52 & 
 C$_{4.95}$H$_{5.81}$N$_{2.13}$O$_{2.13}$ \\ 
 \hline
-Uracil & +0.31 & +0.22 & --0.59 & --0.47 & 
+Uracilo & +0.31 & +0.22 & --0.59 & --0.47 & 
 C$_{3.92}$H$_{3.78}$N$_{2.15}$O$_{2.12}$ \\ 
 \hline
 \end{tabular}
@@ -712,7 +871,7 @@ estequiométrica definida por la ecuación~(\ref{eq:newstoi}) para cinco
 moléculas de ADN.}
 \label{tab:newstoi}
 \end{center}
-\end{table*}
+\end{table}
 
 Para tomar en cuenta este efecto, consideramos que el número total de 
 electrones $Q_{\alpha }$ en el elemento $\alpha$ se distribuye de forma
