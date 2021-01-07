@@ -59,19 +59,18 @@ ejectados. Contrariamente a lo esperado según la primera aproximación
 de Born, encontramos que una dependencia sustancial con la carga del 
 projectil. 
 
-En la sección~\ref{sec:SSM}, tratamos la complejidad de la
-estructura molecular de los blancos implementando el modelo estequiométrico 
-simple (\acs{ssm}), el cual consiste en asumir que las moleculas están 
-compuestas por átomos aislados e independientes, y que la sección 
-eficaz se expresa como una combinación lineal de cálculos atómicos 
-pesados según la estequiometría de la 
-molécula. Así, implementando en conjunto el método CDW y SSM, podemos
-obtener las secciones eficaces de ionización de diversas moléculas de 
-interés biológico, incluyendo las moléculas que componen el ADN y ARN 
---adenina, citosina, guanina, timina, uracilo--, tetrahidrofurano 
-(\acs{thf}), pirimidina y grupos de fosfato del esqueleto del ADN, 
-debido al impacto de antiprotones, H$^{+}$, He$^{2+}$, Be$^{4+}$, 
-C$^{6+}$, y O$^{8+}$. 
+En la sección~\ref{sec:SSM}, tratamos la complejidad de la estructura 
+molecular de los blancos implementando el modelo estequiométrico simple 
+(\acs{ssm}), el cual consiste en asumir que las moleculas están 
+compuestas por átomos aislados e independientes, y que la sección eficaz 
+se expresa como una combinación lineal de cálculos atómicos pesados según 
+la estequiometría de la molécula. Así, implementando en conjunto el 
+método CDW y SSM, podemos obtener las secciones eficaces de ionización de 
+diversas moléculas de interés biológico, incluyendo las moléculas que 
+componen el ADN y ARN --adenina, citosina, guanina, timina, uracilo--, 
+tetrahidrofurano (\acs{thf}), pirimidina y grupos de fosfato del 
+esqueleto del ADN, debido al impacto de antiprotones, H$^{+}$, He$^{2+}$, 
+Be$^{4+}$, C$^{6+}$, y O$^{8+}$. 
 En la sección~\ref{sec:scaling}, estudiamos la regla de escala de 
 Toburen~\cite{toburen1975,toburen1976}, que establece que la razón entre
 la sección eficaz de ionización y el número de electrones débilmente
@@ -99,13 +98,13 @@ secciones eficaces totales de ionización.
 \label{sec:atoms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-En esta sección, consideraremos seis blancos atómicos: $\alpha=$ H, C, 
-N, O, P, y S, y seis proyectiles: antiprotones $\bar{p}$, H$^{+}$, 
-He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. La mayor parte de las 
-moléculas organicas están compuestos por estos átomos. Algunas moléculas
-en particular están compuestas por halógenos tales como flúor o bromo.
-Las secciones eficaces de estos átomo han sido calculadas y publicadas
-por Miraglia~\cite{miraglia2008}.
+En esta sección, consideraremos cuatro blancos atómicos: $\alpha=$ H, C, 
+N y O, y seis proyectiles: antiprotones $\bar{p}$, H$^{+}$, He$^{2+}$, 
+Be$^{4+}$, C$^{6+}$, y O$^{8+}$. La mayor parte de las moléculas organicas 
+están compuestos por estos átomos. Algunas moléculas en particular están 
+compuestas por halógenos tales como flúor o bromo. Las secciones eficaces 
+de estos átomo han sido calculadas y publicadas por 
+Miraglia~\cite{miraglia2008}.
 
 La sección de ionización total de estos átomos $\sigma_{\alpha}$ se
 calculan usando la aproximación CDW. Los funciones de onda radiales
@@ -142,7 +141,7 @@ publicado por Montanari en la Ref.~\cite{montanari2017}.
 \includegraphics[width=0.9\textwidth]{ionmol/atomicscaling.eps}
 \caption[Sección eficaz total de ionización reducida de átomos relevantes.]
 {Sección eficaz total de ionización CDW reducida $\sigma_{\alpha}/Z^2$ 
-de seis blancos atómicos relevantes. Las curvas se corresponden a los 
+de cuatro blancos atómicos relevantes. Las curvas se corresponden a los 
 estados de carga de los seis proyectiles. Experimentos: 
 \mbox{\Large$\circ$} ionización de H por impacto de H$^+$~\cite{Shah:81};
 ionización por impacto de electrones en $\rhd$ H~\cite{Shah:87}, 
@@ -152,12 +151,12 @@ $\triangle$ O~\cite{Thompson:95}.}
 \end{figure} 
 
 En la figura~\ref{fig:atomscaling} mostramos nuestras secciones eficaces
-de ionización implementando el método de CDW para seis elementos esenciales
-debido al impacto de seis proyectiles cargados. Para comparar los 36
-sistemas blanco--proyectil resultantes en una única figura, consideramos
-el hecho que en la primera aproximación de Born, la sección eficaz de 
-ionización escala con el cuadrado de la carga del proyectil, es decir
-$Z^{2}$. Las energías de impacto consideradas van de 0.1 a 10 MeV/amu, 
+de ionización implementando el método de CDW para cuatro elementos 
+esenciales debido al impacto de seis proyectiles cargados. Para comparar 
+los 24 sistemas blanco--proyectil resultantes en una única figura, 
+consideramos el hecho que en la primera aproximación de Born, la sección 
+eficaz de ionización escala con el cuadrado de la carga del proyectil, es 
+decir $Z^{2}$. Las energías de impacto consideradas van de 0.1 a 10 MeV/amu, 
 donde se supone que el método CDW tiene validez. Nuestros resultados se
 comparan con secciones eficaces experimentales para el caso de ionización 
 de H por impacto de H$^+$~\cite{Shah:81}. En el rango de medias a altas
@@ -203,9 +202,9 @@ coloboradores~\cite{abril2015},
 donde $\Sigma_{nl}$ tiene en cuenta la suma de las diferentes 
 contribuciones de cada capa del elemento $\alpha$.
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/ener_mean.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/ener_mean.eps}
 \caption[Distribución energética media de electrones emitidos.]
 {Distribución energética media de electrones emitidos por ionización 
 debido al impacto de iones cargados dado por la ecuación~(\ref{40}). 
@@ -216,7 +215,7 @@ iones de carga $+1$, $+2$, $+4$, $+6$ y $+8$, respectivamente.}
 \end{figure*} 
 
 Las energías medias de los electrones emitidos $\overline{E}_{\alpha}$ 
-para H, C, N, O, P y S se muestran en la figura~\ref{fig:emittedener}. 
+para H, C, N y O se muestran en la figura~\ref{fig:emittedener}. 
 El rango de velocidad de impacto fue reducido a $v=10$~a.u. debido 
 a las limitaciones numéricas en la expansión de esféricos armónicos dados
 por la ecuación~(\ref{eq:contwave}). A medida que la velocidad de 
@@ -248,15 +247,15 @@ para todos los iones, como puede verse en la figura~\ref{fig:emittedener}.
 \label{subsec:meanang}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/ang_mean.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/ang_mean.eps}
 \caption[Distribución angular media de electrones emitidos.]
 {Distribución angular media de electrones emitidos por ionización debido
 al impacto de iones cargados. Las curvas son iguales a las de la 
 figura~\ref{fig:emittedener}.}
 \label{fig:emittedang}
-\end{figure*} 
+\end{figure} 
 
 Como mencionamos anteriormente la emisión de electrones secundarios
 contribuye al daño total. Entonces, no sólo es esencial conocer la 
@@ -332,13 +331,16 @@ familias: CH, CHN y ADN, como se muestra en la tabla~\ref{tab:families}.
 \begin{center}
 \begin{tabular}{|p{0.05\textwidth}|p{0.8\textwidth}|}
 \hline
-\multirow{2}{*}{CH} & CH$_4$ (metano), C$_2$H$_2$ (acetileno), C$_2$H$_4$ (eteno), C$_2$H$_6$ (etano), \\ & C$_6$H$_6$ (benzene) \\
+\multirow{2}{*}{CH} & CH$_4$ (metano), C$_2$H$_2$ (acetileno), 
+C$_2$H$_4$ (eteno), C$_2$H$_6$ (etano), \\ & C$_6$H$_6$ (benzene) \\
 \hline
-\multirow{2}{*}{CHN} & C$_5$H$_5$N (piridina), C$_4$H$_4$N$_2$ (pirimidina), C$_2$H$_7$N (dimetilamina), \\ & CH$_5$N (monometilamina) \\
+\multirow{2}{*}{CHN} & C$_5$H$_5$N (piridina), C$_4$H$_4$N$_2$ (pirimidina), 
+C$_2$H$_7$N (dimetilamina), \\ & CH$_5$N (monometilamina) \\
 \hline
-\multirow{4}{*}{DNA} & C$_5$H$_5$N$_5$ (adenina), C$_4$H$_5$N$_3$O (citosina), C$_5$H$_5$N$_5$O (guanina), \\ & C$_5$H$_6$N$_2$O$_2$ (timina), C$_4$H$_4$N$_2$O$_2$ (uracilo), C$_4$H$_8$O (THF), \\
-      & C$_5$H$_{10}$O$_5$P (esqueleto de ADN), C$_{20}$H$_{27}$N$_7$O$_{13}$P$_2$ 
-(ADN seco) \\
+\multirow{4}{*}{DNA} & C$_5$H$_5$N$_5$ (adenina), C$_4$H$_5$N$_3$O (citosina), 
+C$_5$H$_5$N$_5$O (guanina), \\ & C$_5$H$_6$N$_2$O$_2$ (timina),
+C$_4$H$_4$N$_2$O$_2$ (uracilo), C$_4$H$_8$O (THF) \\
+% & C$_5$H$_{10}$O$_5$P (esqueleto de ADN), C$_{20}$H$_{27}$N$_7$O$_{13}$P$_2$ (ADN seco) \\
 \hline
 \end{tabular}
 \caption[Blancos moleculares estudiados y clasificados en tres familias.]
@@ -399,11 +401,14 @@ pueden considerar otras escalas en esta región. En la
 sección~\ref{sec:scaling} inspeccionaremos algunas de ellas.
 
 
-%At intermediate impact energies, the $Z^2$ rule no longer holds, and other scalings can be considered in this region. For example, the molecular cross section and ion impact energy can be reduced with the projectile charge $Z$, as suggested in in~\cite{janev1980,dubois2013}. 
+%At intermediate impact energies, the $Z^2$ rule no longer holds, and 
+%other scalings can be considered in this region. For example, the 
+%molecular cross section and ion impact energy can be reduced with the 
+%projectile charge $Z$, as suggested in in~\cite{janev1980,dubois2013}. 
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/adn1.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/adn1.eps}
 \caption[Sección eficaz total de ionización reducida de moléculas (parte 1).]
 {Sección eficaz total de ionización reducida CDW $\sigma_{M}/Z^2$ como una 
 función de la energía de impacto del ion. Experimentos: 
@@ -411,11 +416,11 @@ función de la energía de impacto del ion. Experimentos:
 $\square$~\cite{rahman2016} para impacto de electron con conversión de
 equivelocidad.}
 \label{fig:crossDNA_1}
-\end{figure*} 
+\end{figure} 
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/adn2.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/adn2.eps}
 \caption[Sección eficaz total de ionización reducida de moléculas (parte 2).]
 {Sección eficaz total de ionización reducida CDW $\sigma_{M}/Z^2$ como una 
 función de la energía de impacto del ion. Experimentos: impacto de protón
@@ -428,7 +433,7 @@ Símbolos~$\rhd$~\cite{bug2017}, $\lhd$~\cite{wolf2019}, y
 $\medstar$~\cite{fuss2009} para impacto de electrón con conversión de 
 equivelocidad.}
 \label{fig:crossDNA_2}
-\end{figure*} 
+\end{figure} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reglas de escala}
@@ -443,7 +448,7 @@ primer intento de desarrollar un modelo fenomenológico completo pero
 sencillo para la eyección de electrones de moléculas complejas. Los 
 autores encontraron conveniente escalar la sección eficaz de ionización 
 experimental en términos del número de electrones ligados débilmente, $n_e$.
-Por ejemplo, para C, N, O, P y S, este número es el número total de 
+Por ejemplo, para C, N y O, este número es el número total de 
 electrones menos la capa K. Siguiendo a Toburen, la sección eficaz de 
 ionización escalada por electrón débilmente ligado $\sigma_{e}^T$ es
 \begin{equation}
@@ -457,8 +462,8 @@ son los números de Toburen dados por
 \begin{array}{ll}
 1, & \text{para H,} \\
 4, & \text{para C,} \\ 
-5, & \text{para N y P,} \\ 
-6, & \text{para O y S}\,.
+5, & \text{para N,} \\ 
+6, & \text{para O}\,.
 \end{array}\right.
 \label{eq:nelec} 
 \end{equation} 
@@ -483,9 +488,9 @@ como se puede observar en esta figura, la banda universal es bastante
 ancha.
 
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/molscaling85.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/CDWscaling.eps}
 \caption[Sección eficaz de ionización por electrón débilmente ligado.]
 {Sección eficaz de ionización escala por electrón débilmente ligado 
 usando (a)~los números de Toburen $\nu_{\alpha}^T$, y (b) los
@@ -501,7 +506,7 @@ THF~\cite{wang2016}; impacto de electrones en
 $\rhd$ pyrimidine~\cite{bug2017}, y en $\lhd$, 
 $\medstar$~\cite{wolf2019,fuss2009} THF.}
 \label{fig:newscaling}
-\end{figure*}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Escaleo CDW}
@@ -516,10 +521,9 @@ constante, no es satisfecha de manera apropiada por los cálculos CDW.
 Por ejemplo, la figura~\ref{fig:atomscaling} muestra que las secciones
 eficaces de O son muy similares a las secciones eficaces de C, lo que 
 sugiere 4 electrones activos en O en lugar de 6. De la misma manera, el 
-número de electrones activos para N, P y S que se obtienen a partir de 
-los resultados teóricos CDW también son diferentes de los $\nu_{\alpha}^T$ 
+número de electrones activos para N que se obtienen a partir de los 
+resultados teóricos CDW también son diferentes de los $\nu_{\alpha}^T$ 
 dados por la ecuación~(\ref{eq:nelec}).
-
 
 Basándonos en los resultados CDW, proponemos una nueva escala,
 \begin{equation}
@@ -529,14 +533,14 @@ Basándonos en los resultados CDW, proponemos una nueva escala,
 donde $n_e'=\sum_{\alpha}n_{\alpha}\nu_{\alpha}^{\text{CDW}}$, y
 $\nu_{\alpha}^{\text{CDW}}$ son los números de electrones activos 
 por átomo obtenidos de las secciones eficaces de ionización CDW para los 
-diferentes iones en los blancos atómicos H, C, N, O, P, y S. Estos 
-valores están dados por
+diferentes iones en los blancos atómicos H, C, N y O. Estos valores están 
+dados por
 \begin{equation}
 \nu_{\alpha }^{\text{CDW}} \sim\left\{ 
 \begin{array}{ll}
 1, & \text{para H,} \\
-4, & \text{para C, N, y O,} \\ 
-4.5, & \text{para P y S}\,.
+4, & \text{para C, N, y O}\,. \\ 
+%4.5, & \text{para P y S}\,.
 \end{array}
 \right. 
 \label{eq:scalingCDW}
@@ -553,7 +557,7 @@ pirimidina~\cite{bug2017} y THF~\cite{bug2017,wolf2019,fuss2009}.
 Será interesante verificar nuestras predicciones con experimentos 
 futuros, principalmente para estados de carga de proyectiles más altos.
 
-\begin{table}[t]
+\begin{table}
 \begin{center}
 \begin{tabular}{|p{0.11\textwidth}p{0.03\textwidth}p{0.03\textwidth}|
 p{0.11\textwidth}p{0.03\textwidth}p{0.03\textwidth}|
@@ -576,9 +580,9 @@ biológico.}
 \end{center}
 \end{table}
 
-\begin{figure*}[t!]
+\begin{figure}
 \centering
-\includegraphics[width=\textwidth]{ionmol/scale_ne.eps}
+\includegraphics[width=0.9\textwidth]{ionmol/scale_ne.eps}
 \caption[Sección eficaz de ionización por impacto de protón en términos de
 $n_e$.]
 {Sección eficaz de ionización por impacto de protón a 0.5, 1,
@@ -591,7 +595,7 @@ $\blacktriangle$ C$_2$H$_7$N, CH$_5$N, metano y amoníaco~\cite{lynch1976},
 \mbox{\scriptsize$\bigstar$} amoníaco y H$_2$~\cite{rudd1985}, y 
 \mbox{\Large$\bullet$} agua~\cite{luna2007}.}
 \label{fig:recta}
-\end{figure*}
+\end{figure}
 
 Usando la ecuación~(\ref{eq:scalingCDW}), definimos nuevos números de 
 electrones activos $n_e'$ para las moléculas consideradas. En la 
@@ -613,9 +617,16 @@ muestra una buena concordancia general, desde moléculas pequeñas, tales
 como H$_2$, H$_2$O, and CH$_4$, hasta las más complejas, como la adenina. 
 Para los datos de ionización por impacto de electrón, los datos 
 experimentales se interpolaron entre vecinos cercanos. 
-%It is worth mentioning that an equivalent plot using the Toburen numbers $n_e$ does not exhibit the straight lines obtained with the present scaling. 
+%It is worth mentioning that an equivalent plot using the Toburen numbers 
+%$n_e$ does not exhibit the straight lines obtained with the present scaling. 
 
-%While finishing the present work, we became aware of an accepted manuscript by L\"udde~\textit{et al.}~\cite{ludde2019} on total ionization of biological molecules by proton impact, using the independent--atom--model pixel counting method~\cite{ludde2016,ludde2018}. The authors also raised a scaling  with $\nu_{\alpha}=4$ for C, N, and O, but $\nu_{\alpha}=6$ for P. The agreement with this independent method for proton impact reinforces our multicharged--ion findings.
+%While finishing the present work, we became aware of an accepted 
+%manuscript by L\"udde~\textit{et al.}~\cite{ludde2019} on total 
+%ionization of biological molecules by proton impact, using the
+%independent--atom--model pixel counting method~\cite{ludde2016,ludde2018}.
+%The authors also raised a scaling  with $\nu_{\alpha}=4$ for C, N, and O, 
+%but $\nu_{\alpha}=6$ for P. The agreement with this independent method 
+%for proton impact reinforces our multicharged--ion findings.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estructura molecular de los blancos}
@@ -743,7 +754,7 @@ moléculas complejas dentro del margen de error esperado.
 En este capítulo, hemos estudiado la ionización de blancos moleculares 
 de interés biológico debido al impacto de iones de carga múltple. Se han
 calculado secciones eficaces de ionización de diesciseis blancos 
-moleculares biological conteniendo H, C, N, O, P, y S por el impacto de
+moleculares biological conteniendo H, C, N y O por el impacto de
 antiprotones, H$^{+}$, He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. 
 Hemos combinado la implementación del método de onda distorcionada
 CDW para blancos atómicos descritos con potenciales efectivos DIM y la 
@@ -768,7 +779,7 @@ con un determinado número de electrones débilmente ligados.
 Encontramos que las secciones eficaces de ionización escalan
 mejor cuando se normalizan con diferentes números de electrones activos
 en la colisión, los cuales son obtenidos a partir de los resultados CDW
-para los atómos H, C, N, O, P y S. Esta nueva regla de escala fue 
+para los atómos H, C, N y O. Esta nueva regla de escala fue 
 probada con buenos resultados para los seis proyectiles y diecisiete 
 moléculas estudiadas aquí. La comparación con los datos experimentales 
 refuerza nuestros hallazgos. Además, probamos la escala mediante la 
