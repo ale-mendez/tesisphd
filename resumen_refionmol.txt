@@ -1,0 +1,104 @@
+M. E. Galassi, R. D. Rivarola, M. Beuve, G. H. Olivera, P. D. Fainstein,
+Phys. Rev. A 63, 022701 (2000).
+
+Ionization total cross sections for proton impact on N2, CO, CH4, and CO2.
+They used the CDW-EIS model combined with two approximations for the 
+molecular targets: 
+* AR: Bragg's additivity rule, and 
+* MO-LCAO-SCF: a molecular representation of the bound state target wave 
+function (the cross section is approximated by a linear combination of 
+atomic cross sections where the coefficients are determined from a 
+population analysis). 
+The FBA was also computed with the MO-LCAO-SCF approximation.
+
+=========================================================================
+CTMC + CBO
+=========================================================================
+
+I. Abbas, C. Champion, B. Zarour, B. Lasri, J. Hanssen,
+Phys. Med. Biol. 53, N41-N51 (2008).
+
+We have combined several features of the classical trajectory Monte Carlo
+(CTMC) and the classical over-barrier (COB) models. The systems studied 
+are water, adenine, cytosine targets ionized by protons and α-particles 
+with kinetic energies ranging from 25 keV amu−1 to 3 MeV amu−1.
+
+
+H. Lekadir, I. Abbas, C. Champion, O. Fojón, R. D. Rivarola, J. Hanssen,
+Phys. Rev. A 79, 0627 10 (2009).
+
+Single-electron ionization of adenine, cytosine, thymine, and guanine as 
+well as from RNA uracil base produced by high-energy impact of H+, He2+, 
+and C6+ ions with impact energies ranging from 10 keV/amu to 10 MeV/amu.
+Simple model combining two classical approximations: the classical 
+trajectory Monte Carlo and the classical overbarrier.
+
+=========================================================================
+Born
+=========================================================================
+
+C. Dal Cappello, P. A. Hervieux, I. Charpentier, F. Ruiz-Lopez,
+Phys. Rev. A 78, 042702 (2008).
+
+Total cross sections for the direct ionization of the cytosine molecule 
+by protons in the incident energy range 0.1-100MeV. The first Born 
+approximation with the pairwise Coulomb interactions of the ejected 
+electron with both the scattered proton and the residual ionized target
+was used. The ground state of the cytosine molecule was described by 
+means of an accurate one center molecular wave function.
+
+
+C. Champion, H. Lekadir, M. E. Galassi, O. Fojón, R. D. Rivarola, J. Hanssen,
+Phys. Med. Biol. 55, 6053--6067 (2010).
+
+We propose a quantum mechanical description of the ionization process 
+induced by light bare ions on DNA bases. Theoretical predictions in terms 
+of differential and total cross sections for proton, α-particle and bare 
+ion carbon beams impacting on adenine, cytosine, thymine and guanine 
+bases. The calculations are performed within the first-order Born 
+approximation (FBA) with biological targets described at the restricted 
+Hartree--Fock level with geometry optimization.
+
+=========================================================================
+CDW-EIS
+=========================================================================
+
+M. E. Galassi, C. Champion, P. F. Weck, R. D. Rivarola, O. Fojón, J. Hanssen,
+Phys. Med. Biol. 57, 2081--2099 (2012).
+
+Two different quantummechanical models are proposed: the first one based 
+on a continuum distorted wave-eikonal initial state treatment and the 
+second perturbative one developed within the first Born approximation 
+with correct boundary conditions (CB1). Besides, the molecular structure 
+information of the biological targets studied here was determined by ab 
+initio calculations with the Gaussian 09 software at the restricted 
+Hartree-Fock level of theory with geometry optimization.
+
+
+A. N. Agnihotri, S. Kasthurirangan, S. Nandi, A. Kumar, M. E. Galassi, 
+R. D. Rivarola, O. Fojón, C. Champion, J. Hanssen, H. Lekadir, P. F. Weck, 
+L. C. Tribedi,
+Phys. Rev. A 85, 032711 (2012).
+
+Ionization of uracil in collisions with highly charged carbon and oxygen 
+ions of energy 100 keV to 78 MeV with the two frameworks: the Continuum 
+Distorted Wave with Eikonal Initial State (CDW-EIS) and the first-order 
+Born with correct boundary condition (CB1). The 29 orbitals of uracil in 
+its fundamental state were computed based on the restricted Hartree-Fock 
+method with geometry optimization.
+
+
+
+A. N. Agnihotri, S. Kasthurirangan, S. Nandi, A. Kumar, C. Champion, 
+H. Lekadir, J. Hanssen, P. F. Weck, M. E. Galassi, R. D. Rivarola, 
+O. Fojón, L. C. Tribedi,
+J. Phys. B 46, 185201 (2013).
+
+Ionization of uracil in collisions with highly charged carbon and oxygen 
+ions of energy 100 keV to 78 MeV with the two frameworks: the Continuum 
+Distorted Wave with Eikonal Initial State (CDW-EIS) and the first-order 
+Born with correct boundary condition (CB1). The 29 orbitals of uracil in 
+its fundamental state were computed based on the restricted Hartree-Fock 
+method with geometry optimization.
+
+
