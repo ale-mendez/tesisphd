@@ -1,180 +1,180 @@
-%\chapter{Procesos colisionales en átomos y moléculas simples}
 \chapter{Ionización de átomos y moléculas simples}
+\label{chap:iondim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-La exitosa idea de reemplazar la interacción no local de muchas 
-partículas por una ecuación de un electrón abrió la posibilidad de 
-estudiar sistemas extremadamente complejos con gran precisión.
-En este contexto, el éxito de la teoría del funcional de la densidad
-(\acs{dft}) \cite{HohenberKohn:64,KohnSham:65} despegó cuando avances 
-cruciales en los términos de intercambio y correlación le dieron a la 
-teoría poder predictivo para competir con métodos dependientes de 
-funciones de onda hasta el momento bien estudiados~\cite{Becke:14}.
-La importancia de los potenciales de intercambio y 
-correlación en el mundo de la físico-química está particularmente
-enfatizado en varios trabajos~\cite{Bartlett:10,Verma:12}.
-En general, los potenciales de intercambio son construidos por 
-aproximaciones locales al operador de intercambio de Hartree--Fock 
-(\acs{hf}), i.e., el potencial de Slater~\cite{Slater:51}, el potencial 
-efectivo optimizado (\acs{oep})~\cite{Sharp:53,Talman:76,Talman:89}, el 
-potencial de Krieger--Li--Iafrate\cite{Krieger:92} y varios 
-otros~\cite{Gorling:92,Yang:02,Staroverov:06,Ryabinkin:13}.
+%% Métodos para describir blancos
+%%  - Estructura electrónica: HF, DFT 
+%%  - Potenciales efectivos (Herman-Skillman, OEP, parametric potential)
+%% Métodos para describir procesos colisionales
+%%  - Born
+%% Lo que se hizo en este trabajo
+%%  - DIM en átomos
+%%  - DIM en moléculas
+%%  - FBA para ionización/fotoionización en atomos y moléculas simples
 
-Por otro lado, el cálculo de procesos colisionales inelásticos requiere 
-la correcta representación de los estados ligados y/o continuos 
-involucrados en tales procesos. La existencia hipotética de un potencial 
-efectivo local que permita la representación de dichos estados 
-permitiría obtener las funciones de onda ortogonales de las partículas
-intervinientes de manera más directa. Esta aproximación debería incluir
-potenciales efectivos orbitales, una característica ausente en la 
-mayoría de los métodos de funcional de la densidad existentes. 
-Los métodos de pseudopotenciales tales como {\sc abinit}~\cite{abinit} 
-o {\sc uspp}~\cite{Vanderbilt} no se pueden usar ya que éstos ignoran 
-gran parte de la región interna de las funciones de onda. Estas regiones
-contienen características del sistema que tienen un rol importante en
-ciertos procesos colisonales, tales como la condición de cúspide en los 
-procesos de captura electrónica e ionización. 
+La obtención de las probabilidades de transición en un proceso 
+colisional inelastico requiere la correcta representación de los estados 
+inicial y final del blanco. En general, la resolución de las ecuaciones 
+de Schr\"odinger de sistemas multielectrónicos implementan el modelo 
+de partículas independientes (\acs{ipm}) en conjunción con la 
+aproximación de campo central (\acs{cfa})~\cite{Bransden:03,Cowan:81}. 
+Métodos tales como la teoría de Hatree--Fock~(\acs{hf}) o la teoría del 
+funcional de la densidad~(\acs{dft}) tienen a la CFA como hipótesis 
+fundamental. Por otro lado, los procesos colisionales simples usualmente 
+se basan en la aproximación de un electrón activo (\acs{sae}). El método 
+SAE asume que en la colisión sólo un electrón del blanco interactúa con 
+el proyectil, mientras que el resto de los electrones actúan como 
+espectadores. En la ionización, el electrón activo se encuentra 
+inicialmente ligado, mientras que luego de la colisión con el proyectil, 
+se encuentra en el continuo. La representación de los estados ligados es 
+relativamente directa mientras que la representación de los estados 
+continuos suele presentar cierta dificultad.
 
-El problema inverso que supone la determinación de potenciales centrales 
-a partir de funciones de onda y/o densidades electrónicas conocidas es 
-una técnica bien estudiada en la comunidad de 
-DFT~\cite{Wu:03,Gaiduk:13,Ryabinkin:15}. La extracción de los verdaderos
-potenciales de intercambio--correlación de Kohn--Sham (\acs{ks}) a partir de 
-densidades electrónicas casi exactas ha sido estudiada en sistemas de 
-dos electrones tales como He~\cite{Mura:97}, iones de la secuencia 
-electrónica de He~\cite{Umrigar:94}, y H$_2$\cite{Gritsenko:97,Mura:97},
-así como también problemas con solución exacta (por ejemplo, el caso de
-un potencial armónico externo~\cite{Filippi:94}).
-
-Algunos trabajos, en donde se resuelve el problema inverso, los autores 
-proponen un potencial de Kohn--Sham particular y resuelven el sistema
-de ecuaciones correspondiente, obteniendo orbitales de 
-KS~\cite{Schipper:97,deSilva:12,Kananenka:13}. A través de la inversión,
-obtienen un potencial de KS reconstruido, que coincide con el original
-en casi en toda su extensión excepto en algunas regiones cerca del 
-origen, donde aparecen grandes oscilaciones. En algunos casos el 
-potencial reconstruido está tan distorcionado que es imposible de 
-reconocerlo~\cite{Mura:97,Jacob:11}. El mismo procedimiento fue 
-sugerido hace varios años por Hilton \textit{et al.}, en aplicaciones
-circunscriptas al cálculo de procesos de fotoionización en 
-átomos~\cite{Hilton:77,Suzer:77}, agua~\cite{Hilton:79} y otras 
-moléculas~\cite{Hilton:80,Crljen:87}. A su vez, estos trabajos se 
-refieren a un trabajo previo en polarizabilidad atómica llevada a cabo 
-por Sternheimer\cite{Sternheimer:54} y Dalgarno y 
-Parkinson~\cite{Dalgarno:59}. Sin embargo, los autores se enfocaron en 
+En la aproximación de campo central, la existencia de un potencial 
+efectivo local que permita obtener de forma directa las funciones de 
+onda de las partículas interactuantes en el proceso colisional es ideal.
+Con este fin, se ha desarrollado una gran variedad de metodologías para 
+el diseño de potenciales atómicos~\cite{Hibbert:82} y 
+moleculares~\cite{Granados:15}. Entre ellos se destacan algunos 
+semi-empíricos~\cite{falta}, basados en el formalismo de 
+HF~\cite{falta}, de polarización del núcleo electrónico y 
+relativistas~\cite{falta}. Otra técnica conocida está dada por la 
+determinación de potenciales centrales a partir de funciones de onda y/o 
+densidades electrónicas, conocida como método de inversión. Este 
+procedimiento ha sido estudiado de forma extensa en la DFT~\cite{Wu:03,
+Gaiduk:13,Ryabinkin:15}. En algunos trabajos, los autores proponen un 
+potencial KS particular y resuelven el sistema de ecuaciones 
+correspondiente, obteniendo orbitales KS~\cite{Schipper:97,deSilva:12,
+Kananenka:13}. A través de la inversión, obtienen un potencial KS 
+reconstruido, que coincide con el original en casi en toda su extensión 
+excepto en algunas regiones cerca del origen, donde aparecen grandes 
+oscilaciones. En algunos casos el potencial reconstruido está tan 
+distorcionado que es imposible de reconocerlo~\cite{Mura:97,Jacob:11}. 
+En la teoría de colisiones, el método de inversión fue sugerido por 
+Hilton \textit{et al.}, en aplicaciones circunscriptas al cálculo de 
+procesos de fotoionización en átomos~\cite{Hilton:77,Suzer:77}, 
+agua~\cite{Hilton:79} y otras moléculas~\cite{Hilton:80,Crljen:87}. A su 
+vez, estos trabajos se refieren a un trabajo previo en polarizabilidad 
+atómica llevada a cabo por Sternheimer~\cite{Sternheimer:54} y Dalgarno 
+y Parkinson~\cite{Dalgarno:59}. Sin embargo, los autores se enfocaron en 
 los resultados de secciones eficaces de fotoionización y no proveyeron 
 detalles acerca de la calidad de los potenciales y las funciones de 
 onda implementados.
 
-En este contexto, emerge la idea del método de Inversión Depurada 
-(\acs{dim})~\cite{Mendez:16,Mendez:18}, que permite la obtención de 
-otenciales efectivos mediante la sustitución de las ecuaciones acopladas 
-de muchos electrones por una ecuación de tipo Kohn--Sham. En primer 
-lugar, los potenciales son obtenidos mediante la inversión directa de 
-la ecuación de un electrón. Luego, se realiza una optimización, 
-imponiéndo las condiciones de borde apropiadas de forma analítica. De 
-esta manera, los potenciales DIM se parametrizan mediante simple 
-expresiones.
+Por otro lado, una amplia variedad de métodos de primeros principios han 
+sido implementados para el cálculo de secciones eficaces de ionización
+debido al impacto de partículas cargadas, incluyendo modelos 
+clásicos~\cite{falta}, semi-clásicos~\cite{falta}, y mecanico-cuánticos. 
+En este último grupo, destacamos tres grados de aproximación; la primera 
+aproximación de Born~(\acs{fba})~\cite{Bates:62,McDowell:61}, los 
+métodos de onda continua distorcionada~(\acs{cdw})~\cite{Crothers:10,
+Rivarola:87} y los de acoplamiento cercano~(\acs{cc})~\cite{Burke:11,
+Pindzola:07,Bray:17}, que constituyen el estado del arte.
 
-En este capítulo, exploramos la posibilidad de implementar la 
-aproximación del potencial efectivo en la teoría de colisiones atómicas 
-para describir procesos inelásticos. En particular, examinaremos la 
-ionización de atómos multielectrónicos y moleculas con pocos átomos por 
-el impacto de protones y fotones. 
-%diversos procesos colisionales que involucran transiciones de un electrón: fotoionización,excitación, ionización y captura. 
-Una amplia variedad de métodos de primeros principios han sido 
-implementados para el cálculo de secciones eficaces de ionización, 
-desde las primeras implementaciones de la primera aproximación de Born (\acs{fba})~\cite{Bates:62,McDowell:61}, hasta los métodos más 
-sofisticados de tratamiento totalmente mecanicocuántico 
-\cite{Pindzola:07,Burke:11,Bray:17,Pindzola:16}. En el caso de 
-blancos atómicos o moleculares, presentaremos resultados de secciones 
-eficaces teóricas que serán comparadas con datos experimentales. No es 
-nuestra intención hacer un repaso detallado de los métodos teóricos 
-existentes, y ampliamente detallados en la bibliografía. El objetivo 
-principal de este capítulo es ilustrar el uso efectivo de los 
-potenciales DIM en aplicaciones colisionales. Para este fin realizaremos 
-ciertas simplificaciones: 
+En este Capítulo presentamos el método de inversión depurada (\acs{dim}),
+que consiste en la inversión y optimización de potenciales efectivos, 
+con el fin de obtener una descripción precisa de la estructura de atómos 
+y moléculas simples. La descripción de los blancos apartir del DIM es 
+luego examinada por su desempeño en la ionización debido a fotones e 
+iones cargados. En la Sección~\ref{sec:dimatomos} desarrollamos el DIM 
+para sistemas atómicos. El método reduce el sistema de ecuaciones 
+acopladas de muchos electrones a un sistema de ecuaciones de tipo 
+Kohn--Sham. Los potenciales son obtenidos mediante la inversión directa 
+de las ecuaciones resultantes. En nuestra implementación, las soluciones 
+de estas ecuaciones están dadas por la teoría de HF. Luego, los 
+potenciales invertidos son sometidos a una depuración. La técnica de 
+depuración está dada por el descarte de rasgos inconsistentes, heredados 
+por el procedimiento de inversión, e imposición condiciones de borde 
+apropiadas de forma analítica. De esta manera, los potenciales se 
+parametrizan y optimizan mediante simple expresiones. 
+
+A pesar de que el método de inversión es directo, su implementación no
+constituye una tarea simple. Por ejemplo, los nodos de los orbitales HF 
+son traducidos al potencial por la inversión como grandes polos 
+ficticios. Más aún, en orbitales sin nodos, el rápido decaimiento 
+asintótico de algunos orbitales genera inmensas divergencias numéricas. 
+Hemos investigado el origen de los polos y divergencias en el potencial 
+a partir de un experimento numérico. Consideramos diversos ordenes de 
+aproximación de los métodos numéricos usados para obtener las soluciones 
+de HF y en la inversión. Dos conclusiones surgen de nuestro estudio; por 
+un lado, los ordenes de aproximación implementados no son suficientes 
+para obtener orbitales a partir de los cuales se pueden desprender 
+potenciales efectivos de forma directa. Por otro lado, nuestro estudio 
+parece sugerir que la exitosa implementación del método de inversión con 
+orbitales HF requiere una condición extra en la minimización de la 
+energía en la teoría de Hartree--Fock.
+%esto es, que los nodos de los orbitales HF también sean turning points.
+Por otro lado, examinamos el decaimiento asintótico de los orbitales HF.
+{\color{red} Falta incluir el reply al ``Comment on `DIM for Orbital-
+Specific Exchange Potentials'''}
+
+La descripción de sistemas moleculares constituye un verdadero desafío 
+debido a su simetría no esférica y multicéntrica. Con este fin, se ha
+desarrollado un gran número de aproximaciones teóricas 
+semi-empríricas~\cite{Szabo:96,Helgaker:00,Schaefer:04} y de primeros 
+principios~\cite{} a lo largo de los años. 
+En la Sección~\ref{sec:dimmoleculas} presentamos una extensión del 
+método DIM para sistemas moleculares simples, proveyendo una nueva 
+expresión paramétrica para potenciales moleculares. A diferencia del 
+caso atómicos, la estructura de las moléculas son descritas a partir de 
+bases gaussianas. La implementación de conjuntos de base~(\acs{bs}) 
+requiere una nueva técnica de depuración debido a las oscilaciones 
+introducidas por la base. La descripción de blancos moleculares es 
+examinada en procesos colisionales de primer orden usando como ejemplo 
+la molécula de metano a lo largo de dicho estudio.
+
+Finalmente, en la Sección~\ref{subsec:dimion} exploramos la 
+implementación de los potenciales DIM en la teoría de colisiones 
+atómicas para describir procesos de ionización por el impacto de 
+partículas cargadas. El objetivo principal de este trabajo es ilustrar 
+el uso efectivo de los potenciales DIM en aplicaciones colisionales. 
+Para este fin realizaremos ciertas simplificaciones: 
 \begin{enumerate}
 \item Los cálculos están restringidos a los hamiltonianos que describen
 sólo el proyectil, el blanco y el electrón activo;
-\item Los elementos de matriz de transición se consideran en primer 
-orden perturbativo. Si el primer orden fallase, no tendría sentido 
-extender el cálculo a términos mayores de la serie. 
+\item Los elementos de la matriz de transición se consideran en primer 
+orden perturbativo. Si el primer orden tiene un muy mal desempeño, 
+consideramos que no tendría sentido extender el cálculo a términos 
+mayores de la serie. 
 \end{enumerate}
+Los procesos colisionales que examinaremos serán la ionización de atómos 
+multielectrónicos y moleculas con pocos átomos debido al impacto de 
+protones y fotones. La descripción de los blancos se realiza mediante
+los potenciales DIM. 
 Por simplicidad, restringiremos nuestros cálculos sólo se enmarca en
-la FBA, que se conoce reproduce razonablemente las secciones eficaces
-experimentales de diversos procesos en el rango de energía 
-intermedio-alto del proyectil. Más aún, dentro de este rango de energía 
-y orden de aproximación, se sabe que los orbitales de Hartree--Fock 
-proporcionan el límite correcto a altas energías.
+la FBA (ver Apéndice~\ref{app:born}), que se conoce reproduce 
+razonablemente las secciones eficaces experimentales de diversos 
+procesos en el rango intermedio--alto de energías incidentes del 
+proyectil. Más aún, dentro de este rango de energía y orden de 
+aproximación, se sabe que los orbitales de Hartree--Fock proporcionan el 
+límite correcto a altas energías.
 
-Examinaremos los procesos inelásticos mencionados anteriormente en 
-el caso de tres átomos: litio, nitrógeno y neón. En este contexto,
-inspeccionaremos la influencia de la descripción del blanco mediante
-el potencial DIM en las secciones eficaces cuando la complejidad del 
-blanco incrementa según el número de electrones.
-
-Por otro lado, la descripción de sistemas moleculares constituye un 
-verdadero desafío debido a su simetría no esférica y multicéntrica. 
-Se han desarrollado un gran número de aproximaciones teóricas de 
-primeros principios y semi-empríricas~\cite{Szabo:96,Helgaker:00,Schaefer:04} 
-con este fin a lo largo de los años. Hacia el final de este capítulo, 
-presentamos una extensión del método DIM para sistemas moleculares 
-simples, proveyendo una nueva expresión paramétrica para potenciales 
-moleculares. La descripción del blanco es examinada en procesos 
-colisionales de primer orden, usando como ejemplo la molécula de metano 
-a lo largo de dicho estudio.
+En la Sección~\ref{sec:dimresultados} se resumen nuestros resultados:
+presentamos la descripción de la estructura obtenida mediante la 
+implementación del DIM en el caso de blancos atómicos y moleculares 
+(\ref{subsec:dimtarget}), y las secciones eficaces totales de los 
+procesos estudiados en los sistemas descritos con DIM
+(\ref{subsec:dimion}). Nuestros resultados teóricos son comparados en 
+todos los casos con datos experimentales. No es nuestra intención hacer 
+un repaso detallado de los métodos teóricos existentes, ampliamente 
+detallados en la bibliografía, y sus resultados. Examinaremos los 
+procesos inelásticos mencionados anteriormente en el caso de tres 
+átomos: helio, nitrógeno y neón. En este contexto, inspeccionaremos la 
+influencia de la descripción del blanco mediante el potencial DIM en las 
+secciones eficaces cuando la complejidad del blanco incrementa según el 
+número de electrones.
 
 \begin{comment}
-Assuming the validity of the separation between exchange 
-and correlation functionals, we will focus here only on the 
-calculation of the exchange contribution to the potential.
-Since Hartree--Fock does not include the correlations, 
-our approach allows to obtain the ``exact''
-one--electron local potential representing the exchange interactions. 
-Strictly speaking, the method does not rely on the KS inversion formula 
-since the Hartree--Fock solutions were the ones used for the inversion.
-That is, we solved a KS--type equation, but rather than having 
-KS--orbitals, we operated directly with the Hartree--Fock 
-wavefunctions.
-For open--shell atoms, we were able to find orbital 
-spin--polarized exchange potentials, this being crucial, for 
-instance, to find the hyperfine coupling 
-constants\cite{Barone:94,Kaupp:10}.
-
-However, this is not a simple task, and probably that is
-why the method presented here has not been widely applied in the past. 
-If the wavefunction has nodes, it will produce huge poles in the 
-potential. 
-Moreover, even for nodeless states, the asymptotic decaying behavior 
-of the bound wavefunctions produces severe numerical difficulties, 
-making the inversion operation intractable sometimes.
-In our method, a depuration procedure follows the inversion. 
-This depuration implies, first, the annihilation of the poles.
-Then, a careful optimization of the potential which 
-ensures the fulfillment of the appropriate boundary conditions. 
-
-The work is organized as follows. 
-Section \ref{sec:theory} describes the method, which includes 
-the inversion procedure (\ref{subsec:directinversion}), 
-the potential depuration (\ref{subsec:depuration}) and its further 
-optimization (\ref{subsec:optimization}).
-Section \ref{sec:results} presents the resulting effective potentials 
-for the orbitals corresponding to the ground states of different 
-noble gases, including a thorough 
-examination of the wavefunctions generated by these potentials 
-(\ref{subsec:resultsDIM}).
-The corresponding exchange potentials are discussed in 
-(\ref{subsec:exchange}), comparing the potentials for 
-specific--$nl$ orbitals with averaged potentials.
-Results of the same calculations for the Nitrogen atom are provided in
-(\ref{subsec:Nitrogen}).
-Atomic units are used unless otherwise specified.
-
 \end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descripción de blancos atómicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:atomos}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{El método de la inversión depurada}
@@ -564,9 +564,14 @@ la ecuación~\ref{eq:Zasympt}, donde en el origen $Z_{2s} = 19$, y
 asintóticamente $Z_{2s} \rightarrow 1$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Potenciales moleculares}
+\section{Descripción de moléculas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:potmoleculares}
+\label{sec:moleculas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Potenciales moleculares}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:dimmoleculas}
 
 En esta sección, el método de la inversión depurada es extendido para 
 la obtención de potenciales efectivo moleculares. A continuación, 
@@ -698,6 +703,7 @@ el origen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:dimresultados}
 
 En esta sección, examinaremos los resultados obtenidos a partir de la 
 implementación de nuestro método de potencial efectivo para la descripción 
@@ -712,6 +718,8 @@ ionización de helio, nitrógeno, neón y metano.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Descripción de blancos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:dimtarget}
+
 \subsubsection*{Helio}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -1123,6 +1131,7 @@ disponibles.
 
 %=======================================================================
 \subsection{Ionización por impacto de iones}
+\label{subsec:dimion}
 
 \begin{figure}
 \centering

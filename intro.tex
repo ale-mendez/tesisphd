@@ -1,16 +1,92 @@
 \chapter{Introducción}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Motivación}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
+\begin{center}
+{\color{red} ESTE CAPÍTULO ES TODAVÍA UN BORRADOR}
+\end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción general}
+\section{Motivación y generalidades}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Tesis de Carlos
+El estudio de procesos colisionales ha tenido un rol fundamental en el 
+desarrollo de la teoría mecanico-cuántica. Estos fenómenos permiten 
+estudiar la estructura electrónica de blancos multielectrónicos, así 
+como también examinar la naturaleza de las interacciones entre el 
+proyectil y el blanco. Las colisiones de átomos y moléculas con 
+proyectiles tales como fotones, iones cargados y electrones se han 
+estudiado por décadas de forma teórica y experimental, resultando en
+el desarrollo de un gran número de modelos que permiten predecir tales 
+fenómenos. Sin embargo, muchas de las limitaciones de estas 
+aproximaciones están ligadas a una precisa descripción de la estructura 
+electrónica de los blancos antes y después de la colisión. 
+
+% Bautista 2000
+Desde hace casi un siglo, se han dedicado esfuerzos significativos para
+el desarrollo de métodos téoricos que permitan obtener datos atómicos y 
+moleculares precisos. Estos datos son esenciales para el análisis de 
+espectros de laboratorio y astrofísicos, así como en el desarrollo de 
+materiales espaciales, diseño de tratamientos médicos y {\color{red} 
+algo más}. En general, los datos atómicos y moleculares están compuestos
+por dos subgrupos de datos, correspondientes a (1) la estructura del 
+blanco y (2) los procesos de dispersión a los que son sujetos. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Estructura del blanco}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Procesos colisionales}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descripción del trabajo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+En el Capítulo~\ref{chap:iondim} introducimos el método de inversión 
+depurada (\acs{dim}) a partir de soluciones de Hartree--Fock, que 
+permite describir de forma precisa la estructura de atómos y moléculas 
+simples~\cite{Mendez:16,Mendez:19dim}. El problema inverso supone 
+problemas numéricos, los cuales fueron examinados mediante un 
+experimento numérico y el estudio exhaustivo de la teoría de 
+HF~\cite{Mendez:18,Mitnik:19}. Además, exploramos la implementación de 
+los potenciales efectivos DIM en la teoría de colisiones atómicas para 
+describir procesos inelásticos tales como la ionización por impacto de 
+fotones e iones cargados a partir de la primera aproximación de 
+Born~\cite{Mendez:19dim}. 
+
+En el Capítulo~\ref{chap:ionmol} implementamos el potencial DIM para 
+describir la estructura de átomos, que constituyen moléculas biológicas 
+de interés, y el método de onda continua distorcionada con estado 
+inicial eikonal para describir la ionización debido al impacto de iones 
+cargados. A partir de las predicciones atómicas y la introducción del 
+modelo estequiométrico, se obtienen secciones eficaces de un número 
+significativo de sistemas moleculares~\cite{Mendez:20ionmol}, incluyendo 
+las bases de ADN y ARN. También exploramos reglas de escala, útiles 
+para predecir a primer orden la ionización de sistemas blanco--proyectil 
+arbitrarios~\cite{Mendez:20scale}. 
+
+En el Capítulo~\ref{chap:heavy} blablabla
+
+En el Capítulo~\ref{chap:bayeopt} blablabla
+
+Las conclusiones generales de este trabajo de investigación se presentan 
+en el Capítulo~\ref{chap:conclusiones}.
+
+A lo largo de este trabajo se usan unidades atómicas ($\hbar=e=m_e=1$)
+a menos que se especifique lo contrario.
+
+
+\begin{comment}
+
+Potenciales usados aqui para describir las estructuras atómicas y moleculares
+
+\begin{itemize}
+\item Método de inversión depurada
+\item Método de potencial paramétrico de Klapish (1971)
+\item Potenciales modelo (TFDA, STO + pol pot paramétricos)
+\end{itemize}
 
 %De Bautista (2008)
 %Various methods are known that allow one to model the structure of atoms 
@@ -31,3 +107,12 @@
 %Moreover, comparisons are regularly done with energies relative to the 
 %ground level, which can be misleading if the absolute energy of the 
 %ground level is overestimated. 
+
+
+
+
+Idea para intro de Chap4: 
+
+Most of the theoretical calculations of the cross section for the scattering of atomic systems are based on the solution of the nonrelativistic Schroedinger equation. For certain systems, this approximation is insufficient, and it  is necessary to resort to a relativistic formulation. This is usually the case when the scattering system contains heavy atoms, with core  electrons  moving at near-relativistic  speeds,  when spin-orbit effects are significant, or when the incident particle has velocities near the speed of light. When the velocity of the incident electron is  relativistic, it is  possible to use modifications of the Born approximation   (Inokuti, 1971) to treat the   dynamics, and that simplifies the  problem. For much lower energy  incident  electrons, the theorist   must often turn to a Pauli or Dirac  formulation, which can considerably  complicate  the numerics. In  other cases, a  properly modified Schroedinger formulation, using effective core potentials  based on some relativistic approximation will suffice (Cowan  and Griffin, 1976). 
+\end{comment}
+
