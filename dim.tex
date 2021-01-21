@@ -38,7 +38,7 @@ efectivo local que permita obtener de forma directa las funciones de
 onda de las partículas interactuantes en el proceso colisional es ideal.
 Con este fin, se ha desarrollado una gran variedad de metodologías para 
 el diseño de potenciales atómicos~\cite{Hibbert:82} y 
-moleculares~\cite{Granados:15}. Entre ellos se destacan algunos 
+moleculares~\cite{Menchero:10,Granados:16}. Entre ellos se destacan algunos 
 semi-empíricos~\cite{falta}, basados en el formalismo de 
 HF~\cite{falta}, de polarización del núcleo electrónico~\cite{falta} y 
 relativistas~\cite{falta}. Otra técnica conocida es la determinación de 
@@ -73,8 +73,8 @@ clásicos~\cite{falta}, semi-clásicos~\cite{falta}, y mecanico-cuánticos.
 En este último grupo, destacamos tres grados de aproximación; la primera 
 aproximación de Born~(\acs{fba})~\cite{Bates:62,McDowell:61}, los 
 métodos de onda continua distorcionada~(\acs{cdw})~\cite{Crothers:10,
-Rivarola:87} y los de acoplamiento cercano~(\acs{cc})~\cite{Burke:11,
-Pindzola:07,Bray:17}, que constituyen el estado del arte.
+Rivarola:87} y los de acoplamiento cercano~(\acs{cc})~\cite{Pindzola:07,
+Burke:11,Pindzola:16,Bray:17}, que constituyen el estado del arte.
 
 En este Capítulo presentamos el método de inversión depurada (\acs{dim}),
 que consiste en la inversión y optimización de potenciales efectivos, 
@@ -163,7 +163,7 @@ complejidad del blanco incrementa según el número de electrones.
 \end{comment}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de blancos multielectrónicos}
+\section{Descripción de blancos atómicos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:atomos}
 
@@ -227,6 +227,7 @@ En el caso de átomos con capas cerradas, asumiendo que los orbitales
 espaciales se pueden separar en sus partes radial y angular
 \begin{equation}
 \phi_{nlm}(\mathbf{r})=\frac{1}{r}u_{nl}(r)Y_l^m(\theta,\phi)\,,
+\label{eq:centralfield-wave}
 \end{equation}
 las ecuaciones radiales de HF son exactamente iguales a las ecuaciones 
 de Schr\"odinger bajo la aproximación de campo central, 
@@ -294,8 +295,8 @@ Dado que los orbitales $u_{nl}^{\mathrm{HF}}$ y energías
 $\varepsilon^{\mathrm{HF}}$ de Hartree--Fock son conocidas (calculadas 
 numéricamente con los códigos {\sc hf} de C. F. Fischer~\cite{FroeseFischer:97}, 
 y {\sc nrhf} de W. Johnson~\cite{Johnson:07}), es posible implementar 
-la inversión directa de la Ec.~(\ref{eq:KS}). Así, obtenemos el 
-\textit{potencial invertido HF} 
+el método de inversión~(\acs{IM}) a la Ec.~(\ref{eq:KS}). Así, obtenemos 
+el \textit{potencial invertido HF} 
 \begin{equation}
 V_{nl}^{\mathrm{HF}}(r) = 
 \frac{1}{2}\frac{1}{u_{nl}^{\mathrm{HF}}(r)}
@@ -370,14 +371,13 @@ valores $r>1$~a.u.. Las justificaciones numéricas a la presencia de
 estos defectos son simples. Los polos surgen porque el orbital radial 
 $2s$ en el denominador de la Ec.~(\ref{eq:VHF}) y su derivada segunda no 
 se anulan entre sí en los nodos, mientras que la divergencia asintótica 
-aparece porque la función $u_{2s}^{\mathrm{HF}}$ decrece mucho más 
-rápidamente que su derivada segunda. 
-
+tiene origen en el coeficiente del término exponencial que sigue la 
+función $u_{2s}^{\mathrm{HF}}$ a grandes distancias.
 
 %%% Fallas
-%%% Nodos que no son puntos de inflexión -> Derivada 2da
+%%% Nodos que no son puntos de inflexión  -> Derivada 2da
 %%% Nodos que son espúreos (no localidad) -> Fischer
-%%% Divergencia a grandes r -> Hartree
+%%% Divergencia a grandes r               -> Hartree
 
 % Defectos: 
 % Los defectos de las cargas invertidas surgen del propio método de Hartree--Fock; los nodos genuinos no son estrictamente puntos de  inflexión, el decaimiento exponencial de los orbitales sigue el comportamiento orbitales tipo Hartree, mientras que el método autoconsistente conduce a la aparición de nodos espúreos.
@@ -471,148 +471,87 @@ Sin embargo, y debido al caracter local del potencial, su segunda
 derivada $u_{2s}^{\mathrm{OEP}}''$ (línea punto-raya-punto) es cero en 
 el nodo. 
 
-Es posible que la no localidad del método de Hartree--Fock sea 
-responsable de que los nodos genuinos en los orbitales no sean puntos de 
-inflexión. Una exploración más en detalle, con mayores órdenes de 
-aproximación en los métodos numéricos, sería necesaria para descartar 
-esta hipótesis. La excelente reproducción de los orbitales HF mediante 
-el potencial local OEP parece sugerir que esta premisa es correcta. Sin 
-embargo, de ser así, se podría agregar una restricción adicional al 
-procedimiento variacional autoconsistente de Hartree--Fock. En 
-definitiva, el cumplimiento de esta restricción aseguraría un potencial 
-local, en principio, sin polos.
+\textcolor{red}{Es posible que la no localidad del método de Hartree--Fock sea responsable de que los nodos genuinos en los orbitales no sean puntos de inflexión.} Una exploración más en detalle, con mayores órdenes de aproximación en los métodos numéricos, sería necesaria para descartar esta hipótesis. La excelente reproducción de los orbitales HF mediante el potencial local OEP parece sugerir que esta premisa es correcta. De ser así, se podría agregar una restricción adicional al procedimiento variacional autoconsistente de Hartree--Fock. En definitiva, el cumplimiento de esta restricción aseguraría un potencial local, en principio, sin polos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Decaimiento exponencial}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Los orbitales de los electrones ligados decaen exponencialmente para 
+distancias mayores al punto de retorno clásico. El punto de retorno 
+clásico se define como la posición en la cual la energía es igual al 
+potencial efectivo. El decaimiento asintótico de los orbitales HF han 
+sido estudiados por varios autores desde que Handy, Maron y Silverstone 
+(HMS)~\cite{Handy:69} demostraron que a grandes distancias $r$, la parte 
+radial de las funciones orbitales están determinadas por la energía del 
+orbital molecular de mayor ocupación (\acs{homo}) 
+$\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}$. Esto es 
+\begin{equation}
+\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{HF}}(r) =  
+\exp(- \sqrt{- 2 \varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}} } r )  \, .
+\label{eq:rHF}
+\end{equation}
+Este comportamiento fue confirmado por derivaciones posteriores, por 
+ejemplo, los trabajos de HMS~\cite{Handler:80}, y de Ishida y 
+Ohno~\cite{Ishida:92}. Por otro lado, los orbitales que corresponden a 
+potenciales esféricos tienen un decaimiento asintótico de tipo 
+Hartree~\cite{Casida:89},
+\begin{equation}
+\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{DIM}}(r) =  
+\exp(- \sqrt{- 2 \varepsilon_{nl}^{\mathrm{HF}} } r ) \,.
+\label{eq:rHlike}
+\end{equation}
+El término ``tipo-Hartree'' puede resultar confuso cuando la energía 
+del orbital $\varepsilon_{nl}^{\mathrm{HF}}$ se corresponda a valores 
+donde se ha considerado el término de intercambio. El comportamiento 
+asintótico de los orbitales HF se puede examinar en detalle a través de 
+la derivada logaritmica de los orbitales radiales, 
+\begin{equation}
+L_{nl}(r) \equiv r \frac{d \log{u_{nl}}}{d r}\,,
+\label{eq:Lnl}
+\end{equation}
+que se comporta de forma lineal para funciones $u_{nl}$ que decaen 
+exponencialmente. 
+
+La Fig.~\ref{fig:LnsK} muestra la derivada logarítmica de los orbitales 
+HF de momento angular $s$ del átomo de potasio. Los orbitales HF se dan con líneas discontinuas (capas internas) y sólidas (capa de valencia). A grandes distancias, estos orbitales presentan el comportamiento de Hartree--Fock dado por la Ec.~\ref{eq:rHF}: los orbitales de las capas internas siguen el decaimiento asintótico del \acs{homo}. Además, incluimos el comportamiento de tipo Hartree correspondiente a cada orbital (líneas punteadas). Observamos que las funciones $u_{nl}^{\mathrm{HF}}$ tienen este decaimiento exponencial a partir del punto de retorno clásico de cada orbital y hasta $0.4$~a.u., $1.5$~a.u. y 5~a.u. en los orbitales $1s$, $2s$ y $3s$, respectivamente. 
+
+Como habiamos anticipado, las divergencias en la carga invertida se deben al coeficiente del término exponencial de $u_{nl}(r)$ a grandes distancias. Por ejemplo, el comportamiento asintótico del potencial invertido~(\ref{eq:VHF}) correspondiente a los orbitales $s$ de K está dado por
+\begin{equation}
+\lim_{r \rightarrow \infty} V_{ns}^{\mathrm{HF}}(r)=-\left(\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}-\varepsilon_{ns}^{\mathrm{HF}}\right) \,,
+\label{eq:asintoticoVHF}
+\end{equation}
+que es siempre distinto de cero, excepto para el \acs{homo}.
+
+Por otro lado, los polos de $L_{nl}(r)$ de la Fig.~\ref{fig:LnsK}  
+corrresponden a los nodos de $u_{nl}^{\mathrm{HF}}$. En general, los 
+nodos de dos orbitales con el mismo momento angular que no coinciden no 
+surgen de la imposición de ortogonalidad y son espúreos. 
 
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{dim/Lns_K.eps} 
-\vspace{-0.45cm}
-\caption[$L_{nl}$.]
-{$L_{nl}$ de los orbitales $s$ del átomo de K.}
-\label{fig:dr2sK}
+\caption[Comportamiento asintótico de los orbitales HF.]
+{Comportamiento asintótico de los orbitales HF según $L_{nl}$, dada por la Ec.~\ref{eq:Lnl}, de los orbitales $s$ del átomo de K.}
+\label{fig:LnsK}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Nodos espúreos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsubsec:espureos}
 
-La existencia de nodos espúreos en la teoría de Hartree--Fock fue 
-sugerida por Fischer~\cite{FroeseFischer:97}, quien predijo oscilaciones 
-en las soluciones HF. Este comportamiento no es una falla de los métodos 
-numéricos, sino que está es el resultado de (...)
+Los orbitales de HF pueden tener oscilaciones y, por lo tanto, nodos 
+espúreos para valores grandes de $r$. La existencia de estas oscilaciones han sido señaladas por Fischer~\cite{FroeseFischer:97}, y no son consecuencia de la implementación numérica sino que es inherente al método de Hartree--Fock. Estas oscilaciones pueden encontrarse en al menos un orbital de los elementos de la tabla periódica, desde el Mg en adelante. \textcolor{red}{Es probable que este comportamiento se deba al término de intercambio a grandes distancias.} Los nodos espúreos aparecen en regiones donde la amplitud del orbital es muy pequeña y su existencia, por lo general, puede ser ignorada.
 
+En el ejemplo de la Fig.~\ref{fig:LnsK} vemos que el orbital $1s$ del K tiene dos nodos espúreos en $0.99$~a.u. y $5.68$~a.u., mientras que el orbital $2s$ tiene un nodo espúreo en $5.78$~a.u.. \textcolor{red}{Notamos que los nodos espúreos aparecen, en principio, como resultado del cambio en el decaimiento asintótico de tipo Hartree~(\ref{eq:rHlike}) al de Hartree--Fock~(\ref{eq:rHF}).}
 
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{dim/example_1sCa.eps} 
-\vspace{-0.45cm}
-\caption[Nodos espúreos.]
-{Nodo espúreo del orbital $1s$ del átomo de Ca.}
-\label{fig:nodoespureo1sCa}
-\end{figure}
-
-
-
-
-\begin{comment}
-Por otro lado, todas las funciones de ondas 
-de los electrones ligados decaen exponencialmente para distancias 
-mayores al punto de retorno clásico. El punto de retorno clásico se 
-define como la posición $r_{rc}$ en la cual la energía es igual al 
-potencial efectivo. 
-
-\begin{equation}
-\lim_{r\rightarrow\infty} u_{nl}^{\mathrm{HF}}
-= \exp\left(\sqrt{-2\varepsilon_{nl}^{\mathrm{HF}}} r\right)
-\end{equation}
-
-\begin{equation}
-L_{nl}(r) \equiv r\frac{d\log u_{nl}}{dr}
-\end{equation}
-
-Este comportamiento ha llevado al consenso general de que el método 
-de inversión sólo puede implementarse en orbitales sin 
-nodos~\cite{Kananenka:13}. Por otro lado, una dificultad numérica menos 
-obvia está dada por la razón entre la 
-derivada de la función de onda y la función de onda en sí. 
-{\color{red} Escribir sobre el primer paper de Adv. Quant. Chem y sobre 
-la respuesta al comment de Cinal.}
-
-
-At first glance, it seems that the turning point of $u_{2s}$ 
-is located around $r_{tp} \approx 0.25$, and from that point on,  
-the wavefunction should start to decay exponentially.
-From the numerically point of view, say $r \approx 10 \, r_{tp}$ is 
-a good point to stop the inversion, since beyond there, the effective 
-charge could begin to diverge.
-
-
-Thus, naively, one might infer that by erasing the points belonging 
-to the neighborhood of the first node, and by stopping the inversion 
-about $10 \, r_{tp}$, the inversion procedure 
-will work well.
-However, the dashed curve in Fig.~\ref{fig:2sKr}(b) shows a 
-completely unphysical $Z^{\mathrm{HF}}_{2s}$ resulting from the 
-inversion.
-A very careful examination of the $u_{2s}^{\mathrm{HF}}$ orbital 
-function evidences the presence of a spurious node at $r=1.51$ a.u., 
-in a region where the amplitude of the wavefunction is 
-less than $10^{-4}$ times the maximum value (see the 
-inset of Fig. \ref{fig:2sKr}(a)).
-Even though this node is completely innocuous for practical matters,  
-it produces devastating effects in the inversion procedure, 
-evidenced in the second huge peak in the 
-$Z_{2s}^{\mathrm{HF}}$ curve (see Figure \ref{fig:2sKr}(b)). 
-This pole is so big that affects a 
-broad vicinity and causes the abrupt rising of the effective charge 
-for $r>0.5$ a.u.. This is really a surprising result since 
-{\it a priory} there is no reason to suspect that a negligible 
-oscillation in the tail of the wavefunction would produce such a 
-big drawback at such a small distance as 0.5 a.u.. 
-Care must be taken then to discard such an undesired effect.
-
-\textit{Second}, numerical rounding off of the exponential 
-decay of the bound states hinders the corresponding inverted 
-potential from having the physically desired asymptotic form. 
-Moreover, there is a \textit{third} problem and this is at the heart 
-of the Hartree Fock method: the exact solutions may have oscillations 
-(and therefore, spurious nodes) in the large--r or ``tail'' region of 
-the functions. 
-The existence of these spurious nodes in Hartree Fock was already 
-suggested by Fischer \cite{FroeseFischer:97}. 
-This failure is not rooted in the numerical scheme but it is 
-inherent to the method. Probably, these nodes are surviving 
-long--range exchange effects due to the non--local character of the 
-Hartree--Fock wavefunctions: the behavior of a particular orbital 
-depends on all others. 
-We have found the same spurious nodes at the same places even by 
-using the different numerical codes.
-As a general rule, the spurious nodes appear at very long distances, 
-a region in which the amplitude of the wavefunction is very small. 
-Therefore, their existence has no practical consequences, and they 
-can be neglected in any general Hartree--Fock calculation.  
-However, this is not true as far as the inversion procedure is 
-concerned, as we will discuss in the next section.
-\end{comment}
-
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Método de depuración}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{subsec:depuracion}
 
-Las dificultades numéricas mencionadas anteriormente convierten la 
-obtención de potenciales $V_{nl}^{\mathrm{HF}}$ mediante la ecuación 
-(\ref{eq:VHF}) en una tarea muy difícil. Para poder superar estas 
-dificultades, hemos desarrollado el método de depuración, el cual 
-consiste en optimizar cargas efectivas en lugar de potenciales efectivos. 
-Así, somos capaces de restringir los valores de cualquier potencial a 
-tener las condiciones de borde correctas, forzando el comportamiento de 
-la carga efectiva invertida según
+Para poder sortear las dificultades numéricas que resultan de la implementación de la inversión, hemos desarrollado el método de depuración. La depuración consiste en optimizar cargas efectivas en lugar de potenciales efectivos. Así, somos capaces de restringir los valores de cualquier potencial a tener las condiciones de borde correctas, forzando el comportamiento de la carga efectiva invertida según
 \begin{equation}
 Z_{nl}^{\mathrm{DIM}}(r) \, \rightarrow 
 \bigg\{ 
@@ -626,7 +565,7 @@ donde $Z_N$ es la carga nuclear del blanco atómico. Una vez que se
 define la carga en los bordes, podemos obtener una expresión analítica
 suave para $Z_{nl}^{\mathrm{DIM}}$, ajustando $Z_{nl}^{\mathrm{HF}}$ en
 el mayor rango posible, exceptuando las zonas de comportamiento errático.
-Estas condiciones se pueden cumplir imponiendole a la carga efectiva 
+Estas condiciones se pueden cumplir imponiéndole a la carga efectiva 
 DIM que siga la expresión analítica dada por
 \begin{equation}
 Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n} z_j e^{-\alpha_j r}+1 \,,
@@ -640,6 +579,31 @@ manera precisa.
 \subsubsection{Optimización de la carga DIM}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{subsec:optDIM}
+
+Un asunto muy importante en la optimización del potencial está dado por 
+la autoconsistencia dentro de los códigos numéricos implementados para 
+el cálculo de las soluciones a ser invertidas. Para tal fin, hemos 
+estudiado los códigos de Hartree--Fock~\cite{FroeseFischer:97,
+Johnson:07} y hemos implementado las grillas numéricas específicas de 
+cada código, incluyendo los mismos métodos para el cálculo de derivadas. 
+
+El ajuste del conjunto de parámetros $\left\{z_j,\alpha_j\right\}$ 
+requiere un gran nivel de experiencia y detalle. El procedimiento 
+general para la obtención de los potenciales DIM se esquematiza en la 
+Fig.~\ref{fig:procedimientoDIM}. La clave de una optimización exitosa 
+está dada por la definición de la región de ajuste: tiene que ser lo más 
+extensa posible pero descartando los puntos cercanos a los polos y 
+divergencias. De esta manera, la carga DIM $Z_{nl}^{\mathrm{DIM}}$ se 
+superpone con la carga invertida $Z_{nl}^{\mathrm{HF}}$ a lo largo de la 
+región interna bien comportada, permitiendo un ajuste preciso. La 
+segunda parte de la optimización consiste en la obtención de una semilla 
+para los parámetros $\left\{z_j,\alpha_j\right\}$. Estos valores son 
+obtenidos mediante la resolución de la ecuación normal definida por el 
+problema (ver detalles en Apéndice~\ref{app:ecnormal}). Los valores de 
+las semillas obtenidas definen un potencial efectivo inicial con el que 
+se resuelve la Ec.~(\ref{eq:eqSchroRadial}). Las soluciones obtenidas 
+nos permiten definir una función de costo, la cual es minimizada 
+variando los parámetros del problema de forma iterativa. 
 
 \begin{figure}[t]
 \centering
@@ -680,56 +644,28 @@ manera precisa.
 \label{fig:procedimientoDIM}
 \end{figure}
 
-Un asunto muy importante en la optimización del potencial está dado 
-por la autoconsistencia dentro de los códigos numéricos implementados
-para el cálculo de las soluciones, y en particular los códigos usados
-para la generación de las funciones de onda a ser invertidas. Para 
-tal fin, hemos estudiado los códigos de Hartree--Fock 
-\cite{FroeseFischer:97,Johnson:07} y hemos implementado las grillas
-numéricas específicas de cada código, incluyendo los mismos métodos 
-para el cálculo de derivadas. 
-
-El ajuste del conjunto de parámetros $\left\{z_j,\alpha_j\right\}$ 
-requiere un gran nivel de experiencia y detalle. El procedimiento 
-general de la obtención de los potenciales DIM se esquematiza en la 
-figura~\ref{fig:procedimientoDIM}. La clave de una optimización exitosa 
-está dada por la definición de la región de ajuste: tiene que ser lo más 
-extensa posible pero descartando los puntos cercanos a los polos y 
-divergencias. De esta manera, la carga DIM $Z_{nl}^{\mathrm{DIM}}$ se 
-superpone con la carga invertida $Z_{nl}^{\mathrm{HF}}$ a lo largo de 
-la región interna bien comportada, permitiendo un ajuste preciso. La 
-segunda parte de la optimización consiste en la obtención de una semilla 
-para los parámetros $\left\{z_j,\alpha_j\right\}$. Estos valores son 
-obtenidos mediante la resolución de la ecuación normal definida por el 
-problema (ver detalles en anexo~\ref{app:ecnormal}). Los valores de las 
-semillas obtenidas definen un potencial efectivo. A partir de esta 
-potencial de prueba, se resuelve la ecuación dada por 
-(\ref{eq:Schrodinger}), obteniendo las soluciones correspondientes. Las 
-soluciones obtenidas nos permiten definir una función de costo definida 
-previamente, la cual es minimizada repitiendo el procedimiento de forma 
-iterativa. 
-
-Es importante remarcar que la mayoría de los métodos de funcional de 
-la densidad están basados en un principio variacional que minimiza el
+Es importante remarcar que la mayoría de los métodos de funcional de la 
+densidad están basados en un principio variacional que minimiza el 
 funcional de energía. Sin descartar su importancia, la energía es solo
 uno de los observables que caracteriza un estado cuántico. Más aún, a 
 partir de diferentes funciones de prueba (de formas variadas) e 
 implementando un método variacional, es posible reproducir la misma 
 energía final. Un simple ejemplo es dado por 
 Bartschat~\cite{Albright:93,Bartschat:96}, en donde dos potenciales
-diferentes (uno conteniendo intercambio electrónico y otro despreciándolo)
-conducen a energías similares y precisas de la serie de Rydberg en 
-varios sistemas de cuasi-un electrón. Sin embargo, examinando estos 
-potenciales éstos muestran grandes discrepancias cuando son implementados
-en cálculos de dispersión \cite{BartschatBray:96}. Por lo tanto, además
-de los valores de energía, hemos incluido en nuestra optimización 
-valores medios de $\langle r^{n} \rangle$, tal que $n=-1,1$. La inclusión
-de estos observables nos permite caracterizar la precisión de la función
-de onda DIM acerca ($n=-1$) y lejos ($n=1$) del origen. Así, la función 
-de costo que define nuestra optimización está dada por los errores 
-relativos de cada una de estas cantidades
+diferentes (uno conteniendo intercambio electrónico y otro 
+despreciándolo) conducen a energías similares y precisas de la serie de 
+Rydberg en varios sistemas de cuasi-un electrón. Sin embargo, examinando 
+estos potenciales éstos muestran grandes discrepancias cuando son 
+implementados en cálculos de dispersión \cite{BartschatBray:96}. Por lo 
+tanto, además de los valores de energía, hemos incluido en nuestra 
+optimización valores medios de $\langle r^{n} \rangle$, tal que 
+$n=-1,1$. La inclusión de estos observables nos permite caracterizar la 
+precisión del orbital DIM acerca ($n=-1$) y lejos ($n=1$) del origen. 
+Así, la función de costo que define nuestra optimización está dada por 
+los errores relativos de cada una de estas cantidades
 \begin{equation}
 J=\sum_X \frac{X^{\mathrm{HF}}-\widebar{X}}{X^{\mathrm{HF}}}\,,
+\label{eq:fncosto-dim}
 \end{equation}
 donde la suma se hace sobre $X=\left[E,\langle r \rangle,\langle 1/r \rangle\right]$,
 siendo $X^{\mathrm{HF}}$ los valores de HF y $\widebar{X}$ los 
@@ -737,108 +673,121 @@ resultados obtenidos de la diagonización del potencial de prueba.
 
 A partir de este procedimiento se obtiene la carga invertida depurada 
 $Z_{2s}^{\mathrm{DIM}}(r)$ correspondiente al orbital $2s$ del átomo 
-de potasio que se muestra con línea sólida en la figura~\ref{fig:2sK}(b).
-Como se ve en la figura, se satisfacen las condiciones de borde dadas por
-la ecuación~\ref{eq:Zasympt}, donde en el origen $Z_{2s} = 19$, y 
+de potasio que se muestra con línea sólida en la Fig.~\ref{fig:2sK}(b).
+Como se ve en la figura, se satisfacen las condiciones de borde dadas 
+por la Ec.~\ref{eq:Zasympt}, donde en el origen $Z_{2s} = 19$, y 
 asintóticamente $Z_{2s} \rightarrow 1$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de moléculas}
+\section{Descripción de blancos moleculares}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:moleculas}
 
-\textcolor{red}{Método de expansiones con un centro (OCE) tesis de 
-grado}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Potenciales moleculares}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:dimmoleculas}
-
-En esta sección, el método de la inversión depurada es extendido para 
-la obtención de potenciales efectivo moleculares. A continuación, 
-utilizaremos la molécula de metano como ejemplo para mostrar la 
-implementación del método.
-
-Sin pérdida de generalidad, presentamos las bases teóricas para la 
-obtención de potenciales moleculares DIM de compuestos de hidruro.
-El hamiltoniano de un sistema de $N$--electrones de una molécula de 
-tipo $X\!H_n$ dentro de la aproximación de Born--Oppenheimer (\acs{boa})
-está dado por
+En el marco de la aproximación de Born--Oppenheimer, el Hamiltoniano 
+molecular no--relativista en el que se consideran sólo las fuerzas Coulombianas puede escribirse como
 \begin{equation}
- \mathcal{H}=-\sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
- - \sum_{i=1}^N \frac{Z_N}{r_i} 
- + \sum_{i=1}^N V_H(r_i)
- + \sum_{i<j}^N \frac{1}{r_{ij}}\,,
+H = - \sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
+    - \sum_{i=1}^N \sum_{\alpha=1}^n \frac{Z_{\alpha}}{
+    \left|\mathbf{r}_i-\mathbf{r}_{\alpha}\right|} 
+    + \sum_{i<j=1}^N \frac{1}{\left|\mathbf{r}_i-\mathbf{r}_j\right|} 
+    + \sum_{\alpha<\beta=1}^n \frac{z_{\alpha}z_{\beta}}{
+    \left|\mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right|}\,,
+\label{eq:gralmolHamiltonian}
 \end{equation}
+donde los índices $i,j$ van sobre todos los electrones y $\alpha,\beta$ 
+sobre todos los núcleos. Si consideramos moléculas de tipo $X\!H_n$, el 
+Hamiltoniano dado por~\ref{eq:gralmolHamiltonian} se reduce a 
+\begin{equation}
+H = -\sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
+    - \sum_{i=1}^N \frac{Z_N}{r_i} 
+    + \sum_{i=1}^N V_H(r_i)
+    + \sum_{i<j}^N \frac{1}{r_{ij}}\,,
+\end{equation}
+donde
 \begin{equation}
  V_H(r_i)=-\sum_{j=1}^{n} \frac{1}{\left|\mathbf{r}_i-\mathbf{R}_{H_j}\right|}\,,
+\label{eq:Vhidrogenos}
 \end{equation}
-donde $Z_N$ es la carga nuclear del átomo más pesado $X$, y 
+siendo $Z_N$ la carga nuclear del átomo más pesado $X$, y 
 $\mathbf{R}_{H_j}$ son las coordenadas de los hidrógenos respecto al 
-átomo $X$. La ecuación de Schr\"odinger correspondiente 
-$\mathcal{H}\Psi=E\Psi$ se resuelve y, considerando la expansión de un 
-centro (\acs{sce}), los orbitales se expresan según la 
-ecuación~(\ref{eq:centralfield-wave}). Los orbitales y energías se 
-encuentran resolviendo las ecuaciones de Hartree--Fock. El cálculo de 
-estas ecuaciones generalmente recaen en el uso de conjuntos de bases 
-(\acs{bs}) finitas para la representación de los orbitales moleculares 
-(\acsp{mo}). Usualmente, los MOs son expresados como una combinación 
-lineal de orbitales atómicos (\acs{lcao}), 
+átomo pesado $X$. La ecuación de Schr\"odinger correspondiente, 
+$H\Psi=E\Psi$, se resuelve en el marco de la aproximación de campo 
+central, donde los orbitales que componen la función de onda se expresan 
+según la Ec.~(\ref{eq:centralfield-wave}). En general, los orbitales y 
+energías de sistemas moleculares también se obtienen a partir del método 
+restringido de Hartree--Fock. El cálculo de las ecuaciones HF 
+generalmente implementan conjuntos de bases (\acs{bs}) finitas para la 
+representación de los orbitales moleculares (\acsp{mo}). Usualmente, los 
+MOs son expresados como una combinación lineal de orbitales atómicos 
+(\acs{lcao}), 
 \begin{equation}
  \Psi_i=\sum_j c_{ji} \phi_j\,.
 \end{equation}
 A su vez, los orbitales atómicos pueden ser construidos a partir de 
-conjuntos de base de orbitales tipo Gaussianos (\acsp{gto}).
+conjuntos de base de orbitales, por ejemplo, tipo Gaussianos 
+(\acsp{gto}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Inversión y depuración con bases gaussianas}
+\subsection{DIM en moléculas}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{subsec:invdepGTO}
+\label{sec:dimmoleculas}
 
-La expresión del potencial molecular invertido es análoga a la
-ecuación~(\ref{eq:VHF}), que se obtiene a partir de soluciones expresadas
-en conjuntos de base GTO, presenta mayores dificultades que las encontradas
-en el caso atómico. Además de las divergencias asintóticas y los polos, 
+En esta Sección extendemos el método de la inversión depurada para 
+obtener potenciales efectivos moleculares. Primero, definimos el método 
+a través del cual obtenemos los orbitales moleculares. Luego, planteamos 
+el esquema de inversión de los orbitales HF. Finalmente, presentamos las 
+modificaciones al método de depuración mediante el cual obtenemos 
+potenciales de hidruros.
+
+La expresión del potencial molecular invertido es análoga a la 
+Ec.~(\ref{eq:VHF}). Sin embargo, para el caso molecular, las soluciones 
+se expresan en conjuntos de base GTO. 
+\textcolor{red}{Acá me falta incluir la explicación de como paso el 
+cálculo de múltiples centros a OCE. No sé si ponerlo.} 
+
+La representación dada por los BS introduce nuevas dificultades en el 
+método de inversión. Además de las divergencias asintóticas y los polos, 
 los potenciales invertidos moleculares presentan grandes 
-oscilaciones~\cite{Schipper:97,Mura:97,Jacob:11,Gaiduk:13}. 
-Estas oscilaciones prominentes surgen debido a la presencia de 
-ondulaciones en los orbitales moleculares, las cuales a su vez se deben 
-al número finito de elementos en el conjunto de la base. La segunda
-derivada de los orbitales, necesaria para evaluar la formula inversa,
-amplifica estos rasgos. En algunos casos, las oscilaciones son enormes;
-por ejemplo, cerca de átomos electronegativos como el cloro. La 
-aparición de estas oscilaciones en los potenciales invertidos nos obliga
-a incorporar medidas adicionales en el procedimiento de depuración.
-Para ilustrar el procedimiento, consideramos el orbital $1s$ del
-átomo de carbono. Primero, resolvemos las ecuaciones de Hartree--Fock 
-usando el conjunto de bases \mbox{6-311G} con el código {\sc gamess} code~\cite{Schmidt:93,Gordon:05}. Luego, aplicando la ecuación~(\ref{eq:VHF}),
-obtenemos la carga invertida correspondiente. La carga resultante
-$Z_{1s}^{\mbox{\scriptsize 6-311G}}$ se muestra en la 
-figura~\ref{fig:1sCarbon}(a) con una línea raya-punto. La carga presenta
+oscilaciones~\cite{Schipper:97,Mura:97,Jacob:11,Gaiduk:13}. Estas 
+oscilaciones prominentes surgen debido a la presencia de ondulaciones en 
+los orbitales moleculares, las cuales a su vez se deben al número finito 
+de elementos en el conjunto de la base. La segunda derivada de los 
+orbitales, necesaria para evaluar la fórmula inversa, amplifica estos 
+rasgos. En algunos casos, las oscilaciones son enormes; por ejemplo, 
+cerca de átomos electronegativos como el cloro. La aparición de estas 
+oscilaciones en los potenciales invertidos nos obliga a incorporar 
+medidas adicionales en el procedimiento de depuración.
+
+Para ilustrar el procedimiento de depuración, consideramos el orbital 
+$1s$ del átomo de carbono. Primero, resolvemos las ecuaciones de 
+Hartree--Fock usando el conjunto de bases \mbox{6-311G} con el código 
+{\sc gamess} code~\cite{Schmidt:93,Gordon:05}. Luego, aplicando la  
+Ec.~(\ref{eq:VHF}), obtenemos la carga invertida correspondiente. La 
+carga resultante $Z_{1s}^{\mbox{\scriptsize 6-311G}}$ se muestra en la 
+Fig.~\ref{fig:1sCarbon}(a) con una línea raya-punto. La carga presenta 
 oscilaciones en toda su extensión radial, divergiendo para valores 
 grandes de $r$. Se realiza el mismo cálculo con el conjunto de base 
 universal gaussiano (\acs{ugbs}), que tiene un número significativamente 
 mayor de funciones primitivas. La carga invertida correspondiente 
 $Z_{1s}^{\mbox{\scriptsize UGBS}}$ se muestra en la figura con una línea 
-discontinua. A pesar que la carga aún diverge cerca de $r\approx1\,$a.u., 
-las oscilaciones ahora están circunscriptas cerca del núcleo. Finalmente,
-se resuelven las ecuaciones diferenciales de Hartree--Fock para el 
-átomo de carbono usando el método de diferencias finitas (\acs{fd}). La
-carga invertida $Z_{1s}^{\mbox{\scriptsize FD}}$ que se obtiene usando 
-las soluciones de este método se muestra con una línea sólida en la 
-figura~\ref{fig:1sCarbon}(a). Como es de esperar, esta carga invertida 
-no presenta oscilaciones ya no se han utilizado conjuntos de base para
-construir los orbitales. Sin embargo, como hemos visto en la sección
-anterior, la carga diverge para $r>1\,$a.u., debido a las características
-del método de Hartree--Fock.
+discontinua. A pesar que la carga aún diverge cerca de 
+$r\approx1\,$a.u., las oscilaciones ahora están circunscriptas cerca del 
+núcleo. Finalmente, se resuelven las ecuaciones diferenciales de 
+Hartree--Fock para el átomo de carbono usando el método de diferencias 
+finitas (\acs{fd}). La carga invertida $Z_{1s}^{\mbox{\scriptsize FD}}$ 
+que se obtiene usando las soluciones de este método se muestra con una 
+línea sólida en la Fig.~\ref{fig:1sCarbon}(a). Como es de esperar, esta 
+carga invertida no presenta oscilaciones, ya que no se han usado 
+conjuntos de base para construir los orbitales. Sin embargo, como hemos 
+visto en la Sección anterior, la carga diverge para $r>1\,$a.u., debido 
+a las características del método de Hartree--Fock. 
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.9\textwidth]{dim/carbon_prof.eps}
 \caption[Inversión de funciones de onda descritas con conjuntos de base.]
 {(a) Cargas efectivas invertidas del orbital $1s$ del átomo de carbón.
-(b) Perfiles de oscilación de los conjuntos de base.}
+(b)~Perfiles de oscilación de los conjuntos de base.}
 \label{fig:1sCarbon}
 \end{figure}
 
@@ -851,22 +800,23 @@ de cada BS como
  \label{eq:oscillation-prof}
 \end{equation}
 donde $Z_{nl}^{\mbox{\scriptsize BS}}$ es la carga invertida del átomo
-cuando se usa el conjunto de bases ``BS'' y $Z_{nl}^{\mbox{\scriptsize FD}}$ 
-es la carga efectiva que se obtiene a partir de la inversión de las 
-soluciones del método de diferencias finitas. En el caso del carbono,
-los conjuntos de base consideradas para calcular el orbital $1s$ fueron
-\mbox{6-311G} y UGBS. Los perfiles de oscilación correspondientes a
-dicho orbital, usando la ecuación~(\ref{eq:oscillation-prof}), 
-se muestran en la figura~\ref{fig:1sCarbon}(b). Dado que los perfiles 
-de oscilación para cada conjunto de base atómico son característicos,
-una vez determinados, éstos pueden ser implementados para remover las
-oscilaciones de los cálculos moleculares. 
+cuando se usa el conjunto de bases ``BS'' y 
+$Z_{nl}^{\mbox{\scriptsize FD}}$ es la carga efectiva que se obtiene a 
+partir de la inversión de las soluciones del método de diferencias 
+finitas. En el caso del carbono, los conjuntos de base consideradas para 
+calcular el orbital $1s$ fueron \mbox{6-311G} y UGBS. Los perfiles de 
+oscilación correspondientes a dicho orbital, usando la 
+Ec.~(\ref{eq:oscillation-prof}), se muestran en la 
+Fig.~\ref{fig:1sCarbon}(b). Dado que los perfiles de oscilación para 
+cada conjunto de base atómico son característicos, una vez determinados, 
+éstos pueden ser implementados para remover las oscilaciones de los 
+cálculos moleculares. 
 
 Una vez que las oscilaciones son removidas de los cálculos moleculares, 
 se procede a implentar el procedimiento de depuración descrito en la
-sección~\ref{subsec:depuracion}. Debido a la 
-estructura de las moléculas consideras, definimos una nueva ecuación 
-parámetrica para las cargas moleculares DIM,
+Sección~\ref{subsec:depuracion}. Debido a la estructura de las moléculas 
+consideras, definimos una nueva ecuación parámetrica para las cargas 
+moleculares DIM,
 \begin{eqnarray}
  Z(r) = \sum_j z_j e^{-\alpha_j r} 
  + z_{\mbox{\scriptsize H}} e^{-(\ln r - \ln \beta)^2/(2\gamma)} 
@@ -874,103 +824,272 @@ parámetrica para las cargas moleculares DIM,
  \label{eq:molzDIM}
 \end{eqnarray}
 En constraste con la aproximación propuesta para los 
-átomos~(\ref{eq:atomzDIM}), incluimos un segundo término en la 
-formula de ajuste para tener en cuenta la presencia de los hidrógenos en 
-los compuestos hidruros. Esta expresión nos permite ajustar 
-convenientemente tanto la ubicación como el ancho de los potenciales
+átomos~(\ref{eq:atomzDIM}), incluimos un segundo término en la fórmula 
+analítica de la carga por cuenta de $V_H(r)$, dado 
+por~(\ref{eq:Vhidrogenos}). Esta expresión nos permite ajustar 
+convenientemente tanto la ubicación como el ancho de los potenciales 
 hidrogénicos apantallados sin afectar el valor correcto de la carga en 
 el origen.
 
-
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:dimresultados}
 
-En esta sección, examinaremos los resultados obtenidos a partir de la 
-implementación de nuestro método de potencial efectivo para la descripción 
-de blancos atómicos y moleculares. 
-La aplicabilidad del método de inversión depurada en blancos de 
-estructura compleja es evaluada a través del estudio de la ionización 
-por impacto de protones y fotones en átomos y moléculas. También 
-analizaremos el desempeño de los potenciales DIM ante la primera 
-aproximación de Born para predecir secciones eficaces totales de 
-ionización de helio, nitrógeno, neón y metano.
+En esta Sección examinamos los resultados obtenidos a partir de la 
+implementación de nuestro método de potencial efectivo para la 
+descripción de blancos atómicos y moleculares. La aplicabilidad del 
+método de inversión depurada en blancos de estructura compleja es 
+evaluada a través del estudio de la ionización por impacto de protones y 
+fotones en átomos y moléculas. Analizaremos el desempeño de los  
+potenciales DIM ante la primera aproximación de Born para predecir 
+secciones eficaces totales de ionización de helio, nitrógeno, neón y 
+metano.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Descripción de blancos}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{subsec:dimtarget}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{Helio}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En primer lugar, mostraremos los resultados obtenidos de implementar
 el método de inversión depurada en el átomo de helio en su estado
-fundamental. Dado que la inversión directa de este orbital no presenta 
-ninguna de las complicaciones numéricas presentadas en la
-sección~\ref{subsec:difnumericasDIM}; i.e., la función de onda del 
-orbital $1s$ no tiene nodos y éste decae exponencialmente con la energía 
-del orbital HOMO. Además, la simpleza del átomo de helio nos permite contar 
-con un número reducido de parámetros necesarios para definir la carga 
-efectiva DIM $Z_{1s}^{\mathrm{ DIM}}$ dada por la 
-ecuación~(\ref{eq:atomzDIM}). Así, es posible optimizar esta función 
-con sólo tres parámetros, los cuales se dan en la tabla~\ref{tab:parametrosHe}.
+fundamental. Dado que el orbital $1s$ no tiene nodos y que éste 
+decae exponencialmente con la energía del orbital HOMO, la inversión 
+directa de este orbital no presenta ninguna de las complicaciones 
+numéricas presentadas en la Sección~\ref{subsec:probinv}. Además, la 
+simpleza del átomo de helio nos permite ajustar la carga invertida con 
+un número reducido de parámetros. Así, es posible optimizar la carga 
+efectiva $Z_{1s}^{\mathrm{ DIM}}$, dada por la Ec.~(\ref{eq:atomzDIM}), 
+con sólo tres parámetros, los cuales se dan en la 
+Tabla~\ref{tab:params-atoms}.
 
-%%%%%%%%%%%%%% PARAMETROS CARGA EFECTIVA 
-\begin{table}
+Para verificar la calidad de la estructura atómica dada por el potencial DIM obtenido, en la Tabla~\ref{tab:results-atoms} presentamos una comparación entre los valores de energías y radios medios obtenidos utilizando el método de inversión depurada con sus correspondientes valores obtenidos mediante el método de Hartree--Fock. El potencial $V_{1s}^{\mathrm{ DIM}}$ es capaz de producir un orbital $u_{1s}^{\mathrm{ DIM}}$ cuya energía coincide con la energía original de HF en 6 cifras significativas. Los valores medios también muestran una excelente concordancia, tanto para la región cercana al origen, $\langle r \rangle$, como en los que muestrean la calidad de la región asintótica, \langle 1/r\rangle.
+
+%%%%%%%%%%%%%% RESULTADOS %%%%%%%%%%%%%%
+\begin{table}[t]
 \begin{center}
-\begin{tabular}{|c|c|c|}
-\hline
-  $nl$ & $z$ & $\alpha$ \\
-\hline
-\hline
-\multirow{2}{*}{$1s$} &  $1.31745$ & $2.50032$ \\
-                      & $-0.31745$ & $5.04372$ \\
-\hline
-\end{tabular}
-\caption[Parámetros de la carga efectiva del helio.]
-{Parámetros de la carga efectiva $Z_{1s}^{\mathrm{ DIM}}$ del átomo de 
-helio.}
-\label{tab:parametrosHe}
+\begin{tabularx}{\textwidth}{
+>{\centering\arraybackslash}p{0.2\textwidth}
+>{\centering\arraybackslash}p{0.2\textwidth}
+>{\centering\arraybackslash}p{0.2\textwidth}
+>{\centering\arraybackslash}p{0.2\textwidth}}
+%\begin{tabular}{*{5}{c}}
+\rowcolor{mydarkgray} 
+         & $nl$ & $z$        & $\alpha$   \\
+%%%%%%%%%%%%%%%%%%%% Helio %%%%%%%%%%%%%%%%%%%%
+He $^1$S & $1s$ &  $1.31745$ & $2.50032$  \\ 
+\rowcolor{mygray} 
+         &      & $-0.31745$ & $5.04372$  \\ 
+%%%%%%%%%%%%%%%%%% Nitrogeno %%%%%%%%%%%%%%%%%%
+N $^4$S  & $1s$ & $5.25634$  & $1.26207$  \\ 
+\rowcolor{mygray} 
+         &      & $0.74366$ & $8.02844$  \\ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         & $2s$ & $2.45281$  & $3.51271$  \\ 
+\rowcolor{mygray} 
+         &      & $0.83357$ & $3.38654$  \\ 
+         &      & $2.71362$  & $0.89470$ \\ 
+\rowcolor{mygray} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         & $2p$ & $3.64345$  & $1.24069$  \\ 
+         &      & $2.05501$  & $5.35135$  \\ 
+\rowcolor{mygray} 
+         &      & $0.30154$ & $0.28661$ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Ne $^1$S & $1s$ & $7.36769$ & $2.41728$ \\
+\rowcolor{mygray} 
+         &      & $1.30036$ & $0.12640$ \\
+         &      & $0.33195$ & $13.15820$ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\rowcolor{mygray} 
+         & $2s$ & $0.29774$ & $17.99390$ \\
+         &      & $0.66808$ & $0.06729$ \\
+\rowcolor{mygray} 
+         &      & $8.03418$  & $2.47221$ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         & $2p$ & $1.35305$ & $8.56948$ \\
+\rowcolor{mygray} 
+         &      & $0.33588$ & $0.46494$ \\
+         &      & $7.31107$ & $2.09063$ \\
+\end{tabularx}
+\caption[Parámetros de la carga efectiva de He, N y Ne.]
+{Parámetros de la carga efectiva $Z_{1s}^{\mathrm{ DIM}}$ de He~$^1$S, 
+N~$^4$S y Ne~$^1$S.}
+\label{tab:params-atoms}
 \end{center}
 \end{table}
-
-Para verificar la calidad de las funciones de onda obtenidas, en la 
-tabla~\ref{tab:resultadosHe} presentamos la comparación de las energías 
-y los valores de radios medios obtenidos mediante el método de Inversión
-Depurada, con sus correspondientes valores obtenidos utilizando el 
-método de Hartree--Fock.
-
-%%%%%%%%%%%% ENERGIAS Y VALORES MEDIOS DE HARTREE-FOCK E INVERSION 
-\begin{table}
+\begin{table}[t]
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-$nl$ & & Energía & $\left<r\right>$ & $\left<1/r\right>$ \\
-\hline
-\hline
-\multirow{2}{*}{$1s$} 
-     &  HF  & -0.917956 & 0.927273 & 1.687282 \\
-     & DIM  & -0.917956 & 0.927313 & 1.687251 \\
-\hline
-\end{tabular}
-\caption[Energías y radios medios obtenidos con DIM y HF para helio.]
-{Energías y radios medios del obtenidos con el método de Inversión 
-Depurada y con el método de HF en helio.}
-\label{tab:resultadosHe}
+\begin{tabularx}{\textwidth}{
+>{\centering\arraybackslash}p{0.16\textwidth}
+>{\centering\arraybackslash}p{0.10\textwidth}
+>{\centering\arraybackslash}p{0.16\textwidth}
+>{\centering\arraybackslash}p{0.16\textwidth}
+>{\centering\arraybackslash}p{0.16\textwidth}
+>{\centering\arraybackslash}p{0.06\textwidth}}
+\rowcolor{mydarkgray} 
+         & $nl$ & Energía & $\left<r\right>$ & $\left<1/r\right>$ & \\
+He $^1$S & $1s$ & $-0.91796$  & $0.92727$ & $1.68728$ & DIM\\
+\rowcolor{mygray} 
+         &      & $-0.91796$  & $0.92731$ & $1.68725$ & HF \\
+N $^4$S  & $1s$ & $-15.62906$  & $0.22830$ & $6.64863$ &  \\
+\rowcolor{mygray} 
+         &      & $-15.62906$  & $0.22830$ & $6.65324$ &   \\
+         & $2s$ & $-0.94532$  & $1.33447$ & $1.08037$ & \\
+\rowcolor{mygray} 
+         &      & $-0.94532$  & $1.33228$ & $1.07818$  &  \\
+         & $2p$ & $-0.56759$  & $1.41268$ & $0.95498$  & \\
+\rowcolor{mygray} 
+         &      & $-0.56759$  & $1.40963$ & $0.95769$   & \\
+Ne $^1$S & $1s$ & $-32.77245$ & $0.15749$ & $9.62145$  & \\
+\rowcolor{mygray} 
+         &      & $-32.77244$ & $0.15763$ & $9.61805$ &  \\
+         & $2s$ & $-1.93039$  & $0.89134$ & $1.64077$ &  \\
+\rowcolor{mygray} 
+         &      & $-1.93039$  & $0.89211$ & $1.63255$ &  \\  
+         & $2p$ & $-0.85041$  & $0.96776$ & $1.43025$  & \\
+\rowcolor{mygray} 
+         &      & $-0.85041$  & $0.96527$ & $1.43535$  & \\
+\end{tabularx}
+\caption[Energías y radios medios obtenidos con DIM y HF en He.]
+{Energías y radios medios obtenidos con el método de inversión depurada 
+(filas superiores) y con el método de HF (filas inferiores) de 
+He~$^1$S, N~$^4$S y Ne~$^1$S.}
+\label{tab:results-atoms}
 \end{center}
 \end{table}
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/dim/N_dim.eps}
+\caption[Cargas efectivas DIM de nitrógeno.]
+{Cargas efectivas $1s$, $2s$ y $2p$ del término $2\,^4$S de N obtenidas 
+mediante inversión directa (lineas discontinuas) e inversión depurada 
+(líneas sólidas).}
+\label{fig:Nzeff}
+\end{figure}
 
-Como podemos ver, el potencial $V_{1s}^{\mathrm{ DIM}}$ es capaz de 
-producir un orbital $\varphi_{1s}^{\mathrm{ DIM}}$ que tiene una 
-energía que coincide con la energía original de HF en 6 cifras 
-significativas. 
-Los valores medios también muestran una concordancia espectacular, 
-tanto para la región cercana al origen, como en los que muestrean 
-la calidad de la región asintótica.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Nitrógeno}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Los excelentes resultados obtenidos a partir de la implementación de DIM 
+en el átomo de helio pueden atribuirse a la simplicidad del orbital y su 
+simetría esférica. Para evaluar la destreza del método de inversión 
+depurada para describir blancos con más electrones y de capa abierta, 
+consideramos ahora el átomo de nitrógeno. 
+
+La configuración más baja del nitrógeno $2p^3$ da lugar a tres términos 
+diferentes: $^4$S, $^2$D, $^2$P. Cada uno de estos términos está 
+descrito por una densidad electrónica diferente. Consideramos aquí 
+las soluciones de HF del término de menor energía. En la  Fig.~\ref{fig:Nzeff} se muestran las cargas de los orbitales $1s$, $2s$ y $2p$ obtenidas a partir del método de inversión (líneas discontinuas) y el método de inversión depurada (líneas continuas). Como se estudiado en la Sección~\ref{subsec:probinv}, la inversión del orbital $u_{1s}^{\mathrm{HF}}$ diverge en la región asintótica debido al comportamiento del potencial dado por la Ec.~\ref{eq:asintoticoVHF}. Además, el nodo genuino del orbital $2s$, en $r\approx 0.32$~a.u., es traducido por el método de inversión (IM) como un polo a la carga. 
+
+La implementación del método de inversión depurada permite ajustar analíticamente la carga invertida en el mayor rango posible. Luego de una optimización cuidadosa del blanco se obtienen los parámetros de las cargas DIM correspondientes el término $^4$S que se dan en la Tabla~\ref{tab:params-atoms}. Resolviendo la ecuación de Schr\"odinger para un electrón (\ref{eq:eqSchroRadial}) con las cargas efectivas DIM es posible reproducir las energías orbitales hasta la quinta cifra significativa de los valores de Hartree--Fock y los valores medios $\langle r \rangle$ y $\langle 1/r \rangle$ hasta en un $0.2\%$, como se muestra en la Tabla~\ref{tab:results-atoms}.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Neón}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+La implementación del DIM en neón es análoga al caso de nitrógeno. Los resultados de la optimización de los parámetros que definen las cargas efectivas, dadas por la Ec.~(\ref{eq:atomzDIM}}), del átomo de neón se muestran en la Tabla~\ref{tab:params-atoms}. La comparación entre las soluciones de los potenciales DIM y el método de Hartree--Fock se dan en la Tabla~\ref{tab:results-atoms}. El acuerdo en energías orbitales es excelente, del orden de $1\times 10^{-5}$, mientras que DIM reproduce los valores medios de los orbitales HF en aproximadamente $0.1\%$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Metano}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+La expansión del método de inversión depurada a sistemas moleculares es 
+aplicada a la molécula de metano. Este hidruro es altamente simétrico y, por lo tanto, puede ser descrito por un potencial angular  promediado~\cite{Granados:16}. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/dim/ch4_dim.eps}
+\caption[Cargas efectivas DIM de metano.]
+{Cargas efectivas de CH$_4$; inversión directa (lineas discontinuas)
+e inversión depurada (líneas sólidas).}
+\label{fig:ch4zeff}
+\end{figure}
+
+Los orbitales moleculares de HF de CH$_4$ se calcularon usando los 
+conjuntos de bases UGBS del carbono y el hidrógeno, los cuales 
+consideran momentos angulares hasta $L=1$. El cálculo de estructura 
+electrónico de metano con estos conjuntos de base deberían incluir 
+funciones de polarización (por lo menos hasta las funciones $d$), con el 
+fin de incrementar la precisión de las energías  
+moleculares~\cite{Rothenberg:71,Hariharan:72}. Sin embargo, para aislar 
+los efectos de los conjuntos de base, realizamos los cálculos de 
+perfiles de oscilación descritos en la Sección~\ref{sec:dimmoleculas} y 
+los orbitales moleculares en el mismo esquema. Las cargas obtenidas 
+mediante la inversión directa se muestran en la Fig.~\ref{fig:ch4zeff} 
+con líneas discontinuas. Dado que los orbitales moleculares están 
+escritos por combinaciones lineales de orbitales atómicos del carbono y 
+el hidrógeno, las oscilaciones de las cargas invertidas se deben al 
+número finito de funciones primitivas en el conjunto de base de cada 
+átomo. Para remover estas oscilaciones, se deben determinar los perfiles 
+de oscilación producidas por el conjunto de base de los átomos 
+constituyentes. Usamos la Ec.~(\ref{eq:oscillation-prof}) para 
+determinar los perfiles $p_{1s}^{\mbox{\scriptsize UGBS}}$, 
+$p_{2s}^{\mbox{\scriptsize UGBS}}$ y $p_{2p}^{\mbox{\scriptsize UGBS}}$ 
+del carbono. Así, se puden remover los perfiles 
+$p_{nl}^{\mbox{\scriptsize UGBS}}$ de las correspondientes cargas 
+invertidas $Z_{i}^{\mbox{\scriptsize UGBS}}$ del metano. Las 
+oscilaciones se remueven completamente para todos los orbitales excepto 
+el $2a_2$, que presenta pequeñas fluctuaciones residuales debido a la 
+base del hidrógeno. Ya que estas ondulaciones son mínimas y se ubican 
+cerca del núcleo, podemos despreciarlas y procedemos a implementar le 
+método de depuración descrita en la Sección~\ref{sec:dimmoleculas}. 
+
+Los parámetros optimizados de las cargas moleculares DIM, dadas por la Ec.~(\ref{eq:molzDIM}), se dan en la Tabla~\ref{tab:ch4parameters}. Las cargas correspondientes se muestran en la Fig.~\ref{fig:ch4zeff} con líneas sólidas.  En este caso, para la construcción de función de costo~(\ref{eq:fncosto-dim}) minimizada se consideraron los valores de energía y los valores medios de los MOs dados por Moccia~\cite{Moccia:69}. Los valores de energía obtenidos con ellas reproducen las originales hasta la cuarta cifra significativa y se dan en la Tabla~\ref{tab:ch4parameters}. Por otro lado, los valores medios $\langle r\rangle$ y $\langle 1/r\rangle$ obtenidos con los potenciales moleculares DIM son en promedio del $0.3\%$ y menores al $1\%$.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{
+>{\centering\arraybackslash}p{0.13\textwidth}
+>{\centering\arraybackslash}p{0.13\textwidth}
+>{\centering\arraybackslash}p{0.13\textwidth}
+>{\centering\arraybackslash}p{0.13\textwidth}
+>{\centering\arraybackslash}p{0.13\textwidth}
+>{\centering\arraybackslash}p{0.13\textwidth}}
+\rowcolor{mydarkgray} 
+   $nl$ & $E$        & $z$        & $\alpha$   & $\beta$ & $\gamma$ \\
+$1a_1$  & $-11.1949$ & $1.925280$ & $0.641982$ & & \\
+\rowcolor{mygray} 
+        &            & $0.953120$ & $5.571510$ & & \\
+        &            & $2.121600$ & $1.500440$ & & \\
+\rowcolor{mygray} 
+$2a_2$  & $-0.9204$  & $2.912200$ & $3.149990$ & & \\
+        &            & $2.087800$ & $0.771371$ & & \\
+\rowcolor{mygray} 
+        &            & $1.23640$  &            & $2.329570$ & $0.053420$ \\
+$2t_1$  & $-0.5042$  & $0.901953$ & $2.895140$ & & \\
+\rowcolor{mygray} 
+        &            & $1.112030$ & $0.388649$ & & \\
+        &            & $2.986017$ & $2.931210$ & & \\
+\rowcolor{mygray} 
+        &            & $1.301820$ &            & $2.169850$ & $0.012616$ \\ 
+\end{tabular}
+\caption[Energías y parámetros de ajuste de cargas efectivas de metano.]
+{Energías orbitales moleculares y parámetros de ajuste de cargas efectivas dadas por la Ec.~(\ref{eq:molzDIM}) de metano.}
+\label{tab:ch4parameters}
+\end{table}
+
+
 
 \begin{comment}
+
+
+  % Relative errors: CH4
+   Shell    Energy      <r>         <1/r>       <r^2>      <1/r^2>
+    1s    -0.000036    0.026090    0.061503    0.122597     0.244778
+    2s    -0.000029    0.306031    0.007289    2.013229     3.018792
+    2p    -0.000101    0.278265    1.089729    0.151520     1.949728
+
+
+
+
 \begin{table}
 \centering
 \begin{tabular}{lccccccc}
@@ -1006,30 +1125,7 @@ se obtienen mediante la optimización manual.}
 \end{table}
 \end{comment}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Nitrógeno}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-La configuración más baja del nitrógeno $2p^3$ da lugar a tres términos
-diferentes: $2\,^4$S, $2\,^2$D, $2\,^2$P. Cada uno de estos términos 
-está descrito por una densidad electrónica diferente. Los parámetros 
-que definen las cargas efectivas para cada término están dados en la 
-tabla~\ref{tab:parametersNitro}. Resolviendo la ecuación (\ref{eq:Schrodinger}) 
-con las cargas efectivas DIM definidas es posible reproducir los valores 
-medios $\langle r \rangle$ y $\langle 1/r \rangle$ hasta en un $0.2\%$ 
-de los valores de Hartree--Fock. Más aún, las energías totales DIM para 
-cada término reproducen las originales hasta $10^{-4}\%$. 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{figures/dim/N_dim.eps}
-\caption[Cargas efectivas DIM de nitrógeno.]
-{Cargas efectivas del término $2\,^4$S de N; 
-inversión directa (lineas discontinuas) 
-e inversión depurada (líneas sólidas).}
-\label{fig:Nzeff}
-\end{figure}
-
+\begin{comment}
 \begin{table}
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
@@ -1142,92 +1238,8 @@ efectivos DIM (filas superiores) y el método de Hartree--Fock (filas
 inferiores).} 
 \label{tab:resultsNitro}
 \end{table}
+\end{comment}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Neón}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Metano}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Implementamos el método de Inversión Depurada en la molécula de metano,
-ya que es ésta es altamente simétrica y, por lo tanto, puede ser descrita
-por un potencial angular promediado~\cite{Granados:16}. Calculamos los 
-orbitales moleculares de HF de CH$_4$ usando los conjuntos de bases 
-UGBS del carbono y el hidrógeno, los cuales consideran momentos angulares
-hasta $L=1$. Los cálculos de metano con estos conjuntos de base deberían
-incluir funciones de polarización (por lo menos hasta las funciones $d$)
-para incrementar la precisión de las energías
- moleculares~\cite{Rothenberg:71,Hariharan:72}. Sin embargo, para
-aislar los efectos de los conjuntos de base, realizamos los cálculos de 
-perfiles de oscilación descritos en la sección~\ref{subsec:invdepGTO} y 
-los orbitales moleculares en el mismo esquema. Las cargas obtenidas 
-mediante la inversión directa se muestran en la figura~\ref{fig:ch4zeff} 
-con líneas discontinuas. Dado que los orbitales moleculares están 
-escritos por combinaciones lineales de orbitales atómicos del carbono
-y el hidrógeno, las oscilaciones de las cargas invertidas se deben al 
-número finito de funciones primitivas en el conjunto de base de cada átomo.
-Para remover estas oscilaciones, se deben determinar los perfiles de 
-oscilación producidas por el conjunto de base del carbono. Usamos la 
-ecuación~(\ref{eq:oscillation-prof}) para determinar los perfiles
-$p_{1s}^{\mbox{\scriptsize UGBS}}$, $p_{2s}^{\mbox{\scriptsize UGBS}}$ 
-y $p_{2p}^{\mbox{\scriptsize UGBS}}$ del carbono. Así, se puden remover
-los perfiles $p_{nl}^{\mbox{\scriptsize UGBS}}$ de las correspondientes
-cargas invertidas $Z_{i}^{\mbox{\scriptsize UGBS}}$ del metano. Las
-oscilaciones son completamente removidas para todos los orbitales 
-excepto el $2a_2$, que presenta pequeñas fluctuaciones residuales debido
-a la base del hidrógeno. Ya que estas ondulaciones son mínimas y se 
-ubican cerca del núcleo, procedemos a implementar le método de 
-depuración descrita en la sección~\ref{subsec:invdepGTO}. 
-
-Los parámetros optimizados de las cargas moleculares DIM de metano y los
-valores de energía obtenidos con ellas se dan en la 
-tabla~\ref{tab:ch4parameters}. Las cargas correspondientes se muestran 
-en la figura~\ref{fig:ch4zeff} con líneas sólidas. 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.9\textwidth]{figures/dim/ch4_dim.eps}
-\caption[Cargas efectivas DIM de metano.]
-{Cargas efectivas de CH$_4$; inversión directa (lineas discontinuas)
-e inversión depurada (líneas sólidas).}
-\label{fig:ch4zeff}
-\end{figure}
-
-\begin{table}
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|}
-\hline
-   $nl$ & $E$ &$z$ & $\alpha$ & $z_{\mbox{\scriptsize H}}$ & $\beta$ & $\gamma$ \\
-\hline
-\hline
-\multirow{3}{*}{$1a_1$} 
-  & \multirow{3}{*}{-11.1949}
-      & 1.925280 & 0.641982 & & & \\
-    & & 0.953120 & 5.571510 & & & \\
-    & & 2.121600 & 1.500440 & & & \\
-\hline
-\multirow{2}{*}{$2a_2$}
- & \multirow{2}{*}{-0.9204}
-      & 2.912200 & 3.149990 & \multirow{2}{*}{1.23640} & \multirow{2}{*}{2.329570} & \multirow{2}{*}{0.053420} \\
-    & & 2.087800 & 0.771371 & & & \\
-\hline
-\multirow{3}{*}{$2t_1$}
- & \multirow{3}{*}{-0.5042}
-      & 0.901953 & 2.895140 & \multirow{3}{*}{1.30182} & \multirow{3}{*}{2.169850} & \multirow{3}{*}{0.012616} \\
-    & & 1.112030 & 0.388649 & & & \\
-    & & 2.986017 & 2.931210 & & & \\
-\hline
-\end{tabular}
-\caption[Energías y parámetros de ajuste de cargas efectivas de metano.]
-{Energías orbitales moleculares y parámetros de ajuste de cargas efectivas
-dadas por la ecuación~(\ref{eq:molzDIM}) de metano.}
-\label{tab:ch4parameters}
-\end{table}
-
-\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Fotoionización}
 \label{subsec:foto}

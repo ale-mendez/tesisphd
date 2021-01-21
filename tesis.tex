@@ -29,24 +29,20 @@
 \usepackage{chngpage}
 \usepackage{array,booktabs,makecell,multirow}
 \definecolor{mygray}{gray}{0.9}
+\definecolor{mydarkgray}{gray}{0.8}
 \usepackage{eucal}
-
-
 %\usepackage[acronym,nomain,toc]{glossaries}
 %\usepackage[toc,section=section,nomain,acronym]{glossaries}
 %\glstoctrue
 \usepackage{acro}
-
 \usepackage[nottoc]{tocbibind}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
-
 %\usepackage[printwatermark]{xwatermark}
 %\newwatermark[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{Versión preliminar}
 
 \PrerenderUnicode{ü}
 \PrerenderUnicode{ó}
-
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows}
 \usepackage[customcolors,shade]{hf-tikz}
@@ -111,6 +107,10 @@ biblio}
 \DeclareAcronym{oep}{
   short = OEP,
   long = Optimized Effective Potential,
+  class = A}
+\DeclareAcronym{IM}{
+  short = IM,
+  long = Inversion Method,
   class = A}
 \DeclareAcronym{dim}{
   short = DIM,
@@ -295,6 +295,10 @@ biblio}
 \DeclareAcronym{cfa}{
   short = CFA,
   long = Central Field Approximation,
+  class = A}
+\DeclareAcronym{homo}{
+  short = HOMO,
+  long = Highest Occupied Molecular Orbital,
   class = A}
 \begin{comment}
 \DeclareAcronym{}{
