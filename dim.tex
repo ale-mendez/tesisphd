@@ -39,13 +39,15 @@ onda de las partículas interactuantes en el proceso colisional es ideal.
 Con este fin, se ha desarrollado una gran variedad de metodologías para 
 el diseño de potenciales efectivos en blancos atómicos~\cite{Hibbert:82} 
 y moleculares~\cite{Menchero:10,Granados:16}. Entre ellos se destacan 
-algunos semi-empíricos~\cite{falta}, basados en el formalismo de 
-HF~\cite{falta}, de polarización del núcleo electrónico~\cite{falta} y 
-relativistas~\cite{falta}. Otra técnica conocida es la determinación de 
-potenciales centrales a partir de funciones de onda y/o densidades 
-electrónicas, conocida como método de inversión. Este procedimiento ha 
-sido estudiado de forma extensa en la DFT~\cite{Wu:03,Gaiduk:13,
-Ryabinkin:15,Schipper:97,deSilva:12,Kananenka:13,Mura:97,Jacob:11}. 
+algunos modelos paramétricos~\cite{Gombas:56,Green:69,Klapisch:71}, 
+basados en el formalismo de HF~\cite{Phillips:59,Herman:63}, de 
+polarización del núcleo electrónico~\cite{Dalgarno:70,Bayliss:77} y 
+relativistas~\cite{Cowan:76,Lee:77}. Otra técnica conocida es la 
+determinación de potenciales centrales a partir de funciones de onda y/o 
+densidades electrónicas, conocida como método de inversión. Este 
+procedimiento ha sido estudiado de forma extensa en la 
+DFT~\cite{Wu:03,Gaiduk:13,Ryabinkin:15,Schipper:97,deSilva:12,
+Kananenka:13,Mura:97,Jacob:11}. 
 %DFT~\cite{Wu:03,Gaiduk:13,Ryabinkin:15}. 
 %En algunos trabajos, los autores proponen un 
 %potencial KS particular y resuelven el sistema de ecuaciones 
@@ -69,7 +71,7 @@ onda implementados.
 Por otro lado, una amplia variedad de métodos de primeros principios han 
 sido desarrollados para predecir secciones eficaces de ionización debido 
 al impacto de partículas cargadas, incluyendo modelos 
-clásicos~\cite{falta}, semi-clásicos~\cite{falta}, y mecanico-cuánticos. 
+clásicos~\cite{Catlow:67}, semi-clásicos~\cite{falta}, y mecanico-cuánticos. 
 En este último grupo, destacamos tres grados de aproximación; la primera 
 aproximación de Born~(\acs{fba})~\cite{Bates:62,McDowell:61}, los 
 métodos de onda continua distorcionada~(\acs{cdw})~\cite{Crothers:10,
@@ -113,9 +115,11 @@ numérico. Además, examinamos el decaimiento exponencial dictado por la teoría
 % conclusiones van en la introducción}}
 % esto es, que los nodos de los orbitales HF también sean turning points.
 
-La descripción de sistemas moleculares constituye un verdadero desafío debido a su simetría no esférica y multicéntrica. En el último siglo se han desarrollado diversas aproximaciones teóricas 
-semi-empíricas y de primeros principios para tal fin~\cite{Szabo:96,
-Helgaker:00,Schaefer:04}. En la Sección~\ref{sec:dimmoleculas} 
+La descripción de sistemas moleculares constituye un verdadero desafío 
+debido a su simetría no esférica y multicéntrica. En el último siglo se 
+han desarrollado diversas aproximaciones teóricas semi-empíricas y de 
+primeros principios para tal fin~\cite{Szabo:96,Helgaker:00,
+Schaefer:04}. En la Sección~\ref{sec:dimmoleculas} 
 presentamos una extensión del método DIM para sistemas moleculares 
 simples, proveyendo una nueva expresión paramétrica para potenciales 
 moleculares. A diferencia del caso atómico, los orbitales moleculares 
@@ -930,7 +934,7 @@ $u_{1s}^{\mathrm{ DIM}}$ cuya energía coincide con la energía original
 de HF en 6 cifras significativas. Los valores medios también muestran 
 una excelente concordancia, tanto para la región cercana al origen, 
 $\langle r \rangle$, como en los que muestrean la calidad de la región 
-asintótica, \langle 1/r\rangle.
+asintótica, $\langle 1/r\rangle$.
 
 %%%%%%%%%%%%%% RESULTADOS %%%%%%%%%%%%%%
 \begin{table}[t]
@@ -1076,7 +1080,7 @@ muestra en la Tabla~\ref{tab:results-atoms}.
 
 La implementación del DIM en neón es análoga al caso de nitrógeno. Los 
 resultados de la optimización de los parámetros que definen las cargas 
-efectivas, dadas por la Ec.~(\ref{eq:atomzDIM}}), del átomo de neón se 
+efectivas, dadas por la Ec.~(\ref{eq:atomzDIM}), del átomo de neón se 
 muestran en la Tabla~\ref{tab:params-atoms}. La comparación entre las 
 soluciones de los potenciales DIM y el método de Hartree--Fock se dan en 
 la Tabla~\ref{tab:results-atoms}. El acuerdo en energías orbitales es 
