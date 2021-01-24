@@ -59,9 +59,9 @@ protones~\cite{Galassi:12} y de uracilo por iones de carbono, oxígeno y
 flúor~\cite{champion2012,agnihotri2012,agnihotri2013}.
 %%%% Acá va la descripción de trabajo de Ludde et al. %%%%
 Más recientemente, L\"udde y colaboradores~\cite{Ludde:16,Ludde:18,
-Ludde:19,Ludde:20} propusieron el modelo IAM-PCM, que consiste en la 
-combinación de secciones eficaces atómicas con correcciones geométricas 
-de apantallamiento. En este caso, los autores obtienen las secciones 
+Ludde:19,Ludde:20} propusieron un modelo, también basado en el IAM, que 
+combina de secciones eficaces atómicas con correcciones geométricas de 
+apantallamiento. En este caso, los autores obtienen las secciones 
 eficaces atómicas a partir de la teoría del functional densidad 
 dependiente del tiempo. 
 
@@ -70,13 +70,13 @@ ionización de moléculas biológicas debido a iones de carga múltiple: el
 orden de aproximación del proceso colisional ion--molécula y la 
 descripción del blanco. El modelo que se propone para tratar la 
 ionización de blancos moleculares sigue el IAM: las moléculas se 
-describen como combinación de los átomos que las constituyen. El método 
-CDW-EIS es implementado para obtener valores confiables de 
+describen como combinación de los átomos que las constituyen. Se 
+implementa el método CDW-EIS para obtener valores confiables de 
 secciones eficaces de ionización de los átomos. Esta aproximación 
 constituye una de las teorías más exitosas para describir procesos de 
 ionización a intermedias y altas energías~\cite{Miraglia:08,Miraglia:09}. 
 Por simplicidad, de aquí en adelante la aproximación CDW-EIS es
-referida como CDW. Detalles sobre el método y los cálculos realizados se 
+referida como CDW. Detalles sobre el método y cálculos atómicos se 
 presentan en la Sección~\ref{sec:atoms}. El proceso de ionización es el 
 mecanismo que deposita la mayor cantidad de energía primaria en el 
 sistema. Sin embargo, se conoce que los electrones residuales de la 
@@ -85,45 +85,46 @@ local~\cite{Denifl:11}. En efecto, los electrones secundarios son
 incluidos en simulaciones de radiodosimetría~\cite{Champion:15,
 Quinto:17,Acocer-Avila:19}, y por lo tanto su comportamiento requiere 
 especial atención. Las distribuciones energéticas y angulares medias de 
-los electrones ejectados de blancos atómicos constituyentes según el 
-método CDW se estudian en las Secciones~\ref{subsec:meanener} y 
-\ref{subsec:meanang}. Contrariamente a lo predicho por la FBA, se 
-encuentra una dependencia sustancial de estos valores con la carga del 
-projectil. La complejidad de la ionización molecular es aproximada en 
-la Sección~\ref{sec:SSM} implementando el modelo estequiométrico simple 
-(\acs{ssm}). Este modelo consiste en asumir que las moléculas están 
+los electrones ejectados de blancos atómicos constituyentes se estudian 
+en las Secciones~\ref{subsec:meanener} y \ref{subsec:meanang} en el 
+marco de la CDW. Contrariamente a lo predicho por la FBA, se encuentra 
+una dependencia sustancial de estos valores con la carga del projectil. 
+La complejidad de la ionización molecular es modelada en la  
+Sección~\ref{sec:SSM} implementando el modelo estequiométrico simple 
+(\acs{ssm}). Esta aproximación consiste en asumir que las moléculas están 
 compuestas por átomos aislados e independientes, y que la sección eficaz 
 total se expresa como una combinación lineal de cálculos atómicos 
 pesados según la estequiometría de la molécula. Así, a partir de la 
 combinación del método CDW y SSM, se obtienen secciones eficaces de 
 ionización de diversas moléculas de interés biológico, incluyendo las 
 cinco nucleobases --adenina, citosina, guanina, timina, uracilo--, 
-tetrahidrofurano (\acs{thf}), pirimidina y agua, debido al impacto de 
+tetrahidrofurano (\acs{thf}), pirimidina y agua debido al impacto de 
 antiprotones, H$^{+}$, He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. 
 
-En la Sección~\ref{sec:scaling}, se estudian diversas reglas de escala. 
-Por ejemplo, se examina la regla de escala de Toburen~\cite{Toburen:75,
+En la Sección~\ref{sec:scaling}, se estudian diversas leyes de escala. 
+Por ejemplo, se examina la regla de Toburen~\cite{Toburen:75,
 Toburen:76}, que establece que la razón entre la sección eficaz de 
 ionización y el número de electrones débilmente ligados se puede ubicar 
 sobre una delgada banda universal en términos de la velocidad del 
-projectil. Esta regla es aplicada a un número significativo de sistemas 
-colisionales, incluyendo --además de los blancos ya mencionados-- 
-hidrocarburos y moléculas CHNO. La implementación de la ley de escala en 
-los resultados SSM--CDW no es satisfactoria. Sin embargo, a partir del 
-estudio de las secciones eficaces atómicas CDW, el ancho de las bandas 
-resultantes es reducido significativamente optimizando los números de 
-electrones activos de cada átomo constituyente. Así, se proponen un 
+projectil. La ley de Toburen es aplicada a un número significativo de 
+sistemas colisionales, incluyendo --además de los blancos ya mencionados-- 
+hidrocarburos y moléculas CHNO. La implementación de la regla de escala 
+en los resultados SSM--CDW no es satisfactoria. Sin embargo, a partir 
+del estudio de las secciones eficaces atómicas CDW, el ancho de las 
+bandas resultantes se reduce significativamente optimizando los números 
+de electrones activos de cada átomo constituyente. Así, se proponen un 
 nuevo conjunto de electrones débilmente ligados en diversos sistemas 
-moleculares. La regla de escala resultante se aplica a los valores 
-teóricos SSM--CDW y se comparan con datos experimentales disponibles. 
-Por otro lado, la escala con la carga del proyectil propuesta por 
-Montenegro y colaboradores~\cite{Dubois:13,Montenegro:13} es reescrita 
-en términos de un parámetro $\alpha$. A partir de la combinación del 
-escaleo de las secciones eficaces totales con el número de electrones 
-activos y la carga del ion incidente, se obtiene una regla de escala 
-única e independiente del sistema colisional. La generalidad de esta 
-regla se pone a prueba con datos experimentales de sistemas 
-colisionales ajenos a esta investigación.
+moleculares. La regla resultante se aplica a los valores teóricos 
+SSM--CDW y se comparan con datos experimentales disponibles. Por otro 
+lado, el modelo de escala propuesto por Montenegro y 
+colaboradores~\cite{Dubois:13,Montenegro:13} con la carga del proyectil 
+se reescribe en términos de un parámetro $\alpha$. De la combinación de 
+las dos primeras reglas de escala, se obtienen secciones eficaces 
+totales reducidas con el número de electrones activos y la carga del 
+ion incidente. De esta forma, la ley de escala resultante es única e 
+independiente del sistema colisional. La generalidad de esta ley se pone 
+a prueba con datos experimentales de sistemas colisionales ajenos a esta 
+investigación.
 
 La aproximación SSM propuesta inicialmente para describir los blancos 
 moleculares considera los átomos constituyentes como si fueran 
@@ -142,15 +143,15 @@ tiene en cuenta el alejamiento de la neutralidad de los átomos.
 \label{sec:atoms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-La sección de ionización total $\sigma_{\alpha}$ del átomo $\alpha$, que 
-será luego implementada en el modelo molecular, se obtiene a partir de 
-la aproximación del método CDW (ver Apéndice~\ref{app:CDW}). Las 
-funciones de onda radiales de los estados inicial ligado y final 
+La sección eficaz de ionización total $\sigma_{\alpha}$ del átomo 
+$\alpha$, que será luego implementada en el modelo molecular, se obtiene 
+a partir de la aproximación del método CDW (ver Apéndice~\ref{app:CDW}). 
+Las funciones de onda radiales de los estados inicial ligado y final 
 continuo se calculan usando el código~\textsc{radialf}, desarrollado por 
-Salvat y colaboradores~\cite{salvat1995}. Los potenciales efectivos
-utilizados se obtuvieron a partir del método de inversión 
-depurada~(\acs{dim}) desarrollado en el Capítulo~\ref{chap:iondim} de 
-esta Tesis. 
+Salvat y colaboradores~\cite{salvat1995}, a partir de potenciales 
+efectivos. Los potenciales utilizados se obtienen a partir del método de 
+inversión depurada~(\acs{dim}) desarrollado en el 
+Capítulo~\ref{chap:iondim} de esta Tesis. 
 
 \begin{figure}
 \centering
@@ -165,40 +166,35 @@ O~\cite{Thompson:95} con conversión de equivelocidad.}
 \label{fig:atomscaling}
 \end{figure} 
 
-% Toburen, L. H. (1972). K-Shell Ionization of Carbon by Fast Protons. 
-% Physical Review A, 5(6), 2482–2487. doi:10.1103/physreva.5.2482 
-
 La mayor parte de las moléculas orgánicas contienen átomos de hidrógeno, 
 carbono, nitrógeno y oxígeno. Los sistemas colisionales que se estudian 
 a continuación están compuestos por estos cuatro blancos atómicos 
-%, $\alpha=$ H, C, N, O, 
 y seis proyectiles incidentes: antiprotones $\bar{p}$, H$^{+}$, 
 He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. Las secciones eficaces 
 totales de ionización CDW de los 24 sistemas blanco--proyectil 
 resultantes se muestran en la Fig.~\ref{fig:atomscaling}. Los resultados 
 correspondiente a cada sistema colisional se presentan en una única 
 figura considerando que, en la primera aproximación de Born, la sección 
-eficaz de ionización escala con el cuadrado de la carga del ion 
-incidente, es decir $Z^{2}$. Como puede observarse, este escaleo es 
-válido sólo a altas energías (i.e. $E>5$~MeV/amu). El rango de energías 
-de impacto considerado va de $0.1$ a 10 MeV/amu, donde el método CDW 
-tiene validez. Particularmente, para los proyectiles de carga más altas, 
-el valor de energía mínimo donde se espera que la aproximación tenga 
-validez aumenta hasta aproximadamente 400~keV. Los valores teóricos CDW 
-se comparan con secciones eficaces experimentales disponibles en la 
-literatura, tales como la ionización por impacto de H$^+$ en 
-H~\cite{Shah:81}, C~\cite{Toburen:72}, N~\cite{Rudd:85} y 
-O~\cite{Rudd:85}. Para ampliar la comparación, se incluyen mediciones de 
-ionización por impacto de electrones en H~\cite{Shah:87}, 
-C~\cite{Brook:78}, N~\cite{Brook:78} y O~\cite{Thompson:95}, con la 
-correspondiente conversión de equivelocidad, para energías incidentes 
-superiores a 300~eV. Es esperable que la ionización por impacto de 
-H$^+$ y $e^-$ converjan para altas energías del proyectil. También 
-realizamos cálculos similares con la FBA (no se muestran aquí), y 
-corroboramos que ésta provee resultados confiables para valores de 
-energía mayores a unos cuantos MeV/amu. Los resultados de ionización CDW 
-de cada capa de estos sistemas colisionales se pueden hallar en la 
-Ref.~\cite{Miraglia:19}.
+eficaz de ionización es proporcional al cuadrado de la carga del ion 
+incidente, es decir $Z^{2}$. Como puede observarse, este comportamiento 
+sólo es válido a altas energías (i.e. $E>5$~MeV/amu). El rango de 
+energías de impacto considerado va de $0.1$ a 10 MeV/amu, donde el 
+método CDW tiene validez. Particularmente, para los proyectiles de carga 
+más altas, el valor de energía mínimo donde se espera que la 
+aproximación tenga validez aumenta hasta aproximadamente 400~keV. Los 
+valores teóricos CDW se comparan con secciones eficaces experimentales 
+disponibles en la literatura, tales como la ionización por impacto de 
+H$^+$ en H~\cite{Shah:81}, N~\cite{Rudd:85} y O~\cite{Rudd:85}. Para 
+ampliar la comparación, se incluyen mediciones de ionización por impacto 
+de electrones en H~\cite{Shah:87}, C~\cite{Brook:78}, N~\cite{Brook:78} 
+y O~\cite{Thompson:95}, con la correspondiente conversión de 
+equivelocidad, para energías incidentes superiores a 300~eV. Es 
+esperable que la ionización por impacto de H$^+$ y $e^-$ converjan para 
+altas energías del proyectil. También se realizaron cálculos similares 
+con la FBA (no se muestran aquí), corroborando que ésta provee 
+resultados confiables para valores de energía mayores a unos cuantos 
+MeV/amu. Los resultados de ionización CDW de cada capa de estos sistemas 
+colisionales se pueden hallar en la Ref.~\cite{Miraglia:19}.
 
 A lo largo de este Capítulo se usa el mismo color de línea para indicar 
 la carga del proyectil en todas las figuras que muestran resultados de 
@@ -250,16 +246,13 @@ elemento $\alpha$.
 Las energías medias de los electrones emitidos $\overline{E}_{\alpha}$ 
 de H, C, N y O por impacto de $\bar{p}$, H$^{+}$, He$^{2+}$, Be$^{4+}$, 
 C$^{6+}$, y O$^{8+}$ se muestran en la Fig.~\ref{fig:emittedener}. 
-%El rango de velocidad de impacto fue extiende sólo hasta $v=10$~a.u. debido 
-%a las limitaciones numéricas en la expansión de esféricos armónicos 
-%dados por la Ec.~(\ref{eq:contwave}). 
 A medida que la velocidad de impacto $v$ aumenta, también aumenta 
 $\langle E_{\alpha}\rangle$ y $l_{\max}$, lo que resulta en la inclusión 
 de funciones con muchas oscilaciones en el integrando. Más aún, el 
 integrando de $\langle E_{\alpha}\rangle$ incluye la energía cinética 
 $E$, reduciendo su valor en la región de energías pequeñas e 
-incrementándolo para valores grandes; en consecuencia, los valores 
-medios son más sensibles a los momentos angulares mayores. 
+incrementándolo para valores grandes; en consecuencia, las energías de
+ejección medias son más sensibles a los momentos angulares mayores. 
 Independientemente, para $v>10$ a.u., la primera aproximación de Born 
 es válida. 
 
@@ -268,15 +261,15 @@ $\overline{E}_{\alpha}$ de los electrones emitidos en el rango de
 energía de 10 a 70 eV para todos los blancos atómicos. Los resultados CDW 
 concuerdan con los hallazgos experimentales~\cite{Surdutovic:18}. Como 
 se puede observar en la figura, el valor de energía media es 
-sorprendentemente sensible a la carga del proyectil $Z$, que puede 
-duplicar los resultados de protón en la región intermedia, i.e., 
-100--400 keV/amu. El efecto observado puede atribuirse a la reducción de
-emisión de electrones de baja energía causada por los iones de carga 
-múltiple. Este comportamiento no se puede encontrar en la primera 
-aproximación de Born, donde la ley de escala $Z^2$ cancela la 
-dependencia con $Z$ de la Ec.~(\ref{eq:meanener}). A altas energías, 
-$\overline{E}_{\alpha}$ tiende a un valor universal para todos los 
-iones, como puede verse en la Fig.~\ref{fig:emittedener}.
+sensible a la carga del proyectil $Z$, que puede duplicar los resultados 
+de protón en la región intermedia, i.e., 100--400 keV/amu. El efecto 
+observado puede atribuirse a la reducción en la emisión de electrones de 
+baja energía por los iones de carga múltiple. Este comportamiento no se 
+puede encontrar en la primera aproximación de Born, donde la ley de 
+escala $Z^2$ cancela la dependencia con $Z$ de la 
+Ec.~(\ref{eq:meanener}). A altas energías, $\overline{E}_{\alpha}$ 
+tiende a un valor universal para todos los iones, como puede verse en la 
+Fig.~\ref{fig:emittedener}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Distribución angular de electrones}
@@ -315,9 +308,9 @@ Los ángulos medios de emisión electrónica $\overline{\theta}_{\alpha}$
 de los cuatro átomos y seis iones estudiados en esta Sección se muestran 
 en la Fig.~\ref{fig:emittedang}. Se puede observar una dependencia 
 significativa de $\overline{\theta}_{\alpha}$ con $Z$ para todos los 
-sistemas colisionales. Una vez más, este efecto no puede ser observado 
-en la implementación del FBA (línea punteada), ya que es independiente 
-del valor de $Z$.
+sistemas colisionales. Una vez más, este efecto no se observa en la 
+implementación del FBA (línea punteada), ya que es independiente del 
+valor de $Z$.
 
 En la emisión de electrones de baja energía, la dispersión angular es 
 casi isotrópica~\cite{Rudd:92}. Un valor típico para el ángulo de 
@@ -333,15 +326,15 @@ Por supuesto, este efecto es más notorio en el rango de energías
 intermedias que a altas energías.
 
 Para ilustrar esta fenómeno, consideremos el impacto de C$^{6+}$ con una 
-energía de 500~keV sobre oxígeno. En la primera aproximación de Born, se
-predice la emisión de electrones con energías medias de $46.7$ eV y 
+energía de 500~keV sobre oxígeno. En la primera aproximación de Born, la 
+teoría predice emisión de electrones con energías medias de $46.7$ eV y 
 ángulos medios de 78\textdegree. En cambio, en la aproximación CDW, los 
 electrones eyectados tienen energías medias de $62.5$~eV y ángulos de 
-emisión igual a 60\textdegree. Estos resultados sugieren una penetración 
-más profunda de los electrones secundarios que la predicha por la FBA, 
-con una orientación más cercana a la dirección del ion. La correción de 
-la dirección de emisión se puede atribuir al efecto de captura del 
-continuo, incluido en la CDW.
+emisión iguales a 60\textdegree. Estos resultados sugieren una 
+penetración más profunda de los electrones secundarios que la predicha 
+por la FBA, con una orientación más cercana a la dirección del ion. La 
+correción de la dirección de emisión se puede atribuir al efecto de 
+captura del continuo, incluido en la CDW.
 
 Además, la Fig.~\ref{fig:emittedang} proporciona una descripción 
 ilustrativa del comportamiento de los antiprotones: el proyectil repele 
@@ -361,10 +354,10 @@ predecir secciones eficaces moleculares totales de ionización está
 basado en la aproximación de átomo independiente, también llamada regla 
 aditiva de Bragg. Este modelo supone que los átomos que componen una 
 molécula $M$ interactúan con el proyectil incidente pero no entre sí. 
-Así, si suponemos que la molécula $M$ está compuesta por $n_{\alpha}$ 
-átomos del elemento $\alpha$, el modelo estequiométrico aproxima la 
-sección eficaz total de ionización de la molécula $\sigma_M$ como la 
-suma de secciones eficaces totales de ionización de los átomos aislados 
+Así, si la molécula $M$ está compuesta por $n_{\alpha}$ átomos del 
+elemento $\alpha$, el modelo estequiométrico aproxima la sección eficaz 
+total de ionización de la molécula $\sigma_M$ como la suma de secciones 
+eficaces totales de ionización de los átomos aislados 
 $\sigma_{\alpha}$ ponderada por $n_{\alpha}$, 
 \begin{equation}
 \sigma_{M}=\sum\limits_{\alpha}n_{\alpha}\sigma_{\alpha}\,.  
@@ -419,10 +412,10 @@ $\sigma_M/Z^2$, de las nucleobases del ADN --adenina, citosina, guanina
 y timina-- debido al impacto de iones de carga múltiple, que se obtienen 
 a partir de la aproximación SSM y el método CDW. Para adenina, los datos 
 experimentales disponibles para el impacto de protones~\cite{Iriki:11} 
-tienen un excelente acuerdo con nuestras predicciones. La medición de 
+tienen un excelente acuerdo con las predicciones teóricas. La medición de 
 C$^{4+}$~\cite{Sens:20} sobre adenina coincide con el modelo SSM--CDW 
 dentro del margen de error. Si bien estos datos son preliminares 
-(publicada recientemente en la tesis doctoral de Sens), la comparación 
+(publicados recientemente en la tesis doctoral de Sens), la comparación 
 es alentadora en cuanto a la respuesta del modelo para la ionización por 
 projectiles de carga múltiple. En cambio, los resultados teóricos de 
 ionización de adenina debido a C$^{6+}$ discrepan con el valor 
@@ -436,10 +429,10 @@ nucleobases de ADN. En la Fig.~\ref{fig:crossDNA_1} se incluyen
 mediciones de ionización por impacto de electrones~\cite{Rahman:16}, con 
 la correspondiente conversión de equivelocidad, para energías incidentes 
 superiores a 300~eV. En esta región, la sección eficaz de ionización por 
-impacto de protones y electrones debería coincidir. Aunque las 
+impacto de protones y electrones debería coincidir. Si bien las 
 mediciones de ionización por impacto de electrones están por encima de 
-nuestros hallazgos para todos los objetivos moleculares. Vale la pena 
-señalar que los resultados SSM--CDW concuerdan muy bien con otras 
+las predicciones teóricas presentes para todos los objetivos 
+moleculares, los resultados SSM--CDW concuerdan muy bien con otras 
 predicciones teóricas de ionización por impacto de 
 electrón~\cite{mozejko2003,tan2018}. Más aún, recientes cálculos por 
 Zein y colaboradores~\cite{Zein:21} usando el modelo de encuentro 
@@ -479,25 +472,25 @@ impacto de iones de carga múltiple. No obstante, cabe señalar que los
 resultados teóricos coinciden con los cálculos de Champion, 
 Rivarola y colaboradores~\cite{agnihotri2012,champion2012}. Los cálculos 
 recientes de Sarkadi~\cite{sarkadi2016} empleando el método CTMC también 
-se encuentran por arriba de estos valores experimentales. Además, se ha 
-incluido una reciente medición experimental preliminar de Sens y 
+se encuentran por arriba de estos valores experimentales. En la figura 
+también se incluye una reciente medición experimental preliminar de Sens 
 \textit{et al.}~\cite{Sens:20} para la ionización en uracilo debido al 
-impacto de C$^{4+}$ que coincide con la teoría. Si bien los resultados 
+impacto de C$^{4+}$, que coincide con la teoría. Si bien los resultados 
 son preliminares, esta discrepancia podría indicar algún problema con 
 los valores experimentales de Agnihotri y colaboradores. 
 
-Para pirimidina, los presentes cálculos se comparan con los datos 
+Para pirimidina, los cálculos teóricos se comparan con los datos 
 experimentales de ionización por impacto de protones de Wolff 
 \textit{et al.}~\cite{wolff2014} y por impacto de 
 electrones~\cite{bug2017} a altas energías. Las mediciones de electrones 
 concuerdan con el modelo SSM--CDW para energías superiores a 500~keV. 
-Inesperadamente, las secciones eficaces de ionización por impacto de 
+Sin embargo, las secciones eficaces de ionización por impacto de 
 protones son significativamente más bajas que la teoría. Una mayor 
 cantidad de experimentos se encuentran disponibles para la ionización de 
 la molécula de THF por impacto de H$^+$~\cite{wang2016} y de 
-e$^-$~\cite{bug2017,wolf2019,fuss2009}. Los resultados que obtenemos de 
-la combinación del SSM y las secciones eficaces atómicas CDW muestran un 
-buen acuerdo general con esta data.
+e$^-$~\cite{bug2017,wolf2019,fuss2009}. Los resultados que se obtienen 
+de la combinación del SSM y las secciones eficaces atómicas CDW muestran 
+un buen acuerdo general con esta data.
 
 En el caso de la molécula de agua, los resultados experimentales son más 
 abundantes que para el resto de los blancos. Los resultados 
@@ -524,14 +517,14 @@ la incidencia de iones pesados, tal como es el caso de O$^{6+}$.
 \label{subsec:toburen}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-El primer modelo fenomenológico completo y simple para la eyección de 
-electrones de moléculas complejas fue propuesto por Toburen y 
-colaboradores~\cite{Toburen:75,Toburen:76}. Los autores encontraron 
-conveniente escalar la sección eficaz de ionización experimental en 
-términos del número de electrones ligados débilmente, o activos, $n_e$. 
-En general, este número está dado por la cantidad de electrones en la 
-capa de valencia. Así, por ejemplo, para C, N y O, este número es igual 
-al número total de electrones del átomo menos la capa K. 
+Toburen y colaboradores~\cite{Toburen:75,Toburen:76} propusieron el 
+primer modelo fenomenológico completo y simple para la eyección de 
+electrones de moléculas complejas. Los autores encontraron conveniente 
+escalar la sección eficaz de ionización experimental en términos del 
+número de electrones ligados débilmente, también llamados activos, 
+$n_e$. En general, este valor está dado por la cantidad de electrones 
+en la capa de valencia. Así, por ejemplo, para C, N y O, este número es 
+igual al total de electrones del átomo menos la capa K. 
 
 Siguiendo a Toburen \textit{et al.}, se define la sección eficaz de 
 ionización reducida por el número de electrones débilmente ligado 
@@ -568,12 +561,12 @@ para el impacto de protones sobre uracilo y adenina.
 Siguiendo la ley de escala de Toburen, las secciones eficaces CDW son 
 divididas con el número de electrones activos de Toburen, 
 $\sigma_{e}^T$, para los blancos moleculares dados en la 
-Tabla~\ref{tab:families}. Nuestros resultados se muestran en la 
-Fig.~\ref{fig:newscaling}(a) en función de la energía de impacto para 
-diferentes proyectiles de carga múltiple. Aunque la escala de Toburen 
-se mantiene para altas energías, su desempeño no es muy satisfactorio: 
-como se puede observar en la figura, la banda universal es bastante 
-ancha.
+Tabla~\ref{tab:families}. Los resultados de esta implementación se 
+muestran en la Fig.~\ref{fig:newscaling}(a) en función de la energía de 
+impacto para diferentes proyectiles de carga múltiple. Aunque la escala 
+de Toburen se mantiene para altas energías, su desempeño no es muy 
+satisfactorio: como se puede observar en la figura, la banda universal 
+es bastante ancha.
 
 \begin{figure}[t]
 \centering
@@ -599,14 +592,14 @@ se puede entender inspeccionando la Fig.~\ref{fig:neCDW}. La figura
 muestra las secciones eficaces de ionización CDW de los átomos H, C, N y 
 O debido al impacto de H$^+$ reducidas por el número de electrones 
 activos de cada átomo. La Fig.~\ref{fig:neCDW}(a) muestra los resultados 
-CDW escalados con los números de Toburen dados por la 
-Ec.~\ref{eq:neToburen}. La regla de Toburen no es satisfecha de manera 
+CDW divididos por los números de Toburen dados por la 
+Ec.~\ref{eq:neToburen}. La regla de Toburen no se cumple de manera 
 apropiada por los cálculos CDW: para un valor de energía dado, los 
-valores teóricos de ionización CDW escalados 
+valores teóricos de ionización reducidos 
 $\sigma_{\alpha}/\nu_{\alpha}^T$ de cada blanco atómico no son 
 constantes. Por otro lado, considerando los valores teóricos de 
-ionización de oxígeno dados en la Fig.~\ref{fig:atomscaling}, se observa
-que éstos son muy similares a las secciones eficaces de C. Estas 
+ionización de oxígeno dados en la Fig.~\ref{fig:atomscaling}, se observa 
+que éstos son muy similares a las secciones eficaces del carbono. Estas 
 predicciones parecen sugerir que el número de electrones activos en el 
 átomo de O es cuatro en lugar de seis. De la misma manera, el número de 
 electrones activos para N, que se obtienen a partir de los resultados 
@@ -627,20 +620,20 @@ el número de electrones débilmente ligados usando
 
 A partir del estudio sistemático de las predicciones CDW para los 
 sistemas proyectil--átomo, se propone una optimización a la regla de 
-Toburen. Así, el número total de electrones activos de la molécula $M$ 
-en la Ec.~(\ref{eq:cross-ne}) está ahora dado por 
+Toburen. El número total de electrones activos de la molécula $M$ en la 
+Ec.~(\ref{eq:cross-ne}) está ahora dado por 
 \begin{equation}
 n_e'=\sum_{\alpha}n_{\alpha}\nu_{\alpha}^{\text{CDW}}\,,
+\label{eq:neprima}
 \end{equation}
 donde $\nu_{\alpha}^{\text{CDW}}$ son los números de electrones activos 
-por átomo, que fueron ajustados a partir de las secciones eficaces 
-de ionización CDW atómicas. Los números CDW están dados por
+por átomo, que se obtienen de ajustar las secciones eficaces de 
+ionización CDW atómicas. Los números CDW están dados por
 \begin{equation}
 \nu_{\alpha }^{\text{CDW}} \sim\left\{ 
 \begin{array}{ll}
 1, & \text{para H,} \\
 4, & \text{para C, N, y O}\,. \\ 
-%4.5, & \text{para P y S}\,.
 \end{array}
 \right. 
 \label{eq:neCDW}
@@ -651,11 +644,11 @@ electrones activos $n_e'$ para las moléculas consideradas hasta ahora.
 La Tabla~\ref{tab:ne_molecules} muestra los valores optimizados $n_e'$ y 
 los números de Toburen $n_e$ para una gran variedad de sistemas 
 moleculares. Los resultados SSM--CDW son diferentes a los propuestos por 
-Toburen, los cuales son utilizados por otros autores~\cite{itoh2013}. La 
-diferencia principal se encuentra en los números de electrones activos 
-del oxígeno, y por lo tanto en las moléculas que lo incluyen. Las 
-secciones eficaces moleculares divididas por $n_e'$ se muestran en la 
-Fig.~\ref{fig:newscaling}(b). Los datos experimentales para la 
+Toburen, los cuales se han utilizado por otros autores~\cite{itoh2013}. 
+La diferencia principal se encuentra en los números de electrones 
+activos del oxígeno, y por lo tanto en las moléculas que lo incluyen. 
+Las secciones eficaces moleculares divididas por $n_e'$ se muestran en 
+la Fig.~\ref{fig:newscaling}(b). Los datos experimentales para la 
 ionización de adenina~\cite{Iriki:11,Sens:20,Bhattacharjee:19}, 
 uracilo~\cite{itoh2013,Sens:20}, pirimidina~\cite{wolff2014}, 
 THF~\cite{wang2016} y agua~\cite{Luna2007,Bolorizadeh86,H_Rudd85,
@@ -725,18 +718,17 @@ $\blacktriangle$ C$_2$H$_7$N, CH$_5$N, metano y amoníaco~\cite{Lynch:76},
 
 La escala definida por los números CDW se puede examinar de forma 
 alternativa dibujando las secciones eficaces de ionización de las 
-moléculas en función de los valores dados para $n_e'$ según la 
-Tabla~\ref{tab:ne_molecules} en ciertos valores de energía. Nuestros 
-resultados se muestran en la Fig.~\ref{fig:recta} para energías de 
-impacto de $0.5$, 1 y 2~MeV. Como puede observarse, las secciones 
-eficaces de ionización calculadas para todas las moléculas muestran 
-una dependencia lineal con el número de electrones CDW $n_e'$ de la 
-Tabla~\ref{tab:ne_molecules}. Se obtienen resultados similares incluso 
-para $E=10$~MeV (no los incluimos por claridad en la figura). La 
+moléculas en función de $n_e'$ para ciertos valores de energía. Los 
+resultados SSM-CDW reducidos se muestran en la Fig.~\ref{fig:recta} para 
+energías de impacto de $0.5$, 1 y 2~MeV. Como puede observarse, las 
+secciones eficaces de ionización calculadas para todas las moléculas 
+muestran una dependencia lineal con el número de electrones CDW $n_e'$ 
+de la Tabla~\ref{tab:ne_molecules}. Se obtienen resultados similares 
+incluso para $E=10$~MeV (no los incluimos por claridad en la figura). La 
 comparación con los datos experimentales disponibles muestra una buena 
 concordancia general, desde moléculas pequeñas, tales como H$_2$, CH$_4$ 
 y NH$_3$, hasta las más complejas, como la adenina. Para los datos de 
-ionización por impacto de electrón, los datos experimentales se 
+ionización por impacto de electrón, los valores experimentales se 
 interpolaron entre vecinos cercanos. 
 
 Será interesante verificar la regla de escala optimizada que se presenta
@@ -745,17 +737,12 @@ proyectiles más altos. Por lo pronto, incluso los recientes cálculos
 preliminares de Vera \textit{et al.}~\cite{deVera:20} para la ionización 
 de biomateriales por impacto de electrones tienen una respuesta 
 satisfactoria a esta regla de escala en todo el rango de energías.
-
-%It is worth mentioning that an equivalent plot using the Toburen numbers 
-%$n_e$ does not exhibit the straight lines obtained with the present scaling. 
-
-%While finishing the present work, we became aware of an accepted 
-%manuscript by L\"udde~\textit{et al.}~\cite{ludde2019} on total 
-%ionization of biological molecules by proton impact, using the
-%independent--atom--model pixel counting method~\cite{ludde2016,ludde2018}.
-%The authors also raised a scaling  with $\nu_{\alpha}=4$ for C, N, and O. 
-%The agreement with this independent method for proton impact reinforces 
-%our multicharged--ion findings.
+Por otro lado, en el reciente trabajo de 
+L\"udde~\textit{et al.}~\cite{ludde2019} sobre la ionización de 
+moléculas biológicas por impacto de protones, los autores hallaron los 
+mismos valores de escala para N y O. El acuerdo con este modelo 
+independiente refuerza la ley de escala dada por los números de 
+electrones activos CDW.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Escala con la carga del ion}
@@ -763,7 +750,7 @@ satisfactoria a esta regla de escala en todo el rango de energías.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A energías de impacto intermedias, la regla $Z^2$ no es válida y se 
-pueden considerar otras escalas. Se encuentran en la literatura dos 
+pueden considerar otras escalas. En la literatura, se encuentran dos 
 tipos de leyes de escala con la carga $Z$ del ion incidente aplicables 
 en este rango de energías de impacto. La regla sugerida por Janev y 
 Presnyakov~\cite{Janev:80} considera $\sigma/Z$ en función de $E/Z$ como 
@@ -776,17 +763,18 @@ una función de $Z^2/E$ a altas energías. La escala propuesta, dada por
  \sigma/Z^{\alpha}=f(E/Z^{2-\alpha}),
 \label{eq:Montenegro}
 \end{equation}
-mantiene la relación $Z^2/E$ para cualquier valor del parámetro $\alpha$. 
-Los autores proponen el valor $\alpha=4/3$ para la ionización de He y 
-H$_2$ debido al impacto de diversos iones cargados~\cite{Dubois:13}. 
+mantiene la relación $Z^2/E$ para cualquier valor del parámetro 
+$\alpha$. Los autores proponen el valor $\alpha=4/3$ para la ionización 
+de He y H$_2$ debido al impacto de diversos iones 
+cargados~\cite{Dubois:13}. 
 
 Siguiendo el trabajo de Montenegro y colaboradores, el 
 parámetro~$\alpha$ es optimizado de manera tal que los resultados 
 obtenidos por la combinación del método CDW y SSM para los sistemas 
 colisionales moleculares estudiados aquí convergan en el mayor rango de 
 energías posible (de intermedias a altas). El resultado de dicha 
-optimización está dado por $\alpha=1.2$. La validez de este particular 
-escaleo es evidente en las Figs.~\ref{fig:zreduced-adn1} (adenina, 
+optimización está dado por $\alpha=1.2$. La validez de este valor 
+particular es evidente en las Figs.~\ref{fig:zreduced-adn1} (adenina, 
 citosina, timina y guanina) y~\ref{fig:zreduced-adn2} (uracilo, 
 pirimidina, THF y agua), donde --para cada blanco-- las curvas SSM--CDW 
 correspondientes a los diferentes iones se superponen. Es notable como 
@@ -824,7 +812,7 @@ estudio~\cite{Iriki:11,Sens:20,Bhattacharjee:19,itoh2013,wolff2014,
 wang2016,agnihotri2012,agnihotri2013,Luna2007,Bolorizadeh86,H_Rudd85,
 He_Rudd85,toburen80,Ohsawa05,Bhattacharjee:17,DalCappello:09,
 Bhattacharjee:16} también son examinados con la regla de escala 
-$Z^\alpha$. Como en las figuras previas, en el caso de los 
+$Z^\alpha$. Al igual que en las figuras previas, en el caso de los 
 blancos con pocos o ningún dato experimental se incluyen las secciones 
 eficaces experimentales de ionización por impacto de 
 electrón~\cite{Rahman:16,bug2017,wolf2019,fuss2009} a grandes 
@@ -838,32 +826,32 @@ para O$^{+8}$ en agua~\cite{Bhattacharjee:16}.
 \label{sec:nez_scaling}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Considerando la reducción con la carga del ión incidente $Z^\alpha$ y 
-el escaleo con el número de electrones activos del blanco $n_e'$, se 
-introduce la sección eficaz de ionización molecular independiente 
-$\tilde{\sigma}$, que se expresa como función de 
-$\tilde{E}=E/Z^{2-\alpha}$, y está dada por 
+Considerando la reducción con la carga del ión incidente $Z^\alpha$ y  
+el número de electrones activos del blanco $n_e'$, se introduce la 
+sección eficaz de ionización molecular independiente $\tilde{\sigma}$, 
+que se expresa como función de $\tilde{E}=E/Z^{2-\alpha}$, y está dada 
+por 
 \begin{equation}
 \tilde{\sigma}\left(\tilde{E}\right)=\frac{\sigma_e}{Z^{\alpha}}
 =\frac{\sigma_M}{n_e'\,Z^{\alpha}}\,,
 \label{eq:u-scaling}
 \end{equation}
 donde $\sigma_M$ es la sección eficaz de ionización de un blanco 
-molecular, $n_e'$ es el número de electrones activos por molécula dado
-en la Tabla~\ref{tab:ne_molecules}, y el parámetro es $\alpha=1.2$. La 
-Fig.~\ref{fig:zalpha} muestra los valores teóricos y experimentales de 
-$\tilde{\sigma}$ para todos los sistemas moleculares de la 
-Tabla~\ref{tab:families}. Como se observa, la regla de escala combinada 
-funciona muy bien y es independiente tanto de la naturaleza del ion 
-incidente como de la complejidad del blanco molecular. Los resultados 
-teóricos SSM--CDW se ubican en una banda estrecha válida para cualquier 
-ion incidente (reducida con $Z^\alpha$) en cualquier molécula (contraída 
-con el número de electrones activos $n_e'$) con una dispersión de 
-aproximadamente $\pm 20\%$. Considerando los valores experimentales 
-disponibles, la incertidumbre de la escala independiente crece a 
-$\pm 30\%$, esquematizada en la Fig.~\ref{fig:zalpha} con un área 
-gris. Nótese que no hemos incluido en esta figura los resultados para 
-uracilo de las Refs.~\cite{agnihotri2012,agnihotri2013}. 
+molecular, $\alpha=1.2$ es el parámetro de ajuste y $n_e'$ es el número 
+de electrones activos de la molécula dado las Ecs.~(\ref{eq:neprima}) y 
+(\ref{eq:neCDW}). La Fig.~\ref{fig:zalpha} muestra los valores teóricos 
+y experimentales de $\tilde{\sigma}$ para todos los sistemas moleculares 
+de la Tabla~\ref{tab:families}. Como se observa, la regla de escala 
+combinada funciona muy bien y es independiente tanto de la naturaleza 
+del ion incidente como de la complejidad del blanco molecular. Los 
+resultados teóricos SSM--CDW se ubican en una banda estrecha válida para 
+cualquier ion incidente (reducida con $Z^\alpha$) en cualquier molécula 
+(contraída con el número de electrones activos $n_e'$) con una 
+dispersión de aproximadamente $\pm 20\%$. Considerando los valores 
+experimentales disponibles, la incertidumbre de la escala independiente 
+crece a $\pm 30\%$, esquematizada en la Fig.~\ref{fig:zalpha} con un 
+área gris. Nótese que no hemos incluido en esta figura los resultados 
+para uracilo de las Refs.~\cite{agnihotri2012,agnihotri2013}. 
 
 \begin{figure}[t]
 \centering
@@ -895,18 +883,19 @@ ionización de los sistemas ion--blanco estudiados aquí sino también
 muestra potencial para reproducir una gran variedad de sistemas 
 colisionales. Aunque los resultados teóricos SSM--CDW son válidos para 
 energías mayores a las del máximo de la sección eficaz de ionización, 
-se puede observar en la Fig.~\ref{fig:zalpha} como el escaleo de los 
-datos experimentales se extiende aún para valores de energía incidente 
-menores. Se espera que mediciones experimentales para otros iones y 
-moléculas refuercen el modelo y escaleo propuesto.
+se puede observar en la Fig.~\ref{fig:zalpha} que los datos 
+experimentales siguen la regla de escala aún para valores de energía 
+incidente menores. Se espera que mediciones experimentales para otros 
+iones y moléculas refuercen el modelo teórico y la regla independiente 
+propuestos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Estructura molecular de los blancos}
 \label{sec:molcalculations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Finalmente, para probar el rango de validez del SSM, hemos calculado la 
-estructura molecular de las cinco nucleobases --adenina, citosina, 
+Finalmente, para estudiar el rango de validez del SSM, hemos calculado 
+la estructura molecular de las cinco nucleobases --adenina, citosina, 
 guanina, timina y uracilo-- empleando el código {\sc gamess}. Los 
 cálculos de energía se realizaron implementando el método restringido de 
 Hartree--Fock con optimización de geometría y el conjunto de bases 
@@ -932,15 +921,15 @@ se muestran las energías atómicas de Hartree-Fock de los elementos
 constituyentes. Esta comparación da una idea de la distribución de los 
 electrones débilmente ligados en las moléculas. Se traza una línea 
 discontinua alrededor de $-26$~eV para separar la banda molecular en 
-dos. Se pueden considerar los niveles de energía atómica por encima de 
-esta línea como los correspondientes a los electrones débilmente ligados 
+dos. Los niveles de energía atómica por encima de esta línea se pueden 
+considerar como los correspondientes a los electrones débilmente ligados 
 de la Ec.~(\ref{eq:neCDW}). Por ejemplo, los electrones $2s$ y $2p$ del 
 carbono se ubican por encima de la línea discontinua, que corresponde a 
 los cuatro electrones dados por los números CDW. En el caso de oxígeno, 
 solo los cuatro electrones de los orbitales 2p se encuentran por encima 
 de la línea divisoria propuesta, que se corresponde con el número de 
-electrones débilmente ligados dado por el escaleo CDW. El caso del átomo 
-de nitrógeno no es tan directo; el número $\nu_{N}^{\text{CDW}}=4$ 
+electrones débilmente ligados dado por los valores CDW. El caso del 
+átomo de nitrógeno no es tan directo; el número $\nu_{N}^{\text{CDW}}=4$ 
 sugiere que sólo uno de los dos electrones de la capa $2s$ contribuye al 
 esquema molecular.
 
@@ -950,9 +939,9 @@ esquema molecular.
 
 El modelo estequiométrico propuesto en la Sección~\ref{sec:SSM} 
 considera a la molécula $M$ como un conjunto de átomos neutros aislados, 
-lo cual es definitivamente irreal. Una primera mejora se puede sugerir 
-asumiendo que los átomos no son efectivamente neutros y que tienen una 
-distribución dispar de los electrones dentro de la molécula. Esta 
+lo cual es completamente irreal. Una primera mejora al modelo se puede 
+sugerir asumiendo que los átomos no son efectivamente neutros y que 
+tienen una distribución electrónica dispar dentro de la molécula. Esta 
 característica puede expresarse mediante una carga efectiva $q_{\alpha}$ 
 por átomo. La carga de Mulliken proporciona un valor posible para 
 $q_{\alpha}$; sin embargo, existe una gran variedad de posibles 
@@ -990,13 +979,14 @@ cinco moléculas de ADN.}
 \end{center}
 \end{table}
 
-Para tomar en cuenta este efecto, hemos considerado que el número total 
+Para tomar en cuenta este efecto, se considera que el número total 
 de electrones $Q_{\alpha }$ en el elemento $\alpha$ se distribuye de 
 forma dispar sobre todos los átomos $\alpha$. Por lo tanto, cada 
-elemento $\alpha$ tendrá una carga $q_{\alpha}=Q_{\alpha}/n_{\alpha}$, 
-que puede ser positiva o negativa. Este valor dependerá de la 
-electronegatividad relativa respecto a los otros átomos~\cite{rappe1991}. 
-Siguiendo esta idea, podemos estimar el número fraccional de átomos por 
+elemento $\alpha$ tendrá una carga $q_{\alpha}=Q_{\alpha}/n_{\alpha}$ 
+asociada, que puede ser positiva o negativa. Este valor dependerá de la 
+electronegatividad relativa respecto a los otros 
+átomos~\cite{rappe1991}. 
+Siguiendo esta idea, se puede estimar el número fraccional de átomos por 
 molécula $n_{\alpha}'$, el cual está dado por 
 \begin{equation}
 n_{\alpha }^{\prime }=n_{\alpha }-
@@ -1011,16 +1001,18 @@ se obtienen a partir de los cálculos de estructura molecular descritos
 en la sección anterior.
 
 Implementando la Ec.~(\ref{eq:newstoi}) es posible determinar una nueva 
-fórmula estequiométrica de carga, que se da en la última columna de 
+fórmula estequiométrica de carga, que se muestra en la última columna de 
 la Tabla~\ref{tab:newstoi}). Ahora, en vez de tener un número entero de 
 átomos $n_{\alpha}$, se tiene un número fraccional dado por 
-$n_{\alpha}'$. Se pueden calcular nuevas secciones eficaces moleculares, 
-$\sigma'_{M}=\sum_{\alpha}n_{\alpha}'\sigma_{\alpha}$ considerando tales 
-valores. Se calcularon errores relativos de las secciones eficaces de 
-ionización para las bases de ADN de la Tabla~\ref{tab:newstoi}. Las 
-diferencias obtenidas son menores de 3\%, lo que indica que el modelo 
-estequiométrico es un modelo robusto con el que se pueden modelar 
-este tipo de moléculas complejas dentro del margen de error esperado.
+$n_{\alpha}'$. Considerando estos valores, se pueden calcular nuevas 
+secciones eficaces moleculares, 
+$\sigma'_{M}=\sum_{\alpha}n_{\alpha}'\sigma_{\alpha}$. Los errores 
+relativos de las secciones eficaces de ionización con el SSM modificado 
+para las bases de ADN de la Tabla~\ref{tab:newstoi} presentan 
+diferencias menores al 3\% respecto a los valores previos. Esta 
+comparación sugiere que el modelo estequiométrico es un modelo simple 
+pero robusto, capaz de modelar este tipo de moléculas complejas dentro 
+del margen de error esperado.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusiones}
@@ -1029,7 +1021,7 @@ este tipo de moléculas complejas dentro del margen de error esperado.
 En este Capítulo, se estudió la ionización de blancos moleculares de 
 interés biológico debido al impacto de iones de carga múltiple. La 
 aproximación teórica propuesta combina el modelo estequiométrico simple, 
-para describir la molécula, y el método de distorsionada con estado 
+para describir la molécula, y el método de onda distorsionada con estado 
 inicial de Eikonal para blancos atómicos (descritos con potenciales 
 DIM), para modelar el proceso colisional. Se calcularon secciones 
 eficaces de ionización de un gran número de blancos moleculares de 
@@ -1061,40 +1053,39 @@ normalizándolas con diferentes números de electrones activos en la
 colisión. Así, la primera regla de escala reduce las secciones eficaces 
 moleculares con el número de electrones activos CDW, la cual provee 
 buenos resultados para los sistemas proyectil--molécula estudiados aquí. 
-La comparación con los datos experimentales refuerza la ley de escala 
-propuesta. La regla de escala con números CDW se probó incluyendo datos 
-experimentales de ionización de H$_2$, metano y amoníaco por impacto de 
-protones, los cuales mostraron una buena concordancia en el rango de 
-energías intermedias a altas. La segunda regla de escala presentada  
-considera la naturaleza del ion incidente; la sección eficaz de 
-ionización se reduce con la carga del ión, $Z^{\alpha}$, como una 
-función de la energía incidente reducida $E/Z^{2-\alpha}$, siendo 
-$\alpha=1.2$. La última regla resulta de la conjunción de las dos 
-primeras: la sección eficaz de ionización total se reduce con el número 
-de electrones activos CDW y la reducción con la carga del ión, 
-$Z^{\alpha}$. Esta combinación conduce a una ley de escala de tipo 
-universal, independiente de la carga del ion y el blanco molecular. Se 
-compararon las tres reglas de escala obtenidas mediante el modelo 
-SSM--CDW para los 80 sistemas colisionales examinados con datos 
-experimentales disponibles. Finalmente, se puso a prueba la generalidad 
-de la regla de escala independiente mediante la inspección de un número 
-significativo de datos experimentales para otros sistemas colisionales 
-(no considerados previamente). Se probó que la regla de escala universal 
-propuesta es válida incluso para energías fuera del rango de validez del 
-método SSM--CDW.
+La comparación con los datos experimentales refuerza la primera ley de 
+escala propuesta. La regla de escala con números CDW se probó incluyendo 
+datos experimentales de ionización de H$_2$, metano y amoníaco por 
+impacto de protones, los cuales mostraron una buena concordancia en el 
+rango de energías intermedias a altas. La segunda regla de escala 
+consideró la naturaleza del proyectil; así, la sección eficaz de 
+ionización se reduce con la carga del ión incidente, $Z^{\alpha}$, como 
+una función de la energía incidente reducida $E/Z^{2-\alpha}$, siendo 
+$\alpha=1.2$. La última ley de escala se obtuvo de la conjunción de las 
+dos primeras: la sección eficaz de ionización total se reduce con el 
+número de electrones activos CDW y la carga del ión, $Z^{\alpha}$. Esta 
+combinación conduce a una ley de escala de tipo universal, independiente 
+de la carga del ion y el blanco molecular. Se compararon las tres reglas 
+de escala obtenidas mediante el modelo SSM--CDW para los 80 sistemas 
+colisionales examinados con datos experimentales disponibles. 
+Finalmente, se puso a prueba la generalidad de la regla de escala 
+independiente mediante la inspección de un número significativo de datos 
+experimentales para sistemas colisionales ajenos a este trabajo. Se 
+encontró que la regla de escala universal propuesta es válida incluso 
+para energías fuera del rango de validez del método SSM--CDW.
 
 También se realizaron cálculos de estructura molecular para las 
-nucleobases del ADN. Al inspeccionar las energías de ligadura moleculares 
-obtenidas mediante cálculos mecanico-cuánticos de primeros principios, 
-se pudo comprender el número de electrones activos resultantes de la 
-optimización basada en los cálculos CDW. Se propuso un modelo 
-estequiométrico modificado utilizando la carga de Mulliken para obtener 
-proporciones fraccionarias en lugar de enteras para el número de átomos 
-constituyentes. No se encontró una corrección sustancial, lo que indica 
-que el SSM tiene un buen desempeño. El extenso análisis de los 
-resultados refuerzan la validez del modelo estequiométrico simple en 
-combinación con la aproximación CDW para tratar la ionización de 
-moléculas complejas por el impacto de iones cargados en el rango de 
+nucleobases del ADN. Al inspeccionar las energías de ligadura 
+moleculares obtenidas mediante cálculos mecanico-cuánticos de primeros 
+principios, se pudo comprender el número de electrones activos 
+resultantes de la optimización basada en los cálculos CDW. Se propuso un 
+modelo estequiométrico modificado utilizando la carga de Mulliken para 
+obtener proporciones fraccionarias en lugar de enteras para el número de 
+átomos constituyentes. No se encontró una corrección sustancial, lo que 
+indica que el SSM tiene un buen desempeño. El extenso análisis de los 
+resultados presentados refuerzan la validez del modelo estequiométrico 
+simple en combinación con la aproximación CDW para tratar la ionización 
+de moléculas complejas por el impacto de iones cargados en el rango de 
 energía intermedia a alta. 
 
 
