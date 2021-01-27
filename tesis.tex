@@ -303,13 +303,9 @@ biblio}
 \spacing{1.2}
 \pagenumbering{roman}
 \tableofcontents
-\listoffigures
-\listoftables
-\cleardoublepage
-
-\chapter*{Índice de acrónimos}
-\addcontentsline{toc}{chapter}{Índice de acrónimos}
-\printacronyms[include-classes=A,name= ]
+%\listoffigures
+%\listoftables
+%\cleardoublepage
 
 \include{abstract_spa}
 \include{abstract_eng}
@@ -322,6 +318,11 @@ biblio}
 \include{rmatrix}
 \include{conclusiones}
 \include{publicaciones}
+
+\chapter*{Índice de acrónimos}
+\addcontentsline{toc}{chapter}{Índice de acrónimos}
+\printacronyms[include-classes=A,name= ]
+
 \include{appendix} 
 \include{biblio}
 

@@ -44,21 +44,24 @@ blanco y (2) los procesos de dispersión a los que son sujetos.
 \section{Descripción del trabajo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-En el Capítulo~\ref{chap:iondim} introducimos el método de inversión 
-depurada (\acs{dim}) a partir de soluciones de Hartree--Fock, que 
-permite describir de forma precisa la estructura de atómos y moléculas 
-simples~\cite{Mendez:16,Mendez:19dim}. El problema inverso supone 
-problemas numéricos, los cuales fueron examinados mediante un 
-experimento numérico y el estudio exhaustivo de la teoría de 
-HF~\cite{Mendez:18,Mitnik:19}. Además, exploramos la implementación de 
-los potenciales efectivos DIM en la teoría de colisiones atómicas para 
-describir procesos inelásticos tales como la ionización por impacto de 
-fotones e iones cargados a partir de la primera aproximación de 
+En el Capítulo~\ref{chap:iondim} se estudia la estructura de átomos y 
+moléculas pequeñas a través de la ionización simple. La descripción de 
+los blancos se obtiene a partir de potenciales efectivos, que resultan 
+de la implementación del método de inversión depurada 
+(\acs{dim})~\cite{Mendez:16,Mendez:19dim}. El DIM resuelve el problema 
+inverso a partir de funciones de onda y energías conocidas. Sin embargo, 
+la inversión directa de las soluciones presenta ciertos defectos, los 
+cuales son examinados mediante un experimento numérico y el estudio 
+exhaustivo de la teoría de HF~\cite{Mendez:18,Mitnik:19}. El objetivo 
+principal de este trabajo consiste en explorar la implementación de los
+potenciales DIM en la teoría de colisiones atómicas para describir 
+procesos inelásticos tales como la ionización por impacto de fotones e 
+iones cargados a partir de la primera aproximación de 
 Born~\cite{Mendez:19dim}. 
 
 En el Capítulo~\ref{chap:ionmol} implementamos el potencial DIM para 
 describir la estructura de átomos que constituyen moléculas biológicas.
-A partir del método de onda continua distorcionada con estado inicial 
+A partir del método de onda continua distorsionada con estado inicial 
 eikonal, describimos la ionización simple de estos blancos debido al 
 impacto de iones cargados. Mediante la introducción del modelo  
 estequiométrico, las predicciones atómicas obtenidas son combinadas para  
