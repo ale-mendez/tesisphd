@@ -1,15 +1,6 @@
 \chapter{Ionización de moléculas biológicas: el modelo estequiométrico}
 \label{chap:ionmol}
 
-\begin{comment}
-En este Capítulo se estudia la ionización de moléculas complejas de 
-interés biológico. El método que se implementa es una combinación entre 
-el modelo estequiométrico simple, que a su vez usa el método de 
-inversión depurada, y la aproximación de onda continua distorcionada con 
-estado inicial Eikonal. Los resultados teóricos se examinan mediante 
-distintas leyes de escala en el rango de energías intermedias a altas. 
-\end{comment}
-
 \section{Introducción}
 
 El interés sobre el estudio de la ionización de moléculas biológicas por 
@@ -19,13 +10,14 @@ y ciencias del ambiente~\cite{Gafur:18,FerrazDias:13}. Particularmente,
 el estudio del daño causado por proyectiles cargados en blancos 
 biológicos es relevante debido a su aplicación en la terapia contra el 
 cáncer~\cite{Baskar:12}. La ionización de moléculas biológicas por haces 
-de iones cargados constituye el principal mecanismo de daño celular. 
-Así, la efectividad de la radiación depende de la elección de los iones 
-a implementar. En particular, estudios teóricos y experimentales con 
-diferentes proyectiles han concluido que los iones de carbono podrían 
-ser los iones más apropiados para dicha implementación~\cite{Mohamad:17}. 
-Sin embargo, el estudio de blancos complejos, tales como las nucleobases, 
-representa un gran desafío desde el punto de vista teórico. 
+de iones de carga múltiple constituye el principal mecanismo de daño 
+celular. Así, la efectividad de la radiación depende de la elección de 
+los iones a implementar. En particular, estudios teóricos y 
+experimentales con diferentes proyectiles han concluido que los iones de 
+carbono podrían ser los iones más apropiados para dicha 
+implementación~\cite{Mohamad:17}. Sin embargo, el estudio de blancos 
+complejos, tales como las nucleobases, representa un gran desafío desde 
+el punto de vista teórico. 
 
 A lo largo de las últimas décadas, se ha propuesto una amplia variedad 
 de aproximaciones teóricas con el fin de predecir la ionización de estos 
@@ -72,12 +64,6 @@ apantallamiento. En este caso, los autores obtienen las secciones
 eficaces atómicas a partir de la teoría del functional densidad 
 dependiente del tiempo. 
 
-%El método que se implementa es una combinación entre 
-%el modelo estequiométrico simple, que a su vez usa el método de 
-%inversión depurada, y la aproximación de onda continua distorcionada con 
-%estado inicial Eikonal. Los resultados teóricos se examinan mediante 
-%distintas leyes de escala en el rango de energías intermedias a altas. 
-
 En este Capítulo se estudia la ionización de moléculas complejas de 
 interés biológico debido a iones de carga múltiple. Se tratarán dos 
 aspectos principales: el orden de aproximación del proceso colisional 
@@ -87,7 +73,8 @@ basa en el IAM: las moléculas se describen como combinación de los
 valores confiables de secciones eficaces de ionización de los átomos. 
 Esta aproximación constituye una de las teorías más exitosas para 
 describir procesos de ionización a intermedias y altas 
-energías~\cite{Miraglia:08,Miraglia:09}. Por simplicidad, de aquí en 
+energías~\cite{Miraglia:08,Miraglia:09,Montanari:17-iongasesnobles}. 
+Por simplicidad, de aquí en 
 adelante la aproximación CDW-EIS es referida como CDW. Detalles sobre el 
 método y cálculos atómicos se presentan en la Sección~\ref{sec:atoms}. 
 El proceso de ionización es el mecanismo que deposita la mayor cantidad 
@@ -147,30 +134,24 @@ se realizan cálculos de estructura molecular a partir del código
 los átomos que componen las moléculas. A partir de estos resultados, se 
 propone una nueva fórmula estequiométrica, que tiene en cuenta el 
 alejamiento de la neutralidad de los átomos. 
-%Encontramos que modificación a la aproximación SSM para las moléculas 
-%de ADN no introduce cambios sustanciales en las secciones eficaces 
-%totales de ionización.
+En la Sección~\ref{sec:conclu-heavy} se presentan las conclusiones de 
+este trabajo. 
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Ionización de átomos constituyentes}
 \label{sec:atoms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
 La sección eficaz de ionización total $\sigma_{\alpha}$ del átomo 
 $\alpha$, que será luego implementada en el modelo molecular, se obtiene 
 a partir de la aproximación del método CDW (ver Apéndice~\ref{app:CDW}) 
-en combinación con el método de inversión depurada (DIM). Las funciones 
-de onda radiales de los estados inicial ligado y final contínuo se 
-obtienen resolviendo las correspondientes ecuaciones de Schr\"odinger 
-definidas por potenciales efectivos. Estos potenciales resultan de la 
-implementación del DIM~\cite{Mendez:16}, que se presentó en el 
-Capítulo~\ref{chap:iondim} de esta Tesis.
-
-%En particular, estos potenciales DIM resultan de la inversión de 
-%orbitales HF, que luego se implementan en el código~\textsc{radialf}, 
-%desarrollado por Salvat y colaboradores~\cite{salvat1995}.
+en combinación con el método de inversión depurada (DIM). Los blancos 
+atómicos se describen a partir del DIM, descrito en el 
+Capítulo~\ref{chap:iondim} de esta Tesis. Luego, las funciones de onda 
+radiales de los estados inicial ligado y final contínuo se obtienen 
+resolviendo las correspondientes ecuaciones de Schr\"odinger definidas 
+por estos potenciales. 
 
 \begin{figure}
 \centering
@@ -179,7 +160,7 @@ Capítulo~\ref{chap:iondim} de esta Tesis.
 {Sección eficaz total de ionización reducida $\sigma_{\alpha}/Z^2$ 
 de cuatro blancos atómicos relevantes. Curvas: cálculos teóricos CDW. 
 Símbolos: datos experimentales de H$^+$ en H~\cite{Shah:81}, 
-C~\cite{Toburen:72}, N~\cite{Rudd:85} y O~\cite{Rudd:85}; $e^-$ en 
+N~\cite{Rudd:85} y O~\cite{Rudd:85}; $e^-$ en 
 H~\cite{Shah:87}, C~\cite{Brook:78}, N~\cite{Brook:78} y 
 O~\cite{Thompson:95} con conversión de equivelocidad.}
 \label{fig:atomscaling}
@@ -189,7 +170,10 @@ La mayor parte de las moléculas orgánicas contienen átomos de hidrógeno,
 carbono, nitrógeno y oxígeno. Así, los sistemas colisionales que se 
 estudian en esta Sección están compuestos por estos cuatro blancos 
 atómicos y los proyectiles: antiprotones $\bar{p}$, H$^{+}$, He$^{2+}$, 
-Be$^{4+}$, C$^{6+}$, y O$^{8+}$. Las secciones eficaces totales de 
+Be$^{4+}$, C$^{6+}$, y O$^{8+}$. Particularmente, los estados inicial y 
+final de los blancos se obtienen implementando en el 
+código~\textsc{radialf}, desarrollado por Salvat y 
+colaboradores~\cite{salvat1995}. Las secciones eficaces totales de 
 ionización CDW-DIM de los 24 sistemas blanco--proyectil resultantes se 
 muestran en la Fig.~\ref{fig:atomscaling}. Los resultados 
 correspondientes a cada sistema colisional se presentan en una única 
@@ -213,11 +197,12 @@ También se realizaron cálculos similares con la FBA (no se muestran
 aquí), corroborando que ésta provee resultados confiables para valores 
 de energía mayores a unos cuantos MeV/amu. Los resultados de ionización 
 CDW de cada capa de estos sistemas colisionales se pueden hallar en la 
-Ref.~\cite{Miraglia:19}.
+Ref.~\cite{Miraglia:19}. Detalles sobre el cálculo se encuentran en la
+Ref.~\cite{Montanari:17-iongasesnobles}.
 
 A lo largo de este Capítulo se usa el mismo color de línea para indicar 
 la carga del proyectil en todas las figuras que muestran resultados de 
-ionización por impacto de iones cargados: discontinua--roja, 
+ionización por impacto de iones de carga múltiple: discontinua--roja, 
 sólida--roja, azul, magenta, oliva y naranja para antiprotones, H$^{+}$, 
 He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$, respectivamente. En el caso 
 de los datos experimentales, se usan símbolos de los mismos colores para 
@@ -234,9 +219,9 @@ para electrones.
 \includegraphics[width=0.9\textwidth]{ionmol/ener_mean.eps}
 \caption[Distribución energética media de electrones emitidos.]
 {Distribución energética media de electrones emitidos por la ionización 
-debido al impacto de iones cargados dada por la Ec.~(\ref{eq:meanener}). 
-Curvas: cálculos teóricos FBA (punteada) y CDW (sólidas y 
-discontinua).}
+debido al impacto de iones de carga múltiple dada por la 
+Ec.~(\ref{eq:meanener}). Curvas: cálculos teóricos FBA (punteada) y CDW 
+(sólidas y discontinua).}
 \label{fig:emittedener}
 \end{figure} 
 
@@ -300,9 +285,9 @@ Fig.~\ref{fig:emittedener}.
 \includegraphics[width=0.9\textwidth]{ionmol/ang_mean.eps}
 \caption[Distribución angular media de electrones emitidos.]
 {Distribución angular media de electrones emitidos por la ionización 
-debido al impacto de iones cargados dada por Ec.~(\ref{eq:meanang}). 
-Curvas: cálculos teóricos FBA (punteada) y CDW (sólidas y 
-discontinua).}
+debido al impacto de iones de carga múltiple dada por 
+Ec.~(\ref{eq:meanang}). Curvas: cálculos teóricos FBA (punteada) y CDW 
+(sólidas y discontinua).}
 \label{fig:emittedang}
 \end{figure} 
 
@@ -443,7 +428,7 @@ discrepancia es intrigante ya que la medición se encuentra en el rango
 de altas energías, donde aún la FBA predice muy bien los experimentos.
 
 No se han encontrado en la bibliografía datos experimentales de 
-ionización por impacto de iones cargados para el resto de las 
+ionización por impacto de iones de carga múltiple para el resto de las 
 nucleobases de ADN. En la Fig.~\ref{fig:crossDNA_1} se incluyen 
 mediciones de ionización por impacto de electrones~\cite{Rahman:16}, con 
 la correspondiente conversión de equivelocidad, para energías incidentes 
@@ -490,13 +475,14 @@ Agnihotri \textit{et al.}~\cite{agnihotri2012,agnihotri2013} para el
 impacto de iones de carga múltiple. No obstante, cabe señalar que los 
 resultados teóricos coinciden con los cálculos de Champion, 
 Rivarola y colaboradores~\cite{agnihotri2012,champion2012}. Los cálculos 
-recientes de Sarkadi~\cite{sarkadi2016} empleando el método CTMC también 
-se encuentran por arriba de estos valores experimentales. En la figura 
-también se incluye una reciente medición experimental preliminar de Sens 
-\textit{et al.}~\cite{Sens:20} para la ionización en uracilo debido al 
-impacto de C$^{4+}$, que coincide con la teoría. Si bien los resultados 
-son preliminares, esta discrepancia podría indicar algún problema con 
-los valores experimentales de Agnihotri y colaboradores. 
+de Sarkadi~\cite{sarkadi2016}, que emplean el método de trayectorias 
+clásicas Monte Carlo, también se encuentran por arriba de estos valores 
+experimentales. En la figura también se incluye una reciente medición 
+experimental preliminar de Sens \textit{et al.}~\cite{Sens:20} para la 
+ionización en uracilo debido al impacto de C$^{4+}$, que coincide con la 
+teoría. Si bien los resultados son preliminares, esta discrepancia 
+podría indicar algún problema con los valores experimentales de 
+Agnihotri y colaboradores. 
 
 Para pirimidina, los cálculos teóricos se comparan con los datos 
 experimentales de ionización por impacto de protones de Wolff 
@@ -673,8 +659,8 @@ ionización de adenina~\cite{Iriki:11,Sens:20,Bhattacharjee:19},
 uracilo~\cite{itoh2013,Sens:20}, pirimidina~\cite{wolff2014}, 
 THF~\cite{wang2016} y agua~\cite{Luna2007,Bolorizadeh86,H_Rudd85,
 toburen80,Ohsawa05,He_Rudd85,DalCappello:09,Bhattacharjee:17,
-Bhattacharjee:16} por impacto de iones cargados que se muestran en la 
-Fig.~\ref{fig:newscaling}(b) validan nuestra optimización. También 
+Bhattacharjee:16} por impacto de iones de carga múltiple que se muestran 
+en la Fig.~\ref{fig:newscaling}(b) validan nuestra optimización. También 
 incluimos mediciones de ionización por impacto de electrones con 
 conversión de equivelocidad en pirimidina~\cite{bug2017} y 
 THF~\cite{bug2017,wolf2019,fuss2009}. 
@@ -746,10 +732,11 @@ muestran una dependencia lineal con el número de electrones CDW $n_e'$
 de la Tabla~\ref{tab:ne_molecules}. Se obtienen resultados similares 
 incluso para $E=10$~MeV (no los incluimos por claridad en la figura). La 
 comparación con los datos experimentales disponibles muestra una buena 
-concordancia general, desde moléculas pequeñas, tales como H$_2$, CH$_4$ 
-y NH$_3$, hasta las más complejas, como la adenina. Para los datos de 
-ionización por impacto de electrón, los valores experimentales se 
-interpolaron entre vecinos cercanos. 
+concordancia general, desde moléculas pequeñas~\cite{Lynch:76,Rudd:85,
+Luna2007}, tales como H$_2$, CH$_4$ y NH$_3$, hasta las más 
+complejas~\cite{Iriki:11,itoh2013,wolff2014}, como la adenina. Para los 
+datos de ionización por impacto de electrón, los valores experimentales 
+se interpolaron entre vecinos cercanos. 
 
 Será interesante verificar la regla de escala optimizada que se presenta
 aquí con experimentos futuros, principalmente para estados de carga de 
@@ -1112,7 +1099,7 @@ constituyentes. No se encontró una corrección sustancial, lo que indica
 que el SSM tiene un buen desempeño. El extenso análisis de los 
 resultados presentados refuerzan la validez del modelo estequiométrico 
 simple en combinación con la aproximación CDW para tratar la ionización 
-de moléculas complejas por el impacto de iones cargados en el rango de 
-energía intermedia a alta. 
+de moléculas complejas por el impacto de iones de carga múltiple en el 
+rango de energía intermedia a alta. 
 
 
