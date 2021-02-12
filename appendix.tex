@@ -1,11 +1,8 @@
 \appendix
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Primera aproximación de Born}
-\label{app:born}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Ecuación normal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{app:ecnormal}
 
 Las semillas iniciales dadas por la ecuación normal se obtienen al 
@@ -61,6 +58,315 @@ se obtiene un sistema de ecuaciones que se resuelve con rutinas numéricas
 estándar. Así, la solución $[d\lambda]$ permite obtener los parámetros 
 iniciales que minimizan $[\beta]$.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Método de R-Matrix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{app:rmatrix}
+
+En la región interna, la función de onda total $\Psi_E$ del sistema 
+electrónico $(N+1)$ para cualquier valor de energía $E$ se expande en 
+términos de las funciones de base de R-Matrix $\Psi_k$ como
+\begin{equation}
+\Psi_E=\sum_k A_{Ek}\Psi_k\,.
+\label{eq:RM-wavefn}
+\end{equation}
+La funciones de base están dadas por
+\begin{equation}
+\Psi_k=\mathcal{A}\sum_{ij}a_{ijk}\bar{\Phi}_i u_j+\sum_j b_{jk}\phi_j\,,
+\label{eq:RM-basisfn}
+\end{equation}
+donde las funciones $u_j$ constituyen un conjunto finito de orbitales de 
+base, que se usan para representar las funciones de onda del continuo 
+para un momento angular $l$ dado, $\bar{\Phi}_i$ son las funciones de 
+onda del blanco con $N$ electrones combinadas con las partes angular y 
+de espín del orbital del continuo correspondiente, el operador 
+$\mathcal{A}$ antisimetriza la coordenada del electrón dispersado con la 
+coordenada del electrón del blanco $N$-ésimo, y $\phi_j$ son las 
+funciones de onda del sistema $(N+1)$ que se construyen con los 
+orbitales del blanco. Los coeficientes $a_{ijk}$ y $b_{jk}$ se 
+determinan diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de 
+electrones $(N+1)$ en la región interna,
+\begin{equation}
+\langle\Psi_k\left|H^{N+1}\right|\Psi_k'\rangle=E_k^{N+1}\delta_{kk'}\,.
+\label{eq:RM-N+1Hamilt}
+\end{equation}
+El radio de la región interna $a$ se elije de manera tal que los 
+orbitales radiales $P_{nl}$ están contenidos totalmente; esto es, 
+$P_{nl}\simeq 0$ para $r>a$. Para cada valor de momento angular $l$, los 
+orbitales de la base del continuo $u_j$ se determinan a partir de las 
+soluciones de la ecuación
+\begin{equation}
+\left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}+V(r)
+-\frac{k_j^2}{2}\right]u_j(r)=-\sum_i\lambda_{ji}P_{n_il}(r)\,,
+\label{eq:RM-difeq-uj}
+\end{equation}
+imponiendo las condiciones de borde 
+\begin{equation}
+u_j(0)=0\,,\qquad\frac{a}{u_j(a)}\frac{du_j}{dr}\bigg|_{r=a}=b\,,
+\end{equation}
+y la condición de ortonormalidad
+\begin{equation}
+\int_0^au_iu_j\,dr=\delta_{ij}\,.
+\end{equation}
+El potencial $V(r)$ se define de forma conveniente para representar la
+distribución de carga del blanco atómico y los multiplicadores de 
+Lagrange $\lambda_{ji}$ se utilizan para forzar la ortonormalidad de las
+bases del contínuo con todos los orbitales ligados $P_{n_il}(r)$ con el
+mismo momento angular $l$. En general, el valor de la segunda condición 
+de borde $b$ es arbitraria y usualmente se asume igual a cero.
+
+Definiendo la variable
+\begin{equation}
+w_{ik}=\sum_j a_{ijk}u_j\,.
+\end{equation}
+Entonces, la función de onda radial del electrón dispersado en el canal 
+$i$ con energía $E$ resulta
+\begin{equation}
+y_i=\sum_kA_{Ek}w_{ik}\,.
+\end{equation}
+Se puede demostrar~\cite{Burke:75}, que los coeficientes $A_{Ek}$ 
+están dados por
+\begin{equation}
+A_{Ek}=\frac{1}{2a\left(E_k^{N+1}-E\right)}\sum_jw_{jk}(a)
+\left(a\frac{dy_j}{dr}-by_j\right)_{r=a}\,.
+\end{equation}
+Así, la función de onda radial dispersada en el límite entre las 
+regiones interna y externa se define como
+\begin{equation}
+y_i(a)=\sum_j R_{ij}\left(a\frac{dy_j}{dr}-by_j\right)_{r=a}\,,
+\end{equation}
+donde $R_{ij}$ es un elemento de la matrix $R$, está dada por
+\begin{equation}
+R_{ij} = \frac{1}{2a}\sum_k\frac{w_{ik}(a)w_{jk}(a)}{E_k^{N+1}-E}\,.
+\label{eq:RM-elements}
+\end{equation}
+Entonces, las amplitudes de superficie $w_{ik}(a)$ y los polos 
+$E_k^{N+1}$ de la matrix $R$ se determinan a partir de los autovalores y
+autovectores del Hamiltoniano del sistema de $(N+1)$ electrones dado por 
+la Ec.~(\ref{eq:RM-N+1Hamilt}).
+
+La mayor fuente de errores en el método surge por el número finito de 
+términos en la expansión de R-Matrix de la Ec.~(\ref{eq:RM-wavefn}), y 
+por lo tanto, en el truncamiento en la sumatoria en la 
+Ec.~(\ref{eq:RM-elements}). Los autovalores más altos del Hamiltoniano,
+que no se incluyen en la expansión, contribuyen principalmente a los 
+elementos de la diagonal de la matriz $R$, donde se agregan 
+coherentemente. El método desarrollado por Buttle~\cite{Buttle} permite 
+completar esta sumatoria de forma aproximada. 
+
+Para poder implementar los cálculos de la matrix $R$ de la región 
+interna para determinar las matrices de dispersión y, por lo tanto, las 
+secciones eficaces, se resuelven las ecuaciones de acoplamiento en la 
+región externa ($r>a$) para cada valor de energía. Sin embargo, dado 
+que $P_{nl}(r)\simeq 0$ en esta región, el intercambio electrónico es
+despreciable y las ecuaciones se simplifican tal que
+\begin{equation}
+\left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}-\frac{(Z-N)}{r}
+-\frac{k_i^2}{2}\right]y_i(r)=-\sum_{\lambda=1}^{\lambda_{\textrm{máx}}}
+\sum_{j=1}^{n}\frac{c_{ij}^{\lambda}}{r^{\lambda+1}}\,y_j(r)
+\quad i=1,\cdots n\,,
+\label{eq:RM-outer}
+\end{equation}
+donde $n$ es el número total de canales de dispersión, abiertos o 
+cerrados, y $\lambda^{\textrm{máx}}$ es el máximo valor en la expansión
+multipolar permitido por la relaciones triangulares que resultan de las 
+integrales angulares. Los coeficientes $c_{ij}^{\lambda}$ están dados 
+por
+\begin{equation}
+c_{ij}^{\lambda}=\langle\bar{\Phi}_i\left|\sum_k^Nr_k^{\lambda}
+P_{\lambda}\left(\cos\theta_{k,N+1}\right)\right|\bar{\Phi}_j\rangle\,,
+\end{equation}
+donde $\theta_{k,N+1}$ es el ángulo que se forma entre los vectores 
+$\hat{\mathbf{r}}_{k}$ y $\hat{\mathbf{r}}_{N+1}$. 
+
+Cuando $r\rightarrow\infty$, la solución a estas ecuaciones acopladas
+resulta
+\begin{equation}
+\begin{array}{ll}
+y_{ij}\sim\frac{1}{\sqrt{k_i}}\left(\sin\theta_i\delta_{ij}+\cos\theta_i
+K_{ij}\right) \,\,&\,\,\textrm{para }\,k_i^2>0\,,\\
+y_{ij}\sim\mathcal{O}\left(r^{-2}\right) \,\,&\,\,\textrm{para }\,k_i^2<0\,,
+\end{array}
+\end{equation}
+donde $i=1,\cdots,n_o$ para los canales abiertos, $i=n_o+1,\cdots,n$ 
+para los canales cerrados, $K_{ij}$ son los elementos de la matriz $K$,
+y 
+\begin{equation}
+\theta_i=k_ir-\frac{1}{2}l_i\pi+\frac{(Z-N)}{k_i}\ln 2k_i r +\arg \Gamma
+\left(l_i+1-i\frac{(Z-N)}{k_i}\right)\,.
+\end{equation}
+El segundo índice $j$ se introduce para designar las $n_o$ soluciones 
+linealmente independientes. Así, resolviendo las ecuaciones acopladas
+aproximadas en la región externa, las matrices $R$ y $K$ se relacionan 
+y se determinan las secciones eficaces.
+
+%\section{Inclusión de Pseudo-estados}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Procesos Gaussianos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{app:gp}
+
+\begin{comment}
+% Multi-objetive => Single objetive
+La optimización de la estructura del blanco en el cálculo colisional 
+requiere la optimización de tipo multi-objeto, es decir, en donde se 
+ajustan diversas funciones de forma simultánea. Por ejemplo, si se desea 
+ajustar la energía de los primeros cinco niveles atómicos de un blanco 
+determinado, será necesario minimizar de forma simultánea las funciones 
+$\mathcal{F}_k$, 
+\begin{equation}
+\mathcal{F}_k = (f_k(\mathbf{x})-F_k)^2\,,\quad:\quad k=1,\cdots, 5\,,
+\end{equation}
+donde $\mathbf{x}$ es el conjunto de parámetros de los que depende el 
+problema, y $f_k$ y $F_k$ son la predicción teórica y el valor conocido 
+de la energía del nivel $k$, respectivamente. Existen diversas técnicas 
+con las cuales resolver este problema. Sin lugar a dudas, la 
+aproximación más simple es el método de combinación lineal. Este método 
+consiste en optimizar el valor obtenido de la suma de los valores 
+correspondientes a las distintas funciones objetivos, cada una 
+multiplicada por un coeficiente de peso. Estos coeficientes establecen
+la importancia relativa de cada función objetivo. Así, el problema de 
+optimización multi-objetivo se transforma en otro de optimización 
+escalar, que para el caso de la minimización será de la forma
+\begin{equation}
+\min\sum_k w_k \mathcal{F}_k\,.
+\end{equation}
+
+% Single-objetive: Bayesian Optimization
+Por otro lado, aún si podemos reducir nuestro problema de optimización 
+multi-objeto a una única función objeto, la optimización de la función 
+$f$ que supone nuestro problema depende de un número significativo de 
+variables de la que no se tiene una expresión analítica. Estas 
+características de la función objeto restringe el tipo de métodos 
+numéricos aplicables para esta tarea. Así, quedan descartados los métodos 
+de gradiente y de Newton. Otros métodos, como la busqueda de fuerza bruta 
+resultan impracticables debido a la alta dimensionalidad del espacio de 
+parámetros. La optimización bayesiana (\acs{bo}) es una herramienta usada 
+con frecuencia ya que permite optimizar funciones de tipo ``caja negra'', 
+de la cual sólo se conocen los parámetros de entrada y la evaluación 
+correspondiente de la función. Por ejemplo, en el área de aprendizaje 
+automatizado, la optimización de una red neuronal profunda consiste en 
+definir ciertos hiper-parámetros, tales como el número óptimo de capas, 
+de nodos por capa, de manera tal que la función de costo sea 
+mínima. La definición de estos parámetros no se corresponde a una función 
+analítica y, por lo tanto, en la búsqueda de la representación más óptima 
+no se puede implementar la evaluación de las derivadas del objetivo. 
+
+% Bayesian Optimization: Gaussian Process
+El método de optimización bayesiana por excelencia es la regresión 
+mediante procesos gaussianos (\acs{gp}). Existen otros métodos, tales 
+como la estimación de arbol de Parzen (\acs{tpe}), que hemos estudiado 
+inicialmente pero que no serán explorados en este trabajo. 
+
+Dado que la función objetivo es desconocida, la estrategia bayesiana 
+consiste en suponer que la función es aleatoria y definir una 
+distribución previa sobre la función. La distribución previa definida 
+debe contar con información mínima sobre el comportamiento de la función. 
+Luego de analizar las evaluaciones iniciales, el prior es actualizado y 
+define una distribución posterior sobre la función objetivo o costo. A 
+su vez, la distribución posterior permite construir una función de 
+adquisición, que determina el siguiente punto a evaluar. 
+\end{comment}
+
+Un proceso Gaussiano es un proceso aleatorio donde a cualquier punto 
+$\mathbf{x}\in \mathbb{R}^d$ se le asigna una variable aleatoria 
+$f(\mathbf{x})$, donde la distribución de probabilidad conjunta de un 
+número dado de estas variables $p(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$
+es en sí misma Guasiana,
+\begin{equation}
+p(\mathbf{f}|\mathbf{X})
+=\mathcal{N}(\mathbf{f}|\boldsymbol{\mu},\mathbf{K})\,,
+\end{equation}
+donde $\mathbf{f}=(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$, 
+$\boldsymbol\mu=(m(\mathbf{x}_1),\cdots,m(\mathbf{x}_N))$ y 
+$\mathbf{K}_{ij}=\kappa(\mathbf{x}_i,\mathbf{x}_j)$. El término 
+$m(\mathbf{x})$ es la función media y es usual tomar $m(\mathbf{x})=0$.
+La función $\kappa$ se define positiva y se denonima \textit{kernel}
+o función de covariancia. Luego, un proceso Gaussiano es una 
+distribución de funciones cuya forma está definida por $\mathbf{K}$.
+Una de las funciones de covarianza más usuales es la llamada exponencial
+cuadrada, que se define como
+\begin{equation}
+cov(f(\mathbf{x}_{\mathbf{p}}),f(\mathbf{x}_{\mathbf{q}}))
+=\kappa(\mathbf{x}_{\mathbf{p}},\mathbf{x}_{\mathbf{q}})
+=\sigma_f^2\,e^{-\frac{1}{2l^2}(\mathbf{x}_{\mathbf{p}}
+-\mathbf{x}_{\mathbf{q}})^2}\,.
+\end{equation}
+La covarianza de la salida $f(\mathbf{x})$ se escribe como una función 
+de la entrada $\mathbf{x}$. La especificación de la función de 
+covarianza da lugar a una distribución de funciones, y en este caso 
+particular, $l$ determina la longitud característica de dichas funciones
+y $\sigma_f$ la varianza de las mismas. 
+
+El GP previo $p(\mathbf{f}|\mathbf{X})$ se puede actualizar en un GP
+posterior $p(\mathbf{f}|\mathbf{X},\mathbf{y})$ después de haber medido
+algún dato $\mathbf{y}$. La distribución posterior puede ser utilizada 
+para realizar predicciones $\mathbf{f}_*$, dada una nueva entrada 
+$\mathbf{X}_*$,
+\begin{eqnarray}
+p(\mathbf{f}_*|\mathbf{X}_*,\mathbf{X},\mathbf{y})
+&=\int p(\mathbf{f}_*|\mathbf{X}_*,\mathbf{f}) p(\mathbf{f}|\mathbf{X},
+\mathbf{y})\,d\mathbf{f} \\
+&=\mathcal{N}(\mathbf{f}_*|\boldsymbol\mu_*,\boldsymbol\Sigma_*)\,.
+\end{eqnarray}
+Esta última ecuación expresa la distribución posterior predictiva, que 
+es también Gaussiana con media $\boldsymbol\mu_*$ y desviación 
+$\boldsymbol\Sigma_*$. Por definición del GP, la distribución conjunta
+de los datos observados $\mathbf{y}$ y las predicciones $\mathbf{f}_*$ 
+está dada por
+\begin{equation}
+\left(\begin{array}{c}
+\mathbf{y}\\
+\mathbf{f}_*
+\end{array} 
+\right)\sim\mathcal{N}\left(\mathbf{0}
+\left(
+\begin{array}{cc}
+\mathbf{K}_y & \mathbf{K}_* \\
+\mathbf{K}_*^T & \mathbf{K}_{**}
+\end{array}
+\right)
+\right)
+\end{equation}
+con $N$ datos previos y $N_*$ nuevos datos, 
+$\mathbf{K}_y=\kappa(\mathbf{X},\mathbf{X})+\sigma_y^2\mathbb{I} = 
+\mathbf{K}+\sigma_y^2\mathbb{I}$ es de rango $N\times N$, 
+$\mathbf{K}_*=\kappa(\mathbf{X},\mathbf{X}_*$ es de rango $N\times N_*$
+y $\mathbf{K}_{**}=\kappa(\mathbf{X}_*,\mathbf{X}_*$ es de rango 
+$N_*\times N_*$. El término $\sigma_y^2$ está asociado al dispersión de 
+las mediciones.
+
+Por simplicidad, la media se establece igual a $\mathbf{0}$. Luego de
+realizar un significativo trabajo algebraico~\cite{}, se puede demostrar 
+que
+\begin{eqnarray}
+\boldsymbol\mu_*=\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\,
+\boldsymbol\Sigma_*=\mathbf{K}_{**}-\mathbf{K}_*^T\mathbf{K}_*^{-1}
+\mathbf{K}_*\,.
+\end{eqnarray}
+
+
+\begin{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Primera aproximación de Born}
+\label{app:born}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Método de onda continua distorsionada (CDW)}
 \label{app:CDW}
@@ -77,13 +383,5 @@ iniciales que minimizan $[\beta]$.
 \chapter{Aproximación de plasma local por capa}
 \label{app:SLPA}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Método de R-Matrix}
-\label{app:rmatrix}
-
-\section{R--Matrix con pseudo--estados}
-\label{app:RMPS}
-
-El método de R--Matrix con pseudo--estados (\acs{rmps}) ...
-
+\end{comment}
 

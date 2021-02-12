@@ -22,7 +22,8 @@ para predecirlos se puden clasificar en dos grupos: las aproximaciones
 perturbativas, entre las que se destacan las de Born~\cite{Bates:62,
 McDowell:61} y de onda distorcionada~\cite{Crothers:10,Rivarola:87}, y 
 el grupo de métodos no perturbativos, con técnicas tales como los de 
-acoplamiento cercano~\cite{Pindzola:07,Burke:11,Bray:17}. 
+acoplamiento cercano~\cite{Pindzola:07,Burke:11,Bray:17,Zatsarinny:04,
+McCurdy:04}. 
 
 En general, los procesos colisionales simples se basan en la 
 aproximación de electrón activo. En la ionización, el electrón activo 
@@ -112,601 +113,6 @@ relativistas de la tabla periodica, que será de libre acceso.
 Las conclusiones de este trabajo se encuentran en la 
 Sección~\ref{sec:conclu-dim}.
 
-\begin{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de blancos atómicos}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:atomos}
-
-La ecuación de Schrödinger para un sistema de $N$ electrones y 
-un núcleo de carga $Z$ se escribe como
-\begin{equation}
-\left[
-\sum_{i=1}^N \left(-\frac{1}{2}\nabla^2_{{\mathbf r}_i}
-                   -\frac{Z}{{\mathbf r}_i}\right) + 
-\sum_{i<j=1}^N \frac{1}{|{\mathbf r}_i - {\mathbf r}_j |} 
-\right] \Psi\left(q_1,q_2,\cdots,q_N\right) 
-= E\, \Psi\left(q_1,q_2,\cdots,q_N\right) \,,
-\label{eq:Schro}
-\end{equation}
-donde $q_i$ está compuesto por la coordenada espacial $\mathbf{r}_i$ y 
-de espín $\chi_i$ del electrón $i$--ésimo. El tratamiento explícito de 
-la ecuación de Schr\"odinger en los casos de iones multielectrónicos es 
-una tarea, literalmente, imposible de realizar. Por lo tanto, se debe 
-recurrir a aproximaciones que permitan describir al sistema de forma 
-precisa. Uno de los métodos más implementados con este fin está dado por 
-la teoría de Hartree--Fock. 
-
-En la aproximación de Hartree--Fock, se asume --en concordancia con el 
-modelo de partícula independiente y el principio de exclusión de Pauli-- 
-que la función de onda $N$-electrónica es un determinante de Slater, que 
-se obtiene usando el método variacional para determinar los mejores 
-orbitales electrónicos individuales. Las ecuaciones de HF se pueden 
-reescribir en forma compacta, 
-\begin{equation}
-\left[-\frac{1}{2}\nabla_{\mathbf{r}_i}^2-\frac{Z}{r_i}
-+\mathcal{V}^{\mathrm{H}}(\mathbf{r}_i)
--\mathcal{V}^{\mathrm{x}}(q_i) \right]
-\phi_{\lambda}(q_i)=\varepsilon_{\lambda}\,\phi_{\lambda}(q_i)\,,
-\label{eq:compactHFeqs}
-\end{equation}
-donde los operadores directo y de intercambio están dados por
-\begin{align}
-\mathcal{V}^{\mathrm{H}}(\mathbf{r}_i) &
-=\sum_\mu \mathcal{V}_\mu^{\mathrm{H}}(\mathbf{r}_i)
-=\int\frac{\phi_{\mu}^*(\mathbf{r}_j)\phi_{\mu}(\mathbf{r}_j)\, 
-d\mathbf{r}_j}{r_{ij}} \,, \\
-\mathcal{V}^{\mathrm{x}}(q_i) 
-&=\sum_\mu \mathcal{V}_\mu^{\mathrm{x}}(q_i) \,,\\
-\mathcal{V}_\mu^{\mathrm{x}} \phi_{\lambda}(q_i) &= \left[
-\int\frac{\phi_{\mu}^*(q_j)\phi_{\lambda}(q_j)\,dq_j}{r_{ij}} \right] 
-\phi_\mu(q_i)\,.
-\end{align}
-En el caso de átomos con capas cerradas, asumiendo que los orbitales 
-espaciales se pueden separar en sus partes radial y angular
-\begin{equation}
-\phi_{nlm}(\mathbf{r})=\frac{1}{r}u_{nl}(r)Y_l^m(\theta,\phi)\,,
-\label{eq:centralfield-wave}
-\end{equation}
-las ecuaciones radiales de HF son iguales a las ecuaciones radiales de 
-un electrón que se desprenden de la Ec.~(\ref{eq:Schro}) bajo la 
-aproximación de campo central, 
-\begin{equation}
- \left[ -\frac{1}{2}\frac{d^2}{dr^2} + \frac{l(l+1)}{2r^2} +
- V(r) \right] u_{nl}(r) = \varepsilon_{nl} \, u_{nl}(r)\,,
-\label{eq:eqSchroRadial}
-\end{equation}
-donde $V(r)=-Z/r+\mathcal{V}^{\mathrm{H}}+\mathcal{V}^{\mathrm{x}}$ es 
-el campo potencial en el se mueve el electrón.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción de blancos moleculares}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:moleculas}
-
-En el marco de la aproximación de Born--Oppenheimer, el Hamiltoniano 
-molecular no--relativista en el que sólo se consideran fuerzas 
-Coulombianas puede escribirse como
-\begin{equation}
-H = - \sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
-    - \sum_{i=1}^N \sum_{\alpha=1}^n \frac{Z_{\alpha}}{
-    \left|\mathbf{r}_i-\mathbf{r}_{\alpha}\right|} 
-    + \sum_{i<j=1}^N \frac{1}{\left|\mathbf{r}_i-\mathbf{r}_j\right|} 
-    + \sum_{\alpha<\beta=1}^n \frac{z_{\alpha}z_{\beta}}{
-    \left|\mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right|}\,,
-\label{eq:gralmolHamiltonian}
-\end{equation}
-donde los índices $i,j$ van sobre todos los electrones y $\alpha,\beta$ 
-sobre todos los núcleos. Considerando moléculas de tipo XH$_n$, el 
-Hamiltoniano dado por la Ec.~(\ref{eq:gralmolHamiltonian}) se reduce a 
-\begin{equation}
-H = -\sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
-    - \sum_{i=1}^N \frac{Z_N}{r_i} 
-    + \sum_{i=1}^N V_H(r_i)
-    + \sum_{i<j}^N \frac{1}{r_{ij}}\,,
-\label{eq:Hmol}
-\end{equation}
-donde
-\begin{equation}
-V_H(r_i)=
--\sum_{j=1}^{n} \frac{1}{\left|\mathbf{r}_i-\mathbf{R}_{H_j}\right|}\,,
-\label{eq:Vhidrogenos}
-\end{equation}
-$Z_N$ la carga nuclear del átomo más pesado $X$, y $\mathbf{R}_{H_j}$ 
-son las coordenadas de los hidrógenos respecto al átomo pesado $X$. En 
-general, la ecuación de Schr\"odinger correspondiente, $H\Psi=E\Psi$, se 
-resuelve en el marco de la aproximación de campo central, donde los 
-orbitales que componen la función de onda se expresan según la 
-Ec.~(\ref{eq:centralfield-wave}). Los orbitales y energías de sistemas 
-moleculares también se pueden obtener a partir del método de 
-Hartree--Fock. El cálculo de las ecuaciones HF implementan bases finitas 
-para la representación de los orbitales moleculares (\acsp{mo}). 
-Usualmente, los \acsp{mo} se expresan como una combinación lineal de 
-orbitales atómicos, 
-\begin{equation}
-\Psi_i=\sum_j c_{ji} \phi_j\,.
-\end{equation}
-A su vez, los orbitales atómicos se construyen a partir de conjuntos de 
-base de orbitales, por ejemplo, tipo Gaussianos.
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{El método de la inversión depurada (DIM)}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:dimatomos}
-
-El método de inversión depurada consiste en suponer que los orbitales
-de átomos multielectrónicos se pueden representan mediante las 
-soluciones del sistema de ecuaciones dado por la 
-Ec.~(\ref{eq:eqSchroRadial}), 
-donde $V(r)$ es el potencial que gobierna la dinámica del átomo. 
-Suponiendo que las soluciones de la Ec.~(\ref{eq:eqSchroRadial}) están 
-dadas por las soluciones HF $u_{nl}^{\mathrm{HF}}$ y 
-$\varepsilon_{nl}^{\mathrm{HF}}$, existe un potencial local 
-$V_{nl}^{\mathrm{HF}}$ que las genera. Así, las ecuaciones HF se 
-convierten en un conjunto de ecuaciones de tipo Kohn--Sham cuyas 
-soluciones están dadas por la teoría de Hartree--Fock,
-\begin{equation}
-\left[ 
--\frac{1}{2}\frac{d^{2}}{dr^{2}} + \frac{l(l+1)}{2r^{2}} + 
-V_{nl}^{\mathrm{HF}}(r) 
-\right] u_{nl}^{\mathrm{HF}}(r)
-   = \varepsilon_{nl}^{\mathrm{HF}}\, u_{nl}^{\mathrm{HF}}(r) \, .
-\label{eq:KS}
-\end{equation}
-Debido a la naturaleza de las soluciones, y suponiendo un átomo aislado, 
-el potencial generador 
-\begin{equation}
-V_{nl}^{\mathrm{HF}}(r) = -\frac{Z}{r} + 
-V^{\mathrm{H}}(r) + V_{nl}^{\mathrm{x}}(r) \, ,  
-\label{eq:veff}
-\end{equation}
-está dado por la interacción de los electrones con el núcleo de carga 
-$Z$, el potencial directo o de Hartree $V^{\mathrm{H}}$, y el potencial 
-de intercambio orbital $V_{nl}^{\mathrm{x}}$. A diferencia de 
-potenciales más generales, éste no contiene el término de correlación 
-electrónica ya que las soluciones HF no lo incluyen. 
-%potencial de Hartree constituye la repulsión electrostática electrónica. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Inversión directa}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{subsec:inversion}
-
-Suponiendo que los orbitales $u_{nl}^{\mathrm{HF}}$ y energías  
-$\varepsilon^{\mathrm{HF}}$ de Hartree--Fock se conocen, es posible 
-invertir la Ec.~(\ref{eq:KS}). Así, se obtiene el \textit{potencial 
-invertido HF} 
-\begin{equation}
-V_{nl}^{\mathrm{HF}}(r) = 
-\frac{1}{2}\frac{1}{u_{nl}^{\mathrm{HF}}(r)}
-\frac{d^2}{dr^{2}}u_{nl}^{\mathrm{HF}}(r) - 
-\frac{l(l+1)}{2r^{2}}+\varepsilon _{nl}^{\mathrm{HF}} \,,
-\label{eq:VHF}
-\end{equation}
-el cual queda totalmente determinado por las soluciones 
-$u_{nl}^{\mathrm{HF}}$ y $\varepsilon_{nl}^{\mathrm{HF}}$.
-
-Inspeccionando el comportamiento de los potenciales invertidos, se nota 
-que éstos tienen una forma Coulombiana. Suponiendo que todos los 
-potenciales invertidos siguen este comportamiento, ilustrado en la 
-Fig.~\ref{fig:potycharge}(a), es conveniente definir una 
-\textit{carga invertida HF} 
-\begin{equation}
-Z_{nl}^{\mathrm{HF}}(r) \equiv -r \, V_{nl}^{\mathrm{HF}}(r) \,.
-\label{eq:Zeff}
-\end{equation}
-Esta carga efectiva, esquematizada en la Fig.~\ref{fig:potycharge}(b), 
-deberá ser suave y cumplir con condiciones de borde definidos por la 
-naturaleza del blanco a describir. Esto es, en el origen la carga debe 
-ser igual a la carga nuclear del átomo y asintóticamente, debido al 
-apantallamiento electrónico, ésta es igual a uno.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Problemas de la inversión directa}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{subsec:probinv}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.88\textwidth]{dim/dim_2sK.eps} 
-\vspace{-0.3cm}
-\caption[Orbital radial y carga efectiva correspondiente.]
-{(a) Orbital radial $u_{2s}^{\mathrm{HF}}$ del estado fundamental de K.
-(b) Cargas invertida $Z_{2s}^{\mathrm{HF}}$ (línea discontinua) 
-y depurada $Z_{2s}^{\mathrm{DIM}}$ (línea sólida).}
-\label{fig:2sK}
-\end{figure}
-
-A pesar de que el procedimiento de inversión dado por la 
-Ec.~(\ref{eq:VHF}) es directo, su implementación no necesariamente 
-produce cargas efectivas suaves. En la Fig.~\ref{fig:2sK} se muestra 
-(a)~el orbital $u_{2s}^{\mathrm{HF}}$ del átomo de potasio en su estado 
-fundamental y (b) su correspondiente carga invertida 
-$Z_{2s}^{\mathrm{HF}}$ (línea discontinua). También se muestra la carga
-invertida depurada $Z_{2s}^{\mathrm{DIM}}$ (línea sólida) que se obtiene 
-luego de implementar el método de depuración descrito en la 
-Sección~\ref{subsec:depuracion}. 
-El orbital $2s$ tiene dos nodos: un nodo genuino en 
-$r\approx 0.111$~a.u. y un nodo espurio en $r\approx 5.79$~a.u.. Se usa 
-el término genuino para denotar los nodos que se deben estrictamente de 
-la resolución de la ecuación radial de un electrón y cumplen la relación 
-del número cuántico radial $n_r=n-l-1$. Por otro lado, los nodos 
-espurios aparecen a grandes distancias, en regiones donde la amplitud 
-del orbital es muy pequeña. Ambos nodos son traducidos a la carga 
-invertida como polos; en este caso, el polo correspondiente al nodo 
-genuino tiene una amplitud pequeña, mientras que el polo espurio es tan 
-grande que está fuera de escala. Además, la carga $Z_{2s}^{\mathrm{HF}}$ 
-presenta una divergencia pronunciada para valores $r>1$~a.u.. Las 
-justificaciones numéricas a la presencia de estos defectos son simples. 
-Los polos surgen porque el orbital radial $2s$ en el denominador de la 
-Ec.~(\ref{eq:VHF}) y su derivada segunda no se anulan entre sí en los 
-nodos, mientras que la divergencia asintótica tiene origen en el 
-coeficiente del término exponencial que sigue la función 
-$u_{2s}^{\mathrm{HF}}$ a grandes distancias.
-
-%%% Fallas
-%%% Nodos que no son puntos de inflexión  -> Derivada 2da
-%%% Nodos que son espurio (no localidad) -> Fischer
-%%% Divergencia a grandes r               -> Hartree
-
-% Defectos: 
-% Los defectos de las cargas invertidas surgen del propio método de Hartree--Fock; los nodos genuinos no son estrictamente puntos de  inflexión, el decaimiento exponencial de los orbitales sigue el comportamiento orbitales tipo Hartree, mientras que el método autoconsistente conduce a la aparición de nodos espurios.
-
-En general, las cargas resultantes de la inversión de los orbitales HF 
-tienen asociadas alguno de estos defectos. A partir de dos ejemplos, 
-se examina cada uno de ellos y su transfondo téorico a través un 
-experimento numérico. Sin embargo, el análisis se puede generalizar 
-para los orbitales HF de cualquier átomo no relativista.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Nodos genuinos}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En la Fig.~\ref{fig:example2sMg} se muestra la función 
-$u_{2s}^{\mathrm{HF}}$ del Mg y su derivada segunda numérica (escalada 
-por un factor). Las dos raices de $u_{2s}^{\mathrm{HF}}''$ son puntos de 
-inflexión de $u_{2s}^{\mathrm{HF}}$ y se corresponden a (1)~el nodo 
-genuino y (2)~el punto de inflexión clásico. A primera vista, el nodo 
-genuino y el primer punto de inflexión parecen coincidir. Sin embargo, 
-una inspección más cercana (ver recuadro) muestra que ese no es el caso. 
-Definiendo $\Delta r$ como la distancia entre el nodo del orbital y la 
-primera raiz de su derivada segunda, se encuentra una pequeña distancia 
-$\Delta r=1\times 10^{-3}$~a.u. entre las primeras raices de ambas 
-funciones. Si bien no existe ninguna restricción en la teoría que fuerce 
-a los nodos genuinos de HF a ser también puntos de inflexión, este 
-fenómeno es sistemático en todos los orbitales HF con nodos de los 
-átomos con $Z\ge 12$.
-
-\begin{figure}
-\vspace{-0.4cm}
-\centering
-\includegraphics[width=0.85\textwidth]{dim/example_2sMg.eps} 
-\vspace{-0.45cm}
-\caption[Orbital radial y su derivada segunda.]
-{Orbital radial $u_{2s}^{\mathrm{HF}}$ del estado fundamental de Mg y su 
-derivada segunda escalada.}
-\label{fig:example2sMg}
-%\end{figure}
-
-\vspace{0.4cm}
-%\begin{figure}
-%\centering
-\includegraphics[width=0.85\textwidth]{dim/dr_2sMg.eps} 
-\vspace{-0.45cm}
-\caption[Dependecia de $\Delta r$ del orden de aproximación numérica.]
-{Dependecia de $\Delta r$ del orden de aproximación numérica en el 
-orbital $2s$ del átomo de potasio. (a) Primer orden y 200 puntos, (b) 
-400 puntos; (c) octavo orden y 1000 puntos.}
-\label{fig:dr2sMg}
-\end{figure}
-
-Estos hallazgos permiten suponer que la cercanía entre los nodos 
-genuinos de los orbitales y las correspondientes raices de su segunda 
-derivada no es casual, y que los nodos genuinos en la teoría de 
-Hartree--Fock deben ser puntos de inflexión. El experimento numérico 
-que se diseña para indagar esta hipótesis consiste en realizar varias 
-aproximaciones con mejoras sucesivas en su precisión, examinando el 
-comportamiento del valor $\Delta r$ resultante. La calidad de los 
-métodos numéricos usados para resolver las ecuaciones de HF se evalúan 
-variando el orden de precisión de los algoritmos y la densidad de puntos 
-de las grillas numéricas. En este experimento se utiliza el método 
-lineal de pasos múltiples de Adams--Moulton para las ecuaciones 
-diferenciales y el método de diferenciación Lagrangiana para las 
-derivadas. La metodología propuesta se implementa modificando el código 
-\textsc{nrhf} de Johnson~\cite{Johnson:07}, que usa aproximaciones de 
-octavo orden por defecto. %No obstante, los mismos resultados y 
-%conclusiones se obtienen con el código~\textsc{hf} de 
-%Fischer~\cite{FroeseFischer:97}.
-
-La Fig.~\ref{fig:dr2sMg} muestra $u_{2s}^{\mathrm{HF}}$ de Mg (línea 
-sólida) y su segunda derivada numérica (línea discontinua) en las 
-proximidades del nodo implementando tres grados de aproximación 
-distintos en los métodos numéricos. Los cálculos menos precisos se 
-muestran en la Fig.~\ref{fig:dr2sMg}(a), donde se implementa el primer 
-orden de los algoritmos numéricos y una grilla numérica de 200 puntos 
-(mínimo valor necesario para obtener convergencia), resultando en 
-$\Delta r=8\times 10^{-3}$~a.u.. Aumentando el número de puntos a 400, 
-este valor se reduce a $\Delta r=4\times 10^{-3}$~a.u., como se muestra 
-en la Fig.~\ref{fig:dr2sMg}(b). Por último, se incrementa el número de 
-puntos a 1000 y se usa el máximo orden de aproximación de los 
-algoritmos. La Fig.~\ref{fig:dr2sMg}(c) muestra el mejor resultado 
-posible, donde $\Delta r=1\times 10^{-3}$~a.u.. Aún considerando un 
-número mayor de puntos en la grilla numérica, los resultados no varían. 
-Se realizó un cálculo adicional usando el método del potencial efectivo 
-optimizado (\acs{oep}) desarrollado por Talman~\cite{Sharp:53,Talman:76,
-Talman:89}. La Fig.~\ref{fig:dr2sMg}(c) muestra el orbital 
-$u_{2s}^{\mathrm{OEP}}$ de Mg cerca del nodo con una línea raya-punto. 
-Debido al caracter local del potencial, su segunda derivada 
-$u_{2s}^{\mathrm{OEP}}''$ (línea punto-raya-punto) es estrictamente cero 
-en el nodo. 
-
-Es posible que la no localidad del método de Hartree--Fock sea 
-responsable de que los nodos genuinos en los orbitales no sean puntos de 
-inflexión. Una exploración más en detalle, con mayores órdenes de 
-aproximación en los métodos numéricos, será necesaria para descartar 
-esta hipótesis. La excelente reproducción de los orbitales HF mediante 
-el potencial local OEP parece sugerir que esta premisa es correcta. De 
-ser el caso, se podría agregar una restricción adicional al 
-procedimiento variacional autoconsistente de Hartree--Fock. En 
-definitiva, el cumplimiento de esta restricción aseguraría un potencial 
-local, en principio, sin polos.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Decaimiento exponencial}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Los orbitales de los electrones ligados decaen exponencialmente para 
-distancias mayores al punto de retorno clásico. A grandes distancias 
-$r$, el decaimiento asintótico de la parte radial de los orbitales HF 
-está determinado por la energía del orbital molecular de mayor ocupación 
-(\acs{homo}) $\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}$ 
-\cite{Handy:69,Handler:80,Ishida:92}},
-\begin{equation}
-\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{HF}}(r) =  
-\exp(- \sqrt{- 2 \varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}} } r )  \, .
-\label{eq:rHF}
-\end{equation}
-Por otro lado, los orbitales que corresponden a potenciales esféricos 
-tienen un decaimiento asintótico de tipo Hartree~\cite{Casida:89},
-\begin{equation}
-\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{DIM}}(r) =  
-\exp(- \sqrt{- 2 \varepsilon_{nl}^{\mathrm{HF}} } r ) \,.
-\label{eq:rHlike}
-\end{equation}
-El término ``tipo-Hartree'' puede resultar confuso ya que la energía 
-del orbital $\varepsilon_{nl}^{\mathrm{HF}}$ se corresponde a valores 
-donde se ha considerado el término de intercambio. El comportamiento 
-asintótico de los orbitales HF se puede examinar en detalle a través de 
-la derivada logaritmica de los orbitales radiales, 
-\begin{equation}
-L_{nl}(r) \equiv r \frac{d \log{u_{nl}}}{d r}\,,
-\label{eq:Lnl}
-\end{equation}
-que se comporta de forma lineal para funciones $u_{nl}$ que decaen 
-exponencialmente. 
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.9\textwidth]{dim/Lns_K.eps} 
-\caption[Comportamiento asintótico de los orbitales HF.]
-{Comportamiento asintótico de los orbitales HF según $L_{nl}$, dada por 
-la Ec.~\ref{eq:Lnl}, de los orbitales $s$ del átomo de K.}
-\label{fig:LnsK}
-\end{figure}
-
-La Fig.~\ref{fig:LnsK} muestra la derivada logarítmica de los orbitales 
-HF $ns$ del átomo de potasio. Los orbitales HF se presentan con líneas 
-discontinuas (capas internas) y sólidas (capa de valencia). A grandes 
-distancias, los orbitales presentan el comportamiento de Hartree--Fock 
-dado por la Ec.~\ref{eq:rHF}: los orbitales de las capas internas siguen 
-el decaimiento asintótico del \acs{homo}. Además, se incluye el 
-comportamiento de tipo Hartree correspondiente a cada orbital (líneas 
-punteadas). Se observa que las funciones $u_{nl}^{\mathrm{HF}}$ tienen 
-este decaimiento exponencial a partir del punto de retorno clásico de 
-cada orbital y hasta $0.4$~a.u., $1.5$~a.u. y 5~a.u. en los orbitales 
-$1s$, $2s$ y $3s$, respectivamente. 
-En este caso, el comportamiento asintótico del potencial 
-invertido~(\ref{eq:VHF}) correspondiente a los orbitales está dado por
-\begin{equation}
-\lim_{r \rightarrow \infty} V_{ns}^{\mathrm{HF}}(r)=
--\left(\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}
--\varepsilon_{ns}^{\mathrm{HF}}\right) \,,
-\label{eq:asintoticoVHF}
-\end{equation}
-que es siempre distinto de cero, excepto para el \acs{homo}. Así, como 
-se había anticipado, las divergencias en las cargas invertidas se deben 
-al coeficiente del término exponencial de $u_{nl}(r)$ a grandes 
-distancias. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Nodos espurios}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-La teoría de Hartree--Fock establece que los orbitales pueden tener 
-oscilaciones y, por lo tanto, nodos espurios a causa del término de 
-intercambio a grandes distancias~\cite{FroeseFischer:97}. Estas 
-oscilaciones pueden encontrarse en al menos un orbital de los elementos 
-de la tabla periódica, desde el Mg en adelante. Los nodos espurios 
-aparecen en regiones donde la amplitud del orbital es muy pequeña y su 
-existencia, por lo general, puede ser ignorada. 
-
-Los polos de $L_{nl}(r)$ de la Fig.~\ref{fig:LnsK} corrresponden a los 
-nodos de $u_{nl}^{\mathrm{HF}}$. Los nodos de dos orbitales con el mismo 
-momento angular que no coinciden no surgen de la imposición de 
-ortogonalidad y son espurios. Así, se establece que el orbital $1s$ del 
-K tiene dos nodos espurios en $0.99$~a.u. y $5.68$~a.u., mientras que el 
-orbital $2s$ tiene un nodo espurio en $5.78$~a.u.. Nótese que los nodos 
-espurios aparecen, en principio, como resultado del cambio en el 
-decaimiento asintótico de tipo Hartree~(\ref{eq:rHlike}) al de 
-Hartree--Fock~(\ref{eq:rHF}), que incluye formalmente el intercambio.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Método de depuración}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{subsec:depuracion}
-
-Para poder sortear los defectos numéricos que resultan de la inversión, 
-se desarrolla el método de depuración. La depuración consiste en 
-optimizar cargas efectivas en lugar de potenciales efectivos. Así, los 
-valores de cualquier potencial son restringidos a tener las condiciones 
-de borde correctas, forzando el comportamiento de la carga efectiva 
-invertida según
-\begin{equation}
-Z_{nl}^{\mathrm{DIM}}(r) \, \rightarrow 
-\bigg\{ 
-\begin{array}{ll}
-Z_{N}  \ \  & \ \ \text{as\ \ }r  \rightarrow 0\  \\ 
-1           & \ \ \text{as\ \ }r  \rightarrow \infty \ 
-\end{array}\,,
-\label{eq:Zasympt}
-\end{equation}
-donde $Z_N$ es la carga nuclear del blanco atómico. Una vez que la carga 
-está definida en los bordes, se propone una expresión analítica suave 
-para $Z_{nl}^{\mathrm{DIM}}$. La función paramétrica dada que se ajusta 
-a $Z_{nl}^{\mathrm{HF}}$ en el mayor rango posible, exceptuando las 
-zonas con defectos numéricos. En blancos atómicos, las condiciones de 
-borde se cumplen imponiéndole a la carga efectiva DIM que siga la 
-expresión analítica dada por
-\begin{equation}
-Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n} z_j e^{-\alpha_j r}+1 \,,
-\label{eq:atomzDIM}
-\end{equation}
-donde $\Sigma_j z_j=Z_N-1$. Luego, los parámetros $z_j$ y $\alpha_j$ 
-son optimizados de manera tal que reproduzcan las soluciones de HF de 
-manera precisa.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Optimización de la carga DIM}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{subsec:optDIM}
-
-Un aspecto importante en la optimización del potencial está dado por la 
-autoconsistencia de los códigos numéricos implementados para el cálculo 
-de las soluciones a ser invertidas. Para tal fin, se estudiaron los 
-códigos de Hartree--Fock~\cite{FroeseFischer:97,Johnson:07} y se 
-implementaron las grillas numéricas específicas de cada código, 
-incluyendo los mismos métodos para el cálculo de derivadas. 
-
-El procedimiento general para la obtención de los potenciales DIM se 
-esquematiza en la Fig.~\ref{fig:procDIM}. Para el orbital $nl$
-de un blanco dado, se implementa la Ec.~(\ref{eq:VHF}). Primero, se 
-define una región de ajuste sobre la carga invertida resultante. La 
-clave de una optimización exitosa está dada por la correcta definición 
-de esta región: tiene que ser lo más extensa posible, descartando los 
-polos y divergencias en su totalidad. De esta manera, la carga DIM 
-$Z_{nl}^{\mathrm{DIM}}$ se superpone con la carga invertida 
-$Z_{nl}^{\mathrm{HF}}$ a lo largo de la región interna bien comportada. 
-La segunda parte de la optimización consiste en definir una semilla 
-inicial para los parámetros $\left\{z_j,\alpha_j\right\}$. Se sabe que 
-en un proceso de optimización, la elección de estos valores es 
-fundamental. En este trabajo, las semillas se obtenienen mediante la 
-resolución de la ecuación normal definida por el problema (ver detalles 
-en Apéndice~\ref{app:ecnormal}). Los valores resultantes determinan un 
-potencial de prueba con el que se resuelve la Ec.~(\ref{eq:eqSchroRadial}). 
-A partir de las soluciones de la diagonalización se determina una 
-función de costo, que se minimiza variando los parámetros del problema 
-de forma iterativa. La variación del conjunto de parámetros $\left\{z_j,
-\alpha_j\right\}$ requiere un gran nivel de experiencia y detalle. 
-Cuando las soluciones del potencial de prueba convergen a los valores de 
-HF de forma correcta, los parámetros de prueba se definen como los 
-parámetros del potencial DIM. En el caso que las soluciones de prueba no 
-convergan a los valores correctos, se reinicia el procedimiento 
-redefiniendo la región de ajuste de la carga invertida.
-
-\begin{figure}[t]
-\centering
-\begin{tikzpicture}[remember picture]
-%  \tikzset{shift={(current page.center)}}
-\node[process,fill=red!20] (inv) 
-          {Inversión directa};
-\node[process] (region) at (inv) [xshift=0cm,yshift=-1.5cm] 
-          {Definición de región de ajuste};
-\node[process] (eqnorm) at (region) [xshift=0cm,yshift=-1.5cm] 
-          {Definición de semillas};
-\node[process] (diag) at (eqnorm) [xshift=0cm,yshift=-1.5cm] 
-          {Diagonalización};
-\node[process] (costo) at (diag) [xshift=-2.5cm,yshift=-2.3cm] 
-          {Cálculo de costo};
-\node[process] (var) at (diag) [xshift=2.5cm,yshift=-2.3cm] 
-          {Variación de parámetros};
-\node[decision] (converge) at (costo) [xshift=-4cm,yshift=0cm] 
-          {¿Convergió?};
-\node[process,fill=blue!20] (dim) at (diag) [xshift=0cm,yshift=-5.2cm] 
-          {Potencial DIM};
-\draw[arrow] (inv) -- (region);
-\draw[arrow] (region) -- (eqnorm);
-\draw[arrow] (eqnorm) -- (diag);
-\draw[arrow,bend right=33] (diag.west) 
-                        to ([xshift=-0.5cm,yshift=0cm]{costo.north});
-\draw[arrow,bend right=53] ([xshift=-0.25cm,yshift=0cm]{costo.south}) 
-                        to ([xshift=0.25cm,yshift=0cm]{var.south});
-\draw[arrow,bend right=33] ([xshift=0.5cm,yshift=0cm]{var.north}) 
-                        to (diag.east);
-\draw[arrow,dashed] (costo) -- (converge);
-\draw[arrow,dashed] (converge) |- (region.west) node [near start,left] 
-                    {No};
-\draw[arrow,dashed] (converge) |- (dim.west) node [near start,right] 
-                    {Sí};
-\end{tikzpicture}
-\caption{Procedimiento de optimización del potencial DIM.}
-\label{fig:procDIM}
-\end{figure}
-
-Es importante remarcar que la mayoría de los métodos de funcional de la 
-densidad están basados en un principio variacional que minimiza el 
-funcional de energía. Sin descartar su importancia, la energía es solo
-uno de los observables que caracteriza un estado cuántico. Más aún, a 
-partir de diferentes funciones de prueba (de formas variadas) e 
-implementando un método variacional, es posible reproducir la misma 
-energía final. Por ejemplo, Bartschat \textit{et al.}~\cite{Albright:93,
-Bartschat:96} muestra que dos potenciales diferentes (uno conteniendo 
-intercambio electrónico y otro despreciándolo) conducen a energías 
-similares y precisas de la serie de Rydberg en varios sistemas de 
-cuasi-un electrón. Sin embargo, examinando estos potenciales conducen a 
-grandes discrepancias cuando son implementados en cálculos de dispersión 
-\cite{BartschatBray:96}. Por lo tanto, además de los valores de energía, 
-se incluyen en la optimización valores medios de $\langle r^k \rangle$, 
-tal que $k=-1,1$. La inclusión de estos observables permite caracterizar 
-la precisión del orbital DIM acerca ($k=-1$) y lejos ($k=1$) del origen. 
-Así, la función de costo que define la optimización está dada por los 
-errores relativos de cada una de estas cantidades
-\begin{equation}
-J=\sum_X \frac{X^{\mathrm{HF}}-\widebar{X}}{X^{\mathrm{HF}}}\,,
-\label{eq:fncosto-dim}
-\end{equation}
-donde la suma se hace sobre 
-$X=\left[E,\langle r \rangle,\langle 1/r \rangle\right]$, siendo 
-$X^{\mathrm{HF}}$ los valores de HF y $\widebar{X}$ los resultados 
-obtenidos de la diagonalización del potencial de prueba. 
-
-A partir de este procedimiento se obtiene la carga invertida depurada 
-$Z_{2s}^{\mathrm{DIM}}(r)$ correspondiente al orbital $2s$ del átomo 
-de potasio, que se muestra con línea sólida en la Fig.~\ref{fig:2sK}(b).
-Como se ve en la figura, la carga es suave y se satisfacen las 
-condiciones de borde dadas por la Ec.~\ref{eq:Zasympt}, donde en el 
-origen $Z_{2s} = 19$, y asintóticamente $Z_{2s} \rightarrow 1$.
-
-Los potenciales orbitales DIM de un átomo se optimizan de forma 
-independiente. Se puede evaluar la optimización conjunta de los $nl$ 
-potenciales de un blanco a partir del cálculo de la energía total del 
-estado fundamental del sistema. La energía total DIM se expresa en 
-términos de los potenciales DIM y sus soluciones como
-\begin{equation}
-E^{\mathrm{DIM}} = \sum\limits_{nl} 
-\left[ 
-\varepsilon_{nl}^{\mathrm{DIM}} - 
-\frac{1}{2}\int  \rho_{nl}^{\mathrm{DIM}}(r)
-\left( V_{nl}^{\mathrm{DIM}}(r) + \frac{Z_{N}}{r}\right) dr \,
-\right] \, ,
-\label{eq:Etotal}
-\end{equation}
-donde la densidad es 
-$\rho_{nl}^{\mathrm{DIM}}(r)=|u_{nl}^{\mathrm{DIM}}(r)|^2$. 
-
-\end{comment}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Método de la inversión depurada (DIM)}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -820,7 +226,7 @@ se realiza de forma manual, lo que requiere un gran nivel de experiencia
 y detalle. En el último tiempo se ha experimentado con métodos de 
 optimización ampliamente usados en el campo del aprendizaje 
 automatizado. Actualmente se está trabajando para incorporar estos 
-métodos en el DIM.
+métodos en el DIM~\cite{DiFilippo:19}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{DIM y soluciones Hartree--Fock}
@@ -2046,4 +1452,599 @@ precisas.
 
 
 
+\begin{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descripción de blancos atómicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:atomos}
+
+La ecuación de Schrödinger para un sistema de $N$ electrones y 
+un núcleo de carga $Z$ se escribe como
+\begin{equation}
+\left[
+\sum_{i=1}^N \left(-\frac{1}{2}\nabla^2_{{\mathbf r}_i}
+                   -\frac{Z}{{\mathbf r}_i}\right) + 
+\sum_{i<j=1}^N \frac{1}{|{\mathbf r}_i - {\mathbf r}_j |} 
+\right] \Psi\left(q_1,q_2,\cdots,q_N\right) 
+= E\, \Psi\left(q_1,q_2,\cdots,q_N\right) \,,
+\label{eq:Schro}
+\end{equation}
+donde $q_i$ está compuesto por la coordenada espacial $\mathbf{r}_i$ y 
+de espín $\chi_i$ del electrón $i$--ésimo. El tratamiento explícito de 
+la ecuación de Schr\"odinger en los casos de iones multielectrónicos es 
+una tarea, literalmente, imposible de realizar. Por lo tanto, se debe 
+recurrir a aproximaciones que permitan describir al sistema de forma 
+precisa. Uno de los métodos más implementados con este fin está dado por 
+la teoría de Hartree--Fock. 
+
+En la aproximación de Hartree--Fock, se asume --en concordancia con el 
+modelo de partícula independiente y el principio de exclusión de Pauli-- 
+que la función de onda $N$-electrónica es un determinante de Slater, que 
+se obtiene usando el método variacional para determinar los mejores 
+orbitales electrónicos individuales. Las ecuaciones de HF se pueden 
+reescribir en forma compacta, 
+\begin{equation}
+\left[-\frac{1}{2}\nabla_{\mathbf{r}_i}^2-\frac{Z}{r_i}
++\mathcal{V}^{\mathrm{H}}(\mathbf{r}_i)
+-\mathcal{V}^{\mathrm{x}}(q_i) \right]
+\phi_{\lambda}(q_i)=\varepsilon_{\lambda}\,\phi_{\lambda}(q_i)\,,
+\label{eq:compactHFeqs}
+\end{equation}
+donde los operadores directo y de intercambio están dados por
+\begin{align}
+\mathcal{V}^{\mathrm{H}}(\mathbf{r}_i) &
+=\sum_\mu \mathcal{V}_\mu^{\mathrm{H}}(\mathbf{r}_i)
+=\int\frac{\phi_{\mu}^*(\mathbf{r}_j)\phi_{\mu}(\mathbf{r}_j)\, 
+d\mathbf{r}_j}{r_{ij}} \,, \\
+\mathcal{V}^{\mathrm{x}}(q_i) 
+&=\sum_\mu \mathcal{V}_\mu^{\mathrm{x}}(q_i) \,,\\
+\mathcal{V}_\mu^{\mathrm{x}} \phi_{\lambda}(q_i) &= \left[
+\int\frac{\phi_{\mu}^*(q_j)\phi_{\lambda}(q_j)\,dq_j}{r_{ij}} \right] 
+\phi_\mu(q_i)\,.
+\end{align}
+En el caso de átomos con capas cerradas, asumiendo que los orbitales 
+espaciales se pueden separar en sus partes radial y angular
+\begin{equation}
+\phi_{nlm}(\mathbf{r})=\frac{1}{r}u_{nl}(r)Y_l^m(\theta,\phi)\,,
+\label{eq:centralfield-wave}
+\end{equation}
+las ecuaciones radiales de HF son iguales a las ecuaciones radiales de 
+un electrón que se desprenden de la Ec.~(\ref{eq:Schro}) bajo la 
+aproximación de campo central, 
+\begin{equation}
+ \left[ -\frac{1}{2}\frac{d^2}{dr^2} + \frac{l(l+1)}{2r^2} +
+ V(r) \right] u_{nl}(r) = \varepsilon_{nl} \, u_{nl}(r)\,,
+\label{eq:eqSchroRadial}
+\end{equation}
+donde $V(r)=-Z/r+\mathcal{V}^{\mathrm{H}}+\mathcal{V}^{\mathrm{x}}$ es 
+el campo potencial en el se mueve el electrón.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Descripción de blancos moleculares}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:moleculas}
+
+En el marco de la aproximación de Born--Oppenheimer, el Hamiltoniano 
+molecular no--relativista en el que sólo se consideran fuerzas 
+Coulombianas puede escribirse como
+\begin{equation}
+H = - \sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
+    - \sum_{i=1}^N \sum_{\alpha=1}^n \frac{Z_{\alpha}}{
+    \left|\mathbf{r}_i-\mathbf{r}_{\alpha}\right|} 
+    + \sum_{i<j=1}^N \frac{1}{\left|\mathbf{r}_i-\mathbf{r}_j\right|} 
+    + \sum_{\alpha<\beta=1}^n \frac{z_{\alpha}z_{\beta}}{
+    \left|\mathbf{r}_{\alpha}-\mathbf{r}_{\beta}\right|}\,,
+\label{eq:gralmolHamiltonian}
+\end{equation}
+donde los índices $i,j$ van sobre todos los electrones y $\alpha,\beta$ 
+sobre todos los núcleos. Considerando moléculas de tipo XH$_n$, el 
+Hamiltoniano dado por la Ec.~(\ref{eq:gralmolHamiltonian}) se reduce a 
+\begin{equation}
+H = -\sum_{i=1}^N \frac{1}{2} \nabla^2_{\mathbf{r}_i} 
+    - \sum_{i=1}^N \frac{Z_N}{r_i} 
+    + \sum_{i=1}^N V_H(r_i)
+    + \sum_{i<j}^N \frac{1}{r_{ij}}\,,
+\label{eq:Hmol}
+\end{equation}
+donde
+\begin{equation}
+V_H(r_i)=
+-\sum_{j=1}^{n} \frac{1}{\left|\mathbf{r}_i-\mathbf{R}_{H_j}\right|}\,,
+\label{eq:Vhidrogenos}
+\end{equation}
+$Z_N$ la carga nuclear del átomo más pesado $X$, y $\mathbf{R}_{H_j}$ 
+son las coordenadas de los hidrógenos respecto al átomo pesado $X$. En 
+general, la ecuación de Schr\"odinger correspondiente, $H\Psi=E\Psi$, se 
+resuelve en el marco de la aproximación de campo central, donde los 
+orbitales que componen la función de onda se expresan según la 
+Ec.~(\ref{eq:centralfield-wave}). Los orbitales y energías de sistemas 
+moleculares también se pueden obtener a partir del método de 
+Hartree--Fock. El cálculo de las ecuaciones HF implementan bases finitas 
+para la representación de los orbitales moleculares (\acsp{mo}). 
+Usualmente, los \acsp{mo} se expresan como una combinación lineal de 
+orbitales atómicos, 
+\begin{equation}
+\Psi_i=\sum_j c_{ji} \phi_j\,.
+\end{equation}
+A su vez, los orbitales atómicos se construyen a partir de conjuntos de 
+base de orbitales, por ejemplo, tipo Gaussianos.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{El método de la inversión depurada (DIM)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:dimatomos}
+
+El método de inversión depurada consiste en suponer que los orbitales
+de átomos multielectrónicos se pueden representan mediante las 
+soluciones del sistema de ecuaciones dado por la 
+Ec.~(\ref{eq:eqSchroRadial}), 
+donde $V(r)$ es el potencial que gobierna la dinámica del átomo. 
+Suponiendo que las soluciones de la Ec.~(\ref{eq:eqSchroRadial}) están 
+dadas por las soluciones HF $u_{nl}^{\mathrm{HF}}$ y 
+$\varepsilon_{nl}^{\mathrm{HF}}$, existe un potencial local 
+$V_{nl}^{\mathrm{HF}}$ que las genera. Así, las ecuaciones HF se 
+convierten en un conjunto de ecuaciones de tipo Kohn--Sham cuyas 
+soluciones están dadas por la teoría de Hartree--Fock,
+\begin{equation}
+\left[ 
+-\frac{1}{2}\frac{d^{2}}{dr^{2}} + \frac{l(l+1)}{2r^{2}} + 
+V_{nl}^{\mathrm{HF}}(r) 
+\right] u_{nl}^{\mathrm{HF}}(r)
+   = \varepsilon_{nl}^{\mathrm{HF}}\, u_{nl}^{\mathrm{HF}}(r) \, .
+\label{eq:KS}
+\end{equation}
+Debido a la naturaleza de las soluciones, y suponiendo un átomo aislado, 
+el potencial generador 
+\begin{equation}
+V_{nl}^{\mathrm{HF}}(r) = -\frac{Z}{r} + 
+V^{\mathrm{H}}(r) + V_{nl}^{\mathrm{x}}(r) \, ,  
+\label{eq:veff}
+\end{equation}
+está dado por la interacción de los electrones con el núcleo de carga 
+$Z$, el potencial directo o de Hartree $V^{\mathrm{H}}$, y el potencial 
+de intercambio orbital $V_{nl}^{\mathrm{x}}$. A diferencia de 
+potenciales más generales, éste no contiene el término de correlación 
+electrónica ya que las soluciones HF no lo incluyen. 
+%potencial de Hartree constituye la repulsión electrostática electrónica. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inversión directa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:inversion}
+
+Suponiendo que los orbitales $u_{nl}^{\mathrm{HF}}$ y energías  
+$\varepsilon^{\mathrm{HF}}$ de Hartree--Fock se conocen, es posible 
+invertir la Ec.~(\ref{eq:KS}). Así, se obtiene el \textit{potencial 
+invertido HF} 
+\begin{equation}
+V_{nl}^{\mathrm{HF}}(r) = 
+\frac{1}{2}\frac{1}{u_{nl}^{\mathrm{HF}}(r)}
+\frac{d^2}{dr^{2}}u_{nl}^{\mathrm{HF}}(r) - 
+\frac{l(l+1)}{2r^{2}}+\varepsilon _{nl}^{\mathrm{HF}} \,,
+\label{eq:VHF}
+\end{equation}
+el cual queda totalmente determinado por las soluciones 
+$u_{nl}^{\mathrm{HF}}$ y $\varepsilon_{nl}^{\mathrm{HF}}$.
+
+Inspeccionando el comportamiento de los potenciales invertidos, se nota 
+que éstos tienen una forma Coulombiana. Suponiendo que todos los 
+potenciales invertidos siguen este comportamiento, ilustrado en la 
+Fig.~\ref{fig:potycharge}(a), es conveniente definir una 
+\textit{carga invertida HF} 
+\begin{equation}
+Z_{nl}^{\mathrm{HF}}(r) \equiv -r \, V_{nl}^{\mathrm{HF}}(r) \,.
+\label{eq:Zeff}
+\end{equation}
+Esta carga efectiva, esquematizada en la Fig.~\ref{fig:potycharge}(b), 
+deberá ser suave y cumplir con condiciones de borde definidos por la 
+naturaleza del blanco a describir. Esto es, en el origen la carga debe 
+ser igual a la carga nuclear del átomo y asintóticamente, debido al 
+apantallamiento electrónico, ésta es igual a uno.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Problemas de la inversión directa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:probinv}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.88\textwidth]{dim/dim_2sK.eps} 
+\vspace{-0.3cm}
+\caption[Orbital radial y carga efectiva correspondiente.]
+{(a) Orbital radial $u_{2s}^{\mathrm{HF}}$ del estado fundamental de K.
+(b) Cargas invertida $Z_{2s}^{\mathrm{HF}}$ (línea discontinua) 
+y depurada $Z_{2s}^{\mathrm{DIM}}$ (línea sólida).}
+\label{fig:2sK}
+\end{figure}
+
+A pesar de que el procedimiento de inversión dado por la 
+Ec.~(\ref{eq:VHF}) es directo, su implementación no necesariamente 
+produce cargas efectivas suaves. En la Fig.~\ref{fig:2sK} se muestra 
+(a)~el orbital $u_{2s}^{\mathrm{HF}}$ del átomo de potasio en su estado 
+fundamental y (b) su correspondiente carga invertida 
+$Z_{2s}^{\mathrm{HF}}$ (línea discontinua). También se muestra la carga
+invertida depurada $Z_{2s}^{\mathrm{DIM}}$ (línea sólida) que se obtiene 
+luego de implementar el método de depuración descrito en la 
+Sección~\ref{subsec:depuracion}. 
+El orbital $2s$ tiene dos nodos: un nodo genuino en 
+$r\approx 0.111$~a.u. y un nodo espurio en $r\approx 5.79$~a.u.. Se usa 
+el término genuino para denotar los nodos que se deben estrictamente de 
+la resolución de la ecuación radial de un electrón y cumplen la relación 
+del número cuántico radial $n_r=n-l-1$. Por otro lado, los nodos 
+espurios aparecen a grandes distancias, en regiones donde la amplitud 
+del orbital es muy pequeña. Ambos nodos son traducidos a la carga 
+invertida como polos; en este caso, el polo correspondiente al nodo 
+genuino tiene una amplitud pequeña, mientras que el polo espurio es tan 
+grande que está fuera de escala. Además, la carga $Z_{2s}^{\mathrm{HF}}$ 
+presenta una divergencia pronunciada para valores $r>1$~a.u.. Las 
+justificaciones numéricas a la presencia de estos defectos son simples. 
+Los polos surgen porque el orbital radial $2s$ en el denominador de la 
+Ec.~(\ref{eq:VHF}) y su derivada segunda no se anulan entre sí en los 
+nodos, mientras que la divergencia asintótica tiene origen en el 
+coeficiente del término exponencial que sigue la función 
+$u_{2s}^{\mathrm{HF}}$ a grandes distancias.
+
+%%% Fallas
+%%% Nodos que no son puntos de inflexión  -> Derivada 2da
+%%% Nodos que son espurio (no localidad) -> Fischer
+%%% Divergencia a grandes r               -> Hartree
+
+% Defectos: 
+% Los defectos de las cargas invertidas surgen del propio método de Hartree--Fock; los nodos genuinos no son estrictamente puntos de  inflexión, el decaimiento exponencial de los orbitales sigue el comportamiento orbitales tipo Hartree, mientras que el método autoconsistente conduce a la aparición de nodos espurios.
+
+En general, las cargas resultantes de la inversión de los orbitales HF 
+tienen asociadas alguno de estos defectos. A partir de dos ejemplos, 
+se examina cada uno de ellos y su transfondo téorico a través un 
+experimento numérico. Sin embargo, el análisis se puede generalizar 
+para los orbitales HF de cualquier átomo no relativista.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Nodos genuinos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+En la Fig.~\ref{fig:example2sMg} se muestra la función 
+$u_{2s}^{\mathrm{HF}}$ del Mg y su derivada segunda numérica (escalada 
+por un factor). Las dos raices de $u_{2s}^{\mathrm{HF}}''$ son puntos de 
+inflexión de $u_{2s}^{\mathrm{HF}}$ y se corresponden a (1)~el nodo 
+genuino y (2)~el punto de inflexión clásico. A primera vista, el nodo 
+genuino y el primer punto de inflexión parecen coincidir. Sin embargo, 
+una inspección más cercana (ver recuadro) muestra que ese no es el caso. 
+Definiendo $\Delta r$ como la distancia entre el nodo del orbital y la 
+primera raiz de su derivada segunda, se encuentra una pequeña distancia 
+$\Delta r=1\times 10^{-3}$~a.u. entre las primeras raices de ambas 
+funciones. Si bien no existe ninguna restricción en la teoría que fuerce 
+a los nodos genuinos de HF a ser también puntos de inflexión, este 
+fenómeno es sistemático en todos los orbitales HF con nodos de los 
+átomos con $Z\ge 12$.
+
+\begin{figure}
+\vspace{-0.4cm}
+\centering
+\includegraphics[width=0.85\textwidth]{dim/example_2sMg.eps} 
+\vspace{-0.45cm}
+\caption[Orbital radial y su derivada segunda.]
+{Orbital radial $u_{2s}^{\mathrm{HF}}$ del estado fundamental de Mg y su 
+derivada segunda escalada.}
+\label{fig:example2sMg}
+%\end{figure}
+
+\vspace{0.4cm}
+%\begin{figure}
+%\centering
+\includegraphics[width=0.85\textwidth]{dim/dr_2sMg.eps} 
+\vspace{-0.45cm}
+\caption[Dependecia de $\Delta r$ del orden de aproximación numérica.]
+{Dependecia de $\Delta r$ del orden de aproximación numérica en el 
+orbital $2s$ del átomo de potasio. (a) Primer orden y 200 puntos, (b) 
+400 puntos; (c) octavo orden y 1000 puntos.}
+\label{fig:dr2sMg}
+\end{figure}
+
+Estos hallazgos permiten suponer que la cercanía entre los nodos 
+genuinos de los orbitales y las correspondientes raices de su segunda 
+derivada no es casual, y que los nodos genuinos en la teoría de 
+Hartree--Fock deben ser puntos de inflexión. El experimento numérico 
+que se diseña para indagar esta hipótesis consiste en realizar varias 
+aproximaciones con mejoras sucesivas en su precisión, examinando el 
+comportamiento del valor $\Delta r$ resultante. La calidad de los 
+métodos numéricos usados para resolver las ecuaciones de HF se evalúan 
+variando el orden de precisión de los algoritmos y la densidad de puntos 
+de las grillas numéricas. En este experimento se utiliza el método 
+lineal de pasos múltiples de Adams--Moulton para las ecuaciones 
+diferenciales y el método de diferenciación Lagrangiana para las 
+derivadas. La metodología propuesta se implementa modificando el código 
+\textsc{nrhf} de Johnson~\cite{Johnson:07}, que usa aproximaciones de 
+octavo orden por defecto. %No obstante, los mismos resultados y 
+%conclusiones se obtienen con el código~\textsc{hf} de 
+%Fischer~\cite{FroeseFischer:97}.
+
+La Fig.~\ref{fig:dr2sMg} muestra $u_{2s}^{\mathrm{HF}}$ de Mg (línea 
+sólida) y su segunda derivada numérica (línea discontinua) en las 
+proximidades del nodo implementando tres grados de aproximación 
+distintos en los métodos numéricos. Los cálculos menos precisos se 
+muestran en la Fig.~\ref{fig:dr2sMg}(a), donde se implementa el primer 
+orden de los algoritmos numéricos y una grilla numérica de 200 puntos 
+(mínimo valor necesario para obtener convergencia), resultando en 
+$\Delta r=8\times 10^{-3}$~a.u.. Aumentando el número de puntos a 400, 
+este valor se reduce a $\Delta r=4\times 10^{-3}$~a.u., como se muestra 
+en la Fig.~\ref{fig:dr2sMg}(b). Por último, se incrementa el número de 
+puntos a 1000 y se usa el máximo orden de aproximación de los 
+algoritmos. La Fig.~\ref{fig:dr2sMg}(c) muestra el mejor resultado 
+posible, donde $\Delta r=1\times 10^{-3}$~a.u.. Aún considerando un 
+número mayor de puntos en la grilla numérica, los resultados no varían. 
+Se realizó un cálculo adicional usando el método del potencial efectivo 
+optimizado (\acs{oep}) desarrollado por Talman~\cite{Sharp:53,Talman:76,
+Talman:89}. La Fig.~\ref{fig:dr2sMg}(c) muestra el orbital 
+$u_{2s}^{\mathrm{OEP}}$ de Mg cerca del nodo con una línea raya-punto. 
+Debido al caracter local del potencial, su segunda derivada 
+$u_{2s}^{\mathrm{OEP}}''$ (línea punto-raya-punto) es estrictamente cero 
+en el nodo. 
+
+Es posible que la no localidad del método de Hartree--Fock sea 
+responsable de que los nodos genuinos en los orbitales no sean puntos de 
+inflexión. Una exploración más en detalle, con mayores órdenes de 
+aproximación en los métodos numéricos, será necesaria para descartar 
+esta hipótesis. La excelente reproducción de los orbitales HF mediante 
+el potencial local OEP parece sugerir que esta premisa es correcta. De 
+ser el caso, se podría agregar una restricción adicional al 
+procedimiento variacional autoconsistente de Hartree--Fock. En 
+definitiva, el cumplimiento de esta restricción aseguraría un potencial 
+local, en principio, sin polos.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Decaimiento exponencial}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Los orbitales de los electrones ligados decaen exponencialmente para 
+distancias mayores al punto de retorno clásico. A grandes distancias 
+$r$, el decaimiento asintótico de la parte radial de los orbitales HF 
+está determinado por la energía del orbital molecular de mayor ocupación 
+(\acs{homo}) $\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}$ 
+\cite{Handy:69,Handler:80,Ishida:92}},
+\begin{equation}
+\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{HF}}(r) =  
+\exp(- \sqrt{- 2 \varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}} } r )  \, .
+\label{eq:rHF}
+\end{equation}
+Por otro lado, los orbitales que corresponden a potenciales esféricos 
+tienen un decaimiento asintótico de tipo Hartree~\cite{Casida:89},
+\begin{equation}
+\lim_{r \rightarrow \infty} u_{nl}^{\mathrm{DIM}}(r) =  
+\exp(- \sqrt{- 2 \varepsilon_{nl}^{\mathrm{HF}} } r ) \,.
+\label{eq:rHlike}
+\end{equation}
+El término ``tipo-Hartree'' puede resultar confuso ya que la energía 
+del orbital $\varepsilon_{nl}^{\mathrm{HF}}$ se corresponde a valores 
+donde se ha considerado el término de intercambio. El comportamiento 
+asintótico de los orbitales HF se puede examinar en detalle a través de 
+la derivada logaritmica de los orbitales radiales, 
+\begin{equation}
+L_{nl}(r) \equiv r \frac{d \log{u_{nl}}}{d r}\,,
+\label{eq:Lnl}
+\end{equation}
+que se comporta de forma lineal para funciones $u_{nl}$ que decaen 
+exponencialmente. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{dim/Lns_K.eps} 
+\caption[Comportamiento asintótico de los orbitales HF.]
+{Comportamiento asintótico de los orbitales HF según $L_{nl}$, dada por 
+la Ec.~\ref{eq:Lnl}, de los orbitales $s$ del átomo de K.}
+\label{fig:LnsK}
+\end{figure}
+
+La Fig.~\ref{fig:LnsK} muestra la derivada logarítmica de los orbitales 
+HF $ns$ del átomo de potasio. Los orbitales HF se presentan con líneas 
+discontinuas (capas internas) y sólidas (capa de valencia). A grandes 
+distancias, los orbitales presentan el comportamiento de Hartree--Fock 
+dado por la Ec.~\ref{eq:rHF}: los orbitales de las capas internas siguen 
+el decaimiento asintótico del \acs{homo}. Además, se incluye el 
+comportamiento de tipo Hartree correspondiente a cada orbital (líneas 
+punteadas). Se observa que las funciones $u_{nl}^{\mathrm{HF}}$ tienen 
+este decaimiento exponencial a partir del punto de retorno clásico de 
+cada orbital y hasta $0.4$~a.u., $1.5$~a.u. y 5~a.u. en los orbitales 
+$1s$, $2s$ y $3s$, respectivamente. 
+En este caso, el comportamiento asintótico del potencial 
+invertido~(\ref{eq:VHF}) correspondiente a los orbitales está dado por
+\begin{equation}
+\lim_{r \rightarrow \infty} V_{ns}^{\mathrm{HF}}(r)=
+-\left(\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}
+-\varepsilon_{ns}^{\mathrm{HF}}\right) \,,
+\label{eq:asintoticoVHF}
+\end{equation}
+que es siempre distinto de cero, excepto para el \acs{homo}. Así, como 
+se había anticipado, las divergencias en las cargas invertidas se deben 
+al coeficiente del término exponencial de $u_{nl}(r)$ a grandes 
+distancias. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Nodos espurios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+La teoría de Hartree--Fock establece que los orbitales pueden tener 
+oscilaciones y, por lo tanto, nodos espurios a causa del término de 
+intercambio a grandes distancias~\cite{FroeseFischer:97}. Estas 
+oscilaciones pueden encontrarse en al menos un orbital de los elementos 
+de la tabla periódica, desde el Mg en adelante. Los nodos espurios 
+aparecen en regiones donde la amplitud del orbital es muy pequeña y su 
+existencia, por lo general, puede ser ignorada. 
+
+Los polos de $L_{nl}(r)$ de la Fig.~\ref{fig:LnsK} corrresponden a los 
+nodos de $u_{nl}^{\mathrm{HF}}$. Los nodos de dos orbitales con el mismo 
+momento angular que no coinciden no surgen de la imposición de 
+ortogonalidad y son espurios. Así, se establece que el orbital $1s$ del 
+K tiene dos nodos espurios en $0.99$~a.u. y $5.68$~a.u., mientras que el 
+orbital $2s$ tiene un nodo espurio en $5.78$~a.u.. Nótese que los nodos 
+espurios aparecen, en principio, como resultado del cambio en el 
+decaimiento asintótico de tipo Hartree~(\ref{eq:rHlike}) al de 
+Hartree--Fock~(\ref{eq:rHF}), que incluye formalmente el intercambio.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Método de depuración}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:depuracion}
+
+Para poder sortear los defectos numéricos que resultan de la inversión, 
+se desarrolla el método de depuración. La depuración consiste en 
+optimizar cargas efectivas en lugar de potenciales efectivos. Así, los 
+valores de cualquier potencial son restringidos a tener las condiciones 
+de borde correctas, forzando el comportamiento de la carga efectiva 
+invertida según
+\begin{equation}
+Z_{nl}^{\mathrm{DIM}}(r) \, \rightarrow 
+\bigg\{ 
+\begin{array}{ll}
+Z_{N}  \ \  & \ \ \text{as\ \ }r  \rightarrow 0\  \\ 
+1           & \ \ \text{as\ \ }r  \rightarrow \infty \ 
+\end{array}\,,
+\label{eq:Zasympt}
+\end{equation}
+donde $Z_N$ es la carga nuclear del blanco atómico. Una vez que la carga 
+está definida en los bordes, se propone una expresión analítica suave 
+para $Z_{nl}^{\mathrm{DIM}}$. La función paramétrica dada que se ajusta 
+a $Z_{nl}^{\mathrm{HF}}$ en el mayor rango posible, exceptuando las 
+zonas con defectos numéricos. En blancos atómicos, las condiciones de 
+borde se cumplen imponiéndole a la carga efectiva DIM que siga la 
+expresión analítica dada por
+\begin{equation}
+Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n} z_j e^{-\alpha_j r}+1 \,,
+\label{eq:atomzDIM}
+\end{equation}
+donde $\Sigma_j z_j=Z_N-1$. Luego, los parámetros $z_j$ y $\alpha_j$ 
+son optimizados de manera tal que reproduzcan las soluciones de HF de 
+manera precisa.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Optimización de la carga DIM}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{subsec:optDIM}
+
+Un aspecto importante en la optimización del potencial está dado por la 
+autoconsistencia de los códigos numéricos implementados para el cálculo 
+de las soluciones a ser invertidas. Para tal fin, se estudiaron los 
+códigos de Hartree--Fock~\cite{FroeseFischer:97,Johnson:07} y se 
+implementaron las grillas numéricas específicas de cada código, 
+incluyendo los mismos métodos para el cálculo de derivadas. 
+
+El procedimiento general para la obtención de los potenciales DIM se 
+esquematiza en la Fig.~\ref{fig:procDIM}. Para el orbital $nl$
+de un blanco dado, se implementa la Ec.~(\ref{eq:VHF}). Primero, se 
+define una región de ajuste sobre la carga invertida resultante. La 
+clave de una optimización exitosa está dada por la correcta definición 
+de esta región: tiene que ser lo más extensa posible, descartando los 
+polos y divergencias en su totalidad. De esta manera, la carga DIM 
+$Z_{nl}^{\mathrm{DIM}}$ se superpone con la carga invertida 
+$Z_{nl}^{\mathrm{HF}}$ a lo largo de la región interna bien comportada. 
+La segunda parte de la optimización consiste en definir una semilla 
+inicial para los parámetros $\left\{z_j,\alpha_j\right\}$. Se sabe que 
+en un proceso de optimización, la elección de estos valores es 
+fundamental. En este trabajo, las semillas se obtenienen mediante la 
+resolución de la ecuación normal definida por el problema (ver detalles 
+en Apéndice~\ref{app:ecnormal}). Los valores resultantes determinan un 
+potencial de prueba con el que se resuelve la Ec.~(\ref{eq:eqSchroRadial}). 
+A partir de las soluciones de la diagonalización se determina una 
+función de costo, que se minimiza variando los parámetros del problema 
+de forma iterativa. La variación del conjunto de parámetros $\left\{z_j,
+\alpha_j\right\}$ requiere un gran nivel de experiencia y detalle. 
+Cuando las soluciones del potencial de prueba convergen a los valores de 
+HF de forma correcta, los parámetros de prueba se definen como los 
+parámetros del potencial DIM. En el caso que las soluciones de prueba no 
+convergan a los valores correctos, se reinicia el procedimiento 
+redefiniendo la región de ajuste de la carga invertida.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[remember picture]
+%  \tikzset{shift={(current page.center)}}
+\node[process,fill=red!20] (inv) 
+          {Inversión directa};
+\node[process] (region) at (inv) [xshift=0cm,yshift=-1.5cm] 
+          {Definición de región de ajuste};
+\node[process] (eqnorm) at (region) [xshift=0cm,yshift=-1.5cm] 
+          {Definición de semillas};
+\node[process] (diag) at (eqnorm) [xshift=0cm,yshift=-1.5cm] 
+          {Diagonalización};
+\node[process] (costo) at (diag) [xshift=-2.5cm,yshift=-2.3cm] 
+          {Cálculo de costo};
+\node[process] (var) at (diag) [xshift=2.5cm,yshift=-2.3cm] 
+          {Variación de parámetros};
+\node[decision] (converge) at (costo) [xshift=-4cm,yshift=0cm] 
+          {¿Convergió?};
+\node[process,fill=blue!20] (dim) at (diag) [xshift=0cm,yshift=-5.2cm] 
+          {Potencial DIM};
+\draw[arrow] (inv) -- (region);
+\draw[arrow] (region) -- (eqnorm);
+\draw[arrow] (eqnorm) -- (diag);
+\draw[arrow,bend right=33] (diag.west) 
+                        to ([xshift=-0.5cm,yshift=0cm]{costo.north});
+\draw[arrow,bend right=53] ([xshift=-0.25cm,yshift=0cm]{costo.south}) 
+                        to ([xshift=0.25cm,yshift=0cm]{var.south});
+\draw[arrow,bend right=33] ([xshift=0.5cm,yshift=0cm]{var.north}) 
+                        to (diag.east);
+\draw[arrow,dashed] (costo) -- (converge);
+\draw[arrow,dashed] (converge) |- (region.west) node [near start,left] 
+                    {No};
+\draw[arrow,dashed] (converge) |- (dim.west) node [near start,right] 
+                    {Sí};
+\end{tikzpicture}
+\caption{Procedimiento de optimización del potencial DIM.}
+\label{fig:procDIM}
+\end{figure}
+
+Es importante remarcar que la mayoría de los métodos de funcional de la 
+densidad están basados en un principio variacional que minimiza el 
+funcional de energía. Sin descartar su importancia, la energía es solo
+uno de los observables que caracteriza un estado cuántico. Más aún, a 
+partir de diferentes funciones de prueba (de formas variadas) e 
+implementando un método variacional, es posible reproducir la misma 
+energía final. Por ejemplo, Bartschat \textit{et al.}~\cite{Albright:93,
+Bartschat:96} muestra que dos potenciales diferentes (uno conteniendo 
+intercambio electrónico y otro despreciándolo) conducen a energías 
+similares y precisas de la serie de Rydberg en varios sistemas de 
+cuasi-un electrón. Sin embargo, examinando estos potenciales conducen a 
+grandes discrepancias cuando son implementados en cálculos de dispersión 
+\cite{BartschatBray:96}. Por lo tanto, además de los valores de energía, 
+se incluyen en la optimización valores medios de $\langle r^k \rangle$, 
+tal que $k=-1,1$. La inclusión de estos observables permite caracterizar 
+la precisión del orbital DIM acerca ($k=-1$) y lejos ($k=1$) del origen. 
+Así, la función de costo que define la optimización está dada por los 
+errores relativos de cada una de estas cantidades
+\begin{equation}
+J=\sum_X \frac{X^{\mathrm{HF}}-\widebar{X}}{X^{\mathrm{HF}}}\,,
+\label{eq:fncosto-dim}
+\end{equation}
+donde la suma se hace sobre 
+$X=\left[E,\langle r \rangle,\langle 1/r \rangle\right]$, siendo 
+$X^{\mathrm{HF}}$ los valores de HF y $\widebar{X}$ los resultados 
+obtenidos de la diagonalización del potencial de prueba. 
+
+A partir de este procedimiento se obtiene la carga invertida depurada 
+$Z_{2s}^{\mathrm{DIM}}(r)$ correspondiente al orbital $2s$ del átomo 
+de potasio, que se muestra con línea sólida en la Fig.~\ref{fig:2sK}(b).
+Como se ve en la figura, la carga es suave y se satisfacen las 
+condiciones de borde dadas por la Ec.~\ref{eq:Zasympt}, donde en el 
+origen $Z_{2s} = 19$, y asintóticamente $Z_{2s} \rightarrow 1$.
+
+Los potenciales orbitales DIM de un átomo se optimizan de forma 
+independiente. Se puede evaluar la optimización conjunta de los $nl$ 
+potenciales de un blanco a partir del cálculo de la energía total del 
+estado fundamental del sistema. La energía total DIM se expresa en 
+términos de los potenciales DIM y sus soluciones como
+\begin{equation}
+E^{\mathrm{DIM}} = \sum\limits_{nl} 
+\left[ 
+\varepsilon_{nl}^{\mathrm{DIM}} - 
+\frac{1}{2}\int  \rho_{nl}^{\mathrm{DIM}}(r)
+\left( V_{nl}^{\mathrm{DIM}}(r) + \frac{Z_{N}}{r}\right) dr \,
+\right] \, ,
+\label{eq:Etotal}
+\end{equation}
+donde la densidad es 
+$\rho_{nl}^{\mathrm{DIM}}(r)=|u_{nl}^{\mathrm{DIM}}(r)|^2$. 
+
+\end{comment}
 

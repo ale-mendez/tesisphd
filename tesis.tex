@@ -51,9 +51,13 @@
 \usepackage{array}
 \usetikzlibrary{positioning,shapes,automata,tikzmark}
 \usetikzlibrary{decorations.pathmorphing}
-\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!20]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, 
+text centered, draw=black, fill=orange!20]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, 
+text centered, draw=black, fill=red!20]
 \tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{codes} = [rectangle, minimum width=2.25cm, minimum height=1cm, 
+text centered, draw=black, fill=gray!20]
 
 \newcommand\blankpage{%
     \null
@@ -74,7 +78,7 @@ abstract_eng,
 intro,
 dim,
 ionmol,
-stopping,
+heavy,
 rmatrix,
 conclusiones,
 publicaciones,
@@ -181,9 +185,9 @@ biblio}
   short = SPCC,
   long = Screened Potential with Cusp Condition,
   class = A}
-\DeclareAcronym{mldf}{
-  short = MLDF,
-  long = Mermin--Lindhard Dielectric Function,
+\DeclareAcronym{ml}{
+  short = ML,
+  long = Mermin--Lindhard,
   class = A}
 \DeclareAcronym{qed}{
   short = QED,
@@ -217,10 +221,10 @@ biblio}
   short = RMPS,
   long = R--Matrix with Pseudo--States,
   class = A}
-\DeclareAcronym{ml}{
-  short = ML,
-  long = Machine Learning,
-  class = A}
+%\DeclareAcronym{ml}{
+%  short = ML,
+%  long = Machine Learning,
+%  class = A}
 \DeclareAcronym{dm}{
   short = DM,
   long = Decision Maker,
@@ -315,7 +319,7 @@ biblio}
 \include{intro}
 \include{dim}
 \include{ionmol}
-\include{stopping}
+\include{heavy}
 \include{rmatrix}
 \include{conclusiones}
 \include{publicaciones}

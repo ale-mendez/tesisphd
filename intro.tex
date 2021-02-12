@@ -1,9 +1,5 @@
 \chapter{Introducción}
 
-\begin{center}
-\colorbox{red}{\textcolor{white}{ESTE CAPÍTULO ES TODAVÍA UN BORRADOR}}
-\end{center}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivación y generalidades}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,12 +21,26 @@ electrónica de los blancos antes y después de la colisión.
 Desde hace casi un siglo, se han dedicado esfuerzos significativos para
 el desarrollo de métodos téoricos que permitan obtener datos atómicos y 
 moleculares precisos. Estos datos son esenciales para el análisis de 
-espectros de laboratorio y astrofísicos, así como en el desarrollo de 
-materiales espaciales, diseño de tratamientos médicos y {\color{red} 
-algo más}. En general, los datos atómicos y moleculares están compuestos
-por dos subgrupos de datos, correspondientes a (1) la estructura del 
-blanco y (2) los procesos de dispersión a los que son sujetos. 
+espectros de laboratorio y astrofísicos, así como áreas aplicadas que 
+van desde el diseño de materiales espaciales hasta el diseño de 
+tratamientos médicos. En general, los datos atómicos y moleculares están 
+compuestos por dos subgrupos de datos, correspondientes a (1) la 
+estructura del blanco y (2) los procesos de dispersión a los que son 
+sujetos. 
 
+El objetivo de este trabajo es ampliar el conocimiento que se tiene 
+sobre blancos de interés, desarrollando nuevas técnicas de optimización 
+y métodos que permiten describir los procesos de forma precisa. Para 
+ello, se han desarollado diferentes técnicas, cada una de ellas 
+orientada a un problema colisional diferente. Estos desarrollos incluyen 
+un ``método de inversión depurada" (DIM) para la obtención de 
+potenciales efectivos que permitan describir blancos atómicos y 
+moleculares en procesos de ionización simple. Un modelo estequiométrico 
+permite describir el cálculo de ionización en moléculas biológicas. Por 
+otro lado, se implementa un método Bayesiano para la optimización de la 
+estructura del blanco en cálculos de colisiones electrónicas y, en 
+procesos de pérdida de energía debido al impacto de iones, blancos 
+pesados se describen mediante métodos relativistas. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Estructura del blanco}
@@ -51,8 +61,7 @@ de la implementación del método de inversión depurada
 (\acs{dim})~\cite{Mendez:16,Mendez:19dim}. El DIM resuelve el problema 
 inverso a partir de funciones de onda y energías conocidas. Sin embargo, 
 la inversión directa de las soluciones presenta ciertos defectos, los 
-cuales son examinados mediante un experimento numérico y el estudio 
-exhaustivo de la teoría de HF~\cite{Mendez:18,Mitnik:19}. El objetivo 
+cuales son examinados en detalle~\cite{Mendez:18,Mitnik:19}. El objetivo 
 principal de este trabajo consiste en explorar la implementación de los
 potenciales DIM en la teoría de colisiones atómicas para describir 
 procesos inelásticos tales como la ionización por impacto de fotones e 
@@ -71,18 +80,25 @@ ARN. También exploramos tres reglas de escala, útiles para predecir a
 primer orden la ionización de sistemas blanco--proyectil 
 arbitrarios~\cite{Mendez:20scale}. 
 
-En el Capítulo~\ref{chap:heavy} blablabla. 
-Estructura: \cite{Mendez:19relat} 
-Stopping Power: \cite{Montanari:20}.
-Ionización de capa L: \cite{Oswald:20}
+En el Capítulo~\ref{chap:heavy} se examina la estructura de blancos 
+relativistas neutrales. La ecuación de Dirac en blancos 
+multielectrónicos se resuelve implementando un método perturbativo y la 
+optimización de las función de onda del sistema. Se calculan orbitales 
+radiales y energías de ligadura de nueve blancos relativistas, 
+incluyendo metales de transición y lantánidos~\cite{Mendez:19relat}. 
+Luego, estos resultados son implementados en el cálculo de pérdida de 
+energía por impacto de iones~\cite{Montanari:20}.
 
-En el Capítulo~\ref{chap:bayeopt} blablabla.
-Preliminar: \cite{Mendez:20baye}
-En preparación: \cite{Mendez:prep}
+En el Capítulo~\ref{chap:bayeopt} se estudia el proceso de excitación
+por impacto de electrones en átomos neutros. La optimización de estos 
+blancos constituye uno de los cuellos de botella del cálculo colisional 
+mediante métodos no perturbativos. En este Capítulo se explora la 
+posibilidad de automatizar el ajuste de ciertos parámetros del problema 
+mediante la implementación de técnicas que se usan en el campo del 
+aprendizaje automatizado~\cite{Mendez:20baye,Mendez:prep}.
 
 Las conclusiones generales de este trabajo de investigación se presentan 
 en el Capítulo~\ref{chap:conclusiones}.
-
 A lo largo de este trabajo se usan unidades atómicas ($\hbar=e=m_e=1$)
 a menos que se especifique lo contrario.
 
