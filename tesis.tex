@@ -35,10 +35,12 @@
 %\usepackage[acronym,nomain,toc]{glossaries}
 %\usepackage[toc,section=section,nomain,acronym]{glossaries}
 %\glstoctrue
+\usepackage{cancel}
 \usepackage{acro}
 \usepackage[nottoc]{tocbibind}
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
+\usepackage{fixfoot}
 %\usepackage[printwatermark]{xwatermark}
 %\newwatermark[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{Versión preliminar}
 
@@ -49,6 +51,7 @@
 \usepackage[customcolors,shade]{hf-tikz}
 \usepackage{pgf}
 \usepackage{array}
+
 \usetikzlibrary{positioning,shapes,automata,tikzmark}
 \usetikzlibrary{decorations.pathmorphing}
 \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, 
@@ -64,6 +67,9 @@ text centered, draw=black, fill=gray!20]
     \thispagestyle{empty}%
     \addtocounter{page}{-1}%
     \newpage}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+\DeclareFixedFootnote{\myfnote}{Traducción de la autora.}
 
 \usepackage{setspace}
 \doublespacing
@@ -85,7 +91,6 @@ publicaciones,
 appendix,
 biblio}
 
-\renewcommand{\tablename}{Tabla}
 \setcounter{tocdepth}{5} %shows all levels incl. paragraph
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
