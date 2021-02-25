@@ -76,20 +76,21 @@ La funciones de base están dadas por
 \label{eq:RM-basisfn}
 \end{equation}
 donde las funciones $u_j$ constituyen un conjunto finito de orbitales de 
-base, que se usan para representar las funciones de onda del continuo 
-para un momento angular $l$ dado, $\bar{\Phi}_i$ son las funciones de 
-onda del blanco con $N$ electrones combinadas con las partes angular y 
-de espín del orbital del continuo correspondiente, el operador 
-$\mathcal{A}$ antisimetriza la coordenada del electrón dispersado con la 
-coordenada del electrón del blanco $N$-ésimo, y $\phi_j$ son las 
-funciones de onda del sistema $(N+1)$ que se construyen con los 
-orbitales del blanco. Los coeficientes $a_{ijk}$ y $b_{jk}$ se 
-determinan diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de 
-electrones $(N+1)$ en la región interna,
+base, que se usan para representar las funciones de onda del continuo,
+$\bar{\Phi}_i$ son las funciones de onda del blanco con $N$ electrones,
+$\phi_j$ son las funciones de onda del sistema $(N+1)$ que se construyen 
+con los orbitales del blanco, y el operador $\mathcal{A}$ antisimetriza 
+la coordenada del electrón dispersado con la coordenada del electrón del 
+blanco $N$-ésimo. Los coeficientes $a_{ijk}$ y $b_{jk}$ se determinan 
+diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de electrones 
+$(N+1)$ en la región interna,
 \begin{equation}
 \langle\Psi_k\left|H^{N+1}\right|\Psi_k'\rangle=E_k^{N+1}\delta_{kk'}\,.
 \label{eq:RM-N+1Hamilt}
 \end{equation}
+Las funciones de base, que constituyen las funciones de onda del sistema 
+de $N$ electrones, se pueden separar de forma usual, en sus partes 
+radiales, angulares y de espín.
 El radio de la región interna $a$ se elije de manera tal que los 
 orbitales radiales $P_{nl}$ están contenidos totalmente; esto es, 
 $P_{nl}\simeq 0$ para $r>a$. Para cada valor de momento angular $l$, los 
@@ -117,10 +118,10 @@ de borde $b$ es arbitraria y usualmente se asume igual a cero.
 
 Definiendo la variable
 \begin{equation}
-w_{ik}=\sum_j a_{ijk}u_j\,.
+w_{ik}=\sum_j a_{ijk}u_j\,,
 \end{equation}
-Entonces, la función de onda radial del electrón dispersado en el canal 
-$i$ con energía $E$ resulta
+la función de onda radial del electrón dispersado en el canal $i$ con 
+energía $E$ resulta
 \begin{equation}
 y_i=\sum_kA_{Ek}w_{ik}\,.
 \end{equation}
@@ -135,17 +136,17 @@ regiones interna y externa se define como
 \begin{equation}
 y_i(a)=\sum_j R_{ij}\left(a\frac{dy_j}{dr}-by_j\right)_{r=a}\,,
 \end{equation}
-donde $R_{ij}$ es un elemento de la matrix $R$, está dada por
+donde $R_{ij}$ es un elemento de la matrix $R$ dado por
 \begin{equation}
 R_{ij} = \frac{1}{2a}\sum_k\frac{w_{ik}(a)w_{jk}(a)}{E_k^{N+1}-E}\,.
 \label{eq:RM-elements}
 \end{equation}
-Entonces, las amplitudes de superficie $w_{ik}(a)$ y los polos 
-$E_k^{N+1}$ de la matrix $R$ se determinan a partir de los autovalores y
-autovectores del Hamiltoniano del sistema de $(N+1)$ electrones dado por 
-la Ec.~(\ref{eq:RM-N+1Hamilt}).
+Las amplitudes de superficie $w_{ik}(a)$ y los polos $E_k^{N+1}$ de la 
+matrix $R$ se determinan a partir de los autovalores y autovectores del 
+Hamiltoniano del sistema de $(N+1)$ electrones dado por la 
+Ec.~(\ref{eq:RM-N+1Hamilt}).
 
-La mayor fuente de errores en el método surge por el número finito de 
+La mayor fuente de error en el método surge por el número finito de 
 términos en la expansión de R-Matrix de la Ec.~(\ref{eq:RM-wavefn}), y 
 por lo tanto, en el truncamiento en la sumatoria en la 
 Ec.~(\ref{eq:RM-elements}). Los autovalores más altos del Hamiltoniano,
@@ -200,17 +201,6 @@ linealmente independientes. Así, resolviendo las ecuaciones acopladas
 aproximadas en la región externa, las matrices $R$ y $K$ se relacionan 
 y se determinan las secciones eficaces.
 
-%\section{Inclusión de Pseudo-estados}
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -221,89 +211,38 @@ y se determinan las secciones eficaces.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{app:gp}
 
-\begin{comment}
-% Multi-objetive => Single objetive
-La optimización de la estructura del blanco en el cálculo colisional 
-requiere la optimización de tipo multi-objeto, es decir, en donde se 
-ajustan diversas funciones de forma simultánea. Por ejemplo, si se desea 
-ajustar la energía de los primeros cinco niveles atómicos de un blanco 
-determinado, será necesario minimizar de forma simultánea las funciones 
-$\mathcal{F}_k$, 
-\begin{equation}
-\mathcal{F}_k = (f_k(\mathbf{x})-F_k)^2\,,\quad:\quad k=1,\cdots, 5\,,
-\end{equation}
-donde $\mathbf{x}$ es el conjunto de parámetros de los que depende el 
-problema, y $f_k$ y $F_k$ son la predicción teórica y el valor conocido 
-de la energía del nivel $k$, respectivamente. Existen diversas técnicas 
-con las cuales resolver este problema. Sin lugar a dudas, la 
-aproximación más simple es el método de combinación lineal. Este método 
-consiste en optimizar el valor obtenido de la suma de los valores 
-correspondientes a las distintas funciones objetivos, cada una 
-multiplicada por un coeficiente de peso. Estos coeficientes establecen
-la importancia relativa de cada función objetivo. Así, el problema de 
-optimización multi-objetivo se transforma en otro de optimización 
-escalar, que para el caso de la minimización será de la forma
-\begin{equation}
-\min\sum_k w_k \mathcal{F}_k\,.
-\end{equation}
+El método de procesos Gaussianos (GP) es un marco de aprendizaje 
+automático supervisado probabilístico que se ha utilizado ampliamente 
+para tareas de regresión y clasificación. Un modelo de regresión de 
+procesos Gaussianos puede hacer predicciones incorporando conocimientos 
+previos (kernels) y proporcionar medidas de incertidumbre sobre las 
+predicciones~\cite{Rasmussen:06}. El modelo GP es un método de 
+aprendizaje supervisado desarrollado por comunidades de ciencia 
+informática y estadística. 
 
-% Single-objetive: Bayesian Optimization
-Por otro lado, aún si podemos reducir nuestro problema de optimización 
-multi-objeto a una única función objeto, la optimización de la función 
-$f$ que supone nuestro problema depende de un número significativo de 
-variables de la que no se tiene una expresión analítica. Estas 
-características de la función objeto restringe el tipo de métodos 
-numéricos aplicables para esta tarea. Así, quedan descartados los métodos 
-de gradiente y de Newton. Otros métodos, como la busqueda de fuerza bruta 
-resultan impracticables debido a la alta dimensionalidad del espacio de 
-parámetros. La optimización bayesiana (\acs{bo}) es una herramienta usada 
-con frecuencia ya que permite optimizar funciones de tipo ``caja negra'', 
-de la cual sólo se conocen los parámetros de entrada y la evaluación 
-correspondiente de la función. Por ejemplo, en el área de aprendizaje 
-automatizado, la optimización de una red neuronal profunda consiste en 
-definir ciertos hiper-parámetros, tales como el número óptimo de capas, 
-de nodos por capa, de manera tal que la función de costo sea 
-mínima. La definición de estos parámetros no se corresponde a una función 
-analítica y, por lo tanto, en la búsqueda de la representación más óptima 
-no se puede implementar la evaluación de las derivadas del objetivo. 
+\section*{Formalismo matemático}
 
-% Bayesian Optimization: Gaussian Process
-El método de optimización bayesiana por excelencia es la regresión 
-mediante procesos gaussianos (\acs{gp}). Existen otros métodos, tales 
-como la estimación de arbol de Parzen (\acs{tpe}), que hemos estudiado 
-inicialmente pero que no serán explorados en este trabajo. 
-
-Dado que la función objetivo es desconocida, la estrategia bayesiana 
-consiste en suponer que la función es aleatoria y definir una 
-distribución previa sobre la función. La distribución previa definida 
-debe contar con información mínima sobre el comportamiento de la función. 
-Luego de analizar las evaluaciones iniciales, el prior es actualizado y 
-define una distribución posterior sobre la función objetivo o costo. A 
-su vez, la distribución posterior permite construir una función de 
-adquisición, que determina el siguiente punto a evaluar. 
-\end{comment}
-
-Un proceso Gaussiano es un proceso aleatorio donde a cualquier punto 
-$\mathbf{x}\in \mathbb{R}^d$ se le asigna una variable aleatoria 
+Un proceso Gaussiano es un proceso aleatorio en el cual a cualquier 
+punto $\mathbf{x}\in \mathbb{R}^d$ se le asigna una variable aleatoria 
 $f(\mathbf{x})$, donde la distribución de probabilidad conjunta de un 
-número dado de estas variables $p(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$
-es en sí misma Guasiana,
+número dado de estas variables 
+$p(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$ es en sí misma Guassiana,
 \begin{equation}
 p(\mathbf{f}|\mathbf{X})
 =\mathcal{N}(\mathbf{f}|\boldsymbol{\mu},\mathbf{K})\,,
 \end{equation}
-donde $\mathbf{f}=(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$, 
+siendo $\mathbf{f}=(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$, 
 $\boldsymbol\mu=(m(\mathbf{x}_1),\cdots,m(\mathbf{x}_N))$ y 
 $\mathbf{K}_{ij}=\kappa(\mathbf{x}_i,\mathbf{x}_j)$. El término 
 $m(\mathbf{x})$ es la función media y es usual tomar $m(\mathbf{x})=0$.
 La función $\kappa$ se define positiva y se denonima \textit{kernel}
-o función de covariancia. Luego, un proceso Gaussiano es una 
-distribución de funciones cuya forma está definida por $\mathbf{K}$.
-Una de las funciones de covarianza más usuales es la llamada exponencial
+o función de covariancia. Un proceso Gaussiano es una distribución de 
+funciones cuya forma está definida por $\mathbf{K}$. Una de las 
+funciones de covarianza más usuales es la llamada exponencial
 cuadrada, que se define como
 \begin{equation}
-cov(f(\mathbf{x}_{\mathbf{p}}),f(\mathbf{x}_{\mathbf{q}}))
-=\kappa(\mathbf{x}_{\mathbf{p}},\mathbf{x}_{\mathbf{q}})
+\kappa(\mathbf{x}_{\mathbf{p}},\mathbf{x}_{\mathbf{q}})
+=cov(f(\mathbf{x}_{\mathbf{p}}),f(\mathbf{x}_{\mathbf{q}}))
 =\sigma_f^2\,e^{-\frac{1}{2l^2}(\mathbf{x}_{\mathbf{p}}
 -\mathbf{x}_{\mathbf{q}})^2}\,.
 \end{equation}
@@ -350,38 +289,39 @@ $\mathbf{K}_*=\kappa(\mathbf{X},\mathbf{X}_*$ es de rango $N\times N_*$
 y $\mathbf{K}_{**}=\kappa(\mathbf{X}_*,\mathbf{X}_*$ es de rango 
 $N_*\times N_*$. El término $\sigma_y^2$ está asociado al dispersión de 
 las mediciones.
-
-Por simplicidad, la media se establece igual a $\mathbf{0}$. Luego de
-realizar un significativo trabajo algebraico~\cite{}, se puede demostrar 
-que
+A partir de un significativo trabajo algebraico~\cite{Murphy:12,
+Rasmussen:06,deFreitas:13}, se puede demostrar que
 \begin{eqnarray}
-\boldsymbol\mu_*=\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\,
-\boldsymbol\Sigma_*=\mathbf{K}_{**}-\mathbf{K}_*^T\mathbf{K}_*^{-1}
+\boldsymbol\mu_*&=&\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\, \\
+\boldsymbol\Sigma_*&=&\mathbf{K}_{**}-\mathbf{K}_*^T\mathbf{K}_*^{-1}
 \mathbf{K}_*\,.
 \end{eqnarray}
 
+\section*{Función de adquisición}
 
-\begin{comment}
+A partir de la distribución posterior dada por el GP, se puede construir 
+una función de adquisición, que determina el próximo punto a evaluar.
+Una de las funciones de adquisición más conocidas es la función de 
+\textit{expected improvement} (EI), que está dada por
+\begin{equation}
+ a_{\mathrm{EI}} = \bigg\{
+ \begin{array}{ll}
+ (\mu(x)-f(x^*)-\xi)\Phi(\mu,\sigma,\xi) 
+ + \sigma(x)\phi(\mu,\sigma,\xi) &\,,\quad\sigma(x)>0\\
+ 0 &\,,\quad\sigma(x)=0\,,
+ \end{array}
+\end{equation}
+donde $\xi$ es un parámetro y las funciones $\Phi$ y $\phi$ son las 
+funciones de distribución acumulativa y de densidad de probabilidad, 
+respectivamente, que no se verán en detalle. La esencia de la función 
+de adquisición está dada por el parámetro $\xi$, que permite configurar 
+la función de adquisición en dos modos: exploración o explotación. 
+Cuando $\xi<<1$, $\Phi$ es pequeña y la función de adquisición está 
+regida por la $\sigma(x)$: el modelo se configura en exploración y le 
+dará peso a las regiones donde hay mucha incerteza. Por el contrario,
+cuando $\xi>>1$, la función de adquisición está determinada por $\mu(x)$ 
+y se explotarán las regiones cercanas a los máximos encontrados hasta 
+encontrar el mejor resultado. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Primera aproximación de Born}
-\label{app:born}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Método de onda continua distorsionada (CDW)}
-\label{app:CDW}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Modelo de potencial apantallado con condición de cúspide}
-\label{app:SPCC}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Formalismo dieléctrico de Mermin--Lindhard}
-\label{app:ML}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Aproximación de plasma local por capa}
-\label{app:SLPA}
-
-\end{comment}
 
