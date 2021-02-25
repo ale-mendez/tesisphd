@@ -144,16 +144,18 @@ R_{ij} = \frac{1}{2a}\sum_k\frac{w_{ik}(a)w_{jk}(a)}{E_k^{N+1}-E}\,.
 Las amplitudes de superficie $w_{ik}(a)$ y los polos $E_k^{N+1}$ de la 
 matrix $R$ se determinan a partir de los autovalores y autovectores del 
 Hamiltoniano del sistema de $(N+1)$ electrones dado por la 
-Ec.~(\ref{eq:RM-N+1Hamilt}).
+Ec.~(\ref{eq:RM-N+1Hamilt}). Los términos en la sumatoria que define 
+$R_{ij}$ representa tanto los procesos colisionales resonantes y no 
+resonantes, así como los efectos de interferencia entre ambos.
 
-La mayor fuente de error en el método surge por el número finito de 
+La mayor fuente de error en este método surge por el número finito de 
 términos en la expansión de R-Matrix de la Ec.~(\ref{eq:RM-wavefn}), y 
 por lo tanto, en el truncamiento en la sumatoria en la 
 Ec.~(\ref{eq:RM-elements}). Los autovalores más altos del Hamiltoniano,
 que no se incluyen en la expansión, contribuyen principalmente a los 
 elementos de la diagonal de la matriz $R$, donde se agregan 
-coherentemente. El método desarrollado por Buttle~\cite{Buttle} permite 
-completar esta sumatoria de forma aproximada. 
+coherentemente. El método desarrollado por Buttle~\cite{Buttle:67} 
+permite completar esta sumatoria de forma aproximada. 
 
 Para poder implementar los cálculos de la matrix $R$ de la región 
 interna para determinar las matrices de dispersión y, por lo tanto, las 
@@ -217,8 +219,8 @@ para tareas de regresión y clasificación. Un modelo de regresión de
 procesos Gaussianos puede hacer predicciones incorporando conocimientos 
 previos (kernels) y proporcionar medidas de incertidumbre sobre las 
 predicciones~\cite{Rasmussen:06}. El modelo GP es un método de 
-aprendizaje supervisado desarrollado por comunidades de ciencia 
-informática y estadística. 
+aprendizaje supervisado desarrollado por comunidades de ciencia de datos
+y estadística. 
 
 \section*{Formalismo matemático}
 

@@ -3,20 +3,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-En este trabajo de investigación se exploró la optimización de blancos
-atómicos y moleculares en diversos procesos colisionales. A lo largo 
-del trabajo se presentaron métodos que permitieron describir una amplia 
-variedad de sistemas multielectrónicos: desde átomos livianos, 
-pertenecientes a las primeras filas de la tabla periódica, hasta blancos 
-pesados, tales como lantánidos y metales de transición de los 
-periodos 5 y 6. También se estudiaron moléculas simples, compuestas por 
-unos cuantos átomos, y sistemas complejos de interés biológico, tales 
-como las nucleobases de ADN y ARN. Estos blancos fueron examinados en 
-procesos inelásticos debido al impacto de partículas cargadas y fotones, 
-a partir de métodos teóricos con diversos órdenes de aproximación, desde 
-aproximaciones perturbativas de primer orden hasta métodos cuánticos 
-considerados el estado del arte. 
-
 En el Capítulo~\ref{chap:iondim} se desarrolló el método de inversión 
 depurada (DIM) para obtener potenciales efectivos que permitan describir 
 la estructura electrónica de blancos atómicos y moleculares simples de 
@@ -118,59 +104,56 @@ blancos dada por los cálculos relativistas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 En el Capítulo~\ref{chap:bayeopt} se examinó la estructura de blancos 
-neutros en procesos de excitación por impacto de electrones. Se 
-describió brevemente el método de $R$-Matrix utilizado para el cálculo 
-del proceso colisional y los códigos que se emplean para tal fin. 
-Los métodos utilizados para la representación del blanco (la expansión 
-de interacción de configuraciones y de diversos potenciales modelos) se
-presentaron brevemente. 
-El esquema de optimización de la estructura se definió a través de tres 
-cantidades fundamentales: (1) las configuraciones definidas en la 
-expansión del CI, (2) el potencial modelo elegido para obtener los 
-orbitales radiales de los electrones ligados y (3) los parámetros que 
-definen dichos potenciales. Cada una de estas variables se examinó de 
-forma secuencial. En primer lugar, se estudió la influencia de las 
-configuraciones electrónicas en las secciones eficaces de excitación del 
-blanco y se encontró una fuerte dependencia con el número de niveles y 
-tipo de orbitales incluidos en dicha representación. Luego de definir 
-las configuraciones necesarias para obtener valores aceptables para 
-diversastransiciones entre estados ligados, se eligió el potencial 
-paramétrico que proporcionara los mejores valores de energías orbitales 
-y oscillator strenghts. La última etapa de la optimización consistió en 
-la variación de los parámetros que definen los potenciales con el fin de 
-minimizar una función de costo definida a priori. En general, todas 
-estas etapas necesarias para la optimización se ejectuan de forma manual 
-y conlleva meses de trabajo. 
-
-El objetivo principal de esta investigación constituyó en estudiar la 
-optimización de átomos neutros en procesos de excitación por impacto de 
-electrones. La última etapa de la optimización se examino en detalle con 
-el fin de automatizar la variación de los parámetros $\lambda_{nl}$. 
-Esto se realizó implementando modelos matemáticos que son recurrentes en 
-el campo del aprendizaje automatizado. El método de inferencia Bayesiana 
-con procesos Gaussianos se introdujo en el modelo de optimización de la 
-estructura atómica con éxito. Se eligió el átomo de Be para validar la 
-metodología ya que constituye un caso particularmente complejo y, debido 
-a su gran importancia en Astrofísica y Fusión, ha sido largamente 
-estudiado y documentado. En total, se ajustaron 16 parámetros de dos 
-potenciales en forma automática y con mínima intervención humana. Se 
-reprodujeron valores de energías totales y de excitación de los primeros 
-11 términos del Be con gran precisión. En general, la comparación entre 
-los oscillator strengths teóricos de las transiciones dipolares de estos 
-términos con datos experimentales produjo resultados satisfactorios.
-
-La implementación del RMPS a partir del blanco optimizado con GP 
-permitió obtener una buena representación de las excitaciones por 
+neutros en procesos de excitación por impacto de electrones. El esquema 
+de optimización de la estructura se realizó en tres 
+etapas: Primero, se estudió la influencia de las configuraciones 
+electrónicas en las secciones eficaces de excitación del blanco y se 
+encontró una fuerte dependencia con el número de niveles y tipo de 
+orbitales incluidos en dicha representación. Luego, se definió el 
+potencial paramétrico que proporcionó los mejores valores de energías 
+orbitales y oscillator strenghts. Por último, la optimización consistió 
+en la variación de los parámetros $\lambda_{nl}$ que definen el potencial 
+con el fin de minimizar una función de costo definida a priori. El 
+objetivo principal de esta investigación constituyó en explorar la 
+última parte de la optimización de forma automática. Para esto, se 
+introdujo el método de inferencia Bayesiana con procesos Gaussianos. El
+modelo de optimización automática se implementó en el átomo de Be ya que 
+constituye un caso particularmente complejo y, debido a su gran 
+importancia en Astrofísica y Fusión, ha sido largamente estudiado y 
+documentado. Los cálculos GP de energías de los primeros 11 términos del 
+Be y los oscillator strengths de las transiciones dipolares entre estos 
+términos se compararon con valores de referencia con muy excelentes 
+resultados. La implementación del RMPS a partir del blanco optimizado 
+con GP permitió obtener una buena representación de las excitaciones por 
 impacto de electrones. Se encontraron significativas correcciones 
 respecto a las secciones eficaces del blanco sin optimizar. Los valores 
-teóricos RMPS obtenidos presentan pseudoresonancias, las cuales son 
+teóricos GP--RMPS obtenidos presentan pseudoresonancias, las cuales son 
 características de sistemas atómicos donde la representación de 
-pseudo-estados no se ha convergido completamente. 
-El costo computacional del cálculo RMPS es una de las variables 
-determinantes en la predicción del proceso colisional. La elección de 
-una estructura atómica pequeña que permita validar el método de 
-optimización automática probó ser suficiente para los objetivos del 
-presente trabajo. 
+pseudo-estados no se ha convergido completamente. Sin embargo, la 
+estructura atómica de 27 configuraciones definida permitió validar el 
+método de optimización automática y probó ser suficiente para los 
+objetivos del presente trabajo. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+En este trabajo de investigación se exploró la optimización de blancos
+atómicos y moleculares para el cálculo de procesos colisionales. Se 
+mostró que esta tarea no es simple ni directa; según la naturaleza del 
+blanco, se implementaron diferentes metodologías, desde métodos de 
+inversión hasta el aprendizaje automatizado. Las metodologías 
+presentadas permitieron describir una amplia variedad de sistemas 
+multielectrónicos: desde átomos livianos, 
+pertenecientes a las primeras filas de la tabla periódica, hasta blancos 
+pesados, tales como lantánidos y metales de transición de los 
+periodos 5 y 6. También se estudiaron moléculas simples, compuestas por 
+unos cuantos átomos, y sistemas complejos de interés biológico, tales 
+como las nucleobases de ADN y ARN. La optimización de los blancos 
+permitieron describir de forma precisa diversos procesos inelásticos 
+debido al impacto de partículas cargadas y fotones, los cuales a su vez
+se describieron mediante métodos teóricos con diferentes órdenes de 
+aproximación --desde aproximaciones perturbativas de primer orden hasta 
+métodos cuánticos considerados el estado del arte. 
+
 
 
 
