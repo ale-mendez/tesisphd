@@ -331,13 +331,13 @@ unas modificaciones en los archivos de entrada.
 La función de onda del sistema de $N$ electrones del blanco se expresa 
 implementando la expansión de interacción de configuraciones (\acs{ci}),
 \begin{equation*}
-\Psi_i(\mathbf{r}) =
-\sum_j^{n} c_{ji} \, \Phi_j(\mathbf{r})\,,
+\Phi_i(\mathbf{r})=\sum_j^{n} c_{ji} \, \phi_j(\mathbf{r})\,,
+\label{eq:phi-RM}
 \end{equation*}
 donde $n$ es el número finito de configuraciones electrónicas relevantes 
-en la aproximación, $\Phi_j$ son los determinantes de Slater 
+en la aproximación, $\phi_j$ son los determinantes de Slater 
 correspondientes a cada configuración y los coeficientes se obtienen 
-resolviendo la ecuación $H\Psi_i=E_i\Psi_i$. En sistemas complejos de 
+resolviendo la ecuación $H\Phi_i=E_i\Phi_i$. En sistemas complejos de 
 múltiples electrones, el problema se puede reducir considerablemente 
 incluyendo potenciales modelos. 
 Particularmente en este trabajo, la estructura del blanco se obtiene
@@ -350,16 +350,17 @@ N. R. Badnell.
 \label{subsec:potmod-rmatrix}
 
 Dentro de la aproximación de electrón activo, la parte radial 
-de los orbitales que componen cada función $\Phi_j$ se obtienen a partir 
+de los orbitales que componen cada función $\phi$ se obtienen a partir 
 de la resolución de la ecuación de Schr\"odinger radial de un electrón,
 \begin{equation*}
 \left[ \frac{1}{2} \frac{d^2}{dr^2} - \frac{l(l+1)}{2r^2} 
- + V_j(\lambda_j,r) + E_j \right] P_j(r)=0\,,
+ + V_{nl}+(\lambda_{nl},r) + E_j \right] P_{nl}(r)=0\,,
 \label{eq:Schro-potmod}
 \end{equation*}
-donde $V_j$ es un potencial modelo paramétrico, que puede ser ajustado 
-variando el conjunto de parámetros de escala 
-$\boldsymbol\lambda=\{\lambda_j\}$ y cumple con las condiciones de borde
+donde $V_{nl}$ es un potencial modelo paramétrico, que puede ser 
+ajustado variando el conjunto de parámetros de escala 
+$\boldsymbol\lambda=\{\lambda_{nl}\}$, y cumple con las condiciones de 
+borde
 \begin{equation}
 \lim_{r \rightarrow 0} V(r) \sim -\frac{Z}{r} \,,\qquad
 \lim_{r \rightarrow \infty} V(r) \sim -\frac{Z-N}{r} \,.
@@ -372,18 +373,20 @@ Herman:63,Dalgarno:70,Bayliss:77,Cowan:76,Lee:77}.
 Particularmente en este trabajo, se implementa el potencial de orbitales 
 tipo Slater (\acs{sto}) de Burgess~\cite{Burgess:89}, que está dado por
 \begin{equation}
-V_i^{\textrm{STO}}(r)=-\frac{1}{r}\left\{Z-\sum_j(q_j-\delta_{ij})
-\left[1-\frac{e^{-\rho_j}}{2n_j}\sum_{m=0}^{2n_j-1}\frac{(2n_j-m)}{m!}
-\rho_j^m\right]\right\}\,.
+V_{n_il_i}^{\textrm{STO}}(r)=-\frac{1}{r}\left\{Z-\sum_j(q_{n_jl_j}-
+\delta_{n_il_i,n_jl_j})
+\left[1-\frac{e^{-\rho_{n_jl_j}}}{2n_j}\sum_{m=0}^{2n_j-1}
+\frac{(2n_j-m)}{m!}\rho_{n_jl_j}^m\right]\right\}\,.
 \label{eq:STO-pot}
 \end{equation}
-donde $q_j$ es el número de electrones en la $j$-ésima subcapa $n_jl_j$
-y la densidad de carga del orbital correspondiente está dada por
+donde $q_{n_jl_j}$ es el número de electrones en la $j$-ésima subcapa 
+$n_jl_j$ y la densidad de carga del orbital correspondiente está dada 
+por
 \begin{equation}
-\rho_j= \frac{2\lambda_ir}{n_j}
-\left[Z-\frac{1}{2}\left(q_j-1\right)-\sum_{i<j} q_i\right]\,,
+\rho_{n_jl_j}= \frac{2\lambda_{n_il_i}r}{n_j}\left[Z-
+\frac{1}{2}\left(q_{n_jl_j}-1\right)-\sum_{i<j} q_{n_il_i}\right]\,,
 \end{equation}
-siendo $\lambda_i$ el parámetro de escala que permite ajustar el 
+siendo $\lambda_{n_il_i}$ el parámetro de escala que permite ajustar el 
 potencial. 
 
 En general, en átomos alcalinos y alcalinotérreos, los efectos de 
@@ -580,7 +583,7 @@ corresponden a expresiones paramétricas que surgen de promedios de los
 cálculos sofisticados~\footnote{R-Matrix con pseudo-estados (RMPS) 
 \cite{Be_Ballance:03,Bartschat:97}, \textit{time dependent close 
 coupling}~\cite{Colgan:03}, \textit{convergent 
-close-coupling}~\cite{Fursa:97,Bray:15}, R-Matrix con 
+close-coupling}~\cite{Fursa:97,Bray:15}, $R$-Matrix con 
 B-splines~\cite{Zatsarinny:16}, y el método de potencial óptico 
 complejo~\cite{Blanco:17}}, y se toman como referencia. 
 En la parte superior de la figura se ilustran las energías de todos los 

@@ -8,19 +8,19 @@
 Las semillas iniciales dadas por la ecuación normal se obtienen al 
 minimizar la función
 \begin{equation}
- \beta(x_i) = y(x_i) - f(x_i,\lambda_1,\lambda_2,\cdots,\lambda_m)\,,
+ \beta(x_i) = y(x_i) - f(x_i,\lambda_1,\lambda_2,\dots,\lambda_m)\,,
 \end{equation}
 que es la diferencia entre la curva a ser ajustada, $y(r)$, y la función
 analítica implementada para tal fin, $f(r)$. En el esquema de la inversión
 depurada, $y(r) = Z_{nl}^{\mathrm{HF}}(r)$ corresponde a la carga invertida,
 y $f(r) = Z_{nl}^{\mathrm{DIM}}(r)$ corresponde a la forma analítica que 
-se ha fijado para la carga (la ecuación \ref{eq:atomzDIM} para átomos y 
-la ecuación \ref{eq:molzDIM} para moléculas). Con el fin de minimizar
+se ha fijado para la carga (la Ec.~\ref{eq:atomzDIM} para átomos y 
+la Ec.~\ref{eq:molzDIM} para moléculas). Con el fin de minimizar
 $\beta(x_i)$ respecto a los $m$ parámetros $\lambda_j$ que determinan 
 $f$, definimos los elementos de matriz $A_{ij}$,
 \begin{equation}
   A_{ij} \equiv \frac{d\beta(x_i)}{d\lambda_j} =
- \frac{df(x_i,\lambda_1,\lambda_2,\cdots, \lambda_m)}{d\lambda_j}
+ \frac{df(x_i,\lambda_1,\lambda_2,\dots, \lambda_m)}{d\lambda_j}
 \end{equation}
 Así, obtenemos el sistema de ecuaciones
 \begin{equation}
@@ -59,56 +59,54 @@ estándar. Así, la solución $[d\lambda]$ permite obtener los parámetros
 iniciales que minimizan $[\beta]$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Método de R-Matrix}
+\chapter{Método de $R$-Matrix}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{app:rmatrix}
 
+% Griffin & Pindzola 2007
+
 En la región interna, la función de onda total $\Psi_E$ del sistema 
 electrónico $(N+1)$ para cualquier valor de energía $E$ se expande en 
-términos de las funciones de base de R-Matrix $\Psi_k$ como
+términos de las funciones de base de $R$-Matrix $\Psi_k$ como
 \begin{equation}
 \Psi_E=\sum_k A_{Ek}\Psi_k\,.
 \label{eq:RM-wavefn}
 \end{equation}
-La funciones de base están dadas por
+La funciones de base $\Psi_k$ están dadas por
 \begin{equation}
-\Psi_k=\mathcal{A}\sum_{ij}a_{ijk}\bar{\Phi}_i u_j+\sum_j b_{jk}\phi_j\,,
+\Psi_k=\mathcal{A}\sum_{ij}a_{ijk}\bar{\Phi}_i u_{j}
++\sum_j b_{jk}\phi_j\,,
 \label{eq:RM-basisfn}
 \end{equation}
-donde las funciones $u_j$ constituyen un conjunto finito de orbitales de 
-base, que se usan para representar las funciones de onda del continuo,
-$\bar{\Phi}_i$ son las funciones de onda del blanco con $N$ electrones,
-$\phi_j$ son las funciones de onda del sistema $(N+1)$ que se construyen 
-con los orbitales del blanco, y el operador $\mathcal{A}$ antisimetriza 
-la coordenada del electrón dispersado con la coordenada del electrón del 
-blanco $N$-ésimo. Los coeficientes $a_{ijk}$ y $b_{jk}$ se determinan 
-diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de electrones 
-$(N+1)$ en la región interna,
+donde las funciones $u_{ij}$ constituyen un conjunto finito de orbitales 
+de base, que se usan para representar las funciones de onda del continuo,
+$\bar{\Phi}_i$ se forman acoplando las funciones $\Phi_i$ dadas por la 
+Ec.~\ref{eq:phi-RM}, $\phi_j$ son los orbitales del sistema $(N+1)$ que 
+se construyen con los orbitales del blanco, y el operador $\mathcal{A}$ 
+antisimetriza la coordenada del electrón dispersado con la coordenada 
+del electrón del blanco $N$-ésimo. Los coeficientes $a_{ijk}$ y $b_{jk}$ 
+se determinan diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de 
+electrones $(N+1)$ en la región interna,
 \begin{equation}
 \langle\Psi_k\left|H^{N+1}\right|\Psi_k'\rangle=E_k^{N+1}\delta_{kk'}\,.
 \label{eq:RM-N+1Hamilt}
 \end{equation}
-Las funciones de base, que constituyen las funciones de onda del sistema 
-de $N$ electrones, se pueden separar de forma usual, en sus partes 
-radiales, angulares y de espín.
+
 El radio de la región interna $a$ se elije de manera tal que los 
-orbitales radiales $P_{nl}$ están contenidos totalmente; esto es, 
-$P_{nl}\simeq 0$ para $r>a$. Para cada valor de momento angular $l$, los 
-orbitales de la base del continuo $u_j$ se determinan a partir de las 
-soluciones de la ecuación
+orbitales radiales $P_{nl}$ del sistema de $N$ electrones del blanco 
+están contenidos totalmente; esto es, $P_{nl}\simeq 0$ para $r>a$. Para 
+cada valor de momento angular $l$, los orbitales de la base del continuo 
+$u_{ij}$ se determinan a partir de las soluciones de la ecuación
 \begin{equation}
 \left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}+V(r)
--\frac{k_j^2}{2}\right]u_j(r)=-\sum_i\lambda_{ji}P_{n_il}(r)\,,
+-\frac{k_j^2}{2}\right]u_{ij}(r)=-\sum_i\lambda_{ji}P_{n_il}(r)\,,
 \label{eq:RM-difeq-uj}
 \end{equation}
 imponiendo las condiciones de borde 
 \begin{equation}
-u_j(0)=0\,,\qquad\frac{a}{u_j(a)}\frac{du_j}{dr}\bigg|_{r=a}=b\,,
+u_{ij}(0)=0\,,\qquad\frac{a}{u_{ij}(a)}\frac{du_{ij}}{dr}\bigg|_{r=a}=b\,,
 \end{equation}
-y la condición de ortonormalidad
-\begin{equation}
-\int_0^au_iu_j\,dr=\delta_{ij}\,.
-\end{equation}
+y la condición de ortonormalidad.
 El potencial $V(r)$ se define de forma conveniente para representar la
 distribución de carga del blanco atómico y los multiplicadores de 
 Lagrange $\lambda_{ji}$ se utilizan para forzar la ortonormalidad de las
@@ -118,7 +116,7 @@ de borde $b$ es arbitraria y usualmente se asume igual a cero.
 
 Definiendo la variable
 \begin{equation}
-w_{ik}=\sum_j a_{ijk}u_j\,,
+w_{ik}=\sum_j a_{ijk}u_{ij}\,,
 \end{equation}
 la función de onda radial del electrón dispersado en el canal $i$ con 
 energía $E$ resulta
@@ -129,12 +127,12 @@ Se puede demostrar~\cite{Burke:75}, que los coeficientes $A_{Ek}$
 están dados por
 \begin{equation}
 A_{Ek}=\frac{1}{2a\left(E_k^{N+1}-E\right)}\sum_jw_{jk}(a)
-\left(a\frac{dy_j}{dr}-by_j\right)_{r=a}\,.
+\left(a\frac{dy_j}{dr}-by_j\right)\bigg|_{r=a}\,.
 \end{equation}
 Así, la función de onda radial dispersada en el límite entre las 
 regiones interna y externa se define como
 \begin{equation}
-y_i(a)=\sum_j R_{ij}\left(a\frac{dy_j}{dr}-by_j\right)_{r=a}\,,
+y_i(a)=\sum_j R_{ij}\left(a\frac{dy_j}{dr}-by_j\right)\bigg|_{r=a}\,,
 \end{equation}
 donde $R_{ij}$ es un elemento de la matrix $R$ dado por
 \begin{equation}
@@ -149,7 +147,7 @@ $R_{ij}$ representa tanto los procesos colisionales resonantes y no
 resonantes, así como los efectos de interferencia entre ambos.
 
 La mayor fuente de error en este método surge por el número finito de 
-términos en la expansión de R-Matrix de la Ec.~(\ref{eq:RM-wavefn}), y 
+términos en la expansión de $R$-Matrix de la Ec.~(\ref{eq:RM-wavefn}), y 
 por lo tanto, en el truncamiento en la sumatoria en la 
 Ec.~(\ref{eq:RM-elements}). Los autovalores más altos del Hamiltoniano,
 que no se incluyen en la expansión, contribuyen principalmente a los 
@@ -167,7 +165,7 @@ despreciable y las ecuaciones se simplifican tal que
 \left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}-\frac{(Z-N)}{r}
 -\frac{k_i^2}{2}\right]y_i(r)=-\sum_{\lambda=1}^{\lambda_{\textrm{máx}}}
 \sum_{j=1}^{n}\frac{c_{ij}^{\lambda}}{r^{\lambda+1}}\,y_j(r)
-\quad i=1,\cdots n\,,
+\quad i=1,\dots, n\,,
 \label{eq:RM-outer}
 \end{equation}
 donde $n$ es el número total de canales de dispersión, abiertos o 
@@ -176,8 +174,8 @@ multipolar permitido por la relaciones triangulares que resultan de las
 integrales angulares. Los coeficientes $c_{ij}^{\lambda}$ están dados 
 por
 \begin{equation}
-c_{ij}^{\lambda}=\langle\bar{\Phi}_i\left|\sum_k^Nr_k^{\lambda}
-P_{\lambda}\left(\cos\theta_{k,N+1}\right)\right|\bar{\Phi}_j\rangle\,,
+c_{ij}^{\lambda}=\langle\bar{\Phi}_i\,|\sum_{k=1}^Nr_k^{\lambda}
+P_{\lambda}\left(\cos\theta_{k,N+1}\right)|\,\bar{\Phi}_j\rangle\,,
 \end{equation}
 donde $\theta_{k,N+1}$ es el ángulo que se forma entre los vectores 
 $\hat{\mathbf{r}}_{k}$ y $\hat{\mathbf{r}}_{N+1}$. 
@@ -185,28 +183,65 @@ $\hat{\mathbf{r}}_{k}$ y $\hat{\mathbf{r}}_{N+1}$.
 Cuando $r\rightarrow\infty$, la solución a estas ecuaciones acopladas
 resulta
 \begin{equation}
+y_{ij}\sim\bigg\{
 \begin{array}{ll}
-y_{ij}\sim\frac{1}{\sqrt{k_i}}\left(\sin\theta_i\delta_{ij}+\cos\theta_i
-K_{ij}\right) \,\,&\,\,\textrm{para }\,k_i^2>0\,,\\
-y_{ij}\sim\mathcal{O}\left(r^{-2}\right) \,\,&\,\,\textrm{para }\,k_i^2<0\,,
+\frac{1}{\sqrt{k_i}}\left(\sin\theta_i\delta_{ij}
++\cos\theta_i\,K_{ij}\right) &\quad:\quad k_i^2>0\,,\\
+0 &\quad:\quad k_i^2<0\,,
 \end{array}
 \end{equation}
-donde $i=1,\cdots,n_o$ para los canales abiertos, $i=n_o+1,\cdots,n$ 
-para los canales cerrados, $K_{ij}$ son los elementos de la matriz $K$,
-y 
+donde el índice $j=1,\dots,n_a$ se introduce para denotar las soluciones 
+independientes de la Ec.~\ref{eq:RM-outer} siendo $n_a$ es el número de 
+canales abiertos, $K_{ij}$ son los elementos de la matriz $K$, y 
 \begin{equation}
 \theta_i=k_ir-\frac{1}{2}l_i\pi+\frac{(Z-N)}{k_i}\ln 2k_i r +\arg \Gamma
 \left(l_i+1-i\frac{(Z-N)}{k_i}\right)\,.
 \end{equation}
-El segundo índice $j$ se introduce para designar las $n_o$ soluciones 
-linealmente independientes. Así, resolviendo las ecuaciones acopladas
-aproximadas en la región externa, las matrices $R$ y $K$ se relacionan 
-y se determinan las secciones eficaces.
 
-
-
-
-
+Para relacionar la matriz $R$ de dimensión $n\times n$ con la matriz 
+$K$ de dimensión $n_a\times n_a$, se introducen $n+n_a$ soluciones 
+independientes $v_{ij}$ correspondientes a la Ec.~\ref{eq:RM-outer}, 
+las cuales satisfacen las condiciones de borde asintóticas
+\begin{equation}
+v_{ij}\underset{r \rightarrow \infty}{\sim} \vast\{
+\begin{array}{ll}
+\sin\theta_i\delta_{ij}+\mathcal{O}\left(r^{-1}\right) 
+&\quad i=1\ldots n,j=1\ldots n_a \\
+\cos\theta_{i}\delta_{ij-n_a}+\mathcal{O}\left(r^{-1}\right) 
+&\quad i=1\ldots n,j=n_a+1\ldots 2n_a \\
+\exp\left(-\left|k_i\right|r\right)\delta_{ij-n_a}+\mathcal{O}\left(r^{-1}\right)
+&\quad i=1\ldots n,j=2n_a+1\ldots n+n_a\,.
+\end{array}
+\end{equation}
+Luego, las funciones $w_{ij}$ se expresan como
+\begin{equation}
+w_{ij}=\sum_{l=1}^{n+n_a}x_{lj}v_{il}\quad i=1 \ldots n, j=1 \ldots n_a\,,
+\end{equation}
+donde los coeficientes $x_{lj}$ satisfacen las ecuaciones
+\begin{equation}
+\begin{array}{cl}
+x_{lj}=\frac{1}{\sqrt{k_j}} \delta_{lj} & l=1 \ldots n_a \\
+\sum_{l=1}^{n+n_a} x_{lj}\left(v_{ii}(a)-\sum_{m=1}^n R_{im}
+\left(a\frac{d v_{ml}}{dr}-b v_{ml}\right)\bigg|_{r=a}\right)=0 & 
+i=1 \ldots n\,,
+\end{array}
+\end{equation}
+que deben ser resueltas para cada $j=1,\dots,n_a$. A partir de la
+definición de la matriz $K$, se tiene que
+\begin{equation}
+K_{ij}=\frac{1}{\sqrt{k_j}} x_{i+n_aj} \quad i,j=1 \ldots n_a\,.
+\end{equation}
+La matriz $S$ está dada por la ecuación matricial
+\begin{equation}
+\mathbf{S}=\frac{1+i \mathbf{K}}{1-i \mathbf{K}}\,
+\end{equation}
+y la contribución a la sección eficaz de la transición del estado $i$ 
+al estado $j$ en el acoplamiento $LS\pi$ resulta
+\begin{equation}
+\sigma_{i \rightarrow j}^{LS\pi}=\frac{\pi}{k_i^2} \sum_{l_il_j} 
+\frac{(2L+1)(2S+1)}{\left(2L_i+1\right)\left(2S_i+1\right)}
+\left|S_{ij}-\delta_{ij}\right|^{2}\,.
+\end{equation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Procesos Gaussianos}
@@ -218,30 +253,36 @@ automático supervisado probabilístico que se ha utilizado ampliamente
 para tareas de regresión y clasificación. Un modelo de regresión de 
 procesos Gaussianos puede hacer predicciones incorporando conocimientos 
 previos (kernels) y proporcionar medidas de incertidumbre sobre las 
-predicciones~\cite{Rasmussen:06}. El modelo GP es un método de 
-aprendizaje supervisado desarrollado por comunidades de ciencia de datos
-y estadística. 
+predicciones~\cite{Rasmussen:06}. 
 
 \section*{Formalismo matemático}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textwidth]{figures/appendix/kernels.eps}
+\caption{Ejemplos de funciones aleatorias generadas por la exponencial 
+cuadrada al variar sus hiper-parámetros, $\sigma_f$ y $l$.}
+\label{fig:kernels}
+\end{figure}
 
 Un proceso Gaussiano es un proceso aleatorio en el cual a cualquier 
 punto $\mathbf{x}\in \mathbb{R}^d$ se le asigna una variable aleatoria 
 $f(\mathbf{x})$, donde la distribución de probabilidad conjunta de un 
 número dado de estas variables 
-$p(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$ es en sí misma Guassiana,
+$p(f(\mathbf{x}_1),\dots,f(\mathbf{x}_N))$ es en sí misma Guassiana,
 \begin{equation}
 p(\mathbf{f}|\mathbf{X})
 =\mathcal{N}(\mathbf{f}|\boldsymbol{\mu},\mathbf{K})\,,
 \end{equation}
-siendo $\mathbf{f}=(f(\mathbf{x}_1),\cdots,f(\mathbf{x}_N))$, 
-$\boldsymbol\mu=(m(\mathbf{x}_1),\cdots,m(\mathbf{x}_N))$ y 
+siendo $\mathbf{f}=(f(\mathbf{x}_1),\dots,f(\mathbf{x}_N))$, 
+$\boldsymbol\mu=(m(\mathbf{x}_1),\dots,m(\mathbf{x}_N))$ y 
 $\mathbf{K}_{ij}=\kappa(\mathbf{x}_i,\mathbf{x}_j)$. El término 
 $m(\mathbf{x})$ es la función media y es usual tomar $m(\mathbf{x})=0$.
 La función $\kappa$ se define positiva y se denonima \textit{kernel}
 o función de covariancia. Un proceso Gaussiano es una distribución de 
 funciones cuya forma está definida por $\mathbf{K}$. Una de las 
 funciones de covarianza más usuales es la llamada exponencial
-cuadrada, que se define como
+cuadrada (o RBF), que se define como
 \begin{equation}
 \kappa(\mathbf{x}_{\mathbf{p}},\mathbf{x}_{\mathbf{q}})
 =cov(f(\mathbf{x}_{\mathbf{p}}),f(\mathbf{x}_{\mathbf{q}}))
@@ -252,19 +293,21 @@ La covarianza de la salida $f(\mathbf{x})$ se escribe como una función
 de la entrada $\mathbf{x}$. La especificación de la función de 
 covarianza da lugar a una distribución de funciones, y en este caso 
 particular, $l$ determina la longitud característica de dichas funciones
-y $\sigma_f$ la varianza de las mismas. 
+y $\sigma_f$ la varianza de las mismas. Por ejemplo, la 
+Fig.~\ref{fig:kernels} muestra algunos ejemplos de cómo varían las 
+funciones generadas por el kernel al variar $\sigma_f$ y $l$.
 
 El GP previo $p(\mathbf{f}|\mathbf{X})$ se puede actualizar en un GP
 posterior $p(\mathbf{f}|\mathbf{X},\mathbf{y})$ después de haber medido
 algún dato $\mathbf{y}$. La distribución posterior puede ser utilizada 
 para realizar predicciones $\mathbf{f}_*$, dada una nueva entrada 
 $\mathbf{X}_*$,
-\begin{eqnarray}
+\begin{align}
 p(\mathbf{f}_*|\mathbf{X}_*,\mathbf{X},\mathbf{y})
 &=\int p(\mathbf{f}_*|\mathbf{X}_*,\mathbf{f}) p(\mathbf{f}|\mathbf{X},
 \mathbf{y})\,d\mathbf{f} \\
 &=\mathcal{N}(\mathbf{f}_*|\boldsymbol\mu_*,\boldsymbol\Sigma_*)\,.
-\end{eqnarray}
+\end{align}
 Esta última ecuación expresa la distribución posterior predictiva, que 
 es también Gaussiana con media $\boldsymbol\mu_*$ y desviación 
 $\boldsymbol\Sigma_*$. Por definición del GP, la distribución conjunta
@@ -287,17 +330,17 @@ está dada por
 con $N$ datos previos y $N_*$ nuevos datos, 
 $\mathbf{K}_y=\kappa(\mathbf{X},\mathbf{X})+\sigma_y^2\mathbb{I} = 
 \mathbf{K}+\sigma_y^2\mathbb{I}$ es de rango $N\times N$, 
-$\mathbf{K}_*=\kappa(\mathbf{X},\mathbf{X}_*$ es de rango $N\times N_*$
-y $\mathbf{K}_{**}=\kappa(\mathbf{X}_*,\mathbf{X}_*$ es de rango 
+$\mathbf{K}_*=\kappa(\mathbf{X},\mathbf{X}_*)$ es de rango $N\times N_*$
+y $\mathbf{K}_{**}=\kappa(\mathbf{X}_*,\mathbf{X}_*)$ es de rango 
 $N_*\times N_*$. El término $\sigma_y^2$ está asociado al dispersión de 
 las mediciones.
 A partir de un significativo trabajo algebraico~\cite{Murphy:12,
 Rasmussen:06,deFreitas:13}, se puede demostrar que
-\begin{eqnarray}
-\boldsymbol\mu_*&=&\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\, \\
-\boldsymbol\Sigma_*&=&\mathbf{K}_{**}-\mathbf{K}_*^T\mathbf{K}_*^{-1}
+\begin{align}
+\boldsymbol\mu_*&=\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\,, \\
+\boldsymbol\Sigma_*&=\mathbf{K}_{**}-\mathbf{K}_*^T\mathbf{K}_*^{-1}
 \mathbf{K}_*\,.
-\end{eqnarray}
+\end{align}
 
 \section*{Función de adquisición}
 
