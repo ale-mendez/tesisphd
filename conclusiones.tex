@@ -1,159 +1,65 @@
 \chapter{Conclusiones}
 \label{chap:conclusiones}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+En este trabajo de investigación se exploró la optimización de sistemas 
+multielectrónicos para el cálculo de colisionales inelásticas. Según 
+el proceso colisional y la naturaleza del blanco a examinar, se 
+implementaron cuatro metodologías diferentes:
+\begin{itemize}
+\item 
+La estructura electrónica de átomos y moléculas se estudió mediante el 
+método de inversión depurada (DIM). Esta novedosa aproximación permitió 
+obtener potenciales efectivos que describen exitosamente la estructura 
+de diversos blancos. Los potenciales DIM se utilizaron, en conjunción 
+con dos teorías perturbativas (FBA y CDW), para calcular la ionización 
+debido al impacto de proyectiles (fotones y protones). En términos 
+generales, el DIM resultó una técnica eficaz para calcular correctamente 
+los procesos inelásticos analizados.
 
-En el Capítulo~\ref{chap:iondim} se desarrolló el método de inversión 
-depurada (DIM) para obtener potenciales efectivos que permitan describir 
-la estructura electrónica de blancos atómicos y moleculares simples de 
-manera precisa. Estos potenciales permiten determinar los estados 
-iniciales y finales del blanco en una colisión. El DIM es general y 
-aplicable a soluciones que resultan de diversas aproximaciones. En este 
-trabajo se mostró la implementación del DIM a partir de soluciones dadas 
-por la teoría de Hartree--Fock. Los potenciales resultantes de la 
-inversión de orbitales HF presentan defectos numéricos (polos y 
-divergencias). Siguiendo el método de depuración, las cargas invertidas 
-atómicas y moleculares se ajustaron con expresiones analíticas simples 
-restringiendo las regiones donde surgen defectos numéricos debido a la 
-inversión. Los parámetros que definen esta expresión son optimizados 
-cuidadosamente hasta reproducir las soluciones iniciales. 
-El DIM se implementó para obtener potenciales efectivos y de intercambio 
-que reproducen las soluciones de HF de forma precisa en diversos 
-sistemas multielectrónicos. Los resultados se ejemplificaron con cuatro
-blancos: helio, nitrógeno, neón y metano. Las soluciones que se obtienen 
-de estos potenciales reproducen los valores de referencia con gran 
-precisión. La uso efectivo del DIM para describir la estructura de 
-sistemas atómicos y moleculares simples en una colisión fue examinado a 
-partir de la primera aproximación de Born. Los 
-potenciales de He, N, Ne y CH$_4$ se implementaron para calcular, en 
-conjunción con la FBA, secciones eficaces de ionización por el impacto 
-de protones y fotones. En términos generales, ambos procesos reproducen 
-con buena concordancia los datos experimentales disponibles. Las 
-principales discrepancias se atribuyen al hecho de que el modelo 
-colisional teórico sólo considera el primer orden perturbativo. 
+\item
+Además, se examinó la ionización debido al impacto de iones desnudos en 
+blancos moleculares complejos compuestos por H, C, N y O. Para esto, se 
+introdujo un modelo estequiométrico simple (SSM), que permite descibir 
+una molécula como una combinación lineal de los átomos que la componen. 
+A pesar de la simplicidad de este modelo, se demostró que esta 
+aproximación es robusta y confiable para predecir a primer orden las 
+secciones eficaces de ionización para decenas de sistemas colisionales, 
+incluyendo las nucleobases del ADN y ARN. A partir de los cálculos 
+realizados, se encontró una ley de escala independiente que permite 
+aproximar este proceso para, en principio, cualquier sistemas 
+molécula-proyectil.
 
+\item
+En el caso de los atómos pesados, se vió la importancia de elegir el 
+método apropiado para describir los efectos relativistas. Implementando 
+el método de potencial paramétrico de Klapisch y optimizando las 
+configuraciones electrónicas elegidas para representar los blancos, se 
+obtuvieron estructuras atómicas precisas de lantánidos y metales de 
+transición pesados. Se mostró la necesidad de cálculos relativistas
+apropiados para predicciones correctamente la fuerza de frenado debido a 
+protones en diversos blancos.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En este Capítulo~\ref{chap:ionmol}, se estudió la ionización de blancos 
-moleculares de interés biológico debido al impacto de iones de carga 
-múltiple. La aproximación teórica propuesta combina el modelo 
-estequiométrico simple (SSM), para describir la molécula, y el método de 
-onda distorsionada con estado inicial de Eikonal para blancos atómicos 
-(descriptos con potenciales DIM), para modelar el proceso colisional. Se 
-calcularon secciones eficaces de ionización para 80 sistemas colisiones
-compuestos por blancos moleculares de interés biológico --incluyendo 
-las nucleobases del ADN y ARN-- y 6 proyectiles: antiprotones, H$^{+}$, 
-He$^{2+}$, Be$^{4+}$, C$^{6+}$, y O$^{8+}$. 
-Se realizaron cálculos de estructura molecular para las nucleobases y se 
-propuso un modelo estequiométrico modificado utilizando la carga de 
-Mulliken. El extenso análisis de los resultados 
-presentados refuerzan la validez del modelo SSM--CDW para tratar la 
-ionización de moléculas complejas por el impacto de iones de carga 
-múltiple en el rango de energía intermedia a alta. 
-A partir de los resultados SSM--CDW, se propusieron tres reglas de 
-escala para las secciones eficaces de ionización. 
-La primer ley de escala consideró la naturaleza del blanco y la sección 
-eficaz de ionización se reduce con el número de electrones débilmente 
-ligados. En la segunda regla, se examinaron las secciones eficaces según 
-la naturaleza del proyectil (carga del ion incidente). La última ley de 
-escala se obtuvo de la conjunción de las dos primeras: la sección eficaz 
-de ionización total se reduce con el número efectivo de electrones 
-activos y la carga del ion. Esta combinación condujo a una 
-ley de escala de tipo universal, independiente de la carga del ion y el 
-blanco molecular. Las tres reglas de escala propuestas se implementaron 
-para los 80 sistemas colisionales examinados y se compararon con datos 
-experimentales disponibles, con buenos resultados. 
-Además, se encontró que la regla de escala universal propuesta es válida 
-incluso para energías fuera del rango de validez del método SSM--CDW.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En el Capítulo~\ref{chap:heavy} se estudió la estructura de nueve 
-blancos pesados con cargas nucleares entre 40 y 78. Se resolvió la 
-ecuación de Dirac mediante el método de potencial paramétrico 
-implementado en el paquete de códigos {\sc hullac}. El acuerdo entre los 
-resultados teóricos presentes y valores experimentales es muy bueno. Las 
-discrepancias encontradas se entienden considerando que los cálculos 
-teóricos suponen a los blancos como átomos aislados, mientras que los 
-mediciones se obtuvieron en sistemas sólidos. Las energías de ligadura y 
-orbitales radiales relativistas resultantes permitieron definir valores 
-teóricos para los radios de Wigner--Seitz y energías de Fermi de los 
-blancos. Estos parámetros se compararon con valores derivados de 
-experimentos disponibles, con un buen acuerdo entre ellos. En los 
-lantánidos y algunos metales de transición pesados, el análisis de la 
-estructura del blanco condujo a proponer nuevos valores para los 
-parámetros del FEG. A partir de métodos de primeros principios, los 
-cálculos de estructura se utilizaron para predecir secciones eficaces de 
-frenado. El modelo teórico implementado combina la respuesta por 
-separado de los electrones ligados y de valencia en un extenso rango de 
-energías. La aproximación de plasma local por capa se utilizó 
-para describir la energía transferida a los electrones ligados $1s$-$4f$ 
-y dos modelos diferentes para modelar la respuesta de las capas de 
-valencia: el modelo de potencial apantallado con condición de cúspide, 
-para energías por debajo del umbral de excitaciones de plasmón, y el 
-formalismo dieléctrico de Mermin-Lindhard, para valores de energías por 
-encima de este umbral. Se calcularon las secciones eficaces de frenado 
-debido al impacto de protones en Hf, Ta y Pt. Los resultados teóricos se 
-compararon con datos experimentales disponibles y modelos no 
-relativistas (de primeros principios y semi-empíricos). En general, las 
-predicciones de fuerza de frenado presentes son superiores. Esto se 
-debe, en gran medida, a la correcta descripción de la estructura de los 
-blancos dada por los cálculos relativistas.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En el Capítulo~\ref{chap:bayeopt} se examinó la estructura de blancos 
-neutros en procesos de excitación por impacto de electrones. El esquema 
-de optimización de la estructura se realizó en tres 
-etapas: Primero, se estudió la influencia de las configuraciones 
-electrónicas en las secciones eficaces de excitación del blanco y se 
-encontró una fuerte dependencia con el número de niveles y tipo de 
-orbitales incluidos en dicha representación. Luego, se definió el 
-potencial paramétrico que proporcionó los mejores valores de energías 
-orbitales y oscillator strenghts. Por último, la optimización consistió 
-en la variación de los parámetros $\lambda_{nl}$ que definen el potencial 
-con el fin de minimizar una función de costo definida a priori. El 
-objetivo principal de esta investigación constituyó en explorar la 
-última parte de la optimización de forma automática. Para esto, se 
-introdujo el método de inferencia Bayesiana con procesos Gaussianos. El
-modelo de optimización automática se implementó en el átomo de Be ya que 
-constituye un caso particularmente complejo y, debido a su gran 
-importancia en Astrofísica y Fusión, ha sido largamente estudiado y 
-documentado. Los cálculos GP de energías de los primeros 11 términos del 
-Be y los oscillator strengths de las transiciones dipolares entre estos 
-términos se compararon con valores de referencia con muy excelentes 
-resultados. La implementación del RMPS a partir del blanco optimizado 
-con GP permitió obtener una buena representación de las excitaciones por 
-impacto de electrones. Se encontraron significativas correcciones 
-respecto a las secciones eficaces del blanco sin optimizar. Los valores 
-teóricos GP--RMPS obtenidos presentan pseudoresonancias, las cuales son 
-características de sistemas atómicos donde la representación de 
-pseudo-estados no se ha convergido completamente. Sin embargo, la 
-estructura atómica de 27 configuraciones definida permitió validar el 
-método de optimización automática y probó ser suficiente para los 
-objetivos del presente trabajo. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En este trabajo de investigación se exploró la optimización de blancos
-atómicos y moleculares para el cálculo de procesos colisionales. Se 
-mostró que esta tarea no es simple ni directa; según la naturaleza del 
-blanco, se implementaron diferentes metodologías, desde métodos de 
-inversión hasta el aprendizaje automatizado. Las metodologías 
-presentadas permitieron describir una amplia variedad de sistemas 
-multielectrónicos: desde átomos livianos, 
-pertenecientes a las primeras filas de la tabla periódica, hasta blancos 
-pesados, tales como lantánidos y metales de transición de los 
-periodos 5 y 6. También se estudiaron moléculas simples, compuestas por 
-unos cuantos átomos, y sistemas complejos de interés biológico, tales 
-como las nucleobases de ADN y ARN. La optimización de los blancos 
-permitieron describir de forma precisa diversos procesos inelásticos 
-debido al impacto de partículas cargadas y fotones, los cuales a su vez
-se describieron mediante métodos teóricos con diferentes órdenes de 
-aproximación --desde aproximaciones perturbativas de primer orden hasta 
-métodos cuánticos considerados el estado del arte. 
-
-
+\item
+En la última parte de este trabajo, se examinó la excitación por impacto 
+de electrones de átomos neutros mediante el método de $R$-matrix. 
+En este caso, el esquema de optimización de la estructura atómica 
+depende del ajuste manual de los parámetros del problema. 
+La complejidad del cálculo se resolvió empleando la optimización 
+Bayesiana mediante procesos Gaussianos, que permitió ajustar de forma 
+automática la estructura del blanco. Esta implementación mostró 
+ser un éxito tanto para reproducir la estructura del blanco (energías 
+de excitación, totales y oscillator strengths) como las secciones 
+eficaces de excitación, con un costo computacional relativamente bajo.
+\end{itemize}
+%
+Las metodologías empleadas en esta Tesis permitieron calcular de forma 
+precisa la estructura electrónica de una amplia variedad de sistemas 
+atómicos y moleculares. Estos blancos se examinaron en procesos 
+inelásticos descriptos mediante métodos teóricos con diferentes órdenes 
+de aproximación --desde aproximaciones perturbativas de primer orden 
+hasta métodos completamente cuánticos. Del trabajo presentado se 
+concluye que sólo mediante la correcta optimización de los blancos se 
+puede calcular de forma precisa, en el rango de validez definido, los 
+procesos inelásticos a los que estos son sometidos.
 
 

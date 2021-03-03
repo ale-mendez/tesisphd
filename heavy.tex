@@ -9,7 +9,7 @@
 El estudio de procesos de pérdida de energía por impacto de iones 
 en sólidos es una poderosa herramienta, con aplicaciones en diversas 
 áreas. La información proporcionada por los procesos de dispersión 
-inelástica es esencial no sólo desde el punto de vista teórico, que nos 
+inelástica es esencial no sólo desde el punto de vista teórico, que 
 permite comprender la física detrás de las interacciones fundamentales, 
 sino también porque es de vital importancia en muchas áreas aplicadas, 
 tales como la implantación iónica~\cite{Creutzburg:19,Jeynes:16}, 
@@ -241,10 +241,10 @@ explícito.
 El método del potencial paramétrico desarrollado por Klapisch derivó en
 el paquete de códigos \textsc{hullac}~\cite{BarShalom:01}, que constituye 
 el estado del arte en el cálculo de estructura y colisiones en iones 
-pesados multicargados.  
-En particular, de este conjunto de programas computacionales, el código 
+pesados multicargados. En particular, dentro de este paquete de 
+programas computacionales, el código 
 {\sc relac} es el que permite calcular las energías de ligadura 
-relativistas y funciones de onda orbitales. Además, \textsc{relac} fue 
+relativistas y funciones de onda orbitales. Este fue 
 el primer programa que permitió realizar espectroscopía de plasmas ya 
 que es capaz de resolver sistemas complejos multielectrónicos con varias 
 capas abiertas. 
@@ -494,13 +494,13 @@ fundamentales y serie.}
 \label{tab:gruposrelat} 
 \end{table}
 
-Los elementos que examinamos en esta Sección se dividen en tres grupos, 
-según la serie y período de la tabla periódica al que pertenecen. Los 
+Los elementos que se examinan en esta sección se dividen en tres grupos, 
+según la serie y período de la Tabla Periódica al que pertenecen. Los 
 blancos a estudiar, sus símbolos, carga nuclear $Z$ y configuraciones 
 fundamentales se muestran en la Tabla~\ref{tab:gruposrelat}. El grupo A
 está compuesto por metales de transición del período 5: zirconio, niobio
 y paladio. En el grupo B se incluyen lantánidos del período 6: 
-gadolinio y erbio. Finalmente, el grupo C se compone metales de 
+gadolinio y erbio. Finalmente, el grupo C se compone de metales de 
 transición del período 6: hafnio, tantalio, osmio y platino.
 
 Se puede escribir una fórmula general para la configuración fundamental 
@@ -520,7 +520,7 @@ nd^{w+1}\,(n+1)s,
 nd^{w+2}
 \label{eq:confsmtran3}
 \end{gather}
-tienen energías comparables. Por lo tanto, las configuraciones 
+tienen energías comparables. Las configuraciones 
 Ec.~(\ref{eq:confsmtran1}), (\ref{eq:confsmtran2}) y 
 (\ref{eq:confsmtran3}) tienen la misma paridad y energías comparables, 
 lo que implica que deben considerarse obligatoriamente en la CI.
@@ -610,7 +610,7 @@ pesados]
 {Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
 Zr, Nb y Pd. Valores medios $\langle r \rangle$ en a.u. obtenidos a 
 partir de la Ec.~(\ref{eq:meanvalr}).}
-\label{tab:relatresults_p1}\\
+\label{tab:relatresults_p1}
 \end{table}
 
 \begin{table}[t]
@@ -660,7 +660,7 @@ pesados]
 {Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
 Gd, Er y Pd. Valores medios $\langle r \rangle$ en a.u. obtenidos a 
 partir de la Ec.~(\ref{eq:meanvalr}).}
-\label{tab:relatresults_p2}\\
+\label{tab:relatresults_p2}
 \end{table}
 
 \begin{table}[t]
@@ -710,7 +710,7 @@ pesados]
 {Energías de ligadura teóricas y experimentales~\cite{Williams:95} de 
 Ta, Os y Pt. Valores medios $\langle r \rangle$ en a.u. obtenidos a 
 partir de la Ec.~(\ref{eq:meanvalr}).}
-\label{tab:relatresults_p3}\\
+\label{tab:relatresults_p3}
 \end{table}
 
 En las Tablas~\ref{tab:relatresults_p1}, \ref{tab:relatresults_p2} y
@@ -801,11 +801,11 @@ Efectivamente, los valores teóricos relativistas Dirac--Fock (barras
 gris claro) mejoran la descripción de las capas internas de los blancos 
 de forma sistemática. Sin embargo, las discrepancias con los valores 
 experimentales en las capas cercanas a la banda de valencia siguen 
-siendo significativas. Nótese que la descripción DF reduce las 
+siendo significativas. Nótese que la aproximación DF reduce las 
 desviaciones de las capas más externas pero en todos los casos mantiene 
 la misma relación que HF con los valores experimentales. Este 
-comportamiento es atribuible a los errores en la descripción de las 
-capas internas que se propagan, a través del método autoconsistente, 
+comportamiento es atribuible a los errores en los cálculos de las capas 
+internas, que se propagan, a través del método autoconsistente, 
 hacia las más externas. En promedio, el método DF presenta errores 
 relativos del 16\%, con dispersiones máximas del 175\%. 
 
@@ -816,7 +816,7 @@ del método perturbativo describen los datos experimentales con mayor
 precisión que los valores dados por el método variacional de 
 Hartree--Fock~\cite{FroeseFischer:97} y su versión 
 relativista~\cite{Desclaux:73}. En general, el método perturbativo 
-permite describir en forma más precisa tanto las capas más internas 
+permite calcular en forma más precisa tanto las capas más internas 
 --donde se esperan los efectos relativistas-- como las capas externas.
 El acuerdo en las energías de enlace obtenidas para los blancos del 
 grupo A es del 
@@ -966,7 +966,7 @@ $r_S$. El radio de Wigner--Seitz se define como el radio ``ocupado'' por
 el átomo en una estructura cristalina y está dado, en unidades atómicas, 
 por la relación
 \begin{equation}
-\frac{4\pi r_S^3}{3}=\frac{1}{\rho}\,,
+\frac{4\pi \,r_S^3}{3}=\frac{1}{\rho}\,,
 \end{equation} 
 donde $\rho=N_e \,n$ depende del número de electrones en la capa de 
 valencia $N_e$ y la densidad atómica $n$. 
@@ -987,14 +987,12 @@ teóricos PD se presentan en la Tabla~\ref{tab:electronFEG} para los
 nueve blancos pesados. El número de electrones en el FEG de estos átomos 
 se ilustran en las Figs.~\ref{fig:bindenerA} y~\ref{fig:bindenerB} con 
 líneas verticales discontinuas, y separan las capas ligadas y de 
-conducción. 
-Mientras que las líneas horizontales de las figuras se corresponden a 
-los valores de la energía de Fermi $E_F$.
-Los radios de Wigner--Seitz teóricos de Zr, Nb, Hf y Ta se comparan con 
-datos experimentales disponibles 
-$r_S^{\mbox{\scriptsize exp}}=2.18,\,1.72,\,2.07$ y $1.73$ a.u., 
-respectivamente, los cuales se derivan de la función de pérdida de 
-energía óptica~\cite{Werner:09,Lynch:75,Isaacson:75,Romaniello:06}.
+conducción. Mientras que las líneas horizontales de las figuras se 
+corresponden a los valores de la energía de Fermi $E_F$. Los radios de 
+Wigner--Seitz teóricos de Zr, Nb, Hf y Ta se comparan con datos 
+experimentales disponibles $r_S^{\mbox{\scriptsize exp}}$, los cuales se 
+derivan de la función de pérdida de energía 
+óptica~\cite{Werner:09,Lynch:75,Isaacson:75,Romaniello:06}.
 Los cálculos PD acuerdan con estos valores en menos del 5\%. Por otro 
 lado, los números de electrones en el FEG $N_e$ de los lantánidos --Gd y 
 Er-- y del resto de los metales de transición --Pd, Os y Pt-- aún son 
@@ -1043,16 +1041,19 @@ Er exp 3.6713 1.8357
 \rowcolor{mydarkgray} 
       & Zr    & Nb    & Pd    & Gd    & Er    & Hf    & Ta    & Os    & Pt \\
 $Z$   & 40    & 41    & 46    & 64    & 68    & 72    & 73    & 76    & 78 \\\rowcolor{mygray} 
-$n$   & 6.52  & 8.57  & 12.02 & 7.90  & 9.07  & 12.2  & 16.7  & 22.6  & 21.5 \\
+$n$   & $6.52$ & $8.57$ & $12.02$ & $7.90$ & $9.07$ & $13.3$ & $16.7$ & $22.6$ & $21.5$ \\
 $N_e$ & 4     & 5     & 10    & 10    & 14    & 4     & 5     & 8     & 10 \\\rowcolor{mygray} 
-$r_S$ & 2.11  & 1.80  & 1.34  & 1.75  & 1.52  & 2.14  & 1.80  & 1.41  & 1.34 \\
-$E_F$ & 0.412 & 0.569 & 1.02  & 0.602 & 0.793 & 0.402 & 0.569 & 0.921 & 1.02 \\\rowcolor{mygray} 
+$E_F$ & $0.413$ & $0.569$ & $1.03$ & $0.602$ & $0.793$ & $0.425$ & $0.569$ & $0.921$ & $1.02$ \\
+$r_S$ & $2.11$ & $1.80$ & $1.33$ & $1.75$ & $1.52$ & $2.08$ & $1.80$ & $1.41$ & $1.35$ \\\rowcolor{mygray} 
+$r_S^{\mbox{\scriptsize exp}}$
+      & $2.18$ & $1.72$ & & & & $2.07$ & $1.73$ & & \\
 \end{tabular}
 \caption[Parámetros teóricos de FEG para blancos pesados.]
 {Parámetros teóricos de FEG propuestos para los blancos de la 
 Tabla~\ref{tab:gruposrelat}: carga nuclear $Z$, la densidad atómica 
-$n$ (g/cm$^3$), número de electrones $N_e$ en el FEG, radio de 
-Wigner--Seitz $r_S$ (a.u.) y energía de Fermi $E_F$ (a.u.).}
+$n$ (g/cm$^3$), número de electrones $N_e$ en el FEG, energía de Fermi 
+$E_F$ (a.u.) y radio de Wigner--Seitz $r_S$ (a.u.). 
+Datos experimentales: $r_S^{\mbox{\scriptsize exp}}$.}
 \label{tab:electronFEG} 
 \end{table}
 
@@ -1234,20 +1235,10 @@ datos de Sirotinin. La descripción no relativista subestima el frenado
 para valores de energía entre 100 y 400~keV. El modelo semi-empírico 
 \textsc{srim} sigue los valores de Sirotinin y 
 sugiere un máximo de menor amplitud a una energía de impacto igual a 
-115~keV. 
-%Los valores de energía donde \textsc{dpass} y \textsc{casp} predicen los 
-%máximos parecen coincidir con el modelo combinado relativista, pero las 
-%amplitudes de estas curvas están aproximadamente 10\% por debajo y por 
-%arriba, respectivamente, de las predicciones presentes. 
-Se observa un buen acuerdo entre los calculos no relativistas y el 
-modelo DPASS que también es NR.
-%Por otro lado, si se considera el valor experimental del radio de 
-%Wigner--Seitz $r_S=2.07$ a.u. en el modelo del FEG, en lugar del derivado 
-%teóricamente $r_S=2.14$ a.u., el máximo de la sección eficaz de potencia 
-%de frenado total ocurre en el mismo valor de energía y con una amplitud 
-%4\% mayor.
-Mediciones en la región de energía de impacto comprendida entre 30 y 
-300~keV para protón en Hf serán necesarias para corroborar las 
+115~keV. Se observa un buen acuerdo entre los calculos no relativistas 
+y el modelo DPASS que también es no relativista. 
+Serán necesarias mediciones en la región de energía de impacto 
+comprendida entre 30 y 300~keV para protones en Hf para corroborar las 
 predicciones presentes. 
 
 %-----------------------------------------------------------------------
@@ -1282,8 +1273,9 @@ valores teóricos presentes se comparan con mediciones experimentales
 Bichsel:92,Ogino:88,Sirotinin:84,Krist:83}, las curvas resultantes del 
 método \textsc{dpass} (línea punto-raya) y del modelo semi-empírico 
 \textsc{srim} (línea discontinua). A bajas energías, los datos 
-experimentales de Roth \textit{et al.}~\cite{Roth:17} se encuentran por 
-arriba de las predicciones del modelo combinado. Como se vió en la 
+experimentales de Roth \textit{et al.}~\cite{Roth:17} sobrestiman la 
+sección eficaz respecto a las predicciones del modelo combinado. Como se 
+vió en la 
 Sección~\ref{subsec:FEG}, estos valores se obtienen considerando una 
 energía de Fermi casi 2.5 veces mayor a los cálculos presentes. Para 
 energías cercanas y mayores al umbral de excitación de plasmones (línea 

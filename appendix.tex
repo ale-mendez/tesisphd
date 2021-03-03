@@ -14,15 +14,15 @@ que es la diferencia entre la curva a ser ajustada, $y(r)$, y la función
 analítica implementada para tal fin, $f(r)$. En el esquema de la inversión
 depurada, $y(r) = Z_{nl}^{\mathrm{HF}}(r)$ corresponde a la carga invertida,
 y $f(r) = Z_{nl}^{\mathrm{DIM}}(r)$ corresponde a la forma analítica que 
-se ha fijado para la carga (la Ec.~\ref{eq:atomzDIM} para átomos y 
-la Ec.~\ref{eq:molzDIM} para moléculas). Con el fin de minimizar
+se ha fijado para la carga (la Ec.~(\ref{eq:atomzDIM}) para átomos y 
+la Ec.~(\ref{eq:molzDIM}) para moléculas). Con el fin de minimizar
 $\beta(x_i)$ respecto a los $m$ parámetros $\lambda_j$ que determinan 
 $f$, definimos los elementos de matriz $A_{ij}$,
 \begin{equation}
   A_{ij} \equiv \frac{d\beta(x_i)}{d\lambda_j} =
  \frac{df(x_i,\lambda_1,\lambda_2,\dots, \lambda_m)}{d\lambda_j}
 \end{equation}
-Así, obtenemos el sistema de ecuaciones
+Así, obtenemos el sistema de ecuaciones $[A] \,[d\lambda] = [d\beta]$, donde
 \begin{equation}
  \left[
  \begin{array}{c}
@@ -49,7 +49,7 @@ Así, obtenemos el sistema de ecuaciones
  \end{array}
  \right] \,.
 \end{equation}
-Multiplicando ambos lados de la ecuación por la matrix traspuesta $[A]^{T}$,
+Multiplicando ambos lados de la ecuación por la matriz traspuesta $[A]^{T}$,
 \begin{equation}
   \left[ A \right]^T \left[ A \right]\left[ d\lambda \right] =
   \left[ A \right]^T \left[ d\beta \right]\,,
@@ -81,8 +81,9 @@ La funciones de base $\Psi_k$ están dadas por
 donde las funciones $u_{ij}$ constituyen un conjunto finito de orbitales 
 de base, que se usan para representar las funciones de onda del continuo,
 $\bar{\Phi}_i$ se forman acoplando las funciones $\Phi_i$ dadas por la 
-Ec.~\ref{eq:phi-RM}, $\phi_j$ son los orbitales del sistema $(N+1)$ que 
-se construyen con los orbitales del blanco, y el operador $\mathcal{A}$ 
+Ec.~(\ref{eq:phi-RM}), $\phi_j$ son los orbitales del sistema $(N+1)$ 
+que se construyen adicionando un electrón a los orbitales del blanco, y 
+el operador $\mathcal{A}$ 
 antisimetriza la coordenada del electrón dispersado con la coordenada 
 del electrón del blanco $N$-ésimo. Los coeficientes $a_{ijk}$ y $b_{jk}$ 
 se determinan diagonalizando el Hamiltoniano $H^{N+1}$ del sistema de 
@@ -94,7 +95,8 @@ electrones $(N+1)$ en la región interna,
 
 El radio de la región interna $a$ se elije de manera tal que los 
 orbitales radiales $P_{nl}$ del sistema de $N$ electrones del blanco 
-están contenidos totalmente; esto es, $P_{nl}\simeq 0$ para $r>a$. Para 
+están contenidos totalmente; esto es, \mbox{$P_{nl}\approx 0$ para 
+$r>a$.} Para 
 cada valor de momento angular $l$, los orbitales de la base del continuo 
 $u_{ij}$ se determinan a partir de las soluciones de la ecuación
 \begin{equation}
@@ -110,7 +112,7 @@ y la condición de ortonormalidad.
 El potencial $V(r)$ se define de forma conveniente para representar la
 distribución de carga del blanco atómico y los multiplicadores de 
 Lagrange $\lambda_{ji}$ se utilizan para forzar la ortonormalidad de las
-bases del contínuo con todos los orbitales ligados $P_{n_il}(r)$ con el
+bases del continuo con todos los orbitales ligados $P_{n_il}(r)$ con el
 mismo momento angular $l$. En general, el valor de la segunda condición 
 de borde $b$ es arbitraria y usualmente se asume igual a cero.
 
@@ -134,16 +136,16 @@ regiones interna y externa se define como
 \begin{equation}
 y_i(a)=\sum_j R_{ij}\left(a\frac{dy_j}{dr}-by_j\right)\bigg|_{r=a}\,,
 \end{equation}
-donde $R_{ij}$ es un elemento de la matrix $R$ dado por
+donde $R_{ij}$ es un elemento de la matriz $R$ dado por
 \begin{equation}
 R_{ij} = \frac{1}{2a}\sum_k\frac{w_{ik}(a)w_{jk}(a)}{E_k^{N+1}-E}\,.
 \label{eq:RM-elements}
 \end{equation}
 Las amplitudes de superficie $w_{ik}(a)$ y los polos $E_k^{N+1}$ de la 
-matrix $R$ se determinan a partir de los autovalores y autovectores del 
+matriz $R$ se determinan a partir de los autovalores y autovectores del 
 Hamiltoniano del sistema de $(N+1)$ electrones dado por la 
 Ec.~(\ref{eq:RM-N+1Hamilt}). Los términos en la sumatoria que define 
-$R_{ij}$ representa tanto los procesos colisionales resonantes y no 
+$R_{ij}$ representan tanto los procesos colisionales resonantes y no 
 resonantes, así como los efectos de interferencia entre ambos.
 
 La mayor fuente de error en este método surge por el número finito de 
@@ -155,7 +157,7 @@ elementos de la diagonal de la matriz $R$, donde se agregan
 coherentemente. El método desarrollado por Buttle~\cite{Buttle:67} 
 permite completar esta sumatoria de forma aproximada. 
 
-Para poder implementar los cálculos de la matrix $R$ de la región 
+Para poder implementar los cálculos de la matriz $R$ de la región 
 interna para determinar las matrices de dispersión y, por lo tanto, las 
 secciones eficaces, se resuelven las ecuaciones de acoplamiento en la 
 región externa ($r>a$) para cada valor de energía. Sin embargo, dado 
@@ -191,8 +193,8 @@ y_{ij}\sim\bigg\{
 \end{array}
 \end{equation}
 donde el índice $j=1,\dots,n_a$ se introduce para denotar las soluciones 
-independientes de la Ec.~\ref{eq:RM-outer} siendo $n_a$ es el número de 
-canales abiertos, $K_{ij}$ son los elementos de la matriz $K$, y 
+independientes de la Ec.~(\ref{eq:RM-outer}) siendo $n_a$ es el número 
+de canales abiertos, $K_{ij}$ son los elementos de la matriz $K$, y 
 \begin{equation}
 \theta_i=k_ir-\frac{1}{2}l_i\pi+\frac{(Z-N)}{k_i}\ln 2k_i r +\arg \Gamma
 \left(l_i+1-i\frac{(Z-N)}{k_i}\right)\,.
@@ -200,7 +202,7 @@ canales abiertos, $K_{ij}$ son los elementos de la matriz $K$, y
 
 Para relacionar la matriz $R$ de dimensión $n\times n$ con la matriz 
 $K$ de dimensión $n_a\times n_a$, se introducen $n+n_a$ soluciones 
-independientes $v_{ij}$ correspondientes a la Ec.~\ref{eq:RM-outer}, 
+independientes $v_{ij}$ correspondientes a la Ec.~(\ref{eq:RM-outer}), 
 las cuales satisfacen las condiciones de borde asintóticas
 \begin{equation}
 v_{ij}\underset{r \rightarrow \infty}{\sim} \vast\{
@@ -239,7 +241,7 @@ y la contribución a la sección eficaz de la transición del estado $i$
 al estado $j$ en el acoplamiento $LS\pi$ resulta
 \begin{equation}
 \sigma_{i \rightarrow j}^{LS\pi}=\frac{\pi}{k_i^2} \sum_{l_il_j} 
-\frac{(2L+1)(2S+1)}{\left(2L_i+1\right)\left(2S_i+1\right)}
+\frac{(2L+1)(2S+1)}{\left(2L_i+1\right)\left(2S_i+1\right)}\,
 \left|S_{ij}-\delta_{ij}\right|^{2}\,.
 \end{equation}
 
@@ -249,7 +251,7 @@ al estado $j$ en el acoplamiento $LS\pi$ resulta
 \label{app:gp}
 
 El método de procesos Gaussianos (GP) es un marco de aprendizaje 
-automático supervisado probabilístico que se ha utilizado ampliamente 
+automático supervisado probabilístico que se utiliza ampliamente 
 para tareas de regresión y clasificación. Un modelo de regresión de 
 procesos Gaussianos puede hacer predicciones incorporando conocimientos 
 previos (kernels) y proporcionar medidas de incertidumbre sobre las 
