@@ -11,18 +11,20 @@ minimizar la función
  \beta(x_i) = y(x_i) - f(x_i,\lambda_1,\lambda_2,\dots,\lambda_m)\,,
 \end{equation}
 que es la diferencia entre la curva a ser ajustada, $y(r)$, y la función
-analítica implementada para tal fin, $f(r)$. En el esquema de la inversión
-depurada, $y(r) = Z_{nl}^{\mathrm{HF}}(r)$ corresponde a la carga invertida,
-y $f(r) = Z_{nl}^{\mathrm{DIM}}(r)$ corresponde a la forma analítica que 
-se ha fijado para la carga (la Ec.~(\ref{eq:atomzDIM}) para átomos y 
-la Ec.~(\ref{eq:molzDIM}) para moléculas). Con el fin de minimizar
-$\beta(x_i)$ respecto a los $m$ parámetros $\lambda_j$ que determinan 
-$f$, definimos los elementos de matriz $A_{ij}$,
+analítica implementada para tal fin, $f(r)$. En el esquema de la 
+inversión depurada, $y(r) = Z_{nl}^{\mathrm{HF}}(r)$ corresponde a la 
+carga invertida, y $f(r) = Z_{nl}^{\mathrm{DIM}}(r)$ corresponde a la 
+forma analítica que se ha fijado para la carga (la 
+Ec.~(\ref{eq:atomzDIM}) para átomos y la Ec.~(\ref{eq:molzDIM}) para 
+moléculas). Con el fin de minimizar $\beta(x_i)$ respecto a los $m$ 
+parámetros $\lambda_j$ que determinan $f$, definimos los elementos de 
+matriz $A_{ij}$,
 \begin{equation}
   A_{ij} \equiv \frac{d\beta(x_i)}{d\lambda_j} =
  \frac{df(x_i,\lambda_1,\lambda_2,\dots, \lambda_m)}{d\lambda_j}
 \end{equation}
-Así, obtenemos el sistema de ecuaciones $[A] \,[d\lambda] = [d\beta]$, donde
+Así, obtenemos el sistema de ecuaciones $[A] \,[d\lambda] = [d\beta]$, 
+donde
 \begin{equation}
  \left[
  \begin{array}{c}
@@ -49,14 +51,15 @@ Así, obtenemos el sistema de ecuaciones $[A] \,[d\lambda] = [d\beta]$, donde
  \end{array}
  \right] \,.
 \end{equation}
-Multiplicando ambos lados de la ecuación por la matriz traspuesta $[A]^{T}$,
+Multiplicando ambos lados de la ecuación por la matriz traspuesta 
+$[A]^{T}$,
 \begin{equation}
   \left[ A \right]^T \left[ A \right]\left[ d\lambda \right] =
   \left[ A \right]^T \left[ d\beta \right]\,,
 \end{equation}
-se obtiene un sistema de ecuaciones que se resuelve con rutinas numéricas 
-estándar. Así, la solución $[d\lambda]$ permite obtener los parámetros 
-iniciales que minimizan $[\beta]$.
+se obtiene un sistema de ecuaciones que se resuelve con rutinas 
+numéricas estándar. Así, la solución $[d\lambda]$ permite obtener los 
+parámetros iniciales que minimizan $[\beta]$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Método de $R$-Matrix}
@@ -98,7 +101,7 @@ orbitales radiales $P_{nl}$ del sistema de $N$ electrones del blanco
 están contenidos totalmente; esto es, \mbox{$P_{nl}\approx 0$ para 
 $r>a$.} Para 
 cada valor de momento angular $l$, los orbitales de la base del continuo 
-$u_{ij}$ se determinan a partir de las soluciones de la ecuación
+$u_{ij}$ se determinan de la ecuación
 \begin{equation}
 \left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}+V(r)
 -\frac{k_j^2}{2}\right]u_{ij}(r)=-\sum_i\lambda_{ji}P_{n_il}(r)\,,
@@ -142,7 +145,7 @@ R_{ij} = \frac{1}{2a}\sum_k\frac{w_{ik}(a)w_{jk}(a)}{E_k^{N+1}-E}\,.
 \label{eq:RM-elements}
 \end{equation}
 Las amplitudes de superficie $w_{ik}(a)$ y los polos $E_k^{N+1}$ de la 
-matriz $R$ se determinan a partir de los autovalores y autovectores del 
+matriz $R$ se determinan mediante los autovalores y autovectores del 
 Hamiltoniano del sistema de $(N+1)$ electrones dado por la 
 Ec.~(\ref{eq:RM-N+1Hamilt}). Los términos en la sumatoria que define 
 $R_{ij}$ representan tanto los procesos colisionales resonantes y no 
@@ -158,10 +161,9 @@ coherentemente. El método desarrollado por Buttle~\cite{Buttle:67}
 permite completar esta sumatoria de forma aproximada. 
 
 Para poder implementar los cálculos de la matriz $R$ de la región 
-interna para determinar las matrices de dispersión y, por lo tanto, las 
-secciones eficaces, se resuelven las ecuaciones de acoplamiento en la 
-región externa ($r>a$) para cada valor de energía. Sin embargo, dado 
-que $P_{nl}(r)\simeq 0$ en esta región, el intercambio electrónico es
+interna, se resuelven las ecuaciones de acoplamiento en la región 
+externa ($r>a$) para cada valor de energía. Sin embargo, dado que 
+$P_{nl}(r)\simeq 0$ en esta región, el intercambio electrónico es 
 despreciable y las ecuaciones se simplifican tal que
 \begin{equation}
 \left[-\frac{1}{2}\frac{d^2}{dr^2}+\frac{l(l+1)}{2r^2}-\frac{(Z-N)}{r}
@@ -211,7 +213,8 @@ v_{ij}\underset{r \rightarrow \infty}{\sim} \vast\{
 &\quad i=1\ldots n,j=1\ldots n_a \\
 \cos\theta_{i}\delta_{ij-n_a}+\mathcal{O}\left(r^{-1}\right) 
 &\quad i=1\ldots n,j=n_a+1\ldots 2n_a \\
-\exp\left(-\left|k_i\right|r\right)\delta_{ij-n_a}+\mathcal{O}\left(r^{-1}\right)
+\exp\left(-\left|k_i\right|r\right)\delta_{ij-n_a}
++\mathcal{O}\left(r^{-1}\right)
 &\quad i=1\ldots n,j=2n_a+1\ldots n+n_a\,.
 \end{array}
 \end{equation}
@@ -228,8 +231,8 @@ x_{lj}=\frac{1}{\sqrt{k_j}} \delta_{lj} & l=1 \ldots n_a \\
 i=1 \ldots n\,,
 \end{array}
 \end{equation}
-que deben ser resueltas para cada $j=1,\dots,n_a$. A partir de la
-definición de la matriz $K$, se tiene que
+que deben ser resueltas para cada $j=1,\dots,n_a$. Con estos 
+coeficientes se calcula la matriz $K$, cuyos elementos están dados por
 \begin{equation}
 K_{ij}=\frac{1}{\sqrt{k_j}} x_{i+n_aj} \quad i,j=1 \ldots n_a\,.
 \end{equation}
@@ -335,8 +338,7 @@ $\mathbf{K}_y=\kappa(\mathbf{X},\mathbf{X})+\sigma_y^2\mathbb{I} =
 $\mathbf{K}_*=\kappa(\mathbf{X},\mathbf{X}_*)$ es de rango $N\times N_*$
 y $\mathbf{K}_{**}=\kappa(\mathbf{X}_*,\mathbf{X}_*)$ es de rango 
 $N_*\times N_*$. El término $\sigma_y^2$ está asociado al dispersión de 
-las mediciones.
-A partir de un significativo trabajo algebraico~\cite{Murphy:12,
+las mediciones. De un significativo trabajo algebraico~\cite{Murphy:12,
 Rasmussen:06,deFreitas:13}, se puede demostrar que
 \begin{align}
 \boldsymbol\mu_*&=\mathbf{K}_*^T\mathbf{K}_*^{-1}\mathbf{y}\,, \\
@@ -346,7 +348,7 @@ Rasmussen:06,deFreitas:13}, se puede demostrar que
 
 \section*{Función de adquisición}
 
-A partir de la distribución posterior dada por el GP, se puede construir 
+Utilizando la distribución posterior dada por el GP, se puede construir 
 una función de adquisición, que determina el próximo punto a evaluar.
 Una de las funciones de adquisición más conocidas es la función de 
 \textit{expected improvement} (EI), que está dada por
@@ -369,6 +371,4 @@ dará peso a las regiones donde hay mucha incerteza. Por el contrario,
 cuando $\xi>>1$, la función de adquisición está determinada por $\mu(x)$ 
 y se explotarán las regiones cercanas a los máximos encontrados hasta 
 encontrar el mejor resultado. 
-
-
 

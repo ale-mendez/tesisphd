@@ -1,105 +1,79 @@
-\chapter{Introducción}
+\chapter*{Introducción}%
+\addcontentsline{toc}{chapter}{Introducción}%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Motivación y generalidades}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Los datos de estructura atómica y molecular son fundamentales para el 
+diagnóstico de objetos astrofísicos, atmósferas y plasmas de fusión, 
+mientras que los valores de secciones eficaces o coeficientes de tasas 
+de procesos colisionales que involucran electrones, iones y fotones, son 
+esenciales debido a su aplicabilidad en diferentes áreas de la ciencia y 
+la tecnología. 
+La descripción teórica de la dinámica de átomos y moléculas está 
+totalmente determinada por la ecuación de Schr\"odinger correspondiente. 
+Sin embargo, su resolución exacta en sistemas complejos es una tarea 
+imposible de realizar. 
 
-% Tesis de Carlos
-El estudio de procesos colisionales ha tenido un rol fundamental en el 
-desarrollo de la teoría mecanico-cuántica. Estos fenómenos permiten 
-estudiar la estructura electrónica de blancos multielectrónicos, así 
-como también examinar la naturaleza de las interacciones entre el 
-proyectil y el blanco. Las colisiones de átomos y moléculas con 
-proyectiles tales como fotones, iones y electrones se han estudiado por 
-décadas de forma teórica y experimental, resultando en el desarrollo de 
-un gran número de modelos que permiten predecir tales fenómenos. Sin 
-embargo, muchas de las limitaciones de estas aproximaciones están 
-ligadas a una precisa descripción de la estructura electrónica de los 
-blancos antes y después de la colisión. 
+El objetivo de esta Tesis consiste en desarrollar nuevos métodos y 
+técnicas de optimización que permitan determinar datos de estructura 
+precisos, para aplicarlos luego en el cálculo de procesos inelásticos en 
+sistemas multielectrónicos. Los blancos examinados a lo largo de esta 
+investigación tienen diversas aplicaciones, desde el diagnóstico de 
+plasmas astrofísicos, caracterización y mejoramiento del diseño de 
+materiales, hasta la evaluación de daño por iones y radiación. En los 
+capítulos que comprenden este trabajo se presentan cuatro metodologías, 
+cada una orientada a un sistema colisional distinto. 
 
-En general, los datos atómicos y moleculares están compuestos por dos 
-subgrupos de datos, correspondientes a (1) la estructura del blanco y 
-(2) los procesos de dispersión a los que son sujetos. Los esfuerzos 
-dedicados al desarrollo de métodos téoricos que permitan obtener datos
-precisos se debe en gran medida a la necesidad de contar tal información 
-para el análisis de espectros de laboratorio y astrofísicos, así como en 
-áreas aplicadas que van desde el diseño de materiales espaciales hasta 
-el diseño de tratamientos médicos. 
+Una de las dificultades del cálculo de ionización de sistemas atómicos y
+moleculares está dado por la representación del estado continuo del 
+electrón luego de la colisión. Para abordar este problema, en el 
+presente trabajo, se formula el método de Inversión Depurada 
+(\acs{dim})~\cite{Mendez:16,Mendez:18,Mitnik:19}. Este método resuelve 
+el problema inverso, que consiste en encontrar el potencial que genera 
+funciones de onda y energías dadas. Así, el DIM permite estudiar la 
+estructura del blanco mediante el uso de potenciales efectivos. El uso 
+efectivo de los potenciales se pone a prueba en el cálculo de procesos 
+tales como la ionización por impacto de iones y 
+fotones~\cite{Mendez:19dim}. 
 
-El objetivo de este trabajo es ampliar el conocimiento que se tiene 
-sobre blancos de interés, desarrollando nuevas técnicas de optimización 
-y métodos que permiten describir los procesos de forma precisa. Para 
-ello, se han desarollado diferentes técnicas, cada una de ellas 
-orientada a un problema colisional diferente. Estos desarrollos incluyen 
-un ``método de inversión depurada" (DIM) para la obtención de 
-potenciales efectivos que permitan describir blancos atómicos y 
-moleculares, y un ``modelo estequiométrico simple'', que
-permite describir el cálculo de ionización en moléculas biológicas. 
-En procesos de pérdida de energía debido al impacto de iones en átomos 
-pesados, la estructura de los blancos se ajustan mediante métodos 
-relativistas. Por otro lado, se implementa un método Bayesiano para la 
-optimización de la estructura del blanco en cálculos de colisiones 
-electrónicas.
+A medida que el número de átomos y electrones que componen una molécula 
+crece, la representación de estos blancos y su interacción con 
+proyectiles incidentes se vuelve más compleja. Por ello, en la segunda 
+parte de esta Tesis, se presenta un modelo estequiométrico, que permite 
+calcular las secciones eficaces de un número significativo de sistemas 
+colisionales, incluyendo las bases de ADN y ARN. En esta técnica 
+propuesta, el DIM describe la estructura atómica de estas moléculas 
+mientras que la ionización de estos blancos debido al impacto de iones 
+se calcula empleando un método de onda continua distorsionada. 
+Del análisis de los nuevos resultados teóricos, se enuncian tres reglas 
+de escala, las cuales resultan útiles para estimar la ionización de 
+sistemas molécula--proyectil arbitrarios~\cite{Mendez:20scale}. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Estructura del blanco}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+La tercer parte de este trabajo se aboca al estudio de la estructura de 
+lantánidos y metales de transición pesados. Para la inclusión de efectos 
+relativistas, se prescribe un método perturbativo, que permite resolver 
+la ecuación de Dirac correspondiente, en conjunción a la optimización de 
+las configuraciones electrónicas empleadas~\cite{Mendez:19relat}. Las 
+energías y funciones de onda relativistas resultantes son 
+utilizados en modelos de pérdida de energía por impacto de 
+iones~\cite{Montanari:20}. 
+Los resultados obtenidos permiten explicar datos experimentales 
+recientes y reafirman la necesidad de incluir efectos relativistas en 
+los cálculos de procesos de pérdida de energía. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{Procesos colisionales}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+En átomos neutros o de bajo grado de ionización, el cálculo de 
+excitación por impacto de electrones mediante métodos no perturbativos 
+requiere no sólo la correcta representación de los estados ligados y los 
+estados Rydbergs, sino también la inclusión del acoplamiento con los 
+estados del continuo. Para ello, se deben incluir una gran cantidad de 
+configuraciones electrónicas (ligadas y continuas), lo que resulta en 
+centenares de niveles de energía. En general, estos niveles se ajustan 
+manualmente, lo que constituye uno de los cuellos de botella del cálculo 
+colisional. En el último capítulo de esta Tesis, se diseña un método de 
+optimización para ajustar en forma automática la estructura de los 
+blancos en este cálculo de dispersión. La metodología presentada se 
+basa en técnicas empleadas en el campo del aprendizaje automatizado. La 
+implementación de este método permite reproducir valores de 
+referencia~\cite{Mendez:20baye,Mendez:prep}, reduciendo 
+significativamente los esfuerzos computacionales. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Descripción del trabajo}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-En el Capítulo~\ref{chap:iondim}, se estudia la estructura de átomos y 
-moléculas pequeñas a través de la ionización simple. La descripción de 
-los blancos se obtiene mediante potenciales efectivos, que resultan de 
-la implementación del método de inversión depurada 
-(\acs{dim})~\cite{Mendez:16,Mendez:19dim}. El DIM resuelve el problema 
-inverso a partir de funciones de onda y energías conocidas. Sin embargo, 
-la inversión directa de las soluciones presenta defectos, los cuales son 
-examinados en detalle~\cite{Mendez:18,Mitnik:19}. El uso efectivo de los 
-potenciales DIM en la teoría de colisiones se investiga en procesos 
-inelásticos tales como la ionización por impacto de fotones e iones 
-mediante la primera aproximación de Born~\cite{Mendez:19dim}. 
-%
-En el Capítulo~\ref{chap:ionmol} se examina la ionización de estructuras 
-moleculares complejas de interés biológico, incluyendo las bases de ADN y 
-ARN. El DIM se implementa para describir la estructura de átomos que las
-constituyen y, empleando un método de onda continua distorsionada, se 
-calcula la ionización simple de estos blancos debido al impacto de 
-diversos iones. El modelo estequiométrico simple permite 
-obtener secciones eficaces de un número significativo de sistemas 
-moleculares~\cite{Mendez:20ionmol}. También se presentan tres reglas de 
-escala, útiles para predecir a primer orden la ionización de sistemas 
-blanco--proyectil arbitrarios~\cite{Mendez:20scale}. 
-%
-En el Capítulo~\ref{chap:heavy}, se investiga la estructura de blancos 
-pesados multielectrónicos. La ecuación de Dirac de estos sistemas se 
-resuelve a partir un método perturbativo y la optimización de las 
-configuraciones electrónicas definidas. Se calculan orbitales radiales y 
-energías de ligadura de nueve blancos, incluyendo metales de transición 
-y lantánidos~\cite{Mendez:19relat}. Estos resultados son implementados 
-en el cálculo de pérdida de energía por impacto de iones mediante 
-diversos modelos de primeros principios~\cite{Montanari:20}, los cuales
-se comparan con recientes mediciones experimentales y métodos teóricos 
-que constituyen el estado del arte.
-%
-En el Capítulo~\ref{chap:bayeopt} se estudia el proceso de excitación
-por impacto de electrones en átomos neutros. La optimización de estos 
-blancos constituye uno de los cuellos de botella del cálculo colisional 
-mediante métodos no perturbativos. La posibilidad de automatizar el 
-ajuste de ciertos parámetros del problema se explora mediante la 
-implementación de técnicas que se usan en el campo del aprendizaje 
-automatizado. Se obtienen resultados optimizados de energías, 
-\textit{oscillator strengths} y secciones eficaces, las cuales se 
-comparan con valores de referencia~\cite{Mendez:20baye,Mendez:prep}.
-%
-Finalmente, las conclusiones generales se presentan en el 
-Capítulo~\ref{chap:conclusiones}. A lo largo de este trabajo se usan 
-unidades atómicas ($\hbar=e=m_e=1$) a menos que se especifique lo 
-contrario.
 
 

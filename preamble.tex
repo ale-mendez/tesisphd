@@ -1,0 +1,83 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathabx}
+\usepackage{appendix}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage[]{geometry}
+\usepackage{afterpage}
+\usepackage[numbers,sort&compress]{natbib}
+%\usepackage[linktocpage]{hyperref}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}%
+\usepackage{cleveref}
+\usepackage{comment}
+\usepackage{caption}
+\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{ltablex}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+%\usepackage{gensymb}
+\usepackage{MnSymbol}
+\usepackage{chngpage}
+\usepackage{array,booktabs,makecell,multirow}
+\definecolor{mygray}{gray}{0.9}
+\definecolor{mydarkgray}{gray}{0.8}
+\usepackage{eucal}
+%\usepackage[acronym,nomain,toc]{glossaries}
+%\usepackage[toc,section=section,nomain,acronym]{glossaries}
+%\glstoctrue
+\usepackage{cancel}
+\usepackage{acro}
+\usepackage[nottoc]{tocbibind}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\usepackage{fixfoot}
+%\usepackage[printwatermark]{xwatermark}
+%\newwatermark[allpages,color=red!50,angle=45,scale=3,xpos=0,ypos=0]{Versión preliminar}
+
+\PrerenderUnicode{ü}
+\PrerenderUnicode{ó}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[customcolors,shade]{hf-tikz}
+\usepackage{pgf}
+\usepackage{array}
+
+\usetikzlibrary{positioning,shapes,automata,tikzmark}
+\usetikzlibrary{decorations.pathmorphing}
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, 
+text centered, draw=black, fill=orange!20]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, 
+text centered, draw=black, fill=red!20]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\tikzstyle{codes} = [rectangle, minimum width=2.25cm, minimum height=1cm, 
+text centered, draw=black, fill=gray!20]
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\thesubsubsection}{\thesubsection.\alph{subsubsection}}
+\DeclareFixedFootnote{\myfnote}{Traducción de la autora.}
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{4}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+\usepackage{setspace}
+\doublespacing
+\onehalfspace
+\singlespace
+\setcounter{tocdepth}{5} %shows all levels incl. paragraph
+
+\hyphenation{ par-ti-cu-la hi-dro-ge-no }

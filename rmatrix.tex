@@ -1,10 +1,6 @@
 \chapter{Excitación por impacto de electrones: optimización Bayesiana}
 \label{chap:bayeopt}
 
-\begin{comment}
-
-\end{comment}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introducción}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,9 +11,9 @@ disponible para el diagnóstico de plasmas astrofísicos y de laboratorio.
 El modelado e interpretación de dichas observaciones requiere de una 
 extensa variedad de datos de estructura atómica. Los cálculos de niveles 
 de energía de átomos y sus iones son utilizados como guía para 
-identificar las líneas espectrales observadas, mientras que sus 
-intensidades requieren la determinación de secciones eficaces 
-colisionales y probabilidades de transición. El modelo 
+identificar a las líneas espectrales observadas, mientras que sus 
+intensidades requieren el cálculo de probabilidades de transición 
+colisionales y probabilidades. El modelo 
 colisional-radiativo resultante precisa de coeficientes de tasa de 
 diversos procesos. En particular, la excitación por impacto de 
 electrones determina en gran medida la distribución de la población 
@@ -29,86 +25,54 @@ variedad de métodos teóricos, desde perturbativos hasta completamente
 cuánticos~\cite{Pindzola:07,Burke:11,Bray:17,Zatsarinny:04}, que 
 permiten calcular probabilidades de transición entre todos los estados 
 ligados del blanco. Numerosos trabajos~\cite{Bartschat:04,Zatsarinny:16,
-Be_Ballance:03} han concluido que la precisa representación de la 
-estructura atómica es indispensable para describir este proceso, 
+Be_Ballance:03} han probado que la representación precisa de la 
+estructura atómica es necesaria para describir este proceso, 
 particularmente para átomos neutros y de bajo grado de ionización. 
 El cálculo correcto de estructura atómica debe incluir, en primer lugar, 
 la interacción entre diferentes configuraciones (CI). Por otro lado, las 
 correlaciones no se producen solamente entre estados ligados. El 
 acoplamiento al continuo tiene importantes consecuencias, como se ha 
 demostrado en diversas investigaciones~\cite{Ballance:03,Badnell:03,
-Mitnik:03}. Sin embargo, la inclusión de estos efectos requiere 
-introducir centenares de configuraciones 
-(ligadas y continuas), muchas de estas compuestas por decenas de 
-términos y centenas de niveles. Una forma de realizar este procedimiento 
-de modo efectivo, consiste en incluir, además de los estados 
-``espectroscópicos'', una serie de configuraciones llamadas 
-``pseudo-estados'', que usualmente consisten en funciones analíticas 
-parametrizadas. 
-%Los pseudo-estados se asemejan matemáticamente a los 
-%orbitales físicos, pero pueden obtenerse con mayor simplicidad. De 
-%esta manera se incluye en el espectro una densa cantidad de niveles que 
-%proporciona una transición suave y uniforme entre los estados discretos 
-%y los continuos. 
-%La determinación de la estructura atómica adiciona 
-%entonces un proceso de optimización de los parámetros de los 
-%pseudo-estados, lo que permite obtener un espectro de niveles repartidos 
-%en forma homogénea a lo largo de la región de interés. 
-%Para lograr esto, 
+Mitnik:03}. Para tomar en cuenta estos efectos se requiere introducir 
+centenares de configuraciones (ligadas y continuas), muchas de estas 
+compuestas por decenas de términos y centenas de niveles. Una forma de 
+realizar este procedimiento de modo efectivo, consiste en incluir, 
+además de los estados ``espectroscópicos'', una serie de configuraciones 
+llamadas ``pseudo-estados'', que usualmente consisten en funciones 
+analíticas parametrizadas. 
 En general, la estructura atómica resultante se ajusta manualmente Esta
 tarea requiere de una gran destreza, que sólo puede ser adquirida 
 por la experiencia y el trabajo repetitivo de ensayo y error.
 
-%En general, la obtención de estructuras atómicas correctas requiere la 
-%inclusión de un gran número de términos y niveles. 
-%En estos blancos, también se ha demostrado~\cite{Ballance:03,Badnell:03,
-%Mitnik:03} la importancia de incluir pseudo-estados no sólo para 
-%optimizar los estados más bajos sino también para tener en cuenta el 
-%acoplamiento al continuo del blanco. 
-%Además, la función de onda del sistema se expresa mediante la expansión 
-%de interacción de configuraciones (\acs{ci}). 
-%La resolución numérica de las ecuaciones de acoplamiento resultantes es 
-%extremadamente costosa, aún utilizando máquinas con enorme poder 
-%computacional y códigos basados en la programación en paralelo o GPU. 
+Si bien podría pensarse que las dificultades aumentan con el estado de 
+ionización, esto no es así. Cuanto más alta es la carga de un ion, su 
+estructura se asemeja mayormente a la hidrogénica. Por ende, los niveles 
+están más separados y las energías toman valores más altos, lo que 
+reduce significativamente el aporte relativo de los efectos de 
+correlación. En este capítulo se trata el problema de optimización de 
+estructuras atómicas en procesos de excitación por impacto de electrones 
+para un caso particularmente complejo: el de átomos neutros. Estos 
+procesos se calculan mediante el sofisticado método de $R$-matrix con 
+pseudo-estados (RMPS) --considerado el estado del arte-- del que 
+señalaremos algunos detalles en la próxima sección. Para estimar la 
+precisión de los modelos de la estructura, las secciones eficaces 
+resultantes son comparadas con valores de referencia en la literatura. 
+Uno de los objetivos planteados en esta Tesis consiste en proponer un 
+proceso de optimización sistemático, sin intervención manual. Para ello, 
+se introducen, a la metodología empleada en colisiones atómicas, 
+herramientas ampliamente usadas en el campo del aprendizaje 
+automatizado. En particular, se utiliza la optimización Bayesiana 
+mediante procesos Gaussianos. 
 
-En este capítulo se trata el problema de optimización de estructuras 
-atómicas en procesos de excitación por impacto de electrones para un 
-caso particularmente complejo: el de átomos neutros. Si bien podría 
-pensarse que las dificultades aumentan con el estado de ionización, esto 
-no es así. Cuanto más alta es la carga de un ion, su estructura se 
-asemeja mayormente a la hidrogénica. Por ende, los niveles están más 
-separados y las energías toman valores más altos, lo que reduce 
-significativamente el aporte relativo de los efectos de correlación. 
-Las estructuras optimizadas son implementadas en el cálculo de 
-excitación. Estos procesos se calculan mediante el sofisticado método 
-de $R$-matrix con pseudo-estados (RMPS) --considerado el estado del 
-arte-- del que señalaremos algunos detalles en la próxima sección. 
-Para estimar la precisión de los modelos de la estructura, las secciones 
-eficaces resultantes son comparadas con valores de referencia en la 
-literatura. Uno de los objetivos planteados en esta Tesis consiste en 
-proponer un proceso de optimización sistemático, sin intervención 
-manual. Para ello, se implementan herramientas ampliamente 
-usadas en el campo del aprendizaje automatizado. En particular, se 
-utiliza la optimización Bayesiana mediante procesos Gaussianos. 
-A lo largo de este trabajo se examina el átomo de berilio. Debido a su 
-baja contaminación en el plasma y baja retención de combustible, el 
-berilio fue elegido como el elemento que recubrirá la primera pared del 
-reactor de fusión ITER~\cite{Ikeda:07,Rubel:08}. Además, este se encuentra 
-presente en numerosos sistemas estelares y es utilizado como marcador en 
-simulaciones para el diagnóstico de estrellas~\cite{Deliyannis:00}. De 
-allí surge el extenso interés que ha suscitado~\cite{Be_Ballance:03,
-Bartschat:97,Colgan:03,Fursa:97,Bray:15,Zatsarinny:16,Blanco:17}. 
-
-%Estos motivos justifican los esfuerzos dedicados en este trabajo.
-%En las Secciones~\ref{sec:target-rmatrix} y~\ref{sec:proc-rmatrix} se 
-%presenta el marco teórico que describe la estructura atómica de los 
-%blancos y el proceso colisional, respectivamente. El proceso de 
-%optimización y sus complejidades se detallan en la 
-%Sección~\ref{sec:optproblems}. El método de optimización que se propone
-%se presenta en la Sección~\ref{sec:gaussianprocess} y los resultados de
-%las diversas optimizaciones progresivas se detallan en la 
-%Sección~\ref{sec:results-rmatrix}. Las conclusiones y perspectivas de
-%este trabajo se discuten en la Sección~\ref{sec:conclu-rmatrix}.
+En este capítulo se estudia el átomo de berilio. Debido a su baja 
+contaminación en el plasma y baja retención de combustible, el berilio 
+ha sido elegido como el elemento que recubrirá la primera pared del 
+reactor de fusión ITER~\cite{Ikeda:07,Rubel:08}. Además, este se 
+encuentra presente en numerosos sistemas estelares y es utilizado como 
+marcador en simulaciones para el diagnóstico de 
+estrellas~\cite{Deliyannis:00}. De allí surge el extenso interés que ha 
+suscitado~\cite{Be_Ballance:03,Bartschat:97,Colgan:03,Fursa:97,Bray:15,
+Zatsarinny:16,Blanco:17}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Método de $R$-Matrix}
@@ -124,20 +88,17 @@ radio $a$, denominado borde de la matriz $R$, se elije de manera tal que
 P_{nl}(r)\approx 0, \quad r\geq a\,,
 \label{eq:RM-Pnl}
 \end{equation}
-donde $P_{nl}$ son los orbitales radiales reducidos usados para
-contruir los estados ligados del blanco atómico.
-%
-En la región interna, $0\leq r\leq a$, el electrón incidente/dispersado 
-es indistinguible de los $N$ electrones del blanco. Allí, los efectos de 
-intercambio y correlación electrónica entre el electrón 
-dispersado y los $N$ electrones del blanco son importantes. 
-Esencialmente, el problema se reduce a un cálculo de estructura atómica 
-para $(N+1)$ electrones y las funciones de onda de este sistema 
-electrónico se construyen a partir de un conjunto ortonormal completo de 
-funciones de un electrón ligadas y continuas. 
-%
-La región externa de la matriz $R$, a su vez, consta de dos partes. En 
-la más interna, las ecuaciones que determinan el comportamiento del 
+donde $P_{nl}$ son los orbitales radiales reducidos usados para contruir 
+los estados ligados del blanco atómico. En la región interna, 
+$0\leq r\leq a$, el electrón incidente/dispersado es indistinguible de 
+los $N$ electrones del blanco. Allí, los efectos de intercambio y 
+correlación electrónica entre el electrón dispersado y los $N$ 
+electrones del blanco son importantes. Esencialmente, el problema se 
+reduce a un cálculo de estructura atómica para $(N+1)$ electrones, y las 
+funciones de onda de este sistema se construyen combinando un conjunto 
+ortonormal completo de funciones de un electrón ligadas y continuas. La 
+región externa de la matriz $R$, a su vez, consta de dos partes. En la 
+más interna, las ecuaciones que determinan el comportamiento del 
 electrón libre se resuelven completamente despreciando los efectos 
 de intercambio con los electrones internos del blanco. En la externa, se 
 asumen condiciones asintóticas de onda Coulombiana saliente. 
@@ -146,26 +107,25 @@ Como establece la Ec.~(\ref{eq:RM-Pnl}), las funciones ligadas tienen
 amplitud cero en el borde de la matriz $R$, mientras que las funciones 
 continuas satisfacen determinadas condiciones de borde. Las funciones de 
 onda del sistema de $(N+1)$ electrones se clasifican en dos: continuas y 
-de captura. Las funciones de onda de captura se forman sólo a partir de 
+de captura. Las funciones de onda de captura se conforman sólo de 
 funciones ligadas de un electrón. Éstas posibilitan que el electrón 
 libre se encuentre temporariamente capturado por el blanco, lo 
 que da lugar a importantes efectos de resonancia, que suelen dominar la 
 región de bajas energías de impacto. 
 
 El conjunto de funciones de onda $(N+1)$ se resuelven diagonalizando el
-Hamiltoniano del sistema y se obtienen las bases de $R$-Matrix.
-Luego, para cada valor de energía, se calcula la matriz $R$ 
-correspondiente, que describe las condiciones de borde. Las soluciones 
+Hamiltoniano del sistema con las que se obtienen las bases de 
+$R$-Matrix. Luego, para cada valor de energía, se calcula la matriz $R$ 
+correspondiente, que incorpora las condiciones de borde. Las soluciones 
 de la región asintótica se hacen coincidir con la matriz $R$ en $r=a$. 
 Así, se obtienen las matrices $K$ con las cuales se calculan las 
 matrices de transición $T$, y de ellas, las secciones eficaces. 
-Como se puede inferir, la teoría de $R$-Matrix es muy extensa y compleja.
+Como puede inferirse, la teoría de $R$-Matrix es muy extensa y compleja.
 En el Apéndice~\ref{app:rmatrix} se presentan algunos detalles sobre la 
 representación de las funciones de onda en las regiones interna y 
 externa, y la resolución de las ecuaciones acopladas resultantes. 
 Al lector interesado en indagar los aspectos particulares de la teoría,
-se le recomienda comenzar con el libro de referencia de 
-P. G. Burke~\cite{Burke:11}.
+se sugiere el libro de referencia de P. G. Burke~\cite{Burke:11}.
 
 \begin{figure}
 \centering
@@ -195,16 +155,15 @@ método $R$-Matrix.}
 Como se señaló anteriormente, en blancos neutros o de bajo grado de 
 ionización, es necesario representar la estructura atómica en forma 
 precisa. Esto incluye los estados ligados, estados doblemente excitados 
-(estados de Rydberg) y estados del continuo. 
-Para introducir en forma efectiva estos últimos se recurre al método de 
-pseudo-estados, que incluye orbitales analíticos en la expansión del 
-sistema electrónico \mbox{$(N+1)$.} 
-Esta técnica permite incorporar cientos de estados en los cálculos, sin 
-necesidad de calcular explícitamente cada uno de ellos. 
-La combinación de la aproximación de pseudo-estados con el método de 
-$R$-Matrix se denomina $R$-Matrix con pseudo-estados (RMPS). El método 
-RMPS que se usa aquí emplea pseudo-orbitales de Laguerre 
-no ortogonales 
+(estados de Rydberg) y estados del continuo. Para introducir en forma 
+efectiva estos últimos se recurre al método de pseudo-estados, que 
+incluye orbitales analíticos en la expansión del sistema electrónico 
+\mbox{$(N+1)$}. Esta técnica permite incorporar cientos o miles de 
+estados en los cálculos, sin necesidad de calcular explícitamente cada 
+uno de ellos. La combinación de la aproximación de pseudo-estados con el 
+método de $R$-Matrix se denomina $R$-Matrix con pseudo-estados (RMPS). 
+El método RMPS que se usa aquí emplea pseudo-orbitales de Laguerre no 
+ortogonales 
 \begin{equation}
 P_{nl}(r) = N_{nl}(\lambda_{nl}Zr)^{l+1} e^{-\lambda_{nl}Zr/2} 
 L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,,
@@ -213,11 +172,11 @@ L_{n+l}^{2l+1}(\lambda_{nl}Zr)\,,
 donde $z=Z-N+1$, siendo $Z$ la carga nuclear atómica y $N$ es el número 
 de electrones del blanco, las funciones $L_{n+l}^{2l+1}$ son los 
 polinomios asociados de Laguerre y $N_{nl}$ es una constante de 
-normalización. Luego, los pseudo-orbitales se ortogonalizan entre ellos
+normalización. Los pseudo-orbitales se ortogonalizan entre ellos
 y con los orbitales espectroscópicos del blanco. La inclusión de los 
-pseudo-orbitales en el método de $R$-Matrix incluye correcciones en la 
-base del continuo, presentada en el Apéndice~\ref{app:rmatrix}, y se 
-pueden encontrar en detalle en la Sección 6.2 de la Ref.~\cite{Burke:11}.
+pseudo-orbitales en el método de $R$-Matrix contiene, además, 
+correcciones en la base del continuo (ver detalles en la Sección 6.2 de 
+la Ref.~\cite{Burke:11}).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Implementación numérica}
@@ -314,25 +273,23 @@ los elementos de matriz del sistema $(N+1)$ en el acoplamiento $LS$.
 \item \textsc{stg3} - Construye el Hamiltoniano del sistema de 
 electrones $(N+1)$ y lo diagonaliza.
 \end{itemize}
-Todos estos programas tienen versiones en paralelo~\cite{Mitnik:99,
-Mitnik:01,Ballance:04}. 
-El paquete de códigos \textsc{nx}~\cite{Burke:92} (del inglés 
-\textit{no exchange}) permite realizar cálculos a más altas energías y 
-para valores de momentos angulares mayores de manera eficiente 
-despreciado el intercambio entre los electrones. Este paquete también 
-está compuesto por tres partes, algunas de ellas (las computacionalmente 
-más demandantes) están paralelizadas. De ser necesario, se implementa el 
-código \textsc{stgjk} que permite transformar las matrices que se 
-expresan en el esquema $LS$ al acoplamiento intermedio~\cite{Griffin:98}.
-
-Finalmente, la región externa y asintótica del método se resuelve 
-implementando los códigos \textsc{stgf}~\cite{Seaton:85} (acoplamiento 
-$LS$) y \textsc{stgicf} (acoplamiento $J\Pi$), en los cálculos con y sin 
-intercambio. Estos programas permiten calcular las soluciones en la 
-grilla de energías de forma 
-paralela~\cite{Mitnik:99,FernandezMenchero:20}. La implementación del 
-método RMPS está incluida en estos códigos de forma directa con apenas 
-unas modificaciones en los archivos de entrada.
+Todos estos programas tienen versiones paralelizadas~\cite{Mitnik:99,
+Mitnik:01,Ballance:04}. El paquete de códigos 
+\textsc{nx}~\cite{Burke:92} (del inglés \textit{no exchange}) permite 
+realizar cálculos a más altas energías --donde se deben incluir valores 
+de momentos angulares mayores-- de manera eficiente, despreciado el 
+intercambio entre los electrones. Este paquete también 
+está compuesto por tres partes, algunas de ellas (las más demandantes 
+desde el punto de vista computacional) están paralelizadas. Los códigos 
+de la región interna emplean el esquema de acoplamiento $LS$. El código 
+\textsc{stgjk} es una etapa del cálculo opcional, que convierte los 
+resultados de la región interna al esquema de acoplamiento 
+intermedio~\cite{Griffin:98}. Finalmente, la región externa y asintótica 
+del método se resuelve utilizando los códigos 
+\textsc{stgf}~\cite{Seaton:85} (acoplamiento $LS$, términos) y 
+\textsc{stgicf} (acoplamiento $J\Pi$, niveles). Estos programas permiten 
+calcular las secciones eficaces en la grilla de energías de forma 
+paralela~\cite{Mitnik:99,FernandezMenchero:20}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Descripción del blanco}
@@ -340,14 +297,14 @@ unas modificaciones en los archivos de entrada.
 \label{sec:target-rmatrix}
 
 La función de onda del sistema de $N$ electrones del blanco se expresa 
-implementando la expansión de interacción de configuraciones (\acs{ci}),
+mediante la expansión de interacción de configuraciones (\acs{ci}),
 \begin{equation*}
 \Phi_i(\mathbf{r})=\sum_j^{n} c_{ji} \, \phi_j(\mathbf{r})\,,
 \label{eq:phi-RM}
 \end{equation*}
 donde $n$ es el número finito de configuraciones electrónicas relevantes 
 en la aproximación, $\phi_j$ son los determinantes de Slater 
-correspondientes a cada configuración y los coeficientes se obtienen 
+correspondientes a cada configuración, y los coeficientes se obtienen 
 resolviendo la ecuación $H\Phi_i=E_i\Phi_i$. En sistemas complejos de 
 múltiples electrones, el problema se puede reducir considerablemente 
 incluyendo potenciales modelos. 
@@ -377,12 +334,12 @@ borde
 \lim_{r \rightarrow \infty} V(r) \sim -\frac{Z-N}{r} \,.
 \end{equation}
 
-Se ha propuesto un gran número de potenciales modelos para calcular la 
+Se ha propuesto un gran número de potenciales modelo para calcular la 
 estructura de blancos atómicos mediante parámetros 
 ajustables~\cite{Hibbert:82,Gombas:56,Green:69,Klapisch:71,Phillips:59,
-Herman:63,Dalgarno:70,Bayliss:77,Cowan:76,Lee:77}. 
-En este trabajo se implementa el potencial de orbitales tipo Slater 
-(\acs{sto}) de Burgess~\cite{Burgess:89}, que está dado por
+Herman:63,Dalgarno:70,Bayliss:77,Cowan:76,Lee:77}. En este trabajo se 
+emplea el potencial de orbitales tipo Slater (\acs{sto}) propuesto por 
+Burgess~\cite{Burgess:89}, que está dado por
 \begin{equation}
 V_{n_il_i}^{\textrm{STO}}(r)=-\frac{1}{r}\left\{Z-\sum_j(q_{n_jl_j}-
 \delta_{n_il_i,n_jl_j})
@@ -402,7 +359,7 @@ potencial.
 
 En general, en átomos alcalinos y alcalinotérreos, los efectos de 
 correlación entre los electrones de valencia y los internos 
-(\textit{core}) suelen ser significativos y deben ser 
+(carozo) suelen ser significativos y deben ser 
 considerados~\cite{Bartschat:04,Muller:83}. Existen diversas 
 aproximaciones que permiten incluir estos efectos~\cite{Loughlin:88,
 Seaton:72,Loughlin:73,Migdalek:78}. En este trabajo se introducen los
@@ -464,27 +421,25 @@ $\rho_l$ es un parámetro de ajuste.
 \end{tikzpicture}
 \vspace{0.25cm}
 \caption{Diagrama de flujo de la optimización del blanco en la 
-excitación por impacto de electrón con el método de $R$-Matrix.}
+excitación por impacto de electrones con el método de $R$-Matrix.}
 \label{fig:proc-optatom}
 \end{figure}
 
 El procedimiento de optimización de la estructura de un blanco atómico
 en el marco del problema de excitación por impacto de electrones se 
 muestra en la Fig.~\ref{fig:proc-optatom}. En primer lugar, se eligen 
-las configuraciones electrónicas apropiadas para describir de forma 
-precisa los estados de interés. Las configuraciones elegidas 
-inicialmente determinan el número de parámetros $\lambda_{nl}$ que 
-definen el problema. Por ejemplo, suponiendo que se desea calcular la 
-estructura electrónica de un ión con dos electrones; 
+las configuraciones electrónicas apropiadas para describir en forma 
+precisa los estados de interés. Estas determinan el número de parámetros 
+$\lambda_{nl}$ que definen el problema. Por ejemplo, suponiendo que se 
+desea calcular la estructura electrónica de un ión con dos electrones; 
 si las configuraciones que se incluyen para tal fin son $1s^2$, $1s2s$ y 
 $1s2p$, entonces, el número de parámetros resultantes serán tres: 
 $\lambda_{1s}$, $\lambda_{2s}$ y $\lambda_{2p}$. En general, el conjunto
-de parámetros que definen el problema tiene una dependencia casi lineal 
-con el número de configuraciones. 
-Para un blanco dado, el conjunto de parámetros contiene al menos un par 
-de decenas de elementos. Por lo tanto, es 
-conveniente seleccionar inicialmente un grupo reducido  
-para variar y optimizar la estructura. Así, la siguiente etapa de la
+de parámetros utilizados tiene una dependencia casi lineal 
+con el número de configuraciones. Para un blanco dado, el conjunto de 
+parámetros contiene al menos un par de decenas de elementos. Por lo 
+tanto, es conveniente seleccionar inicialmente un grupo reducido para 
+variar y optimizar la estructura. Así, la siguiente etapa de la 
 optimización consiste en seleccionar el grupo de elementos que se varían
 para ajustar ciertos observables. 
 
@@ -501,31 +456,31 @@ de costo, es posible  que los parámetros elegidos no sean los apropiados.
 En este caso se debe reiniciar el procedimiento eligiendo otro grupo, o 
 cambiando sus valores iniciales.
 Por el contrario, si el mínimo de la función de costo es satisfactorio 
-se procede a resolver el problema colisional, ilustrado en la 
-Fig.~\ref{fig:rmatrixcodes}. Al finalizar el cálculo, si el 
+se procede a resolver el problema colisional, ilustrado en el esquema de
+la Fig.~\ref{fig:rmatrixcodes}. Al finalizar el cálculo, si el 
 comportamiento de las secciones eficaces o coeficientes de tasa 
 resultantes no es correcto, el proceso de optimización se reinicia; es 
 necesario analizar los valores obtenidos y modificar el modelo para 
 corregir los resultados incorrectos. 
 
 %=======================================================================
-\subsection{Definición de configuraciones electrónicas}
+\subsection{Elección de configuraciones electrónicas}
 %=======================================================================
 
-La definición de las configuraciones electrónicas del blanco, que se 
+La elección de las configuraciones electrónicas del blanco, que se 
 muestra en la parte superior del diagrama de flujo de la 
-Fig.~\ref{fig:proc-optatom}, constituye una de las partes más importante 
-de la optimización. A continuación, la influencia que estas tienen en el 
-cálculo colisional se examina variando el número y tipo de 
-configuraciones elegidas, mientras los demás parámetros del problema se 
-mantienen constantes. Para ilustrar la importancia de las 
-configuraciones electrónicas en el problema de optimización, tomaremos 
-como ejemplo particular el átomo de berilio, que es un caso que presenta 
-singulares dificultades. 
+Fig.~\ref{fig:proc-optatom}, constituye una de las partes más 
+importantes de la optimización. A continuación, se estudia la influencia 
+que estas tienen en el cálculo colisional, variando el número y tipo de 
+configuraciones elegidas manteniendo constantes al resto de los 
+parámetros. Para ilustrar la importancia de las configuraciones 
+electrónicas en el problema de optimización, tomaremos como ejemplo 
+particular el átomo de berilio, que es un caso que presenta singulares 
+dificultades. 
 
 Implementando el método de $R$-Matrix descripto en la 
 Sección~\ref{sec:proc-rmatrix}, se realizan cálculos de excitación por 
-impacto de electrón a partir de cuatro modelos de estructura atómica. 
+impacto de electrones empleando cuatro modelos de estructura atómica. 
 Estas estructuras surgen de tres grupos de configuraciones distintas. En 
 el primer cálculo (6-cfg), se consideran  
 \begin{equation}
@@ -548,7 +503,7 @@ siguientes excitaciones de un electrón
 \end{equation} 
 El último cálculo (27-cfg c/PS) es similar al tercer grupo de 
 configuraciones, donde los orbitales espectroscópicos $5l$ son 
-reemplazandos por pseudo-orbitales $\overline{5l}$,
+reemplazados por pseudo-orbitales $\overline{5l}$,
 \begin{equation}
 2s\overline{5s},\,2s\overline{5p},\,2s\overline{5d},\,2s\overline{5f},\,
 2s\overline{5g},\,+\,
@@ -558,29 +513,28 @@ reemplazandos por pseudo-orbitales $\overline{5l}$,
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/rmatrix/example_PS.eps}
+\includegraphics[width=0.9\textwidth]{figures/rmatrix/example_PS.eps}
 \caption[Dependencia de la sección eficaz de excitación con las 
 configuraciones electrónicas y los pseudo-estados.]
 {Dependencia de la sección eficaz de excitación por impacto de
-electrón con las configuraciones electrónicas incluidas en la CI 
+electrones con las configuraciones electrónicas incluidas en la CI 
 (izquierda) y la inclusión de pseudo-estados (derecha) para la transición 
 dipolar prohibida $2s^2\,^1S \rightarrow 2s3s\,^1S$ de Be.}
 \label{fig:dependencia-CI}
 \end{figure}
 
 La Fig.~\ref{fig:dependencia-CI} muestra secciones eficaces de 
-excitación por impacto de electrón de la transición dipolar prohibida
+excitación por impacto de electrones de la transición dipolar prohibida
 $2s^2\,^1S\rightarrow 2s3s\,^1S$ para las estructuras atómicas 
 descriptas mediante 6 (línea de puntos), 13 (línea punto-raya-punto) y 
-27 (línea raya-punto) configuraciones electrónicas en la CI y 
-orbitales espectroscópicos. El cálculo de sección eficaz que se obtiene 
-cuando se usan los pseudo-orbitales se muestra con línea sólida. 
-Los cálculos presentes se comparan con los valores (línea discontinua) 
-dados por Dipti y colaboradores~\cite{Dipti:19}, que compilan y 
-promedian resultados obtenidos por cálculos más sofisticados y 
-completos\footnote{R-Matrix con pseudo-estados (RMPS) 
-\cite{Be_Ballance:03,Bartschat:97}, \textit{time dependent close 
-coupling}~\cite{Colgan:03}, \textit{convergent 
+27 (línea raya-punto) configuraciones electrónicas en la CI. El cálculo 
+de secciones eficaces que se obtienen cuando se usan los 
+pseudo-orbitales se muestra con línea sólida. Los cálculos presentes se 
+comparan con los valores dados por Dipti y colaboradores~\cite{Dipti:19}
+(línea discontinua), que compilan y promedian resultados obtenidos por 
+cálculos más sofisticados y completos\footnote{R-Matrix con 
+pseudo-estados (RMPS) \cite{Be_Ballance:03,Bartschat:97}, \textit{time 
+dependent close coupling}~\cite{Colgan:03}, \textit{convergent 
 close-coupling}~\cite{Fursa:97,Bray:15}, $R$-Matrix con 
 B-splines~\cite{Zatsarinny:16}, y el método de potencial óptico 
 complejo~\cite{Blanco:17}}, y se toman como referencia. 
@@ -592,23 +546,21 @@ efecto de incluir más estados en la CI. Al introducir una mejor
 representación de los estados Rydbergs, la sección eficaz mejora 
 notoriamente en la región de energías incidentes mayores a la energía de 
 ionización. Sin embargo, este último efecto no se corrige completamente
-aumentando el número de configuraciones. Los resultados que se obtienen
-a partir de 13-cfg y 27-cfg son similares. Existe otro efecto a corregir, 
-que es el acoplamiento con el continuo. Para ello se incluyen 
-pseudo-orbitales que artificialmente ocupen regiones energéticas 
-alrededor del límite de ionización, difundiendo en forma progresiva las 
-transiciones de los estados excitados al continuo. 
+aumentando el número de configuraciones, lo cual puede verificarse 
+comprobando la similitud entre los cálculos con 13 y con 27 
+configuraciones.
+Existe otro efecto a corregir, que es el acoplamiento con el continuo. 
+Para ello se incluyen pseudo-orbitales que artificialmente ocupen 
+regiones energéticas alrededor del límite de ionización, difundiendo en 
+forma progresiva las transiciones de los estados excitados al continuo. 
 En general, con esta metodología se puede lograr que las secciones 
 eficaces tomen los comportamientos apropiados. Lamentablemente, existen 
 efectos colaterales; como se puede apreciar en la 
 Fig.~\ref{fig:dependencia-CI}, la curva 27-cfg c/PS presenta 
 oscilaciones. Estas se conocen como pseudo-resonancias y se discuten más 
 adelante. 
-%aparecen por la 
-%incompletitud del acoplamiento del continuo que presenta la estructura
-%dada por la Ec.~(\ref{eq:cfgD}).
 
-Este ejemplo ilustra claramente la importancia de una correcta elección 
+Este ejemplo ilustra claramente la importancia de una elección correcta 
 del número y tipo de configuraciones a incluir en los cálculos 
 colisionales. 
 Como señalamos anteriormente, no existe una metodología sistematizada 
@@ -631,73 +583,60 @@ Una vez determinado el conjunto de configuraciones a incluir en el
 problema, es necesario optimizar los parámetros correspondientes a los 
 potenciales modelo para lograr la estructura apropiada. Análogamente a 
 lo que acontece con el problema DIM (Capítulo~\ref{chap:iondim}), se 
-trata de enormes cantidades de pruebas de ensayo y error, hasta obtener 
-resultados satisfactorios. Esta tarea insume meses de trabajo, aún 
-empleando supercomputadoras. Los cálculos en sí se realizan rápidamente, 
-pero la obtención de una estructura adecuada requiere de una gran 
-intuición, dedicación y paciencia. En este último aspecto, las 
-computadoras (a través del aprendizaje automático) superan ampliamente a 
-la labor humana.
+trata de enormes cantidades de pruebas de ensayo y error, hasta que se 
+logran resultados satisfactorios. Esta tarea puede llegar a insumir 
+meses de trabajo, aún empleando supercomputadoras. Los cálculos en sí se 
+realizan rápidamente, pero la obtención de una estructura adecuada 
+requiere de una gran intuición, dedicación y paciencia. En este último 
+aspecto, las computadoras (a través del aprendizaje automático) superan 
+ampliamente a la labor humana.
 
 Existen diversas razones por las cuales la búsqueda del mínimo de la 
-función de costo, que define el problema de optimización, es difícil de 
-automatizar. En primer lugar, la optimización no se realiza sobre una 
-función analítica sino sobre una caja negra, que tiene como valores de 
-entrada los parámetros que definen los potenciales y como único valor de 
-salida el costo que éstos determinan. La caja negra está compuesta por 
-diversas funciones y/o procedimientos: definición del potencial modelo 
-$V(\lambda_{nl})$, resolución de la ecuación radial de un electrón con 
-dicho potencial paramétrico y evaluación de la función de costo 
-correspondiente. En segundo lugar, la función de costo no es una función 
-analítica, por lo cual no es posible minimizarla utilizando métodos de 
-gradientes. 
+función de costo, que define el problema de optimización, resulta 
+difícil de automatizar. En primer lugar, la optimización no se realiza 
+sobre una función analítica sino sobre una caja negra, que tiene como 
+valores de entrada los parámetros de los potenciales y como 
+único valor de salida el costo que éstos determinan. La caja negra está 
+compuesta por diversas funciones y/o procedimientos: expresión 
+matemática del potencial modelo $V(\lambda_{nl})$, resolución de la 
+ecuación radial de un electrón con dicho potencial paramétrico y 
+evaluación de la función de costo correspondiente. En segundo lugar, la 
+función de costo no es una función analítica, por lo cual no es posible 
+minimizarla utilizando métodos de gradientes. 
 
 La primera implementación numérica para la búsqueda del mínimo de la 
-función de costo multidimensional se realizó a partir del método de 
+función de costo multidimensional se realizó empleando el método de 
 Powell~\cite{Powell:64,NumRec:07}. Esta aproximación permite encontrar 
-mínimos en la superficie de costo definida sin evaluar derivadas, aunque
-requiere de una correcta elección de semillas iniciales. 
-En general, estos valores se encuentran a partir de un mapeo de grilla, 
-lo cual resulta computacionalmente costoso si no se cuenta con una 
+mínimos en la superficie de costo sin necesidad de evaluar derivadas, 
+aunque requiere de una correcta elección de semillas iniciales. 
+En general, estos valores se encuentran utilizando un mapeo de grilla.
+Esta tarea es computacionalmente costosa si no se cuenta con una 
 estrategia de búsqueda eficiente. La técnica de Powell proporciona una 
-buena aproximación en la búsqueda del mínimo de la función de costo, 
-pero no es siempre efectiva ya que suele encontrar mínimos locales. Es 
-posible repetir el cálculo con diferentes semillas para corroborar que 
-el mínimo encontrado es efectivamente el mínimo global. Sin embargo, 
-como se verá más adelante, esto implica un gasto computacional 
-significativo. En particular, el código \textsc{autostructure} (\acs{as}) 
-de N. R. Badnell~\cite{Badnell:11} usa esta técnica para ajustar los 
-parámetros de escala $\lambda_{nl}$ que definen los potenciales modelo 
-del blanco. 
+buena metodología para hallar el mínimo de la función de costo, aunque 
+no siempre resulta efectiva ya que suele encontrar mínimos locales. Es posible 
+repetir el cálculo con diferentes semillas para corroborar que el mínimo 
+encontrado es efectivamente el mínimo global. Sin embargo, como se verá 
+más adelante, esto implica un gasto computacional significativo. En 
+particular, el código \textsc{autostructure} (\acs{as}) de N. R. 
+Badnell~\cite{Badnell:11} usa esta técnica para ajustar los parámetros 
+de escala $\lambda_{nl}$ de los potenciales modelo del blanco. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Optimización Bayesiana}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:gaussianprocess}
 
-%El problema de optimización de la estructura del blanco se puede 
-%simplificar como: el problema de decidir qué conjuntos de parámetros 
-%evaluar a continuación. En el ajuste manual, esta decisión la toma el 
-%operador y muchas veces suele ser intuitiva aunque guiada por la 
-%información que se tiene hasta el momento sobre la función de costo y su 
-%comportamiento frente a la variación en cada dimensión. Por otro lado, 
-%el método de Powell esta decisión la toma el algoritmo a partir de una 
-%combinación lineal de vectores de búsqueda. En este trabajo, se 
-%considera el enfoque Bayesiano y la decisión sobre la evaluación del 
-%próximo conjunto de parámetros se toma en base a probabilidades. 
-
 Para subsanar los problemas señalados anteriormente, se aplica un método 
 de optimización basado en la inferencia Bayesiana, el cual es 
-ampliamente utilizado en el campo del aprendizaje automatizado. 
-La inferencia Bayesiana~\cite{Gelman:13,Barber:12} se basa en acumular 
-nuevas evidencias para realizar mejores predicciones. Esta técnica 
-permite combinar una distribución 
-de probabilidad (previa o conocida) y eventos actuales (evidencia) para 
-obtener una predicción (posterior), que a su vez constituye una nueva 
-distribución de probabilidad. La probabilidad de que ocurra un evento 
-$A$ dado un evento $B$ se denomina probabilidad condicional $P(A|B)$. 
-Una propiedad fundamental en Estadística se enuncia mediante el teorema 
-de Bayes,
+ampliamente utilizado en el campo del aprendizaje automatizado. Esta 
+técnica~\cite{Gelman:13,Barber:12} se basa en acumular nuevas evidencias 
+para realizar mejores predicciones. La inferencia Bayesiana permite 
+combinar una distribución de probabilidad (previa o conocida) y eventos 
+actuales (evidencia) para obtener una predicción (posterior), que a su 
+vez constituye una nueva distribución de probabilidad. La probabilidad 
+de que ocurra un evento $A$ dado un evento $B$ se denomina probabilidad 
+condicional $P(A|B)$. Una propiedad fundamental en Estadística se 
+enuncia mediante el teorema de Bayes,
 \begin{equation}
 P(A|B)=\frac{P(B|A)\,P(A)}{P(B)}\,,
 \end{equation}
@@ -707,7 +646,7 @@ independientemente de la evidencia, y $P(A|B)$ es la probabilidad de que
 ocurra $B$ dado que ocurrió $A$. La demostración de este teorema es 
 simple y puede encontrarse en numerosos libros de Estadística. 
 Existen diversas técnicas que permiten definir el siguiente valor a 
-evaluar a partir de distribuciones previas/posteriores sobre una función 
+evaluar mediante distribuciones previas/posteriores sobre una función 
 objetivo. En este trabajo se implementa el método de procesos 
 Gaussianos~\cite{Bergstra:11}. A continuación se introduce brevemente
 esta metodología.
@@ -730,10 +669,10 @@ en minería sudafricano pionero en el campo de la geoestadística. Krige
 desarrolló una teoría que permite encontrar los mejores puntos donde 
 realizar las excavaciones en búsqueda de recursos minerales. 
 Lógicamente, la función es conocida (se excava y se verifica si la mina 
-produce ese mineral), pero es preferible hacer todos los esfuerzos 
-previos para determinar previamente el mejor punto de excavación 
-minimizando las evaluaciones (excavando en la menor cantidad de sitios 
-posible).
+contiene ese mineral), pero es preferible que todos los esfuerzos estén 
+orientados a determinar con antelación el mejor punto de excavación, 
+minimizando así las evaluaciones (excavando en la menor cantidad de 
+sitios posible).
 
 \begin{figure}
 \centering
@@ -744,66 +683,63 @@ $f(x)$ con procesos Gaussianos.}
 \end{figure}
 
 Existen numerosas reseñas bibliográficas sobre el método GP, que varían 
-desde introducciones generales a desarrollos teóricos completos. 
-Se recomienda, por ejemplo, las Refs.~\cite{Rasmussen:06,Murphy:12}. 
-En esta sección, la optimización Bayesiana mediante procesos Gaussianos 
-se introduce brevemente de forma intuitiva a través de un ejemplo. 
-La Fig.~\ref{fig:visualizacion-gp} muestra esquemáticamente el proceso 
-de optimización de una función objetivo desconocida $f(x)$, donde las 
-iteraciones avanzan de izquierda a derecha y de arriba hacia abajo. En 
-este ejemplo se busca el máximo global de la función objetivo $f(x)$, 
-que se ilustra en la figura con una línea discontinua gris. 
-Inicialmente no se tiene información sobre la función objetivo $f(x)$ y 
-se toma una distribución de funciones del GP arbitraria. Es por ello que
-en la Fig.~\ref{fig:visualizacion-gp}(a), al no tener ningún 
-conocimiento sobre la función $f$, se toma una función media arbitraria
-$\mu(x)$ (usualmente se asume $\mu(x)=0$), y se supone una incerteza 
-uniforme $\sigma(x)=\sigma_0$, que se esquematizan con una línea sólida 
-y un área celeste, respectivamente. 
-Seguidamente, al carecer de más información, se escoge un punto 
-aleatorio $x^*$ en el cual se evalúa la función. En la Fig 5.5(b), este 
-punto corresponde a $x^*=35.7$. Evaluando la función en este punto, 
-ahora $f(x^*)$ se conoce y la incerteza allí desaparece (por simplicidad, 
-se asume que la medición no tiene incerteza, o que es despreciable). 
-Para determinar el siguiente punto de evaluación se define una función 
-de adquisición $a(x)$. En el Apéndice~\ref{app:gp} se presentan 
-distintos ejemplos de funciones de adquisición. En este caso, se escoge 
-la función llamada \textit{expected improvement}, que se calcula 
-fácilmente en cada paso de iteración, y se ilustra en la 
-Fig.~\ref{fig:visualizacion-gp} con curvas rojas. 
-En cada paso, el próximo punto de evaluación está dado por el valor de 
-$x$ donde se maximiza la funcion $a(x)$. Este valor se señala en la figura 
+desde introducciones generales a desarrollos teóricos completos. Se 
+recomienda, por ejemplo, las Refs.~\cite{Rasmussen:06,Murphy:12}. En 
+esta sección, la optimización Bayesiana mediante procesos Gaussianos se 
+introduce brevemente de forma intuitiva a través de un ejemplo. En este 
+caso, se busca el máximo global de la función objetivo $f(x)$, que se 
+ilustra en la figura con una línea discontinua gris. La 
+Fig.~\ref{fig:visualizacion-gp} muestra esquemáticamente el proceso de 
+optimización, donde las iteraciones avanzan de izquierda a derecha y de 
+arriba hacia abajo. Inicialmente no se tiene información sobre la 
+función objetivo $f(x)$ y se toma una distribución de funciones del GP 
+arbitraria. Es por ello que en la Fig.~\ref{fig:visualizacion-gp}(a), al 
+no existir ningún conocimiento sobre la función $f$, se asume una 
+función media arbitraria $\mu(x)$ (usualmente se elige $\mu(x)=0$), y se 
+supone una incerteza uniforme $\sigma(x)=\sigma_0$, que se esquematizan 
+con una línea sólida y un área celeste, respectivamente. Seguidamente, 
+al carecer de otra información, se escoge un punto aleatorio $x^*$ en el 
+cual se evalúa la función. En la Fig 5.5(b), este punto corresponde a 
+$x^*=35.7$. Evaluando la función en este punto, ahora $f(x^*)$ se conoce 
+y la incerteza allí desaparece (por simplicidad, se asume que la 
+medición no tiene incerteza, o que esta es despreciable). Para 
+determinar el siguiente punto de evaluación se define una función de 
+adquisición $a(x)$. Existe una gran variedad de funciones de 
+adquisición; en este caso, se escoge la función llamada 
+\textit{expected improvement} (ver Apéndice~\ref{app:gp}), que se 
+ilustra en la Fig.~\ref{fig:visualizacion-gp} con curvas rojas. En cada 
+paso, el próximo punto de evaluación está dado por el valor de $x$ donde 
+se maximiza la funcion $a(x)$. Este valor se señala en la figura 
 mediante una línea vertical punteada. Por ejemplo, en la 
 Fig.~\ref{fig:visualizacion-gp}(b), la función de adquisición es máxima 
 en un punto cercano a 10. En la siguiente iteración, 
 Fig.~\ref{fig:visualizacion-gp}(c), este nuevo valor $x^*$ se incorpora 
 al GP. En consecuencia, la función media $\mu(x)$ y la incerteza 
-$\sigma(x)$, ambas de fácil evaluación, se actualizan.
-Ahora, la función media $\mu(x)$ se asemeja más a la función objetivo en 
-la región $x<40$, que es donde se han hecho las evaluaciones de la misma. 
-Se calcula nuevamente el máximo de la función de adquisición, resultando 
-en el punto $x^*=100$. La evolución de la optimización que se 
-muestra en las Figs.~\ref{fig:visualizacion-gp}(d-h) es evidente, a 
-medida que se va explorando el espacio definido, $\mu(x)$ se parece cada 
-vez más a la función objetivo. Luego de tan sólo seis 
-iteraciones, el GP es capaz de encontrar el máximo global con un error 
-del $0.05\%$. La explotación del máximo hallado en la 
-Fig.~\ref{fig:visualizacion-gp}(i) dependerá del número de iteraciones 
-o presupuesto definido para la optimización. 
+$\sigma(x)$, ambas de fácil evaluación, se actualizan. Ahora, la función 
+media $\mu(x)$ se asemeja más a la función objetivo en la región $x<40$, 
+que es donde se han hecho las evaluaciones de la misma. Se calcula 
+nuevamente el máximo de la función de adquisición, resultando en el 
+punto $x^*=100$. La evolución de la optimización que se muestra en las 
+Figs.~\ref{fig:visualizacion-gp}(d-h) es evidente. A medida que se va 
+explorando el espacio, $\mu(x)$ se parece cada vez más a la función 
+objetivo. En tan sólo seis iteraciones, el GP es capaz de encontrar el 
+máximo global con un error del $0.05\%$. La explotación del máximo 
+hallado en la Fig.~\ref{fig:visualizacion-gp}(i) dependerá del número 
+de iteraciones o presupuesto definido para la optimización. 
 
 Un punto importante a resaltar es que el proceso Gaussiano define una 
 estrategia de optimización general y no requiere conocer la forma
 analítica de la función objetivo. Es decir, esta función ni siquiera 
-debe ser una función matemática, y obviamente, no 
-requiere ser derivable. Lo único que se requiere de la misma es conocer 
-el resultado de su evaluación en un punto dado, que puede ser algo tan 
-general como si se encontró oro, o no, en una mina. Esto es importante 
-porque en el GP que se utiliza en esta Tesis, las evaluaciones que se 
-realizan implican no solo variar los valores de ciertos parámetros, 
-sino escoger diferentes números de configuraciones, o variar lo que se 
-conoce como hiperparámetros, que son todos aquellos valores que no se 
-obtienen de los datos, sino que son escogidos por el científico que 
-realiza los cálculos.
+debe ser una función matemática, y obviamente, puede no ser derivable. 
+Lo único que se requiere de la misma es conocer el resultado de su 
+evaluación en un punto dado, que puede ser algo tan general como si se 
+encontró oro, o no, en una mina. Esto es importante porque en el GP que 
+se utiliza en esta Tesis, las evaluaciones que se realizan implican no 
+sólo variar los valores de ciertos parámetros, sino escoger diferentes 
+números de configuraciones, o variar lo que se conoce como 
+hiperparámetros, que son todos aquellos valores que no se obtienen de 
+los datos, sino que son escogidos por el científico que realiza los 
+cálculos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Resultados}
@@ -819,55 +755,43 @@ Ec.~(\ref{eq:Schro-potmod}), y
 \item los valores de los parámetros de escala que definen dichos 
 potenciales.
 \end{itemize}
-%En el presente trabajo, la estructura electrónica del Be I se examina en 
-%detalle considerando sólo la última de estas variables. Para ello, se 
-%determinan a priori las configuraciones electrónicas y los modelos 
-%potenciales que modelan la estructura. 
 A lo largo de esta Sección, la estructura del Be I se calcula incluyendo
 las 27 configuraciones electrónicas dadas por~(\ref{eq:cfgA}), 
 (\ref{eq:cfgB}) y (\ref{eq:cfgD}). Este conjunto de configuraciones 
-resulta en un total de 90 términos, donde sólo 19 de ellos son términos 
-espectroscópicos. Por otro lado, los potenciales modelos elegidos son 
+resulta en un total de 90 términos, de los cuales sólo 19 de ellos son 
+términos espectroscópicos. Los potenciales modelos elegidos son 
 aquellos que mejor describen, sin ningún tipo de ajuste paramétrico, las 
-energías y los \textit{oscillator strengths}. Con este criterio, se 
-implementa el potencial STO, dado por la Ec.~(\ref{eq:STO-pot}), más un 
-término de intercambio local, y el potencial de correlación 
-core-valencia de Norcross, dado por la Ec.~(\ref{eq:Norcross-pot}).
+energías y las intensidades (o fuerzas) del oscilador. Con este criterio, 
+se implementa el potencial STO, dado por la Ec.~(\ref{eq:STO-pot}), más 
+un término de intercambio local, y el potencial de correlación 
+carozo-valencia de Norcross, dado por la Ec.~(\ref{eq:Norcross-pot}).
 
-La optimización de los parámetros que definen el problema fue ejecutada 
-en etapas, con el fin de comprender en profundidad este proceso. En 
-primera instancia, se ajustaron los parámetros que definen el potencial 
-de polarización de Norcross. Luego, fijando los parámetros resultantes, 
-se procedió a ajustar diez de los quince parámetros que definen el 
-potencial STO. Estos resultados se comparan con valores que se obtienen 
-de usar el método de Powell incluido en el código~\textsc{as}. Esta 
-implementación permite ajustar un limitado número de parámetros de 
-ciertos potenciales modelo y cuenta con una única función de costo, la
-cual depende de la energía media de las configuraciones relativas al 
-estado fundamental.
+La optimización de los parámetros fue ejecutada en etapas, con el fin de 
+comprender en profundidad este proceso. En primera instancia, se 
+ajustaron los parámetros del potencial de polarización de Norcross. 
+Luego, fijando los parámetros resultantes, se procedió a ajustar diez de 
+los quince parámetros del potencial STO. Estos resultados se comparan 
+con valores que se obtienen de usar el método de Powell. 
 
 Para implementar la optimización Bayesiana mediante procesos Gaussianos 
 hemos realizado un minucioso estudio de diversas subrutinas y funciones, 
 seleccionando finalmente la librería GPyOpt~\cite{GPyOpt}. Los 
 resultados de este trabajo se presentan en diferentes subsecciones, de 
 acuerdo a la variable particular que minimiza el costo: energía 
-absoluta, energías de excitación, oscillator strengths y, finalmente, 
-secciones eficaces de excitación por impacto de electrones. 
-Para señalar algunos detalles técnicos de la optimización, 
-%los parámetros del modelo Bayesiano son consistentes a lo largo de todas 
-%las optimizaciones de esta Sección; 
-se implementó un mapeo inicial de tipo \textit{latin hypercube}, un 
-kernel de exponencial cuadrada y una función de adquisión de 
-\textit{expected improvement}. El número de evaluaciones 
-iniciales (o conocimiento previo) sobre el cual el modelo basa sus 
-primeras predicciones, en todos los casos, es igual al número de 
-parámetros a ajustar, mientras que el número máximo de evaluaciones es 
-20 veces este número. Así, si el modelo cuenta con 6 parámetros a 
-ajustar, el número de evaluaciones iniciales es 6 y el valor máximo es 
-120.
+absoluta, energías de excitación, intensidades de oscilador y, 
+finalmente, secciones eficaces de excitación por impacto de electrones. 
+Para señalar algunos detalles técnicos de la optimización, se implementó 
+un mapeo inicial de tipo \textit{latin hypercube}, un kernel de 
+exponencial cuadrada y una función de adquisión de \textit{expected 
+improvement}. El número de evaluaciones iniciales (o conocimiento 
+previo) sobre el cual el modelo basa sus primeras predicciones, en todos 
+los casos, es igual al número de parámetros a ajustar, mientras que el 
+número máximo de evaluaciones es 20 veces este número. Así, si el modelo 
+cuenta con 6 parámetros a ajustar, el número de evaluaciones iniciales 
+es 6 y el valor máximo es 120.
 
 %=======================================================================
-\subsection{Energía absoluta}
+\subsection{Energías absolutas}
 %=======================================================================
 
 La introducción del potencial de polarización de Norcross en el modelo 
@@ -876,32 +800,31 @@ energía absoluta del estado fundamental del berilio a su valor de
 referencia, \mbox{$E_t=29.3369$ Ry}~\cite{NIST}. El potencial está 
 definido por el conjunto de parámetros $\{\alpha_l,\rho_l\}$, donde 
 $l=0,1,2$. Así, se tiene un espacio hiper-paramétrico de seis 
-dimensiones. El parámetro $\alpha$ es la polarizabilidad de core y el 
+dimensiones. El parámetro $\alpha$ es la polarizabilidad del carozo y el 
 espacio de búsqueda de esta variable se define alrededor de su valor 
 experimental~\cite{Dalgarno:62,Sitz:71}, y dentro de un rango de 
 exploración del 20\%,
 \begin{equation}
 \alpha_l=[0.040-0.060]\,.
 \end{equation}
-Por otro lado, el parámetro $\rho$ es un parámetro de ajuste del modelo 
-del potencial y, por lo tanto, brinda mayor libertad para ajustar la 
-energía de ionización con su valor experimental. Así, su rango de 
-exploración se establece como
+Por otro lado, $\rho$ es un parámetro del modelo del potencial que 
+permite ajustar la energía de ionización a su valor experimental. Su 
+rango de exploración se establece como 
 \begin{equation}
 \rho_l=[0.50-1.50]\,.
 \end{equation}
 
-La función de costo que se implementa para ajustar el potencial de 
-polarización del core está dada por 
+La función de costo que se utiliza para ajustar el potencial de 
+polarización del carozo está dada por 
 \begin{equation}
 J=\sum_{i} \left|\frac{E_{i}-\tilde{E}_{i}}{E_{i}} \right|
 \label{eq:Jpol}
 \end{equation}
 donde $i$ es el índice de los términos incluidos en la optimización, 
-$E_{i}$ son los valores de referencia de las energías término $i$, 
+$E_{i}$ son los valores de referencia de las energías del término $i$, 
 obtenidas por diversos experimentos y compiladas por NIST~\cite{NIST}, y 
 $\tilde{E}_{i}$ es el valor que resulta de calcular las energías 
-utilizando el potencial (\ref{eq:STO-pot}) con los paámetros 
+utilizando el potencial (\ref{eq:STO-pot}) con los parámetros 
 $\{\boldsymbol\alpha,\boldsymbol\rho\}$.
 En esta sección, el número inicial de evaluaciones del modelo Bayesiano 
 es igual a 6, con un número máximo de 120 iteraciones. Una de las 
@@ -912,27 +835,26 @@ permiten, por un lado, descartar posibles mínimos locales y, por otro,
 encontrar correlaciones entre ciertos observables y los parámetros del 
 problema. 
 
-En la primera optimización (Opt. I), se considera únicamente la energía
+En la primera optimización (Opt. I), se consideró únicamente la energía
 absoluta del estado fundamental $2s^2\,^1S$. Con todas las semillas 
 escogidas, se obtienen resultados tal que $J\leq 0.002\%$. Cada uno de
 estos cálculos se examina exhaustivamente para determinar si los mínimos 
 hallados corresponden al mismo mínimo global. En todos los casos se 
 corrobora que los 100 cálculos independientes encuentran efectivamente 
-el mismo mínimo global (dentro del hiper-espacio definido). La 
-Tabla~\ref{tab:optpol} muestra los mejores resultados de energías 
+el mismo mínimo global. La Tabla~\ref{tab:optpol} muestra los mejores 
+resultados de energías 
 hallados para los primeros 11 términos espectroscópicos. Si bien la 
-optimización incluye sólo la energía del estado fundamental, 
-es de esperar que la representación del resto de los niveles 
-espectroscópicos mejore en consecuencia, y es efectivamente lo que se 
-observa. Los valores teóricos de energía total de los 11 niveles tienen
-una desviación en promedio del $0.1\%$, que constituye una mejora 
+optimización incluye sólo la energía del estado fundamental, es de 
+esperar que la representación del resto de los niveles espectroscópicos 
+mejore en consecuencia, y esto es efectivamente lo que se observa. Los 
+valores teóricos de energía total de los 11 términos tienen una 
+desviación en promedio del $0.1\%$, que constituye una mejora 
 significativa respecto al error promedio de la estructura sin optimizar
-($0.4\%$).
-Por otro lado, el error relativo de las energías de excitación (respecto 
-al estado fundamental) de los 10 términos espectroscópicos restantes 
-son menores al 4\%, excepto los términos $2s2p\,^1P$ (10\%), $2p^2\,^1D$ 
-(27\%) y $2s3d\,^1D$ (9\%). Estos resultados tienen el mismo orden de 
-error que los valores sin optimizar.
+($0.4\%$). Por otro lado, el error relativo de las energías de 
+excitación (respecto al estado fundamental) de los 10 términos 
+espectroscópicos restantes son menores al 4\%, excepto los términos 
+$2s2p\,^1\!P$ (10\%), $2p^2\,^1\!D$ (27\%) y $2s3d\,^1\!D$ (9\%). Estos 
+resultados tienen el mismo orden de error que los valores sin optimizar.
 
 \begin{table}[t]
 \centering
@@ -948,32 +870,32 @@ error que los valores sin optimizar.
 \rowcolor{mydarkgray} 
 $i$ & Término & NIST 
   & Sin opt.    & Opt. I     & Opt. II    & Opt. III   & Opt. IV \\
-1 & $2s^2\,^1S$ & $-29.3369$ 
+1 & $2s^2\,^1\!S$ & $-29.3369$ 
   & $-29.2342$  & $-29.3369$ & $-29.3369$ & $-29.3433$ & $29.3426$ \\ 
 \rowcolor{mygray} 
-2 & $2s2p\,^3P$ & $-29.1366$ 
+2 & $2s2p\,^3\!P$ & $-29.1366$ 
   & $-29.0302$  & $-29.1310$ & $-29.1368$ & $-29.1464$ & $29.1430$ \\ 
-3 & $2s2p\,^1P$ & $-28.9490$ 
+3 & $2s2p\,^1\!P$ & $-28.9490$ 
   & $-28.8117$  & $-28.9112$ & $-28.9150$ & $-28.9229$ & $28.9210$ \\ 
 \rowcolor{mygray} 
-4 & $2s3s\,^3S$ & $-28.8623$ 
+4 & $2s3s\,^3\!S$ & $-28.8623$ 
   & $-28.7610$  & $-28.8610$ & $-28.8599$ & $-28.8649$ & $28.8654$ \\ 
-5 & $2s3s\,^1S$ & $-28.8386$ 
+5 & $2s3s\,^1\!S$ & $-28.8386$ 
   & $-28.7326$  & $-28.8327$ & $-28.8319$ & $-28.8371$ & $28.8374$ \\ 
 \rowcolor{mygray} 
-6 & $2p^2\,^1D$ & $-28.8185$
+6 & $2p^2\,^1\!D$ & $-28.8185$
   & $-28.5744$  & $-28.6737$ & $-28.8058$ & $-28.8148$ & $28.8119$ \\ 
-7 & $2s3p\,^3P$ & $-28.8001$ 
+7 & $2s3p\,^3\!P$ & $-28.8001$ 
   & $-28.6966$  & $-28.7964$ & $-28.7963$ & $-28.8018$ & $28.8019$ \\ 
 \rowcolor{mygray} 
-8 & $2p\,^3P$   & $-28.7929$ 
+8 & $2p\,^3\!P$   & $-28.7929$ 
   & $-28.6746$  & $-28.7729$ & $-28.7862$ & $-28.8000$ & $28.7932$ \\ 
-9 & $2s3p\,^1P$ & $-28.7884$ 
+9 & $2s3p\,^1\!P$ & $-28.7884$ 
   & $-28.6768$  & $-28.7765$ & $-28.7788$ & $-28.7858$ & $28.7846$ \\ 
 \rowcolor{mygray} 
-10& $2s3d\,^3D$ & $-28.7714$ 
+10& $2s3d\,^3\!D$ & $-28.7714$ 
   & $-28.6677$  & $-28.7673$ & $-28.7661$ & $-28.7708$ & $28.7715$ \\ 
-11& $2s3p\,^1D$ & $-28.7498$ 
+11& $2s3p\,^1\!D$ & $-28.7498$ 
   & $-28.7020$  & $-28.8010$ & $-28.7361$ & $-28.7422$ & $28.7418$ 
 \end{tabular}
 \caption[Energías de Be.]
@@ -984,40 +906,40 @@ espectroscópicos de Be.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/rmatrix/erp_polopt.pdf}
+\includegraphics[width=0.9\textwidth]{figures/rmatrix/erp_polopt.pdf}
 \caption[Errores relativos de energía.]
 {Errores relativos de energías de los 11 términos espectroscópicos de 
 Be.}
 \label{fig:erp_polopt}
 \end{figure}
 
-En la segunda optimización, denominada Opt. II, se incluyen los términos 
-$2s2p\,^3P$ y $2s2p\,^1P$ en la función de costo dada por la 
+En la segunda optimización, denominada Opt. II, se incluyeron los 
+términos $2s2p\,^3\!P$ y $2s2p\,^1\!P$ en la función de costo dada por la 
 Ec.~(\ref{eq:Jpol}). Nuevamente, se realizan cálculos independientes con 
 100 semillas aleatorias, y se encuentran mínimos con una dispersión 
 menor al 0.01\%. El mejor resultado hallado se muestra en la 
 Tabla~\ref{tab:optpol}. Esta optimización muestra una mejora tanto para 
-las energías de los términos optimizados como en el resto de 
-los niveles espectroscópicos. Los errores relativos de las energías de 
-excitación de los 10 términos espectroscópicos son menores al 3\%, con 
-excepción del término $2p^2\,^1P$ (9\%). 
-Luego, se agregan los términos $2s3s\,^3S$, $2s3s\,^1S$, y $2p^2\,^1D$ 
-en la función de costo (Opt. III). El mejor resultado se muestra en 
-la Tabla~\ref{tab:optpol}. Las energías de excitación de los 10 términos 
-espectroscópicos en esta optimización fueron menores al 2\% y en 
-promedio del 1\%, nuevamente, a excepción del término $2p^2\,^1P$. 
-Finalmente, se considera la energía absoluta de los 11 términos 
-espectroscópicos (Opt. IV). El error encontrado en las energías totales
+las energías de los términos optimizados como en el resto de los niveles 
+espectroscópicos. Los errores relativos de las energías de excitación de 
+los 10 términos espectroscópicos son menores al 3\%, con excepción del 
+término $2p^2\,^1\!P$ (9\%). Seguidamente, se agregaron los términos 
+$2s3s\,^3\!S$, $2s3s\,^1\!S$, y $2p^2\,^1\!D$ para conformar la optimización
+III. El mejor resultado se muestra en la Tabla~\ref{tab:optpol}. Los 
+errores en las energías de excitación de los 10 términos 
+espectroscópicos en esta optimización resultaron menores que el 2\% y en 
+promedio del 1\%, a excepción del término $2p^2\,^1\!P$. Finalmente, se 
+realizó la optimización IV, que considera la energía absoluta de los 11 
+términos espectroscópicos. El error encontrado en las energías totales 
 en esta optimización es aproximadamente $0.02\%$, mientras que las 
-energías relativas al estado fundamental continuan siendo en promedio 
-del 1\%, exceptuando el término $2p^2\,^1P$. 
+energías relativas al estado fundamental mantienen un error promedio del 
+1\%, exceptuando el término $2p^2\,^1\!P$. 
 
 En la Fig.~\ref{fig:erp_polopt} se muestra una comparación entre los 
 errores relativos resultantes de la estructura sin optimizar (barras 
-grises) y los que se obtienen implementando la optimización IV del 
-potencial de Norcross. Se puede observar que la optimización mejora 
+grises) y los que se obtienen con la optimización IV del potencial de 
+Norcross. Se puede observar que la optimización mejora 
 significativamente la representación de todos los términos en al menos
-un orden de magnitud, a excepción del término $2p^2\,^1P$. La inclusión
+un orden de magnitud, a excepción del término $2p^2\,^1\!P$. La inclusión
 progresiva de los términos en la minimización muestra que el método 
 Bayesiano es robusto y permite ajustar múltiples términos a través de 
 la función de costo definida.
@@ -1026,15 +948,15 @@ la función de costo definida.
 \subsection{Energías de excitación}
 %=======================================================================
 
-Una vez que las energías fundamentales se ajustan mediante la variación 
-de los parámetros del potencial de Norcross, se estudia la optimización 
-de las energías de excitación respecto al estado fundamental. Esta 
-optimización consiste en ajustar los parámetros $\lambda_{nl}$ que 
-definen al potencial modelo STO~(\ref{eq:STO-pot}) de manera tal que las 
-energías de los términos espectroscópicos del Be se ajusten a los datos 
+Una vez ajustadas las energías absolutas mediante la variación de los 
+parámetros del potencial de Norcross, se estudia la optimización de las 
+energías de excitación respecto al estado fundamental. Esta optimización 
+consiste en ajustar los parámetros $\lambda_{nl}$ del potencial modelo 
+STO~(\ref{eq:STO-pot}) de manera tal que las energías de los términos 
+espectroscópicos del Be se ajusten a los datos 
 experimentales~\cite{NIST}. 
-La optimización del potencial STO considera la variación de 10 orbitales 
-$nl$, desde $1s$ hasta $4f$. La función de costo definida en este modelo 
+La optimización del potencial STO se realiza variando 10 orbitales, 
+desde el $1s$ hasta el $4f$. La función de costo definida en este modelo 
 de optimización considera nuevamente las energías de los primeros 11 
 términos espectroscópicos. 
 
@@ -1049,34 +971,34 @@ términos espectroscópicos.
 >{\centering\arraybackslash}p{0.14\textwidth}}
 \rowcolor{mydarkgray} 
 $i$ & Término     & NIST     & Sin opt. & Powell    & GP \\
-1 & $2s^2\,^1S$   & $0.0000$ & $0.0000$ & $0.0000$  & $0.0000$ \\
+1 & $2s^2\,^1\!S$   & $0.0000$ & $0.0000$ & $0.0000$  & $0.0000$ \\
 \rowcolor{mygray} 
-2 & $2s2p\,^3P$ & $0.2003$ & $0.2040$ & $0.1966$  & $0.1998$ \\
-3 & $2s2p\,^1P$ & $0.3879$ & $0.4225$ & $0.3921$  & $0.3952$ \\
+2 & $2s2p\,^3\!P$ & $0.2003$ & $0.2040$ & $0.1966$  & $0.1998$ \\
+3 & $2s2p\,^1\!P$ & $0.3879$ & $0.4225$ & $0.3921$  & $0.3952$ \\
 \rowcolor{mygray} 
-4 & $2s3s\,^3S$   & $0.4746$ & $0.4732$ & $0.4670$  & $0.4714$ \\
-5 & $2s3s\,^1S$   & $0.4983$ & $0.5016$ & $0.4917$  & $0.4991$ \\
+4 & $2s3s\,^3\!S$   & $0.4746$ & $0.4732$ & $0.4670$  & $0.4714$ \\
+5 & $2s3s\,^1\!S$   & $0.4983$ & $0.5016$ & $0.4917$  & $0.4991$ \\
 \rowcolor{mygray} 
-6 & $2p^2\,^1D$   & $0.5184$ & $0.6598$ & $0.5149$  & $0.5181$ \\
-7 & $2s3p\,^3P$ & $0.5368$ & $0.5376$ & $0.5292$  & $0.5368$ \\
+6 & $2p^2\,^1\!D$   & $0.5184$ & $0.6598$ & $0.5149$  & $0.5181$ \\
+7 & $2s3p\,^3\!P$ & $0.5368$ & $0.5376$ & $0.5292$  & $0.5368$ \\
 \rowcolor{mygray} 
-8 & $2p^2\,^3P$   & $0.5440$ & $0.5595$ & $0.5432$  & $0.5537$ \\
-9 & $2s3p\,^1P$ & $0.5485$ & $0.5574$ & $0.5518$  & $0.5493$ \\
+8 & $2p^2\,^3\!P$   & $0.5440$ & $0.5595$ & $0.5432$  & $0.5537$ \\
+9 & $2s3p\,^1\!P$ & $0.5485$ & $0.5574$ & $0.5518$  & $0.5493$ \\
 \rowcolor{mygray} 
-10 & $2s3d\,^3D$  & $0.5655$ & $0.5665$ & $0.5572$  & $0.5639$ \\
-11 & $2s3d\,^1D$  & $0.5871$ & $0.5322$ & $0.5859$  & $0.5877$ \\
+10 & $2s3d\,^3\!D$  & $0.5655$ & $0.5665$ & $0.5572$  & $0.5639$ \\
+11 & $2s3d\,^1\!D$  & $0.5871$ & $0.5322$ & $0.5859$  & $0.5877$ \\
 \rowcolor{mygray} 
-   & Total $2s^2$ & $-29.3369$ & $-29.2342$ & $-29.2355$ & $-29.3377$
+   & Total $2s^2\,^1\!S$ & $-29.3369$ & $-29.2342$ & $-29.2355$ & $-29.3377$
 \end{tabular}
 \caption[Energías de excitación de Be.]
 {Energía de excitación (en Rydbergs) de los primeros 11 términos 
-espectroscópicos de Be relativos al estado fundamental $2s^2\,^1S$.}
+espectroscópicos de Be relativos al estado fundamental $2s^2\,^1\!S$.}
 \label{tab:exener}
 \end{table}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/rmatrix/erp_ei.pdf} 
+\includegraphics[width=0.9\textwidth]{figures/rmatrix/erp_ei.pdf} 
 \caption[Errores relativos de 10 términos espectroscópicos de Be.]
 {Errores relativos de los primeros 10 términos espectroscópicos respecto 
 a valores de NIST correspondientes a la Tabla~\ref{tab:exener}.}
@@ -1084,50 +1006,45 @@ a valores de NIST correspondientes a la Tabla~\ref{tab:exener}.}
 \end{figure}
 
 Los resultados de esta optimización se presentan en la 
-Tabla~\ref{tab:exener}. Los valores teóricos que se obtienen con el 
-método Bayesiano se comparan con la estructura atómica sin optimizar y 
-cuando se utiliza el método de Powell. En este caso también se considera 
-el mismo número de orbitales en la minimización ($1s$-$4f$). A 
-diferencia del método Bayesiano, que optimiza las energías totales, la 
-implementación existente del método de Powell sólo permite minimizar una 
-función de costo que depende de las energías de excitación respecto al 
-estado fundamental.
-El método de Powell tiene una respuesta poco satisfactoria: logra 
-encontrar parámetros que mejoran las energías en sólo 5 de los 10 
-términos incluidos en la optimización. Por otro lado, el GP reproduce 
-mejor la energía de todos los términos, a excepción de $2s2p\,^1P$ y 
-$2p^2\,^3P$. Se debe destacar que el método de Powell requiere muchas 
-más evaluaciones (en este caso, alrededor de 400) que GP para hallar 
-este mínimo, que sólo considera 120. Además, la energía del estado 
-fundamental que se obtiene de la optimización de Powell tiene una 
-diferencia con el valor de referencia de $0.1$~Ry. El desempeño del 
-método GP en este sentido es mejor, con una diferencia de $0.001$~Ry. 
-Este excelente resultado se atribuye a la correlación core-valencia 
-introducida por el potencial de polarización previamente optimizado. 
-Para una mejor visualización de los resultados de la 
-Tabla~\ref{tab:exener}, en la Fig.~\ref{fig:exener} se presentan los 
-errores relativos de las energías de excitación consideradas. Los 
-términos más afectados por la optimización son $2s2p\,^1P$, $2p^2\,^1D$ 
-y $2s3d\,^1D$, que presentan una desviación (sin optimización) del 9\%, 
-27\% y 9\%, respectivamente. El ajuste de los orbitales espectroscópicos 
-reduce estos valores por debajo de 2\%, con un promedio del $0.6\%$. 
-%Si bien la representación de los niveles 
-%espectroscópicos dada por GP es en general muy buena, vale remarcar que 
-%el orden de los términos $2p^2\,^3P$ y $2s3p\,^1P$ se encuentra 
-%invertido. La incorrecta representación de estos niveles podría ser 
-%mejorada, por ejemplo, considerando un mayor número de configuraciones 
-%que intervengan en el CI de estos términos.
+Tabla~\ref{tab:exener}. Los valores teóricos que se obtienen utilizando 
+el método Bayesiano se comparan con los que se obtienen sin emplear 
+ninguna optimización, y con los que resultan de la minimización de 
+Powell. En todos los casos se considera el mismo número de orbitales en 
+la minimización ($1s$-$4f$). A diferencia del método Bayesiano, que 
+optimiza las energías totales, la implementación existente del método de 
+Powell sólo permite minimizar una función de costo que depende de las 
+energías de excitación respecto al estado fundamental. El GP reproduce 
+muy bien la energía de todos los términos, a excepción de $2s2p\,^1\!P$ 
+y $2p^2\,^3\!P$. El método de Powell tiene una respuesta poco 
+satisfactoria: logra encontrar parámetros que mejoran las energías en 
+sólo 5 de los 10 términos incluidos en la optimización. Además, la 
+energía del estado fundamental obtenida con el método GP tiene una 
+diferencia con el valor de referencia de $0.001$~Ry, mientras que el 
+desempeño del método de Powell en este sentido es menor, con una 
+diferencia de $0.1$~Ry. Los excelentes resultados del GP atribuyese a la 
+correlación carozo-valencia introducida por el potencial de polarización 
+previamente optimizado. Por último, debe destacarse que la optimización 
+GP utiliza menos evaluaciones para hallar este mínimo que el método de 
+Powell (en este caso, alrededor de 400). Para una mejor visualización de 
+los resultados de la Tabla~\ref{tab:exener}, en la Fig.~\ref{fig:exener} 
+se presentan los errores relativos de las energías de excitación 
+consideradas. Los términos más afectados por la optimización son 
+$2s2p\,^1\!P$, $2p^2\,^1\!D$ y $2s3d\,^1\!D$, que presentan una 
+desviación (sin optimización) del 9\%, 27\% y 9\%, respectivamente. El 
+ajuste de los orbitales espectroscópicos reduce estos errores por debajo 
+de 2\%, con un promedio del $0.6\%$. 
 
 %=======================================================================
-\subsection{Oscillator strengths}
+\subsection{Intensidades de oscilador}
 %=======================================================================
 
-Los oscillator strenghts expresan la probabilidad de emisión o absorción 
-de un fotón en la transición entre dos niveles ligados del blanco. 
-Además, en transiciones dipolares, esta cantidad es proporcional a la 
-sección eficaz de excitación. De manera que describir correctamente 
-los oscillator strenghts significa un modelo atómico y colisional 
-satisfactorio.
+La intensidad de oscilador expresa la probabilidad de emisión o 
+absorción de un fotón en la transición entre dos niveles del blanco. En 
+transiciones dipolares, la sección eficaz de excitación es proporcional 
+a este valor. Por ello, es importante verificar que las optimizaciones 
+realizadas no sólo provean energías cercanas a los valores 
+experimentales, sino que también, las funciones de onda resultantes 
+permitan obtener intensidades de oscilador aceptables.
 
 \begin{table}
 \centering
@@ -1142,95 +1059,95 @@ satisfactorio.
   & Transición 
        & NIST       & Sin opt.   
        & Powell     & GP \\
-1 & $2s^2\,^1S-2s2p\,^1P$ 
+1 & $2s^2\,^1\!S-2s2p\,^1\!P$ 
        & $1.37$     & $1.32$ 
        & $1.40$     & $1.40$ \\
 \rowcolor{mygray} 
-2 & $2s^2\,^1S-2s3p\,^1P$ 
+2 & $2s^2\,^1\!S-2s3p\,^1\!P$ 
        & $8.98[-3]\,^{\dagger}$ & $5.70[-2]$ 
        & $2.32[-2]$ & $1.71[-2]$ \\
-3 & $2s2p\,^3P-2s3s\,^3S$ 
+3 & $2s2p\,^3\!P-2s3s\,^3\!S$ 
        & $8.44[-2]$ & $8.57[-2]$ 
        & $8.21[-2]$ & $8.49[-2]$ \\
 \rowcolor{mygray} 
-4 & $2s2p\,^3P-2s3d\,^3D$ 
+4 & $2s2p\,^3\!P-2s3d\,^3\!D$ 
        & $2.99[-1]$ & $2.96[-1]$ 
        & $3.09[-1]$ & $3.08[-1]$ \\
-5 & $2s2p\,^1P-2s3s\,^1S$ 
+5 & $2s2p\,^1\!P-2s3s\,^1\!S$ 
        & $1.15[-1]$ & $1.62[-1]$ 
        & $1.27[-1]$ & $1.23[-1]$ \\
 \rowcolor{mygray} 
-6 & $2s2p\,^1P-2s3d\,^1D$ 
+6 & $2s2p\,^1\!P-2s3d\,^1\!D$ 
        & $3.98[-1]$ & $8.18[-2]$ 
        & $4.54[-1]$ & $3.83[-1]$ \\
-7 & $2s3s\,^3S-2s3p\,^3P$ 
+7 & $2s3s\,^3\!S-2s3p\,^3\!P$ 
        & $1.13$     & $1.15    $ 
        & $1.14$     & $1.13    $ \\
 \rowcolor{mygray} 
-8 & $2s3s\,^1S-2s3p\,^1P$ 
+8 & $2s3s\,^1\!S-2s3p\,^1\!P$ 
        & $9.57[-1]$ & $9.02[-1]$ 
        & $9.92[-1]$ & $9.80[-1]$ \\
-9 & $2s3p\,^1P-2s3d\,^1D$ 
+9 & $2s3p\,^1\!P-2s3d\,^1\!D$ 
        & $6.78[-1]$ & $9.26[-2]$ 
        & $7.29[-1]$ & $7.70[-1]$ \\
 \rowcolor{mygray} 
 &\multicolumn{5}{l}{$\,^{\dagger}\,a[b]$ denota $a\times 10^b$} \\
 \end{tabular}
-\caption{Oscillator strenghts de absorción de transiciones dipolares en 
-Be.}
+\caption{Intensidades del oscilador de absorción de transiciones 
+dipolares en Be.}
 \label{tab:fabs}
 \end{table}
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\includegraphics[width=0.95\textwidth]{figures/rmatrix/erp_fabs.pdf} 
-\caption{Errores relativos de oscillator strenghts de absorción 
+\includegraphics[width=0.9\textwidth]{figures/rmatrix/erp_fabs.pdf} 
+\caption{Errores relativos de intensidades del oscilador de absorción 
 dipolares respecto a valores de NIST correspondientes a la 
 Tabla~\ref{tab:fabs}.}
 \label{fig:fabs}
 \end{figure}
 
-En la Tabla~\ref{tab:fabs} se presentan los oscillator strenghts de 
-absorción para un conjunto de transiciones en Be resultantes de la 
+En la Tabla~\ref{tab:fabs} se presentan las intensidades del oscilador 
+de absorción para un conjunto de transiciones en Be resultantes de la 
 optimización de la sección anterior. Los resultados teóricos se comparan 
 con valores experimentales~\cite{NIST}. También se incluyen las 
 cantidades correspondientes a los modelos sin optimización y los valores 
-resultantes de implentar el método de Powell. Los errores relativos de 
+resultantes al emplear el método de Powell. Los errores relativos de 
 los cálculos teóricos respecto a los datos experimentales se presentan 
 en la Fig.~\ref{fig:fabs}. El método Bayesiano provee una mejora 
 sistemática en la representación de todas las transiciones, a excepción 
-de $2s2p\,^3P\rightarrow 2s3d\,^3D$. En general, el método de Powell 
+de $2s2p\,^3\!P\rightarrow 2s3d\,^3\!D$. En general, el método de Powell 
 tiene un desempeño similar. Los resultados sin optimizar tienen un error 
 relativo de aproximadamente 84\%, mientras que los método de Powell y GP 
 presentan errores relativos promedios de 23\% y 14\%, respectivamente. 
-Los valores de oscillator strenghts de este grupo de transiciones 
-dipolares son buenos a pesar de que fueron obtenidos ajustando la 
-energía individual de cada uno de los términos. Un modelo de 
-optimización superador que incluya los oscillator strengths en la 
-función de costo permitiría, en principio, predecir estas cantidades con 
+Los valores de las intensidades de oscilador de este grupo de 
+transiciones dipolares son buenos a pesar de que fueron obtenidos 
+ajustando la energía individual de cada uno de los términos. Un modelo 
+de optimización superador que incluya las fuerzas de oscilador en la 
+función de costo permitiría, en principio, calcular estas cantidades con 
 mayor precisión.
 
 %=======================================================================
 \subsection{Excitación por impacto de electrones}
 %=======================================================================
 
-Una vez optimizada la estructura atómica, se procede a estudiar los 
-efectos de la optimización en los cálculos de secciones eficaces de 
-excitación por impacto de electrones. Cabe destacar que los esfuerzos en 
-este trabajo no están concentrados en proveer secciones eficaces de 
-extremada precisión. El objetivo principal es estudiar los efectos que 
-produce la optimización del blanco en el cálculo colisional. 
-El costo computacional de este tipo de cálculo es alto, por lo que se 
-eligió una pequeña expansión de configuraciones (particularmente de 
-pseudo-estados) para probar el método de optimización con procesos 
-Gaussianos. 
+Una vez optimizada la estructura atómica, se procede a estudiar cómo 
+influye esta en los cálculos de secciones eficaces de excitación por 
+impacto de electrones. Cabe destacar que los esfuerzos en este trabajo 
+no están concentrados en proveer secciones eficaces con extrema 
+precisión. El objetivo principal es diseñar métodos de optimización de 
+la estructura de los blancos, para mejorar y efectivizar los cálculos 
+colisionales. El costo computacional de este tipo de cálculo es alto, 
+por lo que se eligió una pequeña expansión de configuraciones 
+(particularmente de pseudo-estados) para probar el método de 
+optimización con procesos Gaussianos. 
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/rmatrix/GP-RMPS-A.eps} 
 \caption[Secciones eficaces de excitación de Be (Parte I).]
 {(Parte I) Secciones eficaces teóricas de excitación por impacto de 
-electrón en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
+electrones en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
 GP (línea sólida), parametrización de Dipti \textit{et al.}
 \cite{Dipti:19} (línea discontinua) y el método CCC~\cite{Fursa:97} 
 (símbolos).}
@@ -1242,7 +1159,7 @@ GP (línea sólida), parametrización de Dipti \textit{et al.}
 \includegraphics[width=\textwidth]{figures/rmatrix/GP-RMPS-B.eps} 
 \caption[Secciones eficaces de excitación de Be (Parte II).]
 {(Parte II) Secciones eficaces teóricas de excitación por impacto de 
-electrón en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
+electrones en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
 GP (línea sólida), parametrización de Dipti \textit{et al.}
 \cite{Dipti:19} (línea discontinua) y el método CCC~\cite{Fursa:97}
 (símbolos).}
@@ -1254,51 +1171,50 @@ GP (línea sólida), parametrización de Dipti \textit{et al.}
 \includegraphics[width=\textwidth]{figures/rmatrix/GP-RMPS-C.eps} 
 \caption[Secciones eficaces de excitación de Be (Parte II).]
 {(Parte III) Secciones eficaces teóricas de excitación por impacto de 
-electrón en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
+electrones en Be: RMPS sin ajuste (línea punteada), RMPS con optimización 
 GP (línea sólida), parametrización de Dipti \textit{et al.}
 \cite{Dipti:19} (línea discontinua) y el método CCC~\cite{Fursa:97}
 (símbolos).}
 \label{fig:crossBe-partIII}
 \end{figure}
 
-Los resultados obtenidos a partir del método RMPS y la estructura 
+Los resultados obtenidos utilizando el método RMPS y la estructura 
 atómica optimizada con GP se muestran en las 
 Fig.~\ref{fig:crossBe-partI}, \ref{fig:crossBe-partII} y 
-\ref{fig:crossBe-partIII} con líneas sólidas. Los valores presentes se 
-comparan con cálculos colisionales cuando el blanco atómico no está 
-optimizado (líneas punteadas) y valores de referencia: las líneas negras 
-discontinuas corresponden a expresiones paramétricas~\cite{Dipti:19}, que 
-surgen de promedios de los mejores resultados de la literatura, y se 
-toman como referencia. También se incluyen los valores dados por el 
-método \textit{convergent close-coupling} (CCC)~\cite{Fursa:97} (símbolos).
-Las secciones eficaces que se obtienen cuando el blanco no está ajustado 
-varían notoriamente de los valores optimizados. Por ejemplo, la sección 
-eficaz predicha para la transición $2s^2\,^1S\rightarrow 2s3d\,^1D$ sin 
-optimizar es el doble de la que se obtiene optimizando la estructura. 
-En general, las transiciones del estado fundamental a los primeros 10 
-estados excitados
-que se obtienen a partir del modelo GP reproducen muy bien los valores 
-de referencia en todos los casos. La influencia de la optimización del 
-blanco es significativa en los términos espectroscópicos con mayor 
-energía.
+\ref{fig:crossBe-partIII} con líneas sólidas. Los cálculos presentes se 
+comparan con resultados en los que el blanco atómico no está optimizado 
+(RMPS, líneas punteadas) y con valores de referencia: las líneas 
+discontinuas corresponden a expresiones paramétricas~\cite{Dipti:19}, 
+que surgen de promedios de los mejores resultados de la literatura. 
+También se incluyen los cálculos dados por el método \textit{convergent 
+close-coupling} (CCC)~\cite{Fursa:97} (símbolos). En la parte superior 
+de cada panel se muestra el espectro de energías de referencia de los 
+términos ligados~\cite{NIST} (líneas marrones), y los términos del 
+blanco optimizado (lineas rojas) y sin optimizar (líneas grises). Las 
+secciones eficaces GP-RMPS varían notoriamente respecto a los valores 
+correspondientes a la estructura atómica sin optimizar. Por ejemplo, en 
+la transición $2s^2\,^1\!S\rightarrow 2s3d\,^1\!D$, los resultados RMPS
+presentan un factor 2. En general, las probabilidades de excitación del 
+estado fundamental a los primeros 10 estados excitados, calculadas con 
+la optimización GP del blanco, reproducen muy bien los valores de 
+referencia en todos los casos. La influencia de la optimización del 
+blanco es significativa en transiciones hacia términos con mayor 
+energía. 
 
-En los blancos neutros, las resonancias cerca del umbral de excitación 
-debido a la captura temporal del electrón dispersado son usualmente 
-pequeñas. Las resonancias que se observan en las secciones 
-eficaces optimizadas que incluyen las configuraciones $2s3s$, $2s3p$ y 
-$2s3d$ son pseudo-resonancias y se deben a la pequeña expansión de 
-pseudo-estados implementada. Estas resonancias ficticias pueden 
-removerse incluyendo pseudo-orbitales de mayor orden en la CI. Si se 
-consideran configuraciones que incluyan excitaciones a las capas $n>5$, 
-estos efectos disminuirán considerablemente. 
-%Por ejemplo, el trabajo de 
-%Ballance y colaboradores~\cite{Be_Ballance:03} considera una expansión 
-%de configuraciones que incluye pseudo-orbitales desde $n=5$ hasta $n=11$.
-Si bien los cálculos de secciones eficaces presentes aún se deben 
-converger en la representación de pseudo-estados, las amplitudes de los 
-resultados ajustados son correctas. La comparación entre los cálculos 
-RMPS presentes muestra que esto se debe a la optimización GP de los 
-términos espectroscópicos del blanco. 
+En los blancos neutros, las resonancias cerca del umbral de excitación, 
+debido a la captura temporal del electrón dispersado, son usualmente 
+pequeñas. Las resonancias que se observan en las secciones eficaces 
+optimizadas que incluyen las configuraciones $2s3s$, $2s3p$ y $2s3d$ son 
+pseudo-resonancias y se deben a la cantidad limitada de pseudo-estados 
+incluida en el modelo. Estas resonancias ficticias pueden removerse 
+adicionando más pseudo-orbitales en la CI. Si se consideran 
+configuraciones que incluyan excitaciones a las capas $n>5$, estos 
+efectos disminuirán considerablemente.
+%%%%
+No obstante, la comparación entre los resultados de las 
+Figs.~\ref{fig:crossBe-partI}, \ref{fig:crossBe-partII} y 
+\ref{fig:crossBe-partIII} verifica el éxito del método GP para la 
+optimización automática de los términos del blanco. 
 
 
 

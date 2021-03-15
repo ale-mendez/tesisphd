@@ -1,65 +1,66 @@
-\chapter{Conclusiones}
-\label{chap:conclusiones}
+\chapter*{Conclusiones}%
+\addcontentsline{toc}{chapter}{Conclusiones}%
 
-En este trabajo de investigación se exploró la optimización de sistemas 
-multielectrónicos para el cálculo de colisionales inelásticas. Según 
-el proceso colisional y la naturaleza del blanco a examinar, se 
-implementaron cuatro metodologías diferentes:
+En este trabajo de investigación se presentaron métodos de 
+optimización de sistemas multielectrónicos para el cálculo de 
+colisionales inelásticas. Según el proceso colisional y la naturaleza 
+del blanco, se formularon cuatro metodologías diferentes:
 \begin{itemize}
 \item 
-La estructura electrónica de átomos y moléculas se estudió mediante el 
-método de inversión depurada (DIM). Esta novedosa aproximación permitió 
-obtener potenciales efectivos que describen exitosamente la estructura 
-de diversos blancos. Los potenciales DIM se utilizaron, en conjunción 
-con dos teorías perturbativas (FBA y CDW), para calcular la ionización 
-debido al impacto de proyectiles (fotones y protones). En términos 
-generales, el DIM resultó una técnica eficaz para calcular correctamente 
-los procesos inelásticos analizados.
+Se desarrolló el método de inversión depurada (DIM) para estudiar la 
+estructura electrónica de átomos y moléculas simples. Esta novedosa 
+aproximación permitió obtener potenciales efectivos que describen 
+exitosamente la estructura de diversos blancos. Los potenciales DIM se 
+utilizaron, en conjunción con dos teorías perturbativas (FBA y CDW), 
+para calcular la ionización debido al impacto de proyectiles (fotones y 
+protones). En términos generales, el DIM resultó una técnica eficaz para 
+calcular correctamente los procesos inelásticos analizados.
 
 \item
-Además, se examinó la ionización debido al impacto de iones desnudos en 
-blancos moleculares complejos compuestos por H, C, N y O. Para esto, se 
-introdujo un modelo estequiométrico simple (SSM), que permite descibir 
-una molécula como una combinación lineal de los átomos que la componen. 
-A pesar de la simplicidad de este modelo, se demostró que esta 
-aproximación es robusta y confiable para predecir a primer orden las 
-secciones eficaces de ionización para decenas de sistemas colisionales, 
-incluyendo las nucleobases del ADN y ARN. A partir de los cálculos 
-realizados, se encontró una ley de escala independiente que permite 
-aproximar este proceso para, en principio, cualquier sistemas 
-molécula-proyectil.
+Se formuló el modelo estequiométrico simple que permitió calcular la 
+ionización debido al impacto de iones de carga múltiple en blancos 
+moleculares complejos compuestos por H, C, N y O. A pesar de la 
+simplicidad del método, se demostró que esta aproximación es robusta y 
+confiable para estimar a primer orden las secciones eficaces de 
+ionización para decenas de sistemas colisionales, incluyendo las 
+nucleobases del ADN y ARN. Utilizando estos nuevos resultados, se 
+enunció una ley de escala independiente que permite aproximar este 
+proceso, en principio, para cualquier sistema colisional molecular.
 
 \item
-En el caso de los atómos pesados, se vió la importancia de elegir el 
+En el caso de los atómos pesados, se demostró la importancia de elegir el 
 método apropiado para describir los efectos relativistas. Implementando 
 el método de potencial paramétrico de Klapisch y optimizando las 
 configuraciones electrónicas elegidas para representar los blancos, se 
 obtuvieron estructuras atómicas precisas de lantánidos y metales de 
-transición pesados. Se mostró la necesidad de cálculos relativistas
-apropiados para predicciones correctamente la fuerza de frenado debido a 
-protones en diversos blancos.
+transición pesados. Se mostró que los efectos relativistas también 
+afectan los valores de las energías de ligadura de las capas externas. 
+La utilización de las soluciones relativistas presentes en el cálculo de 
+fuerza de frenado debido a protones fueron determinantes para poder 
+explicar recientes mediciones.
 
 \item
-En la última parte de este trabajo, se examinó la excitación por impacto 
-de electrones de átomos neutros mediante el método de $R$-matrix. 
-En este caso, el esquema de optimización de la estructura atómica 
-depende del ajuste manual de los parámetros del problema. 
-La complejidad del cálculo se resolvió empleando la optimización 
-Bayesiana mediante procesos Gaussianos, que permitió ajustar de forma 
-automática la estructura del blanco. Esta implementación mostró 
-ser un éxito tanto para reproducir la estructura del blanco (energías 
-de excitación, totales y oscillator strengths) como las secciones 
+Se diseñó un método de optimización para ajustar la estructura de 
+átomos neutros en la excitación por impacto de electrones. El cálculo 
+de las probabilidades de transición se realizó utilizando un método 
+complementamente cuántico. El esquema de optimización de la estructura 
+depende de la selección correcta de las configuracions electrónicas a 
+introducir en el cálculo, de la elección de potenciales, y del ajuste 
+de diversos parámetros. La complejidad del cálculo se resolvió empleando 
+la inferencia Bayesiana mediante procesos Gaussianos, que permitió 
+ajustar de forma automática estos hiper-parámetros. El método de 
+optimización desarrollado resultó exitoso para reproducir las energías 
+(de excitación y totales), intensidades de oscilador y secciones 
 eficaces de excitación, con un costo computacional relativamente bajo.
 \end{itemize}
 %
-Las metodologías empleadas en esta Tesis permitieron calcular de forma 
-precisa la estructura electrónica de una amplia variedad de sistemas 
-atómicos y moleculares. Estos blancos se examinaron en procesos 
-inelásticos descriptos mediante métodos teóricos con diferentes órdenes 
-de aproximación --desde aproximaciones perturbativas de primer orden 
-hasta métodos completamente cuánticos. Del trabajo presentado se 
-concluye que sólo mediante la correcta optimización de los blancos se 
-puede calcular de forma precisa, en el rango de validez definido, los 
-procesos inelásticos a los que estos son sometidos.
+En conclusión, los métodos desarrollados cumplieron satisfactoriamente 
+los objetivos de esta Tesis. Las metodologías formuladas permitieron 
+calcular en forma precisa la estructura electrónica de una amplia 
+variedad de sistemas atómicos y moleculares. Además, estas técnicas 
+mostraron tener
+un buen desempeño en el cálculo de procesos inelásticos descriptos 
+mediante métodos teóricos con diferentes órdenes de aproximación --desde 
+perturbativas de primer orden hasta métodos completamente cuánticos. 
 
 

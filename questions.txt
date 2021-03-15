@@ -1,0 +1,60 @@
+------------
+| Abstract |
+------------
+
+>> What is the reason for writing the thesis?
+
+The main reason for writing this Thesis is to develop methods to 
+accurately describe the electronic structure of targets in collisional 
+processes. 
+
+>> What are the current approaches and gaps in the literature?
+
+Currently, there are several approaches for describing the atomic and
+molecular structure of these targets. However, some of these methods are 
+umpracticle while others require large amount of efforts. 
+
+>> What are your research question(s) and aims?
+
+In this research we aim to introduce new methods that allows one to 
+represent the target structure in a simply yet accurate fashion.
+
+>> Which methodology have you used?
+
+We have used several techniques to approach several collisional system:
+an inversion method for atoms and small molecules, a Bayesian method to 
+optimize targets in electron impact processes, a ... 
+
+>> What are the main findings?
+
+We have found that the introduction of these methods allows one to 
+correctly represent the atomic structure of light and heavy atoms, as 
+well as small and large molecules in several inelastic processes.
+
+>> What are the main conclusions and implications?
+
+The methods developed are 
+
+
+----------------
+| Introducción |
+----------------
+
+>> What is the thesis problem statement?
+>> What do you (not) hope to achieve?
+>> What are the research questions and hypotheses?
+>> What are your epistemological and ontological positions?
+>> What is your contribution to the field?
+>> How is the thesis laid out?
+
+----------------
+| Conclusiones |
+----------------
+
+>> What are your answers to the research questions?
+>> How have you addressed your aims and objectives?
+>> What is the significance and implications of your findings?
+>> What contribution has the study made?
+>> What are the limitations of the study and questions for further research?
+
+
