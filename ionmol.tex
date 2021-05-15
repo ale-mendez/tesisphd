@@ -54,14 +54,14 @@ de ADN debido al impacto de protones~\cite{Galassi:12} y de uracilo por
 iones de carbono, oxígeno y flúor~\cite{champion2012,agnihotri2012,
 agnihotri2013}. Recientemente, L\"udde \textit{et al.}~\cite{Ludde:16,
 Ludde:18,Ludde:19,Ludde:20} propusieron un modelo, también basado en el 
-IAM, que combina de secciones eficaces atómicas con correcciones 
+IAM, que combina secciones eficaces atómicas con correcciones 
 geométricas de apantallamiento. En este caso, las secciones eficaces 
 atómicas se obtienen utilizando la teoría del functional densidad 
 dependiente del tiempo. 
 
 En este capítulo, el proceso colisional se calcula mediante el método 
 CDW-EIS~\footnote{Por simplicidad, la aproximación CDW-EIS será referida 
-como CDW}, mientras que para modelar los blancos se diseñan distintos 
+como CDW.}, mientras que para modelar los blancos se diseñan distintos 
 modelos estequiométricos. Como resultados de estos cálculos, se postulan 
 leyes de escala que permiten expresar las secciones eficaces de 
 ionización molecular en forma independiente del 
@@ -81,9 +81,9 @@ de interés. La sección eficaz de ionización $\sigma_{\alpha}$ del átomo
 $\alpha$ se obtiene mediante la aproximación del método CDW en 
 combinación con el método de inversión depurada (DIM). Como se explicó 
 en el Capítulo~\ref{chap:iondim}, el DIM permite obtener potenciales 
-efectivos. Con ellos se obtienen las funciones de onda radiales de los 
-estados inicial (ligado) y final (continuo), resolviendo las 
-ecuaciones de Schr\"odinger correspondientes. Por una cuestión de 
+efectivos. Con ellos se resuelven las ecuaciones de Schr\"odinger 
+correspondientes y se obtienen las funciones de onda radiales de los 
+estados inicial (ligado) y final (continuo). Por una cuestión de 
 consistencia con los programas colisionales utilizados, los estados del 
 blanco antes y después de la colisión se calculan introduciendo los 
 potenciales DIM como entrada en el código~\textsc{radialf}, desarrollado 
@@ -220,7 +220,7 @@ Ec.~(\ref{eq:meanang}). Curvas: cálculos teóricos FBA (punteada) y CDW
 Como se estableció previamente, la emisión de electrones secundarios 
 contribuye al daño total. Por lo tanto, no sólo es esencial conocer la 
 distribución de energía de los electrones eyectados, sino también la 
-dirección en la que éstos son emitidos. Una vez más, se puede considerar 
+dirección en la que estos son emitidos. Una vez más, se puede considerar 
 que la sección eficaz diferencial de ionización en función del ángulo 
 sólido de eyección del electrón $\Omega$ puede expresarse como una 
 función de distribución. Así, el ángulo medio de emisión 
@@ -300,12 +300,12 @@ Tabla~\ref{tab:families}.
 
 \begin{table}
 \begin{center}
-\begin{tabularx}{\textwidth}{
->{\centering\arraybackslash}p{0.3\textwidth}
->{\centering\arraybackslash}p{0.3\textwidth}
->{\centering\arraybackslash}p{0.3\textwidth}}
+\begin{tabular}{
+>{\centering\arraybackslash}p{0.305\textwidth}
+>{\centering\arraybackslash}p{0.305\textwidth}
+>{\centering\arraybackslash}p{0.305\textwidth}}
 \rowcolor{mydarkgray} 
-CH & CHNO & DNA \\
+CH & CHNO & ADN \\
 CH$_4$ (metano) & C$_5$H$_5$N (piridina)       & C$_5$H$_5$N$_5$ (adenina) \\
 \rowcolor{mygray} 
 C$_2$H$_2$ (acetileno) & C$_4$H$_4$N$_2$ (pirimidina)     & C$_4$H$_5$N$_3$O (citosina) \\
@@ -315,7 +315,7 @@ C$_2$H$_6$ (etano)     & CH$_5$N         (monometilamina) & C$_5$H$_6$N$_2$O$_2$
 C$_6$H$_6$ (benceno)   & C$_4$H$_8$O     (THF)            & C$_4$H$_4$N$_2$O$_2$ (uracilo) \\
 \rowcolor{mygray} 
  & & H$_2$O (agua) \\
-\end{tabularx}
+\end{tabular}
 \caption[Blancos moleculares examinados y clasificados en tres 
 familias.]
 {Blancos moleculares de interés examinados en el presente trabajo y 
@@ -341,7 +341,7 @@ En la Fig.~\ref{fig:crossDNA_1} se reportan las secciones eficaces de
 ionización totales reducidas con la carga del ion incidente, 
 $\sigma_M/Z^2$, de las nucleobases del ADN --adenina, citosina, guanina 
 y timina-- debido al impacto de iones de carga múltiple, que se obtienen 
-empleando de la aproximación SSM y el método CDW. Para adenina, los 
+empleando la aproximación SSM y el método CDW. Para adenina, los 
 cálculos teóricos tienen un excelente acuerdo con los datos 
 experimentales disponibles para el impacto de protones~\cite{Iriki:11}. 
 Los cálculos del modelo SSM--CDW coinciden con las mediciones de 
@@ -352,7 +352,7 @@ comparación es alentadora en cuanto a la respuesta del modelo para la
 ionización por proyectiles de carga múltiple. En cambio, los resultados 
 teóricos de ionización de adenina debido a C$^{6+}$ discrepan con el 
 valor experimental disponible~\cite{Bhattacharjee:19} en un factor 2. 
-Esta discrepancia es intrigante ya que la medición se encuentra en el 
+Este desacuerdo es intrigante ya que la medición se encuentra en el 
 rango de altas energías, donde aún la FBA modela muy bien a los 
 experimentos.
 
@@ -401,12 +401,12 @@ impacto de iones de carga múltiple. No obstante, cabe señalar que los
 valores teóricos coinciden con los cálculos de Champion, 
 Rivarola y colaboradores~\cite{agnihotri2012,champion2012}. Los cálculos 
 de Sarkadi~\cite{sarkadi2016}, que emplean el método de trayectorias 
-clásicas Monte Carlo, resultan amplitudes mayores a estos valores 
-experimentales. En la figura también se incluye una reciente medición 
+clásicas Monte Carlo, también resultan en amplitudes mayores a estos 
+valores experimentales. En la figura se incluye una reciente medición 
 experimental preliminar de Sens \textit{et al.}~\cite{Sens:20} para la 
 ionización en uracilo debido al impacto de C$^{4+}$, que coincide con la 
 teoría. Si bien los resultados son preliminares, estas discrepancias 
-podría indicar algún problema con los valores experimentales de 
+podrían indicar algún problema con los valores experimentales de 
 Agnihotri y colaboradores. 
 
 Para la ionización de pirimidina, los cálculos teóricos se comparan con 
@@ -431,7 +431,7 @@ C$^{6+}$~\cite{DalCappello:09,Bhattacharjee:17}, donde la teoría
 sobrestima la ionización en un factor 2 en el rango de altas energías. 
 Estas discrepancias podrían suponer fallas en el experimento. 
 A diferencia de las nucleobases, pirimidina y THF, la estequiometría del 
-agua es más simple; sin embargo, observamos que nuestro modelo responde 
+agua es más simple. Observamos que nuestro modelo responde 
 bien incluso para calcular la ionización de moléculas simples debido a 
 la incidencia de iones pesados, tal como es el caso de O$^{6+}$.
 
@@ -457,6 +457,20 @@ En general, $n_e$ está dado por la cantidad de electrones en la capa de
 valencia. Así, por ejemplo, para C, N y O, este valor es igual al número 
 total de electrones del átomo menos el número de electrones en la capa 
 K. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{ionmol/CDWscaling.eps}
+\caption[Sección eficaz de ionización molecular reducida por $n_e$.]
+{Sección eficaz de ionización molecular reducida con el número de 
+electrones débilmente ligados usando 
+(a)~los números de Toburen $\nu_{\alpha}^T$, y 
+(b) los números efectivos $\nu_{\alpha}'$ propuestos para las 
+moléculas enlistadas en la Tabla~\ref{tab:families}. 
+Símbolos: datos experimentales de las Figs.~\ref{fig:crossDNA_1} y 
+\ref{fig:crossDNA_2}.}
+\label{fig:newscaling}
+\end{figure}
 
 Siguiendo a Toburen \textit{et al.}, se define la sección eficaz de 
 ionización reducida por el número de electrones débilmente ligado 
@@ -496,7 +510,7 @@ colaboradores~\cite{itoh2013}
 para el impacto de protones sobre uracilo y adenina.
 
 Para comprobar la validez de la ley de escala de Toburen, las secciones 
-eficaces CDW son divididas por el número de electrones activos de 
+eficaces SSM--CDW son divididas por el número de electrones activos de 
 Toburen, dando lugar a las secciones eficaces reducidas $\sigma_{e}^T$, 
 para los blancos moleculares que se enlistan en la 
 Tabla~\ref{tab:families}. Los resultados de esta aproximación se 
@@ -506,24 +520,21 @@ verifica que la regla de Toburen se cumple a altas energías. Sin
 embargo, dado que la banda de resultados es muy ancha, no se puede 
 considerar a su desempeño como satisfactorio.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.9\textwidth]{ionmol/CDWscaling.eps}
-\caption[Sección eficaz de ionización molecular reducida por $n_e$.]
-{Sección eficaz de ionización molecular reducida con el número de 
-electrones débilmente ligados usando 
-(a)~los números de Toburen $\nu_{\alpha}^T$, y 
-(b) los números efectivos $\nu_{\alpha}'$ propuestos para las 
-moléculas enlistadas en la Tabla~\ref{tab:families}. 
-Símbolos: datos experimentales de las Figs.~\ref{fig:crossDNA_1} y 
-\ref{fig:crossDNA_2}.}
-\label{fig:newscaling}
-\end{figure}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Números efectivos}
 \label{subsec:CDW}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.9\textwidth]{ionmol/neCDW.eps}
+\caption[Sección eficaz de ionización atómica reducida por $n_e$.]
+{Sección eficaz de ionización atómica por impacto de H$^+$ reducida con 
+el número de electrones débilmente ligados usando 
+(a)~los números de Toburen $\nu_{\alpha}^T$, y 
+(b) los números efectivos $\nu_{\alpha}'$.}
+\label{fig:neCDW}
+\end{figure}
 
 Para verificar la regla de Toburen en los cálculos SSM--CDW, 
 en la Fig.~\ref{fig:neCDW} se ilustran las secciones eficaces de 
@@ -564,17 +575,6 @@ ionización CDW atómicas. Estos números efectivos están dados por
 \label{eq:neCDW}
 \end{equation}
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.9\textwidth]{ionmol/neCDW.eps}
-\caption[Sección eficaz de ionización atómica reducida por $n_e$.]
-{Sección eficaz de ionización atómica por impacto de H$^+$ reducida con 
-el número de electrones débilmente ligados usando 
-(a)~los números de Toburen $\nu_{\alpha}^T$, y 
-(b) los números efectivos $\nu_{\alpha}'$.}
-\label{fig:neCDW}
-\end{figure}
-
 Empleando la Ec.~(\ref{eq:neCDW}), se definen nuevos números de 
 electrones activos $n_e'$ para las moléculas consideradas hasta ahora.  
 La Tabla~\ref{tab:ne_molecules} muestra los valores optimizados $n_e'$ y 
@@ -599,15 +599,15 @@ propuesta en esta Tesis.
 
 \begin{table}
 \begin{center}
-\begin{tabularx}{\textwidth}{
+\begin{tabular}{
 >{\centering\arraybackslash}p{0.13\textwidth}
 >{\centering\arraybackslash}p{0.17\textwidth}
->{\centering\arraybackslash}p{0.04\textwidth}
->{\centering\arraybackslash}p{0.04\textwidth}
+>{\centering\arraybackslash}p{0.045\textwidth}
+>{\centering\arraybackslash}p{0.045\textwidth}
 >{\centering\arraybackslash}p{0.13\textwidth}
 >{\centering\arraybackslash}p{0.17\textwidth}
->{\centering\arraybackslash}p{0.04\textwidth}
->{\centering\arraybackslash}p{0.04\textwidth}}
+>{\centering\arraybackslash}p{0.045\textwidth}
+>{\centering\arraybackslash}p{0.045\textwidth}}
 \rowcolor{mydarkgray} 
 Molécula        & Nombre      & $n_e$ & $n_e'$ & 
 Molécula        & Nombre      & $n_e$ & $n_e'$ \\
@@ -627,8 +627,8 @@ C$_5$H$_6$N$_2$O$_2$ & Timina & 48     & 42    \\
 C$_2$H$_7$N     & Etilamina   & 20     & 19    & 
 C$_5$H$_5$N$_5$ & Adenina     & 50     & 45    \\
 C$_4$H$_8$O     & THF         & 30     & 28    & 
-C$_5$H$_5$N$_5$O & Guanina    & 56     & 49    \\ \\
-\end{tabularx}
+C$_5$H$_5$N$_5$O & Guanina    & 56     & 49    
+\end{tabular}
 \caption[Números de electrones activos moleculares de Toburen y CDW.]
 {Número de electrones débilmente ligados según Toburen $n_e$ y 
 optimización CDW~$n_e'$ para algunos blancos moleculares de interés 
@@ -812,7 +812,7 @@ Figs.~\ref{fig:crossDNA_1} y \ref{fig:crossDNA_2}.}
 Bajo la hipótesis de que la regla de escala independiente propuesta aquí 
 es válida para cualquier combinación ion--molécula, se aplica la regla 
 universal a un conjunto de valores experimentales no considerados en la
-formulación de nuestro modelo. En la Fig.~\ref{fig:zalpha} se muestran 
+formulación del modelo. En la Fig.~\ref{fig:zalpha} se muestran 
 las mediciones reducidas de Rudd~\textit{et al.}~\cite{Rudd:85,Rudd:83} 
 para H$^{+}$ y He$^{+2}$ en N$_2$, O$_2$, CH$_4$, CO y CO$_2$, y los 
 recientes experimentos de Luna~\textit{et al.} \cite{Luna2019} de 
@@ -822,7 +822,7 @@ figura están dentro de la incertidumbre provista por la regla general.
 El buen acuerdo entre los resultados dados por la escala independiente y 
 los datos experimentales disponibles que se ilustran en la 
 Fig.~\ref{fig:zalpha} resume los principales resultados de este 
-capítulo. El modelo muestra ser eficaz no solo para calcular la 
+capítulo. El modelo muestra ser eficaz no sólo para calcular la 
 ionización de los sistemas ion--blanco estudiados aquí sino también 
 para reproducir una gran variedad de sistemas colisionales. Aunque los 
 resultados teóricos SSM--CDW son válidos para energías mayores a 
@@ -871,7 +871,7 @@ débilmente ligados de la Ec.~(\ref{eq:neCDW}). Por ejemplo, los
 electrones $2s$ y $2p$ del carbono se ubican por encima de la línea 
 discontinua, que corresponde a los cuatro electrones dados por los 
 números efectivos. En el caso de oxígeno, 
-solo los cuatro electrones de los orbitales 2p se encuentran por encima 
+sólo los cuatro electrones de los orbitales $2p$ se encuentran por encima 
 de la línea divisoria propuesta, que se corresponde con el número de 
 electrones débilmente ligados dado por los valores efectivos. El caso 
 del átomo de nitrógeno no es tan directo; el número $\nu_{N}'=4$ 
@@ -894,28 +894,28 @@ carga de Mulliken.
 
 \begin{table}
 \begin{center}
-\begin{tabularx}{\textwidth}{
->{\centering\arraybackslash}p{0.15\textwidth}
->{\centering\arraybackslash}p{0.08\textwidth}
->{\centering\arraybackslash}p{0.08\textwidth}
->{\centering\arraybackslash}p{0.08\textwidth}
->{\centering\arraybackslash}p{0.08\textwidth}
->{\centering\arraybackslash}p{0.32\textwidth}}
+\begin{tabular}{
+>{\centering\arraybackslash}p{0.16\textwidth}
+>{\centering\arraybackslash}p{0.085\textwidth}
+>{\centering\arraybackslash}p{0.085\textwidth}
+>{\centering\arraybackslash}p{0.085\textwidth}
+>{\centering\arraybackslash}p{0.085\textwidth}
+>{\centering\arraybackslash}p{0.33\textwidth}}
 \rowcolor{mydarkgray} 
 Molécula & C & H & N & O & Estequiometría de carga \\
-Adenina & $+0.32$ & $+0.23$ & $-0.55$ &       & 
-C$_{4.92}$H$_{4.77}$N$_{5.14}$ \\ 
+Adenina  & $+0.32$ & $+0.23$ & $-0.55$ &       
+         & C$_{4.92}$H$_{4.77}$N$_{5.14}$ \\ 
 \rowcolor{mygray} 
-Citosina & $+0.28$ & $4+0.21$ & $-0.56$ & $-0.53$ & 
-C$_{3.93}$H$_{4.79}$N$_{3.14}$O$_{1.13}$ \\ 
-Guanina & $+0.46$ & $+0.20$ & $-0.58$ & $-0.36$ & 
-C$_{4.89}$H$_{4.80}$N$_{5.15}$O$_{1.09}$ \\ 
+Citosina & $+0.28$ & $+0.21$ & $-0.56$ & $-0.53$ 
+         & C$_{3.93}$H$_{4.79}$N$_{3.14}$O$_{1.13}$ \\ 
+Guanina  & $+0.46$ & $+0.20$ & $-0.58$ & $-0.36$ 
+         & C$_{4.89}$H$_{4.80}$N$_{5.15}$O$_{1.09}$ \\ 
 \rowcolor{mygray} 
-Timina & $+0.20$ & $+0.19$ & $-0.54$ & $-0.52$ & 
-C$_{4.95}$H$_{5.81}$N$_{2.13}$O$_{2.13}$ \\ 
-Uracilo & $+0.31$ & $+0.22$ & $-0.59$ & $-0.47$ & 
-C$_{3.92}$H$_{3.78}$N$_{2.15}$O$_{2.12}$ \\ 
-\end{tabularx}
+Timina   & $+0.20$ & $+0.19$ & $-0.54$ & $-0.52$ 
+         & C$_{4.95}$H$_{5.81}$N$_{2.13}$O$_{2.13}$ \\ 
+Uracilo  & $+0.31$ & $+0.22$ & $-0.59$ & $-0.47$ 
+         & C$_{3.92}$H$_{3.78}$N$_{2.15}$O$_{2.12}$ 
+\end{tabular}
 \caption[Cargas efectivas medias de Mulliken por átomo]
 {Cargas efectivas medias de Mulliken por átomo $q_{\alpha}$, y nueva 
 fórmula estequiométrica definida por la Ec.~(\ref{eq:newstoi}) para 
@@ -946,7 +946,7 @@ en la sección anterior.
 
 Implementando la Ec.~(\ref{eq:newstoi}), es posible determinar una nueva 
 fórmula estequiométrica de carga, que se muestra en la última columna de 
-la Tabla~\ref{tab:newstoi}). Ahora, en lugar de tener un número entero 
+la Tabla~\ref{tab:newstoi}. Ahora, en lugar de tener un número entero 
 de átomos $n_{\alpha}$, se tiene un número fraccional dado por 
 $n_{\alpha}'$. Considerando estos valores, se calculan nuevas secciones 
 eficaces moleculares, 

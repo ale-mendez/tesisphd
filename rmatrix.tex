@@ -108,7 +108,7 @@ amplitud cero en el borde de la matriz $R$, mientras que las funciones
 continuas satisfacen determinadas condiciones de borde. Las funciones de 
 onda del sistema de $(N+1)$ electrones se clasifican en dos: continuas y 
 de captura. Las funciones de onda de captura se conforman sólo de 
-funciones ligadas de un electrón. Éstas posibilitan que el electrón 
+funciones ligadas de un electrón. Estas posibilitan que el electrón 
 libre se encuentre temporariamente capturado por el blanco, lo 
 que da lugar a importantes efectos de resonancia, que suelen dominar la 
 región de bajas energías de impacto. 
@@ -495,7 +495,7 @@ En el segundo caso (13-cfg), se incorporan las configuraciones
 \label{eq:cfgB}
 \end{equation} 
 Mientras que en la tercer estructura (27-cfg), también se consideran las 
-siguientes excitaciones de un electrón 
+siguientes excitaciones 
 \begin{equation}
 2s5s,\,2s5p,\,2s5d,\,2s5f,\,2s5g,\,+\,
 \left[2p4s,\,2p4p,\,2p4d,\,2p4f\right]\,.
@@ -596,7 +596,7 @@ función de costo, que define el problema de optimización, resulta
 difícil de automatizar. En primer lugar, la optimización no se realiza 
 sobre una función analítica sino sobre una caja negra, que tiene como 
 valores de entrada los parámetros de los potenciales y como 
-único valor de salida el costo que éstos determinan. La caja negra está 
+único valor de salida el costo que estos determinan. La caja negra está 
 compuesta por diversas funciones y/o procedimientos: expresión 
 matemática del potencial modelo $V(\lambda_{nl})$, resolución de la 
 ecuación radial de un electrón con dicho potencial paramétrico y 
@@ -642,7 +642,7 @@ P(A|B)=\frac{P(B|A)\,P(A)}{P(B)}\,,
 \end{equation}
 donde $P(B)$ es la probabilidad de ocurrencia del evento $B$, $P(A)$ la
 creencia previa; esto es, que tan probable es que ocurra el evento $A$
-independientemente de la evidencia, y $P(A|B)$ es la probabilidad de que
+independientemente de la evidencia, y $P(B|A)$ es la probabilidad de que
 ocurra $B$ dado que ocurrió $A$. La demostración de este teorema es 
 simple y puede encontrarse en numerosos libros de Estadística. 
 Existen diversas técnicas que permiten definir el siguiente valor a 
@@ -817,7 +817,7 @@ rango de exploración se establece como
 La función de costo que se utiliza para ajustar el potencial de 
 polarización del carozo está dada por 
 \begin{equation}
-J=\sum_{i} \left|\frac{E_{i}-\tilde{E}_{i}}{E_{i}} \right|
+J=\sum_{i} \left|\frac{E_{i}-\tilde{E}_{i}}{E_{i}} \right|\,,
 \label{eq:Jpol}
 \end{equation}
 donde $i$ es el índice de los términos incluidos en la optimización, 
@@ -859,8 +859,8 @@ resultados tienen el mismo orden de error que los valores sin optimizar.
 \begin{table}[t]
 \centering
 \begin{tabular}{
->{\centering\arraybackslash}p{0.03\textwidth}
->{\centering\arraybackslash}p{0.10\textwidth}
+>{\centering\arraybackslash}p{0.025\textwidth}
+>{\raggedright\arraybackslash}p{0.10\textwidth}
 >{\centering\arraybackslash}p{0.11\textwidth}
 >{\centering\arraybackslash}p{0.11\textwidth}
 >{\centering\arraybackslash}p{0.11\textwidth}
@@ -871,32 +871,32 @@ resultados tienen el mismo orden de error que los valores sin optimizar.
 $i$ & Término & NIST 
   & Sin opt.    & Opt. I     & Opt. II    & Opt. III   & Opt. IV \\
 1 & $2s^2\,^1\!S$ & $-29.3369$ 
-  & $-29.2342$  & $-29.3369$ & $-29.3369$ & $-29.3433$ & $29.3426$ \\ 
+  & $-29.2342$  & $-29.3369$ & $-29.3369$ & $-29.3433$ & $-29.3426$ \\ 
 \rowcolor{mygray} 
 2 & $2s2p\,^3\!P$ & $-29.1366$ 
-  & $-29.0302$  & $-29.1310$ & $-29.1368$ & $-29.1464$ & $29.1430$ \\ 
+  & $-29.0302$  & $-29.1310$ & $-29.1368$ & $-29.1464$ & $-29.1430$ \\ 
 3 & $2s2p\,^1\!P$ & $-28.9490$ 
-  & $-28.8117$  & $-28.9112$ & $-28.9150$ & $-28.9229$ & $28.9210$ \\ 
+  & $-28.8117$  & $-28.9112$ & $-28.9150$ & $-28.9229$ & $-28.9210$ \\ 
 \rowcolor{mygray} 
 4 & $2s3s\,^3\!S$ & $-28.8623$ 
-  & $-28.7610$  & $-28.8610$ & $-28.8599$ & $-28.8649$ & $28.8654$ \\ 
+  & $-28.7610$  & $-28.8610$ & $-28.8599$ & $-28.8649$ & $-28.8654$ \\ 
 5 & $2s3s\,^1\!S$ & $-28.8386$ 
-  & $-28.7326$  & $-28.8327$ & $-28.8319$ & $-28.8371$ & $28.8374$ \\ 
+  & $-28.7326$  & $-28.8327$ & $-28.8319$ & $-28.8371$ & $-28.8374$ \\ 
 \rowcolor{mygray} 
 6 & $2p^2\,^1\!D$ & $-28.8185$
-  & $-28.5744$  & $-28.6737$ & $-28.8058$ & $-28.8148$ & $28.8119$ \\ 
+  & $-28.5744$  & $-28.6737$ & $-28.8058$ & $-28.8148$ & $-28.8119$ \\ 
 7 & $2s3p\,^3\!P$ & $-28.8001$ 
-  & $-28.6966$  & $-28.7964$ & $-28.7963$ & $-28.8018$ & $28.8019$ \\ 
+  & $-28.6966$  & $-28.7964$ & $-28.7963$ & $-28.8018$ & $-28.8019$ \\ 
 \rowcolor{mygray} 
-8 & $2p\,^3\!P$   & $-28.7929$ 
-  & $-28.6746$  & $-28.7729$ & $-28.7862$ & $-28.8000$ & $28.7932$ \\ 
+8 & $2p^2\,^3\!P$   & $-28.7929$ 
+  & $-28.6746$  & $-28.7729$ & $-28.7862$ & $-28.8000$ & $-28.7932$ \\ 
 9 & $2s3p\,^1\!P$ & $-28.7884$ 
-  & $-28.6768$  & $-28.7765$ & $-28.7788$ & $-28.7858$ & $28.7846$ \\ 
+  & $-28.6768$  & $-28.7765$ & $-28.7788$ & $-28.7858$ & $-28.7846$ \\ 
 \rowcolor{mygray} 
 10& $2s3d\,^3\!D$ & $-28.7714$ 
-  & $-28.6677$  & $-28.7673$ & $-28.7661$ & $-28.7708$ & $28.7715$ \\ 
+  & $-28.6677$  & $-28.7673$ & $-28.7661$ & $-28.7708$ & $-28.7715$ \\ 
 11& $2s3p\,^1\!D$ & $-28.7498$ 
-  & $-28.7020$  & $-28.8010$ & $-28.7361$ & $-28.7422$ & $28.7418$ 
+  & $-28.7020$  & $-28.8010$ & $-28.7361$ & $-28.7422$ & $-28.7418$ 
 \end{tabular}
 \caption[Energías de Be.]
 {Energías (en Rydbergs) de los primeros 11 términos 
@@ -917,7 +917,7 @@ En la segunda optimización, denominada Opt. II, se incluyeron los
 términos $2s2p\,^3\!P$ y $2s2p\,^1\!P$ en la función de costo dada por la 
 Ec.~(\ref{eq:Jpol}). Nuevamente, se realizan cálculos independientes con 
 100 semillas aleatorias, y se encuentran mínimos con una dispersión 
-menor al 0.01\%. El mejor resultado hallado se muestra en la 
+menor al $0.01\%$. El mejor resultado hallado se muestra en la 
 Tabla~\ref{tab:optpol}. Esta optimización muestra una mejora tanto para 
 las energías de los términos optimizados como en el resto de los niveles 
 espectroscópicos. Los errores relativos de las energías de excitación de 
@@ -964,11 +964,11 @@ términos espectroscópicos.
 \centering
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.05\textwidth}
->{\centering\arraybackslash}p{0.2\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}}
+>{\raggedright\arraybackslash}p{0.17\textwidth}
+>{\centering\arraybackslash}p{0.15\textwidth}
+>{\centering\arraybackslash}p{0.15\textwidth}
+>{\centering\arraybackslash}p{0.15\textwidth}
+>{\centering\arraybackslash}p{0.15\textwidth}}
 \rowcolor{mydarkgray} 
 $i$ & Término     & NIST     & Sin opt. & Powell    & GP \\
 1 & $2s^2\,^1\!S$   & $0.0000$ & $0.0000$ & $0.0000$  & $0.0000$ \\
@@ -1021,18 +1021,18 @@ sólo 5 de los 10 términos incluidos en la optimización. Además, la
 energía del estado fundamental obtenida con el método GP tiene una 
 diferencia con el valor de referencia de $0.001$~Ry, mientras que el 
 desempeño del método de Powell en este sentido es menor, con una 
-diferencia de $0.1$~Ry. Los excelentes resultados del GP atribuyese a la 
-correlación carozo-valencia introducida por el potencial de polarización 
-previamente optimizado. Por último, debe destacarse que la optimización 
-GP utiliza menos evaluaciones para hallar este mínimo que el método de 
-Powell (en este caso, alrededor de 400). Para una mejor visualización de 
-los resultados de la Tabla~\ref{tab:exener}, en la Fig.~\ref{fig:exener} 
-se presentan los errores relativos de las energías de excitación 
-consideradas. Los términos más afectados por la optimización son 
-$2s2p\,^1\!P$, $2p^2\,^1\!D$ y $2s3d\,^1\!D$, que presentan una 
-desviación (sin optimización) del 9\%, 27\% y 9\%, respectivamente. El 
-ajuste de los orbitales espectroscópicos reduce estos errores por debajo 
-de 2\%, con un promedio del $0.6\%$. 
+diferencia de $0.1$~Ry. Los excelentes resultados del GP se atribuyen a 
+la correlación carozo-valencia introducida por el potencial de 
+polarización previamente optimizado. Por último, debe destacarse que la 
+optimización GP utiliza menos evaluaciones para hallar este mínimo que 
+el método de Powell (en este caso, alrededor de 400). Para una mejor 
+visualización de los resultados de la Tabla~\ref{tab:exener}, en la 
+Fig.~\ref{fig:exener} se presentan los errores relativos de las energías 
+de excitación consideradas. Los términos más afectados por la 
+optimización son $2s2p\,^1\!P$, $2p^2\,^1\!D$ y $2s3d\,^1\!D$, que 
+presentan una desviación (sin optimización) del 9\%, 27\% y 9\%, 
+respectivamente. El ajuste de los orbitales espectroscópicos reduce 
+estos errores por debajo de 2\%, con un promedio del $0.6\%$. 
 
 %=======================================================================
 \subsection{Intensidades de oscilador}
@@ -1050,7 +1050,7 @@ permitan obtener intensidades de oscilador aceptables.
 \centering
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.03\textwidth}
->{\centering\arraybackslash}p{0.24\textwidth}
+>{\raggedright\arraybackslash}p{0.24\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}

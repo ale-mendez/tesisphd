@@ -41,7 +41,7 @@ y se puede aplicar a soluciones que surgen de diversas aproximaciones.
 Con el fin de ilustrar su implementación, las soluciones que se utilizan 
 en este trabajo están dadas por la teoría de Hartree--Fock~(\acs{hf}). 
 
-En este capítulo, el objetivo principal es ilustrar el uso efectivo de 
+El objetivo principal de este capítulo es ilustrar el uso efectivo de 
 los potenciales DIM en la teoría de colisiones atómicas. Para ello, se 
 examina la ionización de blancos atómicos y moleculares debido al 
 impacto de fotones e iones. Tanto el desarrollo teórico del DIM como su 
@@ -75,7 +75,7 @@ V_{nl}(r) =
 \label{eq:Vinv}
 \end{equation}
 Este procedimiento se ha estudiado en la teoría del funcional de la 
-densidad~(\acs{dft} por sus siglas en inglés), en donde se invierte la
+densidad~(\acs{dft}, por sus siglas en inglés), en donde se invierte la
 ecuación de Kohn--Sham y las densidades del estado 
 fundamental~\cite{Wu:03,Gaiduk:13,Ryabinkin:15,Schipper:97,deSilva:12,
 Kananenka:13,Jacob:11}. El método de inversión también fue sugerido por 
@@ -99,7 +99,7 @@ efectiva se ilustran en la Fig.~\ref{fig:potycharge}; la carga deberá
 ser suave y cumplir con condiciones de borde definidos por la naturaleza 
 del blanco a describir: 
 en el origen la carga debe ser igual a la carga nuclear del átomo y 
-asintóticamente, debido al apantallamiento electrónico, ésta debe ser
+asintóticamente, debido al apantallamiento electrónico, esta debe ser
 igual a uno. Esto es,
 \begin{equation}
 Z_{nl}(r) \, \rightarrow 
@@ -113,7 +113,7 @@ Z  \ \  & \ \ \text{:\ \ }r  \rightarrow 0 \,, \\
 La carga invertida se ajusta con una expresión analítica que cumple con 
 estas condiciones de borde. En átomos, la carga DIM está dada por
 \begin{equation}
-Z_{nl}^{\mathrm{DIM}}(r)= \sum_{j=1}^{n} z_j e^{-\alpha_j r}+1 \,,
+Z_{nl}^{\mathrm{DIM}}(r)= \sum_j z_j e^{-\alpha_j r}+1 \,,
 \label{eq:atomzDIM}
 \end{equation}
 donde $\Sigma_j z_j=Z-1$. Los parámetros $\left\{z_j,\alpha_j\right\}$ 
@@ -144,7 +144,7 @@ potenciales diferentes (uno conteniendo intercambio electrónico y otro
 despreciándolo) conducen a energías similares y precisas de la serie de 
 Rydberg, en varios sistemas de cuasi-un electrón. Sin embargo, estos 
 potenciales conducen a grandes discrepancias cuando se implementan en 
-cálculos de dispersión \cite{BartschatBray:96}. Por lo tanto, además de 
+cálculos de dispersión~\cite{BartschatBray:96}. Por lo tanto, además de 
 los valores de energía, se incluyen en la optimización DIM valores 
 medios de $\langle r^k \rangle$. La inclusión de estos 
 observables permite caracterizar la precisión del orbital DIM cerca 
@@ -483,14 +483,14 @@ carácter limitado de la base escogida.
 
 Una vez definidos los $nl$ perfiles de oscilación atómicos de la base, 
 estos se pueden utilizar directamente para eliminar las oscilaciones de 
-los potenciales moleculares. Por ejemplo, para un hidruro XH$_n$, será  
+los potenciales moleculares. En particular, para un hidruro XH$_n$, será 
 necesario definir los perfiles de oscilación del átomo X y del 
 hidrógeno. Luego, se implementa un procedimiento de depuración similar 
 al que se utiliza en átomos. La diferencia en este caso, es que las 
 expresiones analíticas para la carga deben tener en cuenta estructuras 
 particulares de los compuestos. Por ejemplo, para hidruros,
 \begin{eqnarray}
- Z(r) = \sum_j z_j e^{-\alpha_j r} 
+ Z_{nl}^{\mathrm{DIM}}(r) = \sum_j z_j e^{-\alpha_j r} 
  + z_{\mbox{\scriptsize H}} e^{-(\ln r - \ln \beta)^2/(2\gamma)} 
  + 1\,.
  \label{eq:molzDIM}
@@ -556,7 +556,7 @@ ha estudiado una amplia variedad de sistemas multielectrónicos mediante
 el método DIM, publicados en las Refs.~\cite{Mendez:16,Mendez:19dim,
 Mendez:18}. De estos resultados, se seleccionan cuatro blancos para 
 examinar en detalle en este capítulo: helio, nitrógeno, neón y metano. 
-Luego, el DIM se combina con la primera aproximación de Born para 
+Luego, el DIM se combina con aproximaciones de primer orden para 
 calcular procesos inelásticos en átomos y moléculas simples. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -565,9 +565,9 @@ calcular procesos inelásticos en átomos y moléculas simples.
 \label{subsec:dimtarget}
 
 Los orbitales de Hartree--Fock $u_{nl}^{\mathrm{HF}}$ y sus 
-correspondientes energías $\varepsilon^{\mathrm{HF}}$, que se 
-usan en la Ec.~(\ref{eq:Vinv}), se calculan usando indistintamente los 
-códigos \textsc{hf} de C. Froese Fischer~\cite{FroeseFischer:97}, y 
+correspondientes energías $\varepsilon^{\mathrm{HF}}$, utilizados en la 
+Ec.~(\ref{eq:Vinv}), se calculan usando indistintamente los códigos 
+\textsc{hf} de C. Froese Fischer~\cite{FroeseFischer:97}, y 
 \textsc{nrhf} de W. Johnson~\cite{Johnson:07}. Si bien ambos códigos 
 resuelven la estructura de blancos no relativistas utilizando 
 diferencias finitas, los algoritmos, métodos y grillas numéricas 
@@ -618,8 +618,8 @@ Fig.~\ref{fig:Hepots}(b). También se muestran los resultados del
 \textit{optimized potential method} (\acs{opm}) que se obtienen 
 empleando el código \textsc{atomopm} de Talman~\cite{Talman:76,
 Talman:89}, ampliamente usado en la comunidad DFT. Los potenciales DIM y 
-OPM coinciden en todo el rango espacial. Las energías total y orbital de 
-intercambio, dadas por la Ec.~(\ref{eq:exchange-energy}), del estado 
+OPM coinciden en todo el rango espacial. Las energías de intercambio 
+total y orbital, dadas por la Ec.~(\ref{eq:exchange-energy}), del estado 
 fundamental del helio se presentan en la Tabla~\ref{tab:exchange-atoms}. 
 La energía total concuerda muy bien con el valor de intercambio exacto 
 atómico de Hartree--Fock (EAHF, por sus siglas en 
@@ -677,12 +677,12 @@ $1s$, $2s$ y $2p$ de los términos $^4$S (línea sólida), $^2$D (línea
 discontinua) y $^2$P (línea raya-punto) de N. Los potenciales 
 $V_{nl}^{\mathrm{x}}$ se comparan con los resultados OPM (línea 
 punteada). Los potenciales de intercambio del orbital $1s$ de cada 
-término se comportan de manera similar. El potencial OPM concuerda con 
+término se comportan de manera similar, y el potencial OPM concuerda con 
 los valores DIM cerca del origen y asintóticamente. En el caso del 
 orbital $2s$, los potenciales de intercambio correspondientes a cada 
-término se comportan de manera diferente en el origen. Para valores de 
-$r>0.5$~a.u., los potenciales DIM y OPM coinciden. Nótese que el 
-potencial OPM concuerda muy bien con el potencial $V_{2s}^{\mathrm{x}}$ 
+término se comportan de manera diferente en el origen, aunque para 
+valores de $r>0.5$~a.u., los potenciales DIM y OPM coinciden. Nótese que 
+el potencial OPM concuerda muy bien con el potencial $V_{2s}^{\mathrm{x}}$ 
 del término $^2$D. Finalmente, los potenciales de intercambio DIM del 
 $2p$ también se comportan de manera similar en los tres términos. Sin 
 embargo, los potenciales DIM y OPM convergen sólo en la región 
@@ -693,49 +693,50 @@ asintótica.
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.12\textwidth}
 >{\centering\arraybackslash}p{0.05\textwidth}
->{\centering\arraybackslash}p{0.22\textwidth}
->{\centering\arraybackslash}p{0.22\textwidth}
->{\centering\arraybackslash}p{0.22\textwidth}}
+>{\centering\arraybackslash}p{0.2\textwidth}
+>{\raggedleft\arraybackslash}p{0.15\textwidth}
+>{\raggedleft\arraybackslash}p{0.2\textwidth}
+>{\centering\arraybackslash}p{0.1\textwidth}}
 \rowcolor{mydarkgray} 
-   &       & $nl$ & $z_j$        & $\alpha_j$   \\
+   &       & $nl$ & $z_j$        & $\alpha_j$  &  \\
 %%%%%%%%%%%%%%%%%%%% Helio %%%%%%%%%%%%%%%%%%%%
-He & $^1$S & $1s$ &  $1.3175$ & $2.5003$  \\\rowcolor{mygray} 
-   &       &      & $-0.3175$ & $5.0437$  \\ 
+He & $^1$S & $1s$ &  $1.3175$ & $2.5003$ & \\\rowcolor{mygray} 
+   &       &      & $-0.3175$ & $5.0437$ & \\ 
 %%%%%%%%%%%%%%%%%% Nitrogeno %%%%%%%%%%%%%%%%%%
-N  & $^4$S & $1s$ & $5.2563$ & $1.2621$  \\\rowcolor{mygray} 
-   &       &      & $0.7437$ & $8.0284$  \\ 
-   &       & $2s$ & $2.7136$ & $0.8947$ \\\rowcolor{mygray} 
-   &       &      & $2.4528$ & $3.5127$  \\
-   &       &      & $0.8336$ & $3.3865$  \\ \rowcolor{mygray} 
-   &       & $2p$ & $3.6435$ & $1.2407$  \\ 
-   &       &      & $2.0550$ & $5.3514$  \\\rowcolor{mygray} 
-   &       &      & $0.3015$ & $0.2866$ \\
-   & $^2$D & $1s$ & $5.1664$ & $1.2241$  \\\rowcolor{mygray} 
-   &       &      & $0.8137$ & $7.5680$  \\ 
-   &       & $2s$ & $3.7478$ & $2.8531$  \\\rowcolor{mygray} 
-   &       &      & $1.8541$ & $1.0311$  \\ 
-   &       &      & $0.3981$ & $0.2397$ \\\rowcolor{mygray} 
-   &       & $2p$ & $4.0105$ & $1.2874$  \\ 
-   &       &      & $1.8552$ & $5.7086$  \\\rowcolor{mygray} 
-   &       &      & $0.1343$ & $0.2680$ \\
-   & $^2$P & $1s$ & $5.1864$ & $1.2178$  \\\rowcolor{mygray} 
-   &       &      & $0.8137$ & $7.5674$  \\ 
-   &       & $2s$ & $3.6700$ & $3.1495$  \\\rowcolor{mygray} 
-   &       &      & $1.4394$ & $0.7404$  \\ 
-   &       &      & $0.8907$ & $0.8306$ \\\rowcolor{mygray} 
-   &       & $2p$ & $2.3280$ & $1.4093$  \\ 
-   &       &      & $1.8977$ & $1.1656$  \\\rowcolor{mygray} 
-   &       &      & $1.7743$ & $5.6878$ \\
+N  & $^4$S & $1s$ & $5.2563$ & $1.2621$ & \\\rowcolor{mygray} 
+   &       &      & $0.7437$ & $8.0284$ & \\ 
+   &       & $2s$ & $2.7136$ & $0.8947$ & \\\rowcolor{mygray} 
+   &       &      & $2.4528$ & $3.5127$ & \\
+   &       &      & $0.8336$ & $3.3865$ & \\ \rowcolor{mygray} 
+   &       & $2p$ & $3.6435$ & $1.2407$ & \\ 
+   &       &      & $2.0550$ & $5.3514$ & \\\rowcolor{mygray} 
+   &       &      & $0.3015$ & $0.2866$ & \\
+   & $^2$D & $1s$ & $5.1664$ & $1.2241$ & \\\rowcolor{mygray} 
+   &       &      & $0.8137$ & $7.5680$ & \\ 
+   &       & $2s$ & $3.7478$ & $2.8531$ & \\\rowcolor{mygray} 
+   &       &      & $1.8541$ & $1.0311$ & \\ 
+   &       &      & $0.3981$ & $0.2397$ & \\\rowcolor{mygray} 
+   &       & $2p$ & $4.0105$ & $1.2874$ & \\ 
+   &       &      & $1.8552$ & $5.7086$ & \\\rowcolor{mygray} 
+   &       &      & $0.1343$ & $0.2680$ & \\
+   & $^2$P & $1s$ & $5.1864$ & $1.2178$ & \\\rowcolor{mygray} 
+   &       &      & $0.8137$ & $7.5674$ & \\ 
+   &       & $2s$ & $3.6700$ & $3.1495$ & \\\rowcolor{mygray} 
+   &       &      & $1.4394$ & $0.7404$ & \\ 
+   &       &      & $0.8907$ & $0.8306$ & \\\rowcolor{mygray} 
+   &       & $2p$ & $2.3280$ & $1.4093$ & \\ 
+   &       &      & $1.8977$ & $1.1656$ & \\\rowcolor{mygray} 
+   &       &      & $1.7743$ & $5.6878$ & \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Ne & $^1$S & $1s$ & $7.3677$ & $2.4173$ \\\rowcolor{mygray} 
-   &       &      & $1.3004$ & $0.1264$ \\
-   &       &      & $0.3320$ & $13.1582$ \\\rowcolor{mygray} 
-   &       & $2s$ & $0.2977$ & $17.9939$ \\
-   &       &      & $0.6681$ & $0.0673$ \\\rowcolor{mygray} 
-   &       &      & $8.0342$ & $2.4722$ \\
-   &       & $2p$ & $1.3531$ & $8.5695$ \\\rowcolor{mygray} 
-   &       &      & $0.3359$ & $0.4649$ \\
-   &       &      & $7.3111$ & $2.0906$ \\
+Ne & $^1$S & $1s$ & $7.3677$ & $2.4173$ & \\\rowcolor{mygray} 
+   &       &      & $1.3004$ & $0.1264$ & \\
+   &       &      & $0.3320$ & $13.1582$ & \\\rowcolor{mygray} 
+   &       & $2s$ & $0.2977$ & $17.9939$ & \\
+   &       &      & $0.6681$ & $0.0673$  &\\\rowcolor{mygray} 
+   &       &      & $8.0342$ & $2.4722$ & \\
+   &       & $2p$ & $1.3531$ & $8.5695$ & \\\rowcolor{mygray} 
+   &       &      & $0.3359$ & $0.4649$ & \\
+   &       &      & $7.3111$ & $2.0906$ & \\
 \end{tabular}
 \caption[Parámetros de la carga efectiva de He, N y Ne.]
 {Parámetros de la carga efectiva $Z_{1s}^{\mathrm{ DIM}}$ de He ($^1$S), 
@@ -749,53 +750,54 @@ N ($^4$S, $^2$D, $^2$P) y Ne ($^1$S).}
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.07\textwidth}
 >{\centering\arraybackslash}p{0.03\textwidth}
->{\centering\arraybackslash}p{0.15\textwidth}
+>{\raggedleft\arraybackslash}p{0.15\textwidth}
 >{\centering\arraybackslash}p{0.10\textwidth}
->{\centering\arraybackslash}p{0.15\textwidth}
+>{\raggedleft\arraybackslash}p{0.14\textwidth}
+>{\raggedleft\arraybackslash}p{0.01\textwidth}
 >{\centering\arraybackslash}p{0.15\textwidth}
 >{\centering\arraybackslash}p{0.15\textwidth}}
 \rowcolor{mydarkgray} 
-   & & $E$ & $nl$ & $\varepsilon_{nl}$ & $\left<r\right>_{nl}$ 
+   & & $E$ & $nl$ & $\varepsilon_{nl}$ && $\left<r\right>_{nl}$ 
    & $\left<1/r\right>_{nl}$ \\
-He & $^1$S & $-2.8616$   & $1s$ & $-0.9180$  & $0.9273$ & $1.6873$ \\
+He & $^1$S & $-2.8616$   & $1s$ & $-0.9180$  && $0.9273$ & $1.6873$ \\
 \rowcolor{mygray} 
-   &       & $-2.8617$   &      & $-0.9180$  & $0.9273$ & $1.6873$ \\
-N  & $^4$S & $-54.3762$  & $1s$ & $-15.6291$ & $0.2283$ & $6.6487$ \\
+   &       & $-2.8617$   &      & $-0.9180$  && $0.9273$ & $1.6873$ \\
+N  & $^4$S & $-54.3762$  & $1s$ & $-15.6291$ && $0.2283$ & $6.6487$ \\
 \rowcolor{mygray} 
-   &       & $-54.4009$  &      & $-15.6291$ & $0.2283$ & $6.6532$ \\
-   &       &             & $2s$ & $-0.9453$  & $1.3345$ & $1.0804$ \\
+   &       & $-54.4009$  &      & $-15.6291$ && $0.2283$ & $6.6532$ \\
+   &       &             & $2s$ & $-0.9453$  && $1.3345$ & $1.0804$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.9453$  & $1.3323$ & $1.0782$ \\
-   &       &             & $2p$ & $-0.5676$  & $1.4127$ & $0.9550$ \\
+   &       &             &      & $-0.9453$  && $1.3323$ & $1.0782$ \\
+   &       &             & $2p$ & $-0.5676$  && $1.4127$ & $0.9550$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.5676$  & $1.4096$ & $0.9577$ \\
-   & $^2$D & $-54.2756$  & $1s$ & $-15.6664$ & $0.2283$ & $6.6493$ \\
+   &       &             &      & $-0.5676$  && $1.4096$ & $0.9577$ \\
+   & $^2$D & $-54.2756$  & $1s$ & $-15.6664$ && $0.2283$ & $6.6493$ \\
    \rowcolor{mygray} 
-   &       & $-54.2962$  &      & $-15.6664$ & $0.2283$ & $6.6539$ \\
-   &       &             & $2s$ & $-0.9637$  & $1.3292$ & $1.0874$ \\
+   &       & $-54.2962$  &      & $-15.6664$ && $0.2283$ & $6.6539$ \\
+   &       &             & $2s$ & $-0.9637$  && $1.3292$ & $1.0874$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.9637$  & $1.3263$ & $1.0832$ \\
-   &       &             & $2p$ & $-0.5087$  & $1.4488$ & $0.9388$ \\
+   &       &             &      & $-0.9637$  && $1.3263$ & $1.0832$ \\
+   &       &             & $2p$ & $-0.5087$  && $1.4488$ & $0.9388$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.5087$  & $1.4466$ & $0.9421$ \\
-   & $^2$P & $-54.2086$  & $1s$ & $-15.6916$ & $0.2282$ & $6.6504$ \\
+   &       &             &      & $-0.5087$  && $1.4466$ & $0.9421$ \\
+   & $^2$P & $-54.2086$  & $1s$ & $-15.6916$ && $0.2282$ & $6.6504$ \\
    \rowcolor{mygray} 
-   &       & $-54.2281$  &      & $-15.6916$ & $0.2282$ & $6.6543$ \\
-   &       &             & $2s$ & $-0.9763$  & $1.3256$ & $1.0871$ \\
+   &       & $-54.2281$  &      & $-15.6916$ && $0.2282$ & $6.6543$ \\
+   &       &             & $2s$ & $-0.9763$  && $1.3256$ & $1.0871$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.9763$  & $1.3223$ & $1.0866$ \\
-   &       &             & $2p$ & $-0.4713$  & $1.4718$ & $0.9298$ \\
+   &       &             &      & $-0.9763$  && $1.3223$ & $1.0866$ \\
+   &       &             & $2p$ & $-0.4713$  && $1.4718$ & $0.9298$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.4713$  & $1.4730$ & $0.9316$ \\
-Ne & $^1$S & $-128.4978$ & $1s$ & $-32.7725$ & $0.1575$ & $9.6215$ \\
+   &       &             &      & $-0.4713$  && $1.4730$ & $0.9316$ \\
+Ne & $^1$S & $-128.4978$ & $1s$ & $-32.7725$ && $0.1575$ & $9.6215$ \\
 \rowcolor{mygray} 
-   &       & $-128.5475$ &      & $-32.7724$ & $0.1576$ & $9.6181$ \\
-   &       &             & $2s$ & $-1.9304$  & $0.8913$ & $1.6408$ \\
+   &       & $-128.5475$ &      & $-32.7724$ && $0.1576$ & $9.6181$ \\
+   &       &             & $2s$ & $-1.9304$  && $0.8913$ & $1.6408$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-1.9304$  & $0.8921$ & $1.6326$ \\  
-   &       &             & $2p$ & $-0.8504$  & $0.9678$ & $1.4303$ \\
+   &       &             &      & $-1.9304$  && $0.8921$ & $1.6326$ \\  
+   &       &             & $2p$ & $-0.8504$  && $0.9678$ & $1.4303$ \\
    \rowcolor{mygray} 
-   &       &             &      & $-0.8504$  & $0.9653$ & $1.4354$ \\
+   &       &             &      & $-0.8504$  && $0.9653$ & $1.4354$ \\
 \end{tabular}
 \caption[Energías y radios medios de He, N y Ne.]
 {Energías totales, energías orbitales y radios medios de He ($^1$S), 
@@ -814,17 +816,17 @@ inferiores).}
 >{\centering\arraybackslash}p{0.14\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}}
+>{\raggedleft\arraybackslash}p{0.12\textwidth}
+>{\raggedleft\arraybackslash}p{0.17\textwidth}}
 \rowcolor{mydarkgray} 
-   &      & $1s$     & $2s$    & $3s$  & Total  & EAHF~\cite{Becke:88}\\
-He & $^1$S & $-0.5129$ &           &           & $-1.0258$ & $-1.026$ \\
+   &      & $1s$     & $2s$    & $2p$  & Total  & EAHF~\cite{Becke:88}\,\,\\
+He & $^1$S & $-0.5129$ &           &           & $-1.0258$ & $-1.026$ \,\,\\
 \rowcolor{mygray} 
-N  & $^4$S & $-2.1175$ & $-0.4776$ & $-0.4711$ & $-6.6034$ & $-6.596$ \\
-   & $^2$D & $-2.1175$ & $-0.4777$ & $-0.4262$ & $-6.4688$ & \\
+N  & $^4$S & $-2.1175$ & $-0.4776$ & $-0.4711$ & $-6.6034$ & $-6.596$ \,\,\\
+   & $^2$D & $-2.1175$ & $-0.4777$ & $-0.4262$ & $-6.4688$ & \,\,\\
    \rowcolor{mygray} 
-   & $^2$P & $-2.1175$ & $-0.4780$ & $-0.3973$ & $-6.3827$ & \\
-Ne & $^1$S & $-3.1106$ & $-0.8620$ & $-0.6938$ & $-12.1080$& $-12.105$\\
+   & $^2$P & $-2.1175$ & $-0.4780$ & $-0.3973$ & $-6.3827$ & \,\,\\
+Ne & $^1$S & $-3.1106$ & $-0.8620$ & $-0.6938$ & $-12.1080$& $-12.105$\,\,\\
 \rowcolor{mygray} 
 \end{tabular}
 \caption[Energías de intercambio total y orbitales de He, N y Ne.]
@@ -923,28 +925,29 @@ dentro del $1\%$ de los valores de Moccia.
 \centering
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.13\textwidth}
->{\centering\arraybackslash}p{0.13\textwidth}
+>{\raggedleft\arraybackslash}p{0.13\textwidth}
+>{\raggedleft\arraybackslash}p{0.01\textwidth}
 >{\centering\arraybackslash}p{0.13\textwidth}
 >{\centering\arraybackslash}p{0.13\textwidth}
 >{\centering\arraybackslash}p{0.13\textwidth}
 >{\centering\arraybackslash}p{0.13\textwidth}}
 \rowcolor{mydarkgray} 
-   $nl$ & $E$        & $z_j$        & $\alpha_j$   & $\beta$&$\gamma$\\
-$1a_1$  & $-11.1949$ & $1.925280$ & $0.641982$ & & \\
+   $nl$ & $E$        && $z_j$    & $\alpha_j$ & $\beta$ & $\gamma$\\
+$1a_1$  & $-11.1949$ && $1.9253$ & $0.6420$ & & \\
 \rowcolor{mygray} 
-        &            & $0.953120$ & $5.571510$ & & \\
-        &            & $2.121600$ & $1.500440$ & & \\
+        &            && $0.9531$ & $5.5715$ & & \\
+        &            && $2.1216$ & $1.5004$ & & \\
 \rowcolor{mygray} 
-$2a_2$  & $-0.9204$  & $2.912200$ & $3.149990$ & & \\
-        &            & $2.087800$ & $0.771371$ & & \\
+$2a_2$  & $-0.9204$  && $2.9122$ & $3.1500$ & & \\
+        &            && $2.0878$ & $0.7714$ & & \\
 \rowcolor{mygray} 
-        &            & $1.23640$  &            & $2.329570$&$0.053420$\\
-$2t_1$  & $-0.5042$  & $0.901953$ & $2.895140$ & & \\
+        &            && $1.2364$ &          & $2.3296$ & $0.0534$\\
+$2t_1$  & $-0.5042$  && $0.9020$ & $2.8951$ & & \\
 \rowcolor{mygray} 
-        &            & $1.112030$ & $0.388649$ & & \\
-        &            & $2.986017$ & $2.931210$ & & \\
+        &            && $1.1120$ & $0.3886$ & & \\
+        &            && $2.9860$ & $2.9312$ & & \\
 \rowcolor{mygray} 
-        &            & $1.301820$ &            & $2.169850$&$0.012616$\\ 
+        &            && $1.3018$ &          & $2.1699$ & $0.0126$\\ 
 \end{tabular}
 \caption[Energías y parámetros de ajuste de cargas efectivas de metano.]
 {Energías orbitales moleculares y parámetros de ajuste de cargas 
@@ -963,13 +966,16 @@ su utilidad efectiva, en esta sección, se calcula la ionización de
 atómos multielectrónicos y moléculas simples debido al impacto de 
 protones y fotones. En estos cálculos, se asume que el Hamiltoniano del 
 sistema está determinado por la dinámica del proyectil, el blanco y el 
-electrón activo. El marco teórico de la ionización está dada por la 
-primera aproximación de Born (FBA). Para un rango intermedio-alto de la 
-energía del proyectil, el primer orden perturbativo resulta suficiente 
-para obtener resultados razonables. Por simplicidad, denominamos la 
-combinación del DIM para representar la estructura del blanco, y el 
-cálculo de la ionización utilizando el primer orden perturbativo, como 
-ionización DIM-FBA. 
+electrón activo. El marco teórico de la ionización está dado por 
+aproximaciones de primer orden (FOA): el cálculo de la ionización por 
+impacto de fotones se realiza empleando el primer orden de la 
+aproximación dipolar, mientras que para la ionización por impacto de 
+protones se utiliza la primera aproximación de Born. Para un rango 
+intermedio-alto de la energía del proyectil, el primer orden 
+perturbativo resulta suficiente para obtener resultados razonables. Por 
+simplicidad, denominamos la combinación del DIM para representar la 
+estructura del blanco, y el cálculo de la ionización utilizando la 
+aproximación de primer orden, como ionización DIM-FOA. 
 
 %=======================================================================
 \subsubsection{Fotoionización}
@@ -981,7 +987,7 @@ blancos atómicos y moleculares. Entre los sistemas
 estudiados~\cite{Mendez:19dim}, se escoge ilustrar los 
 resultados para helio, nitrógeno, neón y metano. En la 
 Fig.~\ref{fig:photoDIM} se muestran las secciones eficaces totales de 
-fotoionización DIM-FBA con líneas sólidas. Los resultados teóricos para 
+fotoionización DIM-FOA con líneas sólidas. Los resultados teóricos para 
 helio y nitrógeno coinciden de manera excelente con los valores 
 experimentales (símbolos)~\cite{Samson:90,Henke:93,Stolte:16} a bajas, 
 medias y altas energías del fotón incidente. En el caso del átomo de 
@@ -1001,7 +1007,7 @@ electrones de capas internas~\cite{Ederer:64} o efectos de correlación.
 \includegraphics[width=0.9\textwidth]{dim/fotoDIM-part2.eps}
 \caption[Fotoionización de He, N, Ne y CH$_4$.]
 {Sección eficaz de fotoionización de He, N, Ne y CH$_4$. Curvas: 
-cálculos teóricos DIM-FBA. Símbolos: datos 
+cálculos teóricos DIM-FOA. Símbolos: datos 
 experimentales~\cite{Samson:90,Henke:93,Stolte:16,Samson:02,
 Lukirskii:64,Henke:82,Samson:89}.}
 \label{fig:photoDIM}
@@ -1012,19 +1018,19 @@ en un proceso colisional. Sin embargo, en la configuración experimental,
 las moléculas en estado gaseoso generalmente tienen orientaciones 
 aleatorias. Esto justifica la aproximación asumida en el método DIM, 
 consistente en promediar esféricamente a los potenciales. En la región 
-de energías entre $\sim$15 y 300 eV se aprecia la contribuación de la 
+de energías entre $\sim$15 y 300 eV se aprecia la contribución de la 
 capa de valencia a la fotoionización, mientras que la discontinuidad en 
 $0.3$~keV corresponde al umbral de ionización del orbital molecular 
-$1a_1$. Los resultados teóricos del modelo DIM-FBA para la sección 
+$1a_1$. Los resultados teóricos del modelo DIM-FOA para la sección 
 eficaz total de fotonización de CH$_4$ se encuentran en buen acuerdo con 
 datos experimentales~\cite{Lukirskii:64,Henke:82,Samson:89} en el 
 rango de altas energías y cerca del umbral de ionización de la capa 
 $2p$. Para fotoenergías bajas e intermedias, el acuerdo entre los
-cálculos DIM-FBA y las mediciones no es bueno. Los efectos 
+cálculos DIM-FOA y las mediciones no es bueno. Los efectos 
 colectivos mencionados anteriormente no han sido considerados en estos 
 valores, y probablemente sean los responsables de las discrepancias 
 observadas. En la fotoionización de un electrón perteneciente al orbital 
-interno $1a_1$, estos efectos no son tan signficativos. Por ello, con 
+interno $1a_1$, estos efectos no son tan significativos. Por ello, con 
 sólo el primer orden de aproximación, se obtiene buen acuerdo con los 
 datos experimentales. 
 
@@ -1037,7 +1043,7 @@ datos experimentales.
 \includegraphics[width=0.9\textwidth]{figures/dim/ionDIM.eps}
 \caption[Ionización por impacto de protón de N y CH$_4$.]
 {Sección eficaz de ionización por impacto de protones para N y 
-CH$_4$. Línea sólida: cálculos teóricos DIM-FBA. Símbolos: datos 
+CH$_4$. Línea sólida: cálculos teóricos DIM-FOA. Símbolos: datos 
 experimentales de ionización por impacto de 
 protones~\cite{Rudd:83,Rudd:85} y electrones~\cite{Brook:78} con 
 conversión de equivelocidad.}
@@ -1049,7 +1055,7 @@ la ionización por impacto de protones en blancos multielectrónicos. De
 los cálculos realizados, se eligen dos ejemplos para ilustrar este 
 proceso. Las secciones eficaces totales de ionización por impacto de 
 protones para N y CH$_4$, que se obtienen en el marco del modelo 
-DIM-FBA, se muestran en la Fig.~\ref{fig:iondim}. En la figura se 
+DIM-FOA, se muestran en la Fig.~\ref{fig:iondim}. En la figura se 
 ilustran los datos experimentales por impacto de 
 protones~\cite{Rudd:83,Rudd:85} y, en el caso de nitrógeno, se incluyen 
 también resultados de ionización por impacto de 
@@ -1059,7 +1065,7 @@ $m_p\approx 1836\,m_e$. Por ejemplo, electrones que inciden sobre el
 blanco con $0.54$~keV son equivalentes en energía a protones incidentes 
 con aproximadamente 1~MeV. Para valores de energía mayores a 400~keV, 
 las secciones eficaces de ambos proyectiles coinciden. El acuerdo entre 
-los cálculos teóricas y los datos experimentales es muy bueno en la 
+los cálculos teóricos y los datos experimentales es muy bueno en la 
 región de altas energías, donde tiene validez la primera aproximación de 
 Born. 
 
@@ -1123,7 +1129,7 @@ inspección más cercana (ver recuadro) muestra que ambas funciones no se
 anulan exactamente en el mismo punto. Definiendo $\Delta r$ como la 
 distancia entre los nodos del orbital y de su derivada segunda, se 
 encuentra una pequeña distancia $\Delta r=1\times 10^{-3}$~a.u.. 
-Inspeccionando una gran cantidad de átomos, se encuentra que esta 
+Inspeccionando una gran cantidad de átomos, se encuentra que este 
 comportamiento es general, y existe siempre una gran proximidad entre 
 los ceros de las funciones y de sus derivadas segundas. Esta 
 característica hace suponer que la cercanía entre los nodos genuinos de 
@@ -1195,7 +1201,7 @@ forma, a grandes distancias, los potenciales están dados por
 \label{eq:VDIMasympt}
 \end{equation}
 Los orbitales correspondientes tienen un decaimiento asintótico 
-denonimado en la literatura de ``tipo Hartree''~\cite{Casida:89},
+denonimado en la literatura como ``tipo Hartree''~\cite{Casida:89},
 \begin{equation}
 \lim_{r \rightarrow \infty} u_{nl}^{\mathrm{DIM}}(r) \propto
 \exp(- \sqrt{- 2 \varepsilon_{nl}^{\mathrm{HF}} } r ) \,.
@@ -1205,7 +1211,7 @@ El término ``tipo-Hartree'' puede resultar confuso ya que la energía
 del orbital $\varepsilon_{nl}^{\mathrm{HF}}$ ha sido calculada 
 considerando el término de intercambio. 
 
-Sin embargo, en la teoría de HF, los orbitales tienen un comportamiento 
+En la teoría de HF, los orbitales tienen un comportamiento 
 asintótico diferente, dictado por la energía del orbital molecular de 
 mayor ocupación (\acs{homo}) $\varepsilon_{\mathrm{HOMO}}^{\mathrm{HF}}$ 
 \cite{Handy:69,Handler:80,Ishida:92},
@@ -1234,7 +1240,7 @@ Hartree--Fock}\myfnote{}~\cite{Handy:69}. Handler y Smith reconocieron
 estos cuestionamientos señalando que \textit{la cuestión del 
 comportamiento asintótico es de interés intrínseco de la 
 teoría}\myfnote{}~\cite{Handler:80}. Weber y Parr estudiaron en 
-profundidad este problema: limitaron los efectos de intercambio entre 
+profundidad este problema: limitaron los efectos del intercambio entre 
 electrones a una ``esfera de influencia'' finita y asumieron que 
 \textit{el electrón que se extrae de un átomo es de alguna manera 
 distinguible por el hecho de la separación. De cierta 
@@ -1245,20 +1251,20 @@ despreciarse}\myfnote{}~\cite{Weber:71}.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.9\textwidth]{dim/V1s_K.eps} 
+\includegraphics[width=0.9\textwidth]{dim/V1s_Mg.eps} 
 \caption[Comportamiento asintótico de los potenciales.]
 {Comportamiento asintótico de los potenciales invertido HF (línea 
-discontinua) y DIM (línea sólida) de orbital $1s$ del átomo de K.}
+discontinua) y DIM (línea sólida) de orbital $1s$ del átomo de Mg.}
 \label{fig:V1sK}
 \end{figure}
 
-A continuación, se presenta un ejemplo que permite ilustrar estos 
-conceptos en forma concreta. En la Fig.~\ref{fig:V1sK} se muestran los 
-potenciales $V_{1s}^{\mathrm{DIM}}$ y $V_{1s}^{\mathrm{HF}}$ del átomo 
-de potasio con líneas sólida y discontinua, respectivamente. El punto de 
-retorno clásico del orbital $1s$ se ilustra con una línea vertical 
-punteada: a partir de allí, el orbital decae exponencialmente. En la 
-región asintótica, el potencial invertido tiende a una constante, 
+A continuación, se presentan dos ejemplos que permiten ilustrar estos 
+conceptos en forma concreta. Primeramente, en la Fig.~\ref{fig:V1sK} se 
+muestran los potenciales $V_{1s}^{\mathrm{DIM}}$ y $V_{1s}^{\mathrm{HF}}$ 
+del átomo de magnesio con líneas sólida y discontinua, respectivamente. 
+El punto de retorno clásico del orbital $1s$ se ilustra con una línea 
+vertical punteada: a partir de allí, el orbital decae exponencialmente. 
+En la región asintótica, el potencial invertido tiende a una constante, 
 siguiendo la Ec.~(\ref{eq:VHFasympt}). Por ello, cuando los potenciales 
 se reescriben en términos de cargas efectivas, estas últimas divergen 
 (ver recuadro). Sin embargo, el potencial DIM tiene, por definición, una 
@@ -1283,14 +1289,14 @@ L_{nl}(r) \equiv r \frac{d \log{u_{nl}}}{d r}\,,
 \label{eq:Lnl}
 \end{equation}
 que debería tener una forma lineal para funciones $u_{nl}$ que decaen 
-exponencialmente. Siguiendo el ejemplo anterior, la Fig.~\ref{fig:LnsK} 
+exponencialmente. Como segundo ejemplo, en la Fig.~\ref{fig:LnsK} se 
 ilustra la derivada logarítmica de los orbitales HF $ns$ del átomo de 
 potasio. Los orbitales HF se muestran con líneas sólidas (capas internas 
 $1s$, $2s$ y $3s$) y discontinuas (capa de valencia $4s$). Los polos de 
 las funciones $L_{nl}(r)$ corrresponden a los nodos de las funciones 
 $u_{nl}$. La relación del número cuántico radial establece que los 
 orbitales $1s$ no tienen nodos, mientras que los orbitales $2s$ tienen 
-sólo un único nodo. Sin embargo, en el caso de potasio, el orbital $1s$ 
+un único nodo. Sin embargo, en el caso de potasio, el orbital $1s$ 
 presenta dos polos, i.e., dos nodos espurios, en $r\approx 0.99$~a.u. y 
 $5.68$~a.u.. Por otra parte, el orbital $2s$ tiene un nodo espurio en 
 $5.78$~a.u.. Estos nodos se discuten en la siguiente sección.
@@ -1300,10 +1306,10 @@ comportamiento de HF dado por la Ec.~(\ref{eq:uHFasympt}): los orbitales
 de las capas internas y el \acs{homo} son indistinguibles. En la 
 Fig.~\ref{fig:LnsK} se incluye, además, el comportamiento de los 
 orbitales DIM $1s$, $2s$ y $3s$ (líneas punteadas) en la región 
-asintótica, que presentan el decaimiento exponencial de ``tipo 
-Hartree''. Se puede observar que si bien la teoría de Hartree--Fock 
-establece otro comportamiento asintótico, comporten el mismo tipo de 
-decaimiento exponencial --tipo Hartree, Ec.~\ref{eq:uDIMasympt}-- en un 
+asintótica, que presentan el decaimiento exponencial ``tipo Hartree''. 
+Se puede observar que si bien la teoría de Hartree--Fock establece otro 
+comportamiento asintótico, los orbitales comparten el mismo tipo de 
+decaimiento exponencial~\ref{eq:uDIMasympt} en un 
 vasto rango espacial. En este caso, estos rangos se extienden desde el 
 punto de retorno hasta distancias $r\approx 0.4$, $1.5$, y 5~a.u., para 
 los orbitales $1s$, $2s$ y $3s$, respectivamente. Se señala estos 
@@ -1321,7 +1327,7 @@ mismas conclusiones basándose en experimentos de ionización electrónica.
 La discusión sobre cuál condición asintótica resulta más apropiada, 
 todavía no está saldada. La definición de las condiciones de borde que 
 se imponen en el DIM concuerdan con Weber, Handy y Parr, que sugieren 
-que el comportamiento a grandes distancias~(\ref{eq:VDIMasympt}) es 
+que la condición de borde dada por la Ec.~(\ref{eq:VDIMasympt}) es 
 preferible y produce resultados más precisos que los que se obtienen 
 utilizando la teoría formal de Hartree--Fock. 
 
@@ -1346,17 +1352,15 @@ computacionales. En todos los cálculos realizados con \textsc{hf} y
 los mismos puntos. Incluso coinciden con los escasos reportes que se 
 encuentran en la literatura, empleando otros métodos para resolver las 
 ecuaciones de HF. En general, en los cálculos que utilizan técnicas 
-espectrales no sólo aparecen estos nodos espurios, sino que se agregan 
-otros nodos adicionales. Dado que las funciones de base decaen 
-exponencialmente, las expansiones dejan de tener sentido a grandes 
-distancias. En estas regiones, las amplitudes de los 
-orbitales son despreciables. La teoría de Hartree--Fock se basa en el 
-principio variacional, por lo cual el comportamiento asintótico de los 
-orbitales tiene un efecto insignificante en los valores medios, 
-particularmente, de las energías. Por lo tanto, los nodos espurios no 
-tienen consecuencias prácticas y pueden ser ignorados, sin consecuencias 
-notorias. Sin embargo, en el esquema de inversión, el ancho y la 
-amplitud de 
+espectrales no sólo aparecen estos nodos espurios a grandes distancias, 
+sino que se agregan otros nodos adicionales. En estas regiones, las 
+amplitudes de los orbitales son despreciables. Dado que la teoría de 
+Hartree--Fock se basa en el principio variacional, el comportamiento 
+asintótico de los orbitales tiene un efecto insignificante en los 
+valores medios, particularmente, de las energías. Por lo tanto, los 
+nodos espurios no tienen consecuencias prácticas y pueden ser ignorados, 
+sin consecuencias notorias. Sin embargo, en el esquema de inversión, el 
+ancho y la amplitud de 
 los nodos espurios afectan significativamente las regiones más internas 
 de la carga invertida. Por ejemplo, la inversión del nodo espurio del 
 orbital $2s$ del átomo de potasio ubicado en $r\approx 5.78$~a.u., que 
@@ -1365,12 +1369,12 @@ de manera tal que esta empieza a diverger a partir $r\approx 1$~a.u.,
 aún cuando la amplitud del orbital no es lo suficientemente pequeña. 
 
 Quizás el cuestionamiento más importante al DIM está dado por el hecho 
-que el método adopta el comportamiento de ``tipo Hartree'' en lugar del 
+que el método adopta el comportamiento ``tipo Hartree'' en lugar del 
 comportamiento asintótico que dicta la teoría de Hartree--Fock. El 
 trabajo de Weber \textit{et al.}~\cite{Weber:70} plantea una importante 
 conjetura al respecto. Los autores teorizaron que todos los nodos 
 espurios desaparecerían si los orbitales tuvieran un 
-comportamiento asintótico de ``tipo Hartree'', en lugar del límite 
+comportamiento asintótico ``tipo Hartree'', en lugar del límite 
 exacto~(\ref{eq:uHFasympt}). La condición de borde asintótica del DIM 
 sostiene esta hipótesis, por lo tanto, los orbitales DIM no presentan 
 nodos espurios.
@@ -1390,7 +1394,7 @@ principio, la existencia de un potencial local sin nodos.
 \item El límite asintótico correcto que deben seguir las funciones 
 radiales orbitales es todavía objeto de discusión. 
 \item La existencia de los nodos espurios se debe al término de 
-intercambio que sobrevive a grandes distancias, y dicta el 
+intercambio electrónico que sobrevive a grandes distancias, y dicta el 
 comportamiento del potencial exacto en la teoría de HF.
 \item Los orbitales DIM cumplen las condiciones asintóticas de ``tipo 
 Hartree'' y no presentan nodos espurios, los cuales son intrínsecos a la 

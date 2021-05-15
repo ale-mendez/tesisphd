@@ -58,7 +58,7 @@ H = \sum_i \left[ h_i^{\mbox{\scriptsize D}} - \frac{Z}{r_i}\right]
 + \sum_{i<j}\frac{1}{r_{ij}}\,,
 \label{eq:HDirac}
 \end{equation}
-donde $h_i^{\mbox{\scriptsize D}}$ el término cinético del 
+donde $h_i^{\mbox{\scriptsize D}}$ es el término cinético del 
 Hamiltoniano de Dirac de una partícula. Los términos restantes en la
 Ec.~(\ref{eq:HDirac}) corresponden a las interacciones 
 núcleo--electrón y electrón--electrón, respectivamente. 
@@ -250,8 +250,8 @@ término de Breit a las energías como perturbaciones de segundo orden.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:method-stopping}
 
-Cuando un haz de iones incide sobre un material, éste pierde energía 
-cinética a lo largo del camino recorrido ya que este colisiona con los 
+Cuando un haz de iones incide sobre un material, este pierde energía 
+cinética a lo largo del camino recorrido ya que colisiona con los 
 núcleos y electrones del blanco. La pérdida de energía promedio 
 por unidad de longitud de trayectoria se conoce como poder o fuerza de 
 frenado $S(E)=dE/dx$ de un proyectil específico debido al blanco. Es 
@@ -277,11 +277,10 @@ también se debe incluir en el modelo.
 Existen diversos métodos, de primeros principios y semi-empíricos, que 
 permiten modelar la fuerza de frenado. Sin lugar a dudas el método e
 implementación más conocida está dada por el paquete de códigos 
-\textsc{srim}.
-Durante los últimos años, el código SRIM se ha descargado a un ritmo 
-cercano a las 150000 descargas anuales, lo que demuestra su enorme 
-popularidad. En general, el código \textsc{srim} es eficaz 
-proporcionando expresiones analíticas que permiten aproximar los 
+\textsc{srim}. Durante los últimos años, el código \textsc{srim} se ha 
+descargado a un ritmo cercano a las 150000 descargas anuales, lo que 
+demuestra su enorme popularidad. En general, el código \textsc{srim} es 
+eficaz proporcionando expresiones analíticas que permiten aproximar los 
 resultados experimentales. Sin embargo, no es muy exitoso realizando 
 predicciones, por lo que debe ser actualizado y corregido a medida que 
 se van obteniendo nuevos resultados experimentales y teóricos. 
@@ -331,8 +330,8 @@ máximo de la sección eficaz de frenado) ocurre a partir de cierto valor
 umbral de velocidad de impacto 
 $v_P\,\approx\,v_F[1+(3\pi\,v_F)^{-1/2}]$~\cite{suppression}. 
 
-El método SLPA también se basa en un formalismo dieléctrico, 
-describiendo la respuesta de cada capa de electrones como la de un gas 
+El método SLPA también se basa en un formalismo dieléctrico, que 
+describe la respuesta de cada capa de electrones como la de un gas 
 de electrones con una densidad no homogénea alrededor del núcleo del 
 blanco y con cierta energía. Este modelo sólo depende de las densidades 
 radiales orbitales del estado fundamental del blanco y de sus energías 
@@ -375,7 +374,7 @@ transición.
 \centering
 \begin{tabular}{
 >{\centering\arraybackslash}p{0.12\textwidth}
->{\centering\arraybackslash}p{0.14\textwidth}
+>{\centering\arraybackslash}p{0.16\textwidth}
 >{\centering\arraybackslash}p{0.14\textwidth}
 >{\centering\arraybackslash}p{0.08\textwidth}
 >{\arraybackslash}p{0.36\textwidth}}
@@ -819,13 +818,13 @@ $E_F=0.57$~a.u. (Tabla~\ref{tab:electronFEG}). Los parámetros
 experimentales del FEG de Roth y colaboradores describen bien las 
 secciones eficaces de frenado pero sólo a bajas energías. Por otro lado, 
 los resultados teóricos de fuerza de frenado, basados en los valores de 
-$N_e$ obtenidos con potenciales pramétricos relativistas, permiten 
+$N_e$ obtenidos con potenciales paramétricos relativistas, permiten 
 describir de forma correcta el frenado en una región de energías más 
 amplia. Más detalles de esta discusión se verán en la 
 Sección~\ref{subsec:tantalio}.
 
 El análisis de la estructura de los lantánidos arroja interesantes 
-resultados. En el caso de gadolinio (el análisis para Er es análogo), 
+resultados. En el caso de gadolinio (el estudio de Er es análogo), 
 los electrones $4f$ tienen energías muy cercanas a los electrones de las 
 capas externas $5d$ y $6s$. Los valores medios $\langle r\rangle$ de los 
 electrones $4f$ muestran que estos se encuentran localizados cerca del 
@@ -961,7 +960,7 @@ para valores de energía entre 100 y 400~keV. El modelo semi-empírico
 \textsc{srim} sigue los valores de Sirotinin y 
 sugiere un máximo de menor amplitud a una energía de impacto igual a 
 115~keV. Se observa un buen acuerdo entre los calculos no relativistas 
-y el modelo DPASS que también es no relativista. 
+y el modelo \textsc{dpass} que también es no relativista. 
 Serán necesarias mediciones en la región de energía de impacto 
 comprendida entre 30 y 300~keV para protones en Hf para corroborar las 
 cálculos presentes. 
@@ -1007,7 +1006,7 @@ Sección~\ref{subsec:FEG}, el primero es casi $2.5$~veces mayor al
 segundo. Para energías mayores a 100~keV, los cálculos presentes 
 coinciden con las recientes mediciones de 
 Moro~\textit{et al.}~\cite{Moro:20}. La amplitud máxima de los 
-resultados teóricos coincide con estos datos experimentales, aunque la 
+resultados teóricos concuerda con estos datos experimentales, aunque la 
 energía de impacto en la que ocurre es ligeramente menor. Las mediciones 
 de Moro y colaboradores difieren de los datos experimentales previos 
 para energías cercanas y mayores al umbral de excitación de plasmones 
@@ -1019,9 +1018,6 @@ $35\times 10^{-15}$~eV~cm$^2$/átomos, que están 20\% por debajo del
 máximo calculado por el modelo combinado. Por otro lado, las energías 
 incidentes donde estos máximos ocurren tienen una dispersión en promedio 
 de 20\% respecto a los cálculos presentes. 
-%Este valor es particularmente importante ya que determina la penetración 
-%de la partícula incidente en el material, es decir, la ubicación del 
-%pico de Bragg.
 
 \begin{figure}[t]
 \centering
