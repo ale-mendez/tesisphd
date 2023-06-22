@@ -1,4 +1,5 @@
 *.aux
+*-eps-converted-to.pdf
 tesis.log
 tesis.out
 tesis.pdf
